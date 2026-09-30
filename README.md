@@ -10,6 +10,15 @@ A public collection of [Agent Skills](https://agentskills.io/specification) for 
 
 ## Installing a skill
 
+### As a Claude Code plugin (recommended)
+
+```
+/plugin marketplace add fdtaljaard/claude-skills
+/plugin install sage300-assistant@fdtaljaard-skills
+```
+
+### Manually
+
 Copy the skill folder into your Claude skills directory:
 
 - **Claude Code (all projects):** `~/.claude/skills/<skill-name>/`
@@ -33,6 +42,10 @@ skills/
     references/     # bulk reference material, read on demand
     scripts/        # maintenance tooling (not needed at runtime)
 ```
+
+## License
+
+The code and original content in this repository are released under the [MIT License](LICENSE). Reference material derived from Sage's documentation and product metadata remains subject to Sage's own terms (see the disclaimer below).
 
 ## Disclaimer
 
