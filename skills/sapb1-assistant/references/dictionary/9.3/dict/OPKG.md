@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # OPKG - Package Types
 Module: Inventory and Production | 20 columns | ObjType: 205
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: PkgCode
   TYPE U: PkgType
 Fields (name type(len) description [values] ->parent table):

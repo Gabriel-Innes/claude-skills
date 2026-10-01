@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # OCHO - Checks for Payment
 Module: Banking | 56 columns | ObjType: 57
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: CheckKey
   VPM_NUM: PmntNum
   TRANS_NUM: TransNum

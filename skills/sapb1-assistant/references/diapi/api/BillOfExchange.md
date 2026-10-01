@@ -1,0 +1,45 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# BillOfExchange (Object)
+
+BillOfExchange is a business object that represents the Bill Of Exchange table in the Banking module. Bill Of Exchange is a commercial document used as a payment method in Spain, Portugal, Italy, France, Belgium, and Chile. Source table: OBOE.
+
+**Remarks:** Mandatory fields in SAP Business One: BillOfExchangeDueDate and PaymentMethodCode. To display the form in the application: - Select Banking --> Bill of Exchange. - Select one of the Bill of Exchange sub-menus. The OBOE table relates to Management, Transactions lines, Receivables, Payables, and Fund. For Management or Fund, set your criteria and then click OK. Definition: A Bill of Exchange is a signed, written order prepared by one party (drawer) who instructs another party (drawee) to pay a certain sum to a third party (payee) at a due date. The Bill of Exchange is used as a method of incoming or outgoing payment with a due date, as credit for the customer or as a flexible financing tool. Process of incoming payments: - The company prepares a payment requirement to send to the vendor (status: Sent). If the vendor approves, proceed to step 2, else the payment requirement is canceled (status: Canceled). - SAP Business One generates a Bill Of Exchange (status: Generated). - The company deposits the Bill Of Exchange in the bank (status: Deposit). (Reconciliation between the Bill Of Exchange and the bank can be done.) - The bank pays the vendor (status: Paid). (Reconciliation between the Bill Of Exchange and the bank can be done.) If the payment succeeds the bank sends a payment confirmation to the company (in France only, the Bill Of Exchange status is changed to Closed). If the payment fails, the Bill Of Exchange status is changed to Failed. Note: Perform steps 1 and 2 using the BillOfExchange object. Perform steps 3 and 4 using the BillOfExchangeTransaction object. Process of outgoing payments: - The company approves the payment requirement issued by the vendor and generates a Bill Of Exchange (status: Generated). - The bank pays the vendor (status: Paid). (Reconciliation between the Bill Of Exchange and the bank can be done.) If the payment succeeds the bank sends a payment confirmation to the company (in France only, the Bill Of Exchange status is changed to Closed). If the payment fails, the Bill Of Exchange status is changed to Canceled. Note: Perform step 1 using the BillOfExchange object. Perform step 2 using the BillOfExchangeTransaction object.
+
+## Properties (29)
+- `Public Property BillOfExchangeDueDate() As Date` [R/W] Sets or returns the due date of the Bill Of Exchange. Field name: DueDate. Mandatory property.
+  - remarks: In incoming payments, at the due date, the company claims the payment from the customer or asks the bank to claim it. In outgoing payments, at the due date, the company or the bank pays the payment to the vendor.
+- `Public Property BillOfExchangeNo() As String` [R/W] Sets or returns the Bill Of Exchange number. Field name: BoeNum. Length: 11 characters.
+  - remarks: The value of this property is received from DocNum property of the Payments object (incoming payments). If this number is already used by another Bill Of Exchange, in SAP Business One application the following error message appears: "Bill of exchange number already exists". If no value exists , in SAP Business One application the following error message appears: "Bill of exchange number does not exist ".
+- `Public Property BPBankAct() As String` [R/W] Sets or returns the bank account number of the business partner. Field name: DpstAcct. Length: 50 characters.
+  - remarks: For incoming payments, the value is received from DefaultAccount property of the BusinessPartners object. For outgoing payments, the value is received from the Payment Method table (OPYM) as defined in SAP Business One (the bank details should be set in SAP Business One).
+- `Public Property BPBankCode() As String` [R/W] Sets or returns the bank code of the business partner. Field name: DpsBankCod. Length: 30 characters.
+  - remarks: For incoming payments, the value is received from DefaultBankCode property of the BusinessPartners object. For outgoing payments, the value is received from the Payment Method table (OPYM) as defined in SAP Business One (the bank details should be set in SAP Business One).
+- `Public Property BPBankCountry() As String` [R/W] Sets or returns the country code of the business partner bank account. Field name: BPBankCtr. Length: 3 characters. This is a foreign key to the Countries table (OCRY - not exposed through the DI API).
+  - remarks: For incoming payments, the value is received from BankCountry property of the BusinessPartners object. For outgoing payments, the value is received from the Payment Method table (OPYM) as defined in SAP Business One (the bank details should be set in SAP Business One). You can set any country code that is defined in the Countries table (OCRY - not exposed through the DI API).
+- `Public Property ControlKey() As String` [R] Returns the bank control key of the business partner. Field name: ControlKey. Length: 2 characters.
+  - remarks: The control key specifies the type of account, for example: 01 indicates Checking Account, 02 indicates Saving Account, and so on.
+- `Public Property Details() As String` [R/W] Not used.
+- `Public Property DiscountAmount() As Double` [R/W] property DiscountAmount
+- `Public Property DiscountDate() As Date` [R/W] property DiscountDate
+- `Public Property FineAmount() As Double` [R/W] property FineAmount
+- `Public Property FineDate() As Date` [R/W] property FineDate
+- `Public Property FolioNumber() As Long` [R/W] Sets or returns the additional number for a bill-of-exchange document. Country-specific field for Chile. Field name: FolioNum).
+  - remarks: For Incoming Payments: the Folio number assigned to the bill of exchange after it was printed, the user can not change this data. For bill of exchange that is not yet printed this field is empty and not editable. For Outgoing Payments: the user specifies the Folio number for the outgoing bill of exchange. After the Outgoing Payment is added, the user can not change this field. If the user hasn't assigned the Folio number before adding the Outgoing Payment, the user can assign it by using the Folio Number Assignment function, after printing the document.
+- `Public Property FolioPrefixString() As String` [R/W] Sets or returns the prefix string for the FolioNumber. Field name: FolioPref. Length: 2 characters.
+- `Public Property InterestAmount() As Double` [R/W] property InterestAmount
+- `Public Property InterestDate() As Date` [R/W] property InterestDate
+- `Public Property IOFAmount() As Double` [R/W] property IOFAmount
+- `Public Property LastPageFolioNumber() As Long` [R] Folio number of the last page of the marketing document in the Chile localization. Field name: LPgFolioN.
+- `Public Property OtherExpensesAmount() As Double` [R/W] property OtherExpensesAmount
+- `Public Property OtherIncomesAmount() As Double` [R/W] property OtherIncomesAmount
+- `Public Property PaymentEngineStatus1() As String` [R/W] Sets or returns the status no. 1 of the Bill Of Exchange used in the Payment Engine add-on. Field name: PayEngSt1. Length: 1 character.
+- `Public Property PaymentEngineStatus2() As String` [R/W] Sets or returns the status no. 2 of the Bill Of Exchange used in the Payment Engine add-on. Field name: PayEngSt2. Length: 1 character.
+- `Public Property PaymentEngineStatus3() As String` [R/W] Sets or returns the status no. 3 of the Bill Of Exchange used in the Payment Engine add-on. Field name: PayEngSt3. Length: 3 characters.
+- `Public Property PaymentMethodCode() As String` [R/W] Sets or returns the Payment Method Code as defined in SAP Business One. Field name: PayMethCod. Mandatory property. Length: 15 characters.
+  - remarks: The payment method is set in OPYM table and includes, for each Payment Method Code, details such as payment type (incoming or outgoing), means of payment (check, bank transfer, or bill of exchange), and various options and restrictions.
+- `Public Property ReferenceNo() As String` [R/W] Sets or returns the reference number for the Bill Of Exchange. Field name: RefNum. Length: 254 characters.
+- `Public Property Remarks() As String` [R/W] Sets or returns the for the Bill Of Exchange. Field name: Comments. Length: 254 characters.
+- `Public Property ServiceFeeAmount() As Double` [R/W] property ServiceFeeAmount
+- `Public Property StampTaxAmount() As Double` [R/W] Sets or returns the amount of stamp tax required for the Bill Off Exchange approval. Field name: tmpTxAmnt. Field name: PayEngSt2.
+- `Public Property StampTaxCode() As String` [R/W] Sets or returns the Stamp Tax code. Field name: StampTax. Length: 8 Characters. Field name: StampTax. This is a foreign key to the VatGroups Object.
+- `Public Property UserFields() As UserFields` [R] Returns the UserFields object.

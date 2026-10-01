@@ -1,0 +1,107 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# LandedCost_ItemLine (Object)
+
+The LandedCost_ItemLine object enables you to display the data regarding the imported goods as copied from goods receipt PO documents. Source table: IPF1.
+
+**Remarks:** To access the form in the application, choose Purchasing A/P --> Landed Costs, and choose the Items tab.
+
+## Properties (80)
+- `Public Property AllocatedCostsLineTotal() As Double` [R] Value of landed costs allocated to the item row. Field name: TtlExpndSC.
+  - remarks: This field is only available for companies managing a perpetual inventory.
+- `Public Property AllocatedUnitCostsLineTotal() As Double` [R/W] Total value of allocated unit costs per row. Field name: TtlExpndLC.
+- `Public Property AllocatedUnitCostsLineTotalFC() As Double` [R/W] Total value of allocated unit costs per row in foreign currency. Field name: TtlExpndFC.
+- `Public Property AutomaticExpenditure() As BoYesNoEnum` [R/W] property AutomaticExpenditure
+- `Public Property BaseDocumentPrice() As Double` [R/W] Unit price that appears in the Item row of the goods receipt PO documents. Field name: PriceFOB.
+  - remarks: If a discount was given in the goods receipt PO document, SAP Business One calculates the FOB price as the row price minus the discount amount. This price reflects the net vendor price, excluding import costs.
+- `Public Property BaseDocumentType() As LandedCostBaseDocumentTypeEnum` [R/W] The base document type of the landed costs document. Field name: BaseType.
+- `Public Property BaseDocumentValueLineTotal() As Double` [R] Total price that appears in the Item row of the goods receipt PO documents. Field name: FobValue.
+  - remarks: This field is only available for companies managing a perpetual inventory.
+- `Public Property BaseDocumentValueLineTotalFC() As Double` [R] Total price that appears in the Item row of the goods receipt PO documents in foreign currency. Field name: FobValueFC.
+- `Public Property BaseEntry() As Long` [R/W] The internal ID of the base document. Field name: BaseEntry.
+- `Public Property BaseLine() As Long` [R/W] property BaseLine
+- `Public Property BlockNumber() As String` [R/W] property BlockNumber
+- `Public Property CCDNumber() As String` [R/W] property CCDNumber
+- `Public Property CorrectedBaseDocumentValue() As Double` [R/W] property CorrectedBaseDocumentValue
+- `Public Property CorrectedBaseDocumentValueFC() As Double` [R/W] property CorrectedBaseDocumentValueFC
+- `Public Property Currency() As String` [R/W] The currency used for the document. Field name: Currency.
+- `Public Property Customs() As Double` [R] Total value of customs per line in local currency. Field name: UserCustom.
+- `Public Property CustomsAffectStock() As BoYesNoEnum` [R/W] property CustomsAffectStock
+- `Public Property CustomsCost() As Double` [R/W] property CustomsCost
+- `Public Property CustomsCostFC() As Double` [R/W] property CustomsCostFC
+- `Public Property CustomsFC() As Double` [R] Total value of customs per line in foreign currency. Field name: UsrCusomFC.
+- `Public Property CustomsGroupRate() As Double` [R] property CustomsGroupRate
+- `Public Property CustomsValue() As Double` [R/W] Total value of customs per row. If the value calculated in this field is not the actual amount you are required to pay, you can change this value. Field name: TtlCostLC.
+- `Public Property CustomsValueFC() As Double` [R/W] Total value of customs per row in foreign currency. Field name: TtlCostFC.
+- `Public Property CustomsVat() As Double` [R/W] property CustomsVat
+- `Public Property CustomsVatAffectStock() As BoYesNoEnum` [R/W] property CustomsVatAffectStock
+- `Public Property CustomsVatFC() As Double` [R/W] property CustomsVatFC
+- `Public Property DistributionRule() As String` [R/W] If required, specify the distribution rule for the landed costs row. Field name: OcrCode. Length: 8 characters.
+  - remarks: The default value comes from row information of the source documents (goods receipt POs or landed costs documents). For perpetual inventory companies: If you define the distribution rule here, it appears in the Distr. Rule field for the customs allocation account or customs expense account row in the journal entry. If you leave this field empty, the default distribution rule for the customs allocation account or customs expense account appears in the Distr. Rule field for the corresponding journal entry row. For non-perpetual inventory companies, a change in this field does not apply to journal entries because posting a landed costs document does not create a journal entry.
+- `Public Property DistributionRule2() As String` [R/W] Multiple distribution rules for the landed costs row. Field name: OcrCode2. Length: 8 characters.
+- `Public Property DistributionRule3() As String` [R/W] Multiple distribution rules for the landed costs row. Field name: OcrCode3. Length: 8 characters.
+- `Public Property DistributionRule4() As String` [R/W] Multiple distribution rules for the landed costs row. Field name: OcrCode4. Length: 8 characters.
+- `Public Property DistributionRule5() As String` [R/W] Multiple distribution rules for the landed costs row. Field name: OcrCode5. Length: 8 characters.
+- `Public Property DocEntry() As Long` [R] The internal ID of the landed costs. Field name: DocEntry.
+- `Public Property ExciseAffectStock() As BoYesNoEnum` [R/W] property ExciseAffectStock
+- `Public Property ExciseSum() As Double` [R/W] property ExciseSum
+- `Public Property ExciseSumFC() As Double` [R/W] property ExciseSumFC
+- `Public Property Expenditure() As Double` [R/W] Expenses for each item unit as calculated in the current document. According to the landed costs allocation, this value is the weighted ratio of each item, without the overall costs calculated in the document. Field name: Cost.
+- `Public Property ExpenditureFC() As Double` [R/W] The expenditure in foreign currency. Field name: CostFC.
+- `Public Property FactorWithCustoms() As Double` [R] property FactorWithCustoms
+- `Public Property FactorWithoutCustoms() As Double` [R] property FactorWithoutCustoms
+- `Public Property FixCosts() As Double` [R] Fixed costs per item. Field name: ConstCosts.
+- `Public Property FixCostsFC() As Double` [R] Fixed costs per item in foreign currency. Field name: CnstCostFR.
+- `Public Property FOBandIncludedCosts() As Double` [R] This value is calculated as follows: Free on board, that is, the purchase price + (total amount of landed costs included for customs / total quantity) * (quantity per line). Field name: FobnLaC.
+- `Public Property FOBandIncludedCostsFC() As Double` [R] FOB and included landed costs in foreign currency. Field name: FobnLaCFC.
+- `Public Property ImportLog() As String` [R/W] property ImportLog
+- `Public Property InventoryUOM() As String` [R] property InventoryUoM
+- `Public Property InventoryValuation() As BoYesNoEnum` [R/W] property InventoryValuation
+- `Public Property ItemDescription() As String` [R] Item description of the imported items. Field name: Dscription.
+- `Public Property LineNumber() As Long` [R] The row number. Field name: LineNum.
+- `Public Property LineTotal() As Double` [R] The line total value calculated by multiplying the price in the warehouse by the imported quantity. Field name: LineTotal.
+- `Public Property LineTotalFC() As Double` [R] The line total value in foreign currency. Field name: TotalFrgn.
+- `Public Property Number() As String` [R] Item numbers of the imported items, as displayed in the selected goods receipt PO documents. Field name: ItemCode.
+- `Public Property OriginalWarehouse() As String` [R] property OriginalWarehouse
+- `Public Property OriginLine() As Long` [R/W] property OriginLine
+- `Public Property PriceList() As Long` [R/W] Specify the price list you want to update with the item price and landed costs. Field name: PriceList.
+  - remarks: The selected price list is updated according to the currency selected in the document. For example, if the landed costs document is displayed in your local currency, the item prices are updated accordingly in the selected price list, and not by a foreign currency, if one is defined for the vendor.
+- `Public Property Project() As String` [R/W] If required, specify the project to which the landed cost of the item is allocated. If you defined the project in the source goods receipt PO or landed cost documents, the field displays the project code by default. Field name: Project. Length: 20 characters.
+- `Public Property ProjectedCustoms() As Double` [R/W] Projected customs. It is calculated per unit by multiplying the base document price by the customs rate defined for each item and according to the linked customs group. You can change the value if the value calculated in this field is not the actual amount you are required to pay. If you selected the Include for Customs checkbox on the Costs tab for one of the landed costs, the projected customs value is recalculated as follows: (FOB + Included Landed Costs) * fixed customs rate / quantity per line Field name: Custom.
+- `Public Property ProjectedCustomsFC() As Double` [R/W] Projected customs in foreign currency. Field name: CustomFC.
+- `Public Property Quantity() As Double` [R/W] Imported quantities of the items in the selected goods receipt PO documents. Field name: Quantity.
+- `Public Property Rate() As Double` [R] property Rate
+- `Public Property Reference() As String` [R] property Reference
+- `Public Property ReleaseNumber() As Long` [R] Release number for customs purposes. Field name: ReleaseNum.
+- `Public Property TotalCosts() As Double` [R] Sum of the customs value plus the allocated costs value. Field name: TtlCustLC.
+  - remarks: This field is only available for companies managing a perpetual inventory.
+- `Public Property TotalCostsFC() As Double` [R] Sum of the customs value plus the allocated costs value in foreign currency. Field name: TtlCustFC.
+- `Public Property TotalLineProjectedCustoms() As Double` [R] Value calculated by multiplying the price in the warehouse by the imported quantity. Field name: TtlCustSC.
+- `Public Property TotalVolume() As Double` [R/W] property TotalVolume
+- `Public Property UserFields() As Fields` [R] property User Fields
+- `Public Property VariantCosts() As Double` [R] Variable costs per item. Field name: VarCosts.
+  - remarks: This field is only relevant for companies not managing a perpetual inventory.
+- `Public Property VariantCostsFC() As Double` [R] Variable costs per item in foreign currency. Field name: VarCostsFR.
+- `Public Property VatGroup() As String` [R/W] property VatGroup
+- `Public Property VatPercent() As Double` [R] property VatPercent
+- `Public Property VendorCode() As String` [R] The vender code. Field name: CardCode.
+- `Public Property Volume() As Double` [R/W] property Volume
+- `Public Property VolumeUoM() As Long` [R/W] property VolumeUoM
+- `Public Property Warehouse() As String` [R/W] Warehouse in which the imported item is located. Field name: WhsCode.
+- `Public Property WarehousePrice() As Double` [R] The price of the imported item in your warehouse, calculated as follows: Freight + expected customs + base document price Field name: PriceAtWH.
+- `Public Property WarehousePriceFC() As Double` [R] The price of the imported item in your warehouse in foreign currency. Field name: PricAtWHFC.
+- `Public Property Weight1() As Double` [R/W] property Weight1
+- `Public Property Weight1UnitCode() As Long` [R/W] property Weight1UnitCode
+- `Public Property Weight2() As Double` [R/W] property Weight2
+- `Public Property Weight2UnitCode() As Long` [R/W] property Weight2UnitCode
+
+## Methods (5)
+- `Public Sub FromXMLFile(ByVal bstrFileName As String)` Sets the object's properties using data from an XML file. The XML file can be created using the object's ToXMLFile method.
+  - param `bstrFileName`: The path and name of the XML file from which to retrieve the object's data.
+- `Public Sub FromXMLString(ByVal bstrXML As String)` Sets the object's properties using data from an XML string. The XML string can be created using the object's ToXMLString method.
+  - param `bstrXML`: The XML from which to retrieve the object's data.
+- `Public Function GetXMLSchema() As String` Returns the XML schema for the XML generated by the ToXMLFile and ToXMLString methods.
+- `Public Sub ToXMLFile(ByVal bstrFileName As String)` Creates an XML file that represents the object.
+  - param `bstrFileName`: The path and file name of the XML file.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.
+- `Public Function ToXMLString() As String` Creates and returns an XML string that represents the object.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.

@@ -1,0 +1,19 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# EnhancedDiscountGroupParams (Object)
+
+EnhancedDiscountGroupParams Class
+
+## Properties (3)
+- `Public Property AbsEntry() As Long` [R/W] property AbsEntry
+- `Public Property ObjectCode() As String` [R] property ObjectCode
+- `Public Property Type() As DiscountGroupTypeEnum` [R] property Type
+
+## Methods (5)
+- `Public Sub FromXMLFile(ByVal bstrFileName As String)` method FromXMLFile
+  - param `bstrFileName`: 
+- `Public Sub FromXMLString(ByVal bstrXML As String)` method FromXMLString
+  - param `bstrXML`: 
+- `Public Function GetXMLSchema() As String` method GetXMLSchema
+- `Public Sub ToXMLFile(ByVal bstrFileName As String)` method ToXMLFile
+  - param `bstrFileName`: 
+- `Public Function ToXMLString() As String` method ToXMLString

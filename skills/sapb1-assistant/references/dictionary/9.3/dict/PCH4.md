@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # PCH4 - A/P Invoice - Tax Amount per Document
 Module: Marketing Documents | 55 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: LineSeq, DocEntry
   SCONDARY: staType, StaCode, StcCode, ExpnsCode, GroupNum, LineNum, DocEntry
 Fields (name type(len) description [values] ->parent table):

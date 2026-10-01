@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # OTOB - 1099 Opening Balance
 Module: Administration | 6 columns | ObjType: 148
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: Box1099, Form1099, VendCode
 Fields (name type(len) description [values] ->parent table):
   VendCode nVarChar(15) Vendor Code ->OCRD

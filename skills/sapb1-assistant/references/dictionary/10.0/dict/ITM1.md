@@ -1,0 +1,26 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# ITM1 - Items - Prices
+Module: Inventory and Production | 17 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: ItemCode, PriceList
+  CURRENCY: Currency
+  PRICE_LIST: PriceList
+  MANUAL: Ovrwritten
+Fields (name type(len) description [values] ->parent table):
+  ItemCode nVarChar(50) Item No. ->OITM
+  PriceList Int(6) Price List No. ->OPLN
+  Price Num(19,6) List Price
+  Currency nVarChar(3) Currency for List Price ->OCRN
+  Ovrwritten VarChar(1) Manual Price Entry default=N [Y=Yes, N=No]
+  Factor Num(19,6) Factor
+  LogInstanc Int(11) Log Instance default=0
+  ObjType nVarChar(20) Object default=4 ->ADP1
+  AddPrice1 Num(19,6) Additional Price (1)
+  Currency1 nVarChar(3) Currency for Add. Price 1 ->OCRN
+  AddPrice2 Num(19,6) Additional Price (2)
+  Currency2 nVarChar(3) Currency for Add. Price 2 ->OCRN
+  Ovrwrite1 VarChar(1) Manual Price Entry (1) default=N [Y=Yes, N=No]
+  Ovrwrite2 VarChar(1) Manual Price Entry (2) default=N [Y=Yes, N=No]
+  BasePLNum Int(6) Base Price List No. ->OPLN
+  UomEntry Int(11) UoM Entry ->OUOM
+  PriceType VarChar(1) Price Type default=M [I=Inventory UoM Price, P=Pricing Unit Price, M=Both I and P, O=Other UoM Price]

@@ -1,0 +1,15 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# CHFL - Choose from List Format
+Module: Administration | 9 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: ObjName, FldIndex
+Fields (name type(len) description [values] ->parent table):
+  ObjName nVarChar(20) Object Name
+  FldIndex Int(6) Field Index
+  FldNum nVarChar(60) Field No.
+  DispName nVarChar(30) Displayed Name
+  GroupBy VarChar(1) Group By default=N [Y=Yes, N=No]
+  Visible VarChar(1) Visible default=N [Y=Yes, N=No]
+  DispDesc VarChar(1) Show Type default=Y [Y=Yes, N=No]
+  SortOrder VarChar(1) Sort Order default=A [A=Ascending, D=Descending]
+  VisIndex Int(6) Visual Index default=0

@@ -64,6 +64,16 @@ All files are under `references/objects/`.
 7. **Report** to the user: rows per source, the diff against the last ingest, new conflicts, and anything that
    needs their decision (for example whether a new source should become the authoritative one).
 
+### The `sap-di` source (SAP's own enumeration)
+
+`sap-di` is not a website: it is `references/diapi/enums/BoObjectTypes.md`, compiled from the DI API reference.
+It supplies the **DI API** column and confirms object numbers; it names classes, not tables, so it never
+overrides Table or Primary Key. After rebuilding the DI API reference (below), re-merge it: add or update the
+`DI API` member and `sap-di` in `Src` for every number in the enumeration, add any number the list lacks
+(table and description blank, noted "absent from the community lists"), and compare each member's class source
+table (`references/diapi/api/INDEX.md`) with the list's table; where they differ, keep the list's table and say
+so in Notes. Update the counts in `INDEX.md`.
+
 ### Adding a new source site
 
 Same steps, plus: decide its role (authoritative vs cross-check), give it a short id, and add a column mapping
@@ -76,9 +86,37 @@ names, B1 version), raise it with the user before widening the table schema; a n
 Never silently drop a source. Mark it `status: superseded by X` in its `raw/` provenance header and in the
 `INDEX.md` sources table; remove its id from `Src` only when the user agrees.
 
-## Refresh the schema dictionary from erpref.com
+## Refresh the 10.0 schema dictionary from REFDB.chm
 
-Source: `https://erpref.com/BusinessOne<version>/Schema/Detail/BusinessOne<version>` (9.3 today). The pages are
+Source: `REFDB.chm`, "SAP Business One SDK 10.0 - Database Tables Reference", shipped with the SDK next to
+`REFDI.chm` (`<SDK folder>\Help\REFDB.chm`; here `C:\Program Files (x86)\SAP\SAP Business One SDK\Help`). It is
+SAP's own documentation: compile from it, don't commit the CHM or its HTML. This is the **default** dictionary.
+
+1. **Decompile** (Windows, outside the repo, to a path without spaces): copy the CHM there, then
+   `hh.exe -decompile <extractdir> REFDB.chm`. Expect one folder per module with one `<TABLE>.htm` each (~2,780
+   pages), `refdb.hhc`, and an `Overview.htm` that names the release; read it and record it.
+2. **Build**: `PYTHONUTF8=1 python scripts/build_refdb_schema.py <extractdir> --out references/dictionary/<version>
+   --objects references/objects/object-types.md --verified YYYY-MM-DD --label "SAP Business One <version>"`. It
+   stops, naming the page, if a table name doesn't match its file, a page lacks the three expected tables or
+   headers, a row has the wrong number of cells, or any page in the table of contents wasn't read. Delete the old
+   `dict/` first so dropped tables don't linger.
+3. **Sanity-check** before committing: table, column and key totals against the previous run; `first key not
+   PRIMARY` list (today `OSES`, `TAAS`, `TAASF`); every `->PARENT` points at a file that exists (today 24 links at
+   `OINM`/`OPMN`, which have no page: record, don't fix); no untyped columns; read `ORDR`, `RDR1`, `OCRD`, `OITM`
+   end to end.
+4. **Diff against the previous version** (tables added/removed, columns added/removed, type, valid-value, link and
+   default changes, key order) and record the notable changes in `references/dictionary/INDEX.md`. When REFDB is the
+   source for both versions the key order should agree: if it doesn't, investigate before trusting either.
+5. **Update** the dictionary `INDEX.md` (counts, module table, known issues), the version wording in `SKILL.md` § 2,
+   § 4, § 6, `references/diapi/INDEX.md` (how many DI API source tables the new dictionary contains), and
+   `metadata.version`.
+6. **New release**: new folder named by release (`references/dictionary/10.1/`); keep older folders clients still run
+   and map release → folder in the dictionary `INDEX.md`; make the newest the default in `SKILL.md`.
+
+## Refresh the 9.3 schema dictionary from erpref.com (legacy)
+
+Used only for the 9.3 dictionary (erpref.com lists releases up to 9.3; SAP's own 10.0 reference is above).
+Source: `https://erpref.com/BusinessOne<version>/Schema/Detail/BusinessOne<version>`. The pages are
 empty shells filled by JSON `POST` endpoints, so plain HTML scraping returns nothing; the scripts call the same
 endpoints the site's own pages use. The site's terms don't prohibit automated access (no `robots.txt` either)
 but state that the page content belongs to ERPRef.com and the schema IP to SAP. Be gentle: it's a small
@@ -89,19 +127,51 @@ third-party site, the default delay is 0.5 s between requests, and a full run ta
    Try `--module MRP` first (10 tables). It fetches the table list (12 module calls), then per table the columns
    (`GetTable`) and the index HTML (`Table/Detail`), and checks each table's column count against the listing.
 2. **Build**: `python scripts/build_schema_dict.py --cache <dir> --out references/dictionary/<version> --objects
-   references/objects/object-types.md --verified YYYY-MM-DD --label "SAP Business One <version>"`. It refuses
-   to build from an incomplete cache (`--allow-partial` for testing only) and writes `dict/<TABLE>.md` per table
-   plus `table-index.md`.
+   references/objects/object-types.md --verified YYYY-MM-DD --label "SAP Business One <version>" --index-note
+   "<warning>"`. It refuses to build from an incomplete cache (`--allow-partial` for testing only) and writes
+   `dict/<TABLE>.md` per table plus `table-index.md`. 9.3 is built with the `--index-note` that its composite-key
+   order is reversed against SAP's reference (see the dictionary `INDEX.md`); keep it on every rebuild.
 3. **Sanity-check** before committing: table, column and index totals against the listing; a few well-known
    tables read end to end (e.g. the sales order and business partner families); every `->PARENT` points at a
    file that exists; every table has an index and the first is the primary key; no columns without a type.
 4. **Update** `references/dictionary/INDEX.md` (counts, source date, known issues, diff against the previous
    version), the version wording in `SKILL.md` § 2 and § 4, and `metadata.version`.
-5. **Adding a version**: new folder named by version (`references/dictionary/10.0/`); keep the old one (clients
-   on it still need it) and map version → folder in the dictionary `INDEX.md`. erpref.com only lists releases up
-   to 9.3, so a newer version needs a different source: raise it with the user before building.
+5. **Adding a version**: erpref.com has nothing newer than 9.3, so don't extend this procedure; a newer release
+   comes from the SDK's `REFDB.chm` (above). Keep the 9.3 folder while clients still run 9.3.
 6. Anything unexplained in the source (e.g. why `Int` lengths differ) stays unexplained in the references;
    record it as a known issue, don't invent a meaning.
+
+## Refresh the DI API reference from REFDI.chm
+
+Source: `REFDI.chm`, shipped with the SAP Business One SDK (`<SDK folder>\Help\REFDI.chm`; on this machine
+`C:\Program Files (x86)\SAP\SAP Business One SDK\Help`). The title page names the release ("SAP Business One DI
+API 10.0 - Objects Reference (10.00.190)"); read it first and record it. The CHM is SAP's documentation: compile
+from it, don't commit the CHM or its HTML.
+
+1. **Decompile** (Windows, outside the repo, to a path without spaces): copy the CHM there, then
+   `hh.exe -decompile <extractdir> REFDI.chm`. Expect ~21,000 flat `.html` files and `DI_API.hhc`
+   (7-Zip also extracts CHMs).
+2. **Build**: `PYTHONUTF8=1 python scripts/build_diapi_ref.py <extractdir> references/diapi --verified YYYY-MM-DD
+   [--label "SAP Business One DI API <release> (<build>)"]`. It parses the table of contents into class → members
+   and each page's `Description / Syntax / Parameters / Return Type / Remarks / Example` sections, and writes
+   `api/<Class>.md`, `enums/<Enum>.md` and the two `INDEX.md` files. It stops if a class or enum name would clash
+   case-insensitively. Delete the old `references/diapi/api` and `enums` first so removed classes don't linger.
+3. **Check** before committing: class, member and enum counts against the previous run (a new release adds
+   classes); `0 pages missing`; every `../enums/<Enum>.md` pointer resolves; no `[Missing` or `&nbsp;` in the
+   output; read `api/Company.md`, `api/Documents.md` and `enums/BoObjectTypes.md` end to end.
+4. **Update** `references/diapi/INDEX.md` (counts, release, known issues, the source-table comparison with the
+   schema dictionary), the version wording in `SKILL.md` § 5 and § 6, and re-merge `sap-di` into the object list
+   (above). Re-read `di-api-guide.md` and `common-mistakes.md` against the new reference: each claim cites a file,
+   so check the cited pages still say it.
+5. **Counts to re-derive for `INDEX.md`**: C# and VB example blocks (`grep` the fenced blocks), the SAP-labelled-C#
+   -but-VB warnings, classes naming a source table, and how many of those tables are missing from the schema
+   dictionary (the version-gap measure).
+6. **New release**: keep the previous folder if clients still run it (`references/diapi/<release>/`) and map release →
+   folder in the index; today there is only one, kept at `references/diapi/`.
+
+Known limits of the extractor: only Visual Basic signatures exist in the CHM; the separate `*_Sample_E.html` pages
+aren't read; remarks and descriptions are capped (marked `[…]`); a few SAP samples labelled C# are Visual Basic and are
+detected by their content (`VB_MARK` in the script), so check the warning count when SAP re-issues the help.
 
 ## Add a capability
 
@@ -111,12 +181,12 @@ third-party site, the default delay is 0.5 s between requests, and a full run ta
 3. Add at least two evals to `evals/evals.json` (one typical, one edge case).
 4. If the new domain needs a new trigger-phrase family, adjust the description within the 1024 cap.
 
-Planned capabilities, in no fixed order: a table/field data dictionary for verified T-SQL against B1 databases,
-DI API and Service Layer reference, version and upgrade guidance, how-to procedures.
+Planned capabilities, in no fixed order: Service Layer and UI API references (the SDK also ships `REFUI.chm` and
+`REFDB.chm`), version and upgrade guidance, how-to procedures, and schema dictionaries for releases newer than 10.0 when their SDK help is available.
 
 ## Validate
 
 After any change to SKILL.md wording or the list, run the evals in `evals/evals.json` by hand or with
-skill-creator's eval loop and compare against `expected_output`. Eval 3 (refusing a direct write) must always
+skill-creator's eval loop and compare against `expected_output`. Evals 3 and 14 (refusing a direct write) must always
 pass. Check the frontmatter against the spec with `skills-ref validate ./sapb1-assistant`
 (`pip install skills-ref`, github.com/agentskills/agentskills) if you want an independent pass.

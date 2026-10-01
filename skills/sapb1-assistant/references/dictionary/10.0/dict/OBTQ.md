@@ -1,0 +1,18 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# OBTQ - Batch No. Quantities
+Module: Inventory and Production | 11 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+  SYSTEM_KEY U: ItemCode, SysNumber, WhsCode
+Fields (name type(len) description [values] ->parent table):
+  ItemCode nVarChar(50) Item Code ->OITM
+  SysNumber Int(11) System Number ->OBTN
+  WhsCode nVarChar(8) Warehouse Code ->OWHS
+  Quantity Num(19,6) Quantity
+  CommitQty Num(19,6) Committed Quantity
+  CountQty Num(19,6) Counted Quantity
+  AbsEntry Int(11) abs entry
+  MdAbsEntry Int(11) MD Abs Entry ->OBTN
+  TrackingNt Int(11) CCD Tracking Note ->OTCN
+  TrackiNtLn Int(11) CCD Tracking Note Line ->TCN1
+  CCDQuant Num(19,6) CCD Quantity

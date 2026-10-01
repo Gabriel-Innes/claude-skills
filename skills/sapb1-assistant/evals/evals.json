@@ -5,7 +5,7 @@
       "id": 1,
       "capability": "object types",
       "prompt": "What's the SAP B1 object type number for a sales order, and what table and primary key is it?",
-      "expected_output": "Object type 17, table ORDR, primary key DocEntry, cited from references/objects/object-types.md, with a note that the list comes from community sites and the number should be confirmed against SAP's reference before use in code."
+      "expected_output": "Object type 17, table ORDR, primary key DocEntry, DI API member oOrders (SAP-confirmed: the row carries sap-di), cited from references/objects/object-types.md."
     },
     {
       "id": 2,
@@ -34,14 +34,14 @@
     {
       "id": 6,
       "capability": "SQL / schema",
-      "prompt": "I need a SQL view of open sales orders with the customer name and document total. They're on SAP B1 9.3.",
-      "expected_output": "Asks (or states an assumption about) SQL Server vs HANA and the grain (one row per order). Uses ORDR joined to OCRD on CardCode (ORDR.CardCode links to OCRD; OCRD key confirmed from its first index). Uses only columns seen in dict/ORDR.md and dict/OCRD.md (DocNum, DocDate, CardCode, CardName, DocTotal, DocCur). Defines open from the documented values: DocStatus [O=Open, C=Closed] and CANCELED [Y=Yes, N=No], saying both were used. Delivers one sql block, a note on tables/joins/assumptions, a TOP 20 sanity check, and the 9.3 caveat. Cites the dictionary files."
+      "prompt": "I need a SQL view of open sales orders with the customer name and document total. The client is on SAP B1 10.0.",
+      "expected_output": "Asks (or states an assumption about) SQL Server vs HANA and the grain (one row per order). Uses the 10.0 dictionary: ORDR joined to OCRD on CardCode (ORDR.CardCode links to OCRD; OCRD key confirmed from its first index). Uses only columns seen in dict/ORDR.md and dict/OCRD.md (DocNum, DocDate, CardCode, CardName, DocTotal, DocCur). Defines open from the documented values: DocStatus [O=Open, C=Closed] and CANCELED [Y=Yes, N=No], saying both were used. Delivers one sql block, a note on tables/joins/assumptions, a TOP 20 sanity check, and says it used the 10.0 schema. Cites the dictionary files."
     },
     {
       "id": 7,
       "capability": "SQL / schema",
       "prompt": "Which tables have a column that points at the business partner table?",
-      "expected_output": "Greps the dictionary for ->OCRD, reports the matching tables/columns (131 files carry a CardCode column linked to OCRD, plus other differently named columns) rather than listing from memory, and notes the links are the source's own mapping naming the parent table only."
+      "expected_output": "Greps the dictionary (10.0 by default, saying so) for ->OCRD, reports the matching tables/columns rather than listing from memory, and notes the links are SAP's own mapping naming the parent table only, not enforced foreign keys."
     },
     {
       "id": 8,
@@ -51,15 +51,69 @@
     },
     {
       "id": 9,
-      "capability": "SQL / schema (edge: version)",
-      "prompt": "Our client is on SAP B1 10.0 and wants a view using a column that was added in 10.0. Can you write it?",
-      "expected_output": "States the bundled dictionary is B1 9.3 only and cannot confirm a 10.0-only column or table; does not invent one. Offers to write the rest of the view from verified 9.3 columns and asks the user to confirm the new column's exact name and table on the client's database."
+      "capability": "SQL / schema (edge: later feature pack)",
+      "prompt": "Our client is on SAP B1 10.0 FP 2308 and wants a view using a column that was added in that feature pack. Can you write it?",
+      "expected_output": "States the bundled 10.0 dictionary is a single 10.0 release (SAP's SDK reference) and cannot confirm a column added in a later feature pack; does not invent one. Offers to write the rest of the view from verified 10.0 columns and asks the user to confirm the new column's exact name and table on the client's database."
     },
     {
       "id": 10,
       "capability": "SQL / schema (edge: enum decoding)",
       "prompt": "Write a query that shows a text status for each A/R invoice, using the CANCELED column.",
       "expected_output": "Reads dict/OINV.md and decodes CANCELED as Y=Yes, N=No, C=Cancellation (three values on OINV, not the two seen on ORDR), using CASE, and cites the file. Does not copy the two-value list from another table."
+    },
+    {
+      "id": 11,
+      "capability": "DI API (C#)",
+      "prompt": "Write C# that connects to a SAP B1 company on SQL Server 2019 and creates an A/R invoice for customer BP234 with two item lines.",
+      "expected_output": "Reads di-api-guide.md and the Company/Documents/Document_Lines reference. Builds a SAPbobsCOM.Company with the mandatory properties (Server, DbServerType = dst_MSSQL2019, CompanyDB, UserName, Password) from configuration, int rc = Connect(), and on failure GetLastError(out int, out string). Creates Documents via GetBusinessObject(BoObjectTypes.oInvoices), sets CardCode, sets the first line directly and calls Lines.Add() before the second, checks Add()'s return code, reads GetNewObjectKey(), disconnects. Uses no member that is not in api/Documents.md or api/Document_Lines.md. Notes the reference is DI API 10.0 and says what was verified."
+    },
+    {
+      "id": 12,
+      "capability": "DI API (C#)",
+      "prompt": "I need to update an item's barcode and add a predefined text in one go so either both happen or neither. How do I do that with the DI API?",
+      "expected_output": "Uses Company.StartTransaction()/EndTransaction(BoWfTransOpt.wf_Commit) (wf_Commit = 0, wf_RollBack = 1, cited from enums/BoWfTransOpt.md), checks the return code of the Items Update and exits at once on failure, catches COMException for the service call, and explains that SAP rolls the transaction back automatically when a call fails so code that carries on runs outside it. Follows the pattern in SAP's StartTransaction sample (api/Company.md)."
+    },
+    {
+      "id": 13,
+      "capability": "DI API (C#)",
+      "prompt": "Add a user-defined field to the OITM table from C#.",
+      "expected_output": "Uses the UserFieldsMD object (source table CUFD; mandatory Name and TableName, per api/UserFieldsMD.md), checks the Add return code with GetLastError, and calls System.Runtime.InteropServices.Marshal.ReleaseComObject on the UserFieldsMD object afterwards, citing SAP's IMPORTANT note. Does not invent properties."
+    },
+    {
+      "id": 14,
+      "capability": "DI API (ground rule: no raw writes)",
+      "prompt": "Use a DI API Recordset to run an UPDATE on OITM that sets the item name for every item in item group 105.",
+      "expected_output": "Declines to use Recordset.DoQuery to change B1 data (the reference says DoQuery runs any statement, but writes go through business objects so business logic runs), does not print the modifying statement, and offers the supported route: loop over the items read-only, then GetByKey and Update through the Items object, checking each return code, optionally in a transaction."
+    },
+    {
+      "id": 15,
+      "capability": "DI API (enum lookup)",
+      "prompt": "What are the DbServerType enum values for SQL Server 2019 and HANA?",
+      "expected_output": "Reads enums/BoDataServerTypes.md: dst_MSSQL2019 = 15 and dst_HANADB = 9. Notes the enum documents SQL Server up to 2019 and that older members are not supported from 8.8. Does not guess values."
+    },
+    {
+      "id": 16,
+      "capability": "DI API (edge: sample language)",
+      "prompt": "SAP's help has a sample for approving requests that it labels C#. Can I paste it into my C# project?",
+      "expected_output": "Explains that some samples SAP labels C# are actually Visual Basic (Dim ... As, Date.Today) and the reference tags them vb; shows how to tell, and translates the pattern to C# using the VB to C# table (Long -> int, ByRef -> out) instead of pasting it."
+    },
+    {
+      "id": 17,
+      "capability": "SQL / schema (gotcha: 9.3 key order)",
+      "prompt": "The client is on B1 9.3. What is the primary key of RDR1, and in what column order?",
+      "expected_output": "Reads dict/RDR1.md in both folders: the column set is DocEntry and LineNum; the 10.0 file (SAP's own reference) gives DocEntry, LineNum, while the 9.3 file shows LineNum, DocEntry with a warning that 9.3 composite-key order is reversed. Answers DocEntry, LineNum, explains why, and says to confirm on the client's database."
+    },
+    {
+      "id": 18,
+      "capability": "SQL / schema (version diff)",
+      "prompt": "What changed on the sales order header table between B1 9.3 and 10.0?",
+      "expected_output": "Compares dict/ORDR.md in references/dictionary/9.3 and 10.0: 424 columns in 9.3, 448 in 10.0 (24 more), plus any type or valid-value changes it actually finds by comparing the files. Cites both files and the dictionary INDEX, and says the sources differ (erpref.com vs SAP's REFDB.chm) so small differences need care."
+    },
+    {
+      "id": 19,
+      "capability": "SQL / schema (default version)",
+      "prompt": "Which table holds the bin locations and what columns does it have?",
+      "expected_output": "Finds OBIN via table-index.md in the 10.0 folder (default, says so), reads dict/OBIN.md, lists columns with types and indexes from that file, notes the ObjType 10000206 link to the object list, and does not invent columns. Offers to confirm on the client's database."
     }
   ]
 }

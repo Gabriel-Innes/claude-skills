@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # RCT6 - Incoming Payments - WTax Rows
 Module: Banking | 77 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: Line, DocNum
 Fields (name type(len) description [values] ->parent table):
   DocNum Int(11) Document Number ->ORCT

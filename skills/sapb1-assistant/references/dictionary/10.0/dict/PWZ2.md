@@ -1,0 +1,30 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# PWZ2 - Payment Wizard - Rows 2
+Module: Banking | 24 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: IdEntry, PymCode
+Fields (name type(len) description [values] ->parent table):
+  IdEntry Int(11) ID Entry ->OPWZ
+  PymCode nVarChar(15) Payment Method Code ->OPYM
+  BnkAccount nVarChar(15) Bank Account ->OACT
+  MaxIncom Num(19,6) Max. Incoming Amount
+  MaxOutgo Num(19,6) Max. Outgoing Amount
+  Balance Num(19,6) G/L Balance
+  ExpectBal Num(19,6) Expected G/L Balance
+  Checked VarChar(1) Checked
+  PymDisc nVarChar(100) Payment Description
+  PymType VarChar(1) Payment Type
+  IntBalance Num(19,6) G/L Interim Balance
+  ExpIntBal Num(19,6) Expected G/L Interim Balance
+  InterimAct nVarChar(15) Interim Account ->OACT
+  BnkCountry nVarChar(3) Bank Country/Region
+  BnkCode nVarChar(30) Bank Code
+  BnkAccNo nVarChar(50) Bank Account Number
+  FatherLn VarChar(1) Parent Line default=N [Y=Yes, N=No]
+  NegativPym nVarChar(15) Negative Payment Method Code
+  NegPymBnk nVarChar(30) Negative Payment Bank Code
+  NegCountry nVarChar(3) Negative Payment Bank Country
+  NegPymAcct nVarChar(50) Negative Payment Bank Account
+  PaymenMean VarChar(1) Payment Means
+  IBAN nVarChar(50) IBAN
+  SwiftNum nVarChar(50) BIC/SWIFT Code

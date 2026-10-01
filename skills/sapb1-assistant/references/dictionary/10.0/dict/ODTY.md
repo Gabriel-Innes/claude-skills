@@ -1,0 +1,10 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# ODTY - BoE Document Type
+Module: Banking | 3 columns | ObjType: 267
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+  TYPE U: DocType
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number
+  DocType nVarChar(2) Document Type
+  DocDespt nVarChar(20) Description

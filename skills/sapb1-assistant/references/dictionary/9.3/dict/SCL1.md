@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # SCL1 - Service Call Solutions - Rows
 Module: Service | 10 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: line, srvcCallID
 Fields (name type(len) description [values] ->parent table):
   srvcCallID Int(11) Service Call No. ->OSCL

@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # ITMR - ITMR
 Module: General | 102 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: RevCode, ResCode, ApplID, Language, Numerator, Local, DocType
   TP_LC_NM_L: Language, Numerator, Local, DocType
   TYP_LOC_NM: Numerator, Local, DocType

@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # ASC2 - Service Call Inventory Expenses - History
 Module: Service | 18 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: LogInstanc, Line, SrcvCallID
 Fields (name type(len) description [values] ->parent table):
   SrcvCallID Int(11) Service Call No. - History ->OSCL

@@ -51,6 +51,7 @@ def main():
     ap.add_argument("--verified", required=True, help="YYYY-MM-DD for the provenance headers")
     ap.add_argument("--label", default="SAP Business One 9.3")
     ap.add_argument("--allow-partial", action="store_true")
+    ap.add_argument("--index-note", default="", help="warning added to each file's Indexes line and to the index header")
     a = ap.parse_args()
 
     listing = os.path.join(a.cache, "tables.json")
@@ -76,7 +77,7 @@ def main():
         ot = objs.get(name)
         out = [head, f"# {name} - {t['description']}",
                f"Module: {t['module']} | {len(cols)} columns" + (f" | ObjType: {','.join(ot)}" if ot else ""),
-               "Indexes (name: columns; first = primary key; U = unique):"]
+               "Indexes (name: columns; first = primary key; U = unique)" + (f" - {a.index_note}" if a.index_note else "") + ":"]
         for c in idx:
             nm, _primary, uniq, _type, cl = (c + [""] * 5)[:5]
             out.append(f"  {nm}{' U' if uniq == 'Yes' else ''}: {cl}")
@@ -104,7 +105,8 @@ def main():
         f.write(f"<!-- source: erpref.com (schema IP: SAP); ObjType from references/objects/object-types.md | "
                 f"version: {a.label} | verified: {a.verified} -->\n\n# {a.label} table index\n\n")
         f.write(f"> **Version disclaimer:** this is the {a.label} schema only. Later releases can differ, and a client's own "
-                "user-defined tables and fields are not included. Confirm columns on the client's database.\n\n"
+                "user-defined tables and fields are not included. Confirm columns on the client's database."
+                + (f" **{a.index_note}**" if a.index_note else "") + "\n\n"
                 f"{len(index_lines)} tables, one line each, sorted by name. Open `dict/<TABLE>.md` for columns, indexes, "
                 "valid values and parent-table links. Grep by description or module for topic search.\n\n")
         f.write("| Table | Description | Module | Cols | Idx | ObjType |\n|---|---|---|---|---|---|\n")

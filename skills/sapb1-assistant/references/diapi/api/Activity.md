@@ -1,0 +1,104 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# Activity (Object)
+
+Activities refer to interactions you have with business partners, such as phone calls, meetings, tasks, and so on. All activities are automatically recorded in your calendar and in activity reports. In phone calls, meetings, and tasks, you can use recurring activities. Source table: OCLG.
+
+## Properties (74)
+- `Public Property Activity() As BoActivities` [R/W] Sets or returns a valid value of BoActivities type that specifies an activity with the business partner. Field name: Action.
+- `Public Property ActivityCheckIns() As ActivityCheckInCollection` [R] property ActivityCheckIns
+- `Public Property ActivityCode() As Long` [R] The code of the activity. Field name: ClgCode.
+- `Public Property ActivityDate() As Date` [R/W] The contact date. Field name: CntctDate.
+- `Public Property ActivityRecipients() As ActivityMultipleRecipientCollection` [R] The activity recipients when you select the Multiple Recipients option.
+- `Public Property ActivityTime() As Date` [R/W] The activity time. Field name: CntctTime.
+- `Public Property ActivityType() As Long` [R/W] The type of the activity. Field name: CntctType. This is a foreign key to the ActivityTypes object.
+  - remarks: You can add new activity types to the list using the ActivityTypes object.
+- `Public Property AddressName() As String` [R/W] The name of the address. Field name: AddrName. Length: 50 characters.
+- `Public Property AddressType() As BoAddressType` [R/W] The type of the address. Field name: AddrType.
+- `Public Property AttachmentEntry() As Long` [R/W] The identification key of the attachment file, as assigned by SAP Business One when adding an Attachment Entry to an alert message. Field name: AtcEntry.
+- `Public Property BelongedSeriesNum() As Long` [R] The activity number of the series. Modified occurrence uses this field to link with the recurring series. Field name: SeriesNum.
+- `Public Property CardCode() As String` [R/W] Sets or returns the business partner identification number in SAP Business One. Field name: CardCode. Mandatory field in SAP Business One only if the activity is not personal. Length: 15 characters. This is a foreign key to the BusinessPartners object.
+  - remarks: Mandatory property. SAP Business One validates the CardCode, and if not valid, returns an error code.
+- `Public Property City() As String` [R/W] The city in which the activity (Meeting type only) with the business partner takes place. Field name: city. Length: 100 characters.
+- `Public Property Closed() As BoYesNoEnum` [R/W] Specifies whether or not the activity is closed and no further processing is required. Field name: Closed.
+  - remarks: You can use the CloseDate property to find out the closing date.
+- `Public Property CloseDate() As Date` [R/W] The closing date of the activity. Field name: CloseDate.
+  - remarks: In case the end user does not enter a value, the system completes the closing date automatically.
+- `Public Property ContactPersonCode() As Long` [R/W] The internal code for the contact person. Field name: CntctCode. Mandatory property. This is a foreign key to the ContactEmployees object.
+- `Public Property Country() As String` [R/W] The country in which the activity (Meeting type only) with the business partner takes place. Field name: country. Length: 3 characters. This is a foreign key to the Countries table (OCRY).
+- `Public Property Details() As String` [R/W] The details for the next action. Field name: Details. Length: 60 characters.
+- `Public Property DocEntry() As String` [R/W] The document entry key. Field name: DocEntry. Length: 20 characters.
+  - remarks: You can use this key to reference a document.
+- `Public Property DocNum() As String` [R] The number of the linked document. Field name: DocNum. Length: 20 characters.
+- `Public Property DocType() As String` [R/W] The type of the document, such as invoice or purchase order, that is linked to the activity. Field name: DocType.
+- `Public Property DocTypeEx() As String` [R/W] The document type that is linked to the activity. This property replaces the DocType property (integer). Length: 20 characters. Field name: DocNum.
+  - remarks: The valid values are: '13' - 'A/R Invoice' '14' - 'A/R Credit Memo' '15' - 'Delivery' '16' - 'Return' '17' - 'Sales Order' '18' - 'A/P Invoice' '19' - 'A/P Credit Memo' '20' - 'Goods Receipt PO' '21' - 'Goods Return' '22' - 'Purchase order' '23' - 'Sales Quotation' '24' - 'Incoming Payment' '25' - 'Deposit' '30' - 'Journal Entry' '46' - 'Outgoing Payment' '57' - 'Checks for Payment' '59' - 'Goods Receipt' '60' - 'Goods Issue' '1250000001' - 'Stock Transfer Request' '67' - 'Stock Transfer' '68' - 'Work Order' '69' - 'Landed Costs' '132' - 'Correction Invoice' '162' - 'Material Revaluation' '202' - 'Production Order' '203' - 'AR Down Payment' '204' - 'AP Down Payment' '140000009' - 'Outgoing Excise Invoice' '140000010' - 'Incoming Excise Invoice' '-1' - '' '0' - '' '4' - 'Items' '163' - 'AP Correction Invoice' '164' - 'AP Correction Invoice Reversal' '165' - 'AR Correction Invoice' '166' - 'AR Correction Invoice Reversal' '1320000012' - 'Campaign' '540000006' - 'Purchase Quotation' '1250000025' - 'Blanket Agreements' '1470000113' - 'Purchase Request' '112' - 'Document Drafts' '140' - 'Payment Drafts' '123' - 'Checks for Payment Drafts' '254000065' - 'Self Invoice' '254000066' - 'Self Credit Note' '234000031' - 'Return Request' '234000032' - 'Goods Return Request' '1250000026' - 'Sales Blanket Agreement' '1250000027' - 'Purchase Blanket Agreement'
+- `Public Property Duration() As Double` [R/W] The amount of time scheduled for the activity. Field name: Duration.
+  - remarks: The duration value specifies the number of minutes, hours, or days according to the DurationType. The duration value must be equal to or greater than 0. In case the start time (days + hours) and end time (days + hours) are specified, then the system recalculates the duration time.
+- `Public Property DurationType() As BoDurations` [R/W] Sets or returns a valid value of BoDurations type that specifies the duration type for the activity (minutes, hours, or days). Field name: DurType.
+- `Public Property EndDuedate() As Date` [R/W] The due date for completing the activity. Field name: endDate.
+  - remarks: The end date must be later than the start date.
+- `Public Property EndTime() As Date` [R/W] The end time (hh:mm) of the activity. Field name: ENDTime.
+  - remarks: The end time must be later than the start time.
+- `Public Property endType() As EndTypeEnum` [R/W] The end type of the recurring activity. It is only available for Phone Call, Meeting, or Task, when the value of the recurrence pattern is not None. Field name: EndType.
+- `Public Property Fax() As String` [R/W] The fax number of the contact person. Field name: Fax. Length: 20 characters.
+- `Public Property Friday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Friday. Used in a weekly pattern. Field name: Friday.
+- `Public Property HandledBy() As Long` [R/W] The name or title of the person who is responsible for entering the activity details. Field name: AttendUser. This is a foreign key to the Users object.
+- `Public Property HandledByEmployee() As Long` [R/W] The employee who handles the activity. Field name: AttendEmpl.
+- `Public Property HandledByRecipientList() As Long` [R/W] property HandledByRecipientList
+- `Public Property Inactiveflag() As BoYesNoEnum` [R/W] Specifies whether or not the activity is inactive. Field name: inactive.
+- `Public Property Interval() As Long` [R/W] The frequency for the recurring activity. It is only available for Phone Call, Meeting, or Task, when the value of the recurrence pattern is not None. Field name: Interval.
+- `Public Property IsRemoved() As BoYesNoEnum` [R] Indicates whether an occurrence is removed from the recurring series. Field name: IsRemoved.
+- `Public Property Location() As Long` [R/W] The code for the activity location. Field name: Location. This is a foreign key to the ActivityLocations object.
+  - remarks: You can add new locations to the list using the ActivityLocations object.
+- `Public Property MaxOccurrence() As Long` [R/W] The recurring activity ends after a certain number of occurrences. Field name: MaxOccur.
+- `Public Property Monday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Monday. Used in a weekly pattern. Field name: Monday.
+- `Public Property Notes() As String` [R/W] Sets or returns a memo type string that specifies remarks regarding the activity. Field name: Notes. Length: 16 characters.
+- `Public Property Office365EventId() As String` [R/W] Office 365 Event ID. Field name: Of365EvtId. Length: 200 characters.
+- `Public Property ParentobjectId() As Long` [R] The source object ID of the activity: - For Service Call object type: ServiceCallID. - For Sales Opportunity object type: SequentialNo. Field name: parentId.
+- `Public Property Parentobjecttype() As String` [R] The source object type of the activity: Sales Opportunity or Service Call. Field name: parentType. Length: 20 characters.
+- `Public Property Personalflag() As BoYesNoEnum` [R/W] Specifies whether the activity is personal or business. If business, you must set the business partner details (CardCode). Field name: personal.
+- `Public Property Phone() As String` [R/W] The phone number of the contact person. Field name: Tel. Length: 50 characters.
+- `Public Property PreviousActivity() As Long` [R/W] The previous activity code related to the current activity. Field name: prevActvty.
+- `Public Property Priority() As BoMsgPriorities` [R/W] Sets or returns a valid value of BoMsgPriorities type that specifies the priority of the activity (low, normal, or high). Field name: Priority.
+- `Public Property RecurrenceDayInMonth() As Long` [R/W] For monthly activities, specify the days when the activity recurs. Field name: DayInMonth.
+- `Public Property RecurrenceDayOfWeek() As RecurrenceDayOfWeekEnum` [R/W] For monthly activities, specify the days when the activity recurs. Field name: DayOfWeek.
+- `Public Property RecurrenceMonth() As Long` [R/W] Specify the month when the activity recurs. Field name: Month.
+- `Public Property RecurrencePattern() As RecurrencePatternEnum` [R/W] Used for setting recurring activities. It is only available for Phone Call, Meeting, or Task. Field name: RecurPat.
+- `Public Property RecurrenceSequenceSpecifier() As RecurrenceSequenceSpecifierEnum` [R/W] The recurrence week in a month. Field name: Week.
+- `Public Property Reminder() As BoYesNoEnum` [R/W] Specifies whether or not SAP Business One sends a reminder message to the user mailbox ('user' means the current SAP Business One user). Field name: Reminder.
+- `Public Property ReminderPeriod() As Double` [R/W] The duration for sending the reminder message. Field name: RemTime.
+- `Public Property ReminderType() As BoDurations` [R/W] Specifies the duration type: minutes or hours. Field name: RemType.
+- `Public Property RepeatOption() As RepeatOptionEnum` [R/W] For each occurrence, specifies the date on which the recurring activity is to take place. It is only available for Phone Call, Meeting, or Task, when the value of the recurrence pattern is not None. Field name: SubOption.
+- `Public Property Room() As String` [R/W] The room in which the activity (Meeting type only) with the business partner takes place. Field name: room. Length: 50 characters.
+- `Public Property SalesEmployee() As Long` [R/W] The code of the sales employee who is responsible for the activity. Field name: SlpCode. This is a foreign key to the SalesPersons object.
+  - remarks: The sales employees can be defined through the SalesPersons object (see SalesEmployeeCode).
+- `Public Property SalesOpportunityId() As Long` [R/W] The ID of the sales opportunity. Field name: OprId.
+- `Public Property SalesOpportunityLine() As Long` [R/W] The row number of the sales opportunity. Field name: OprLine.
+- `Public Property Saturday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Saturday. Used in a weekly pattern. Field name: Saturday.
+- `Public Property SeriesEndDate() As Date` [R/W] The end date of the series for the recurring activity. Field name: SeEndDate.
+- `Public Property SeriesStartDate() As Date` [R] The start date of the series for the recurring activity. Field name: SeStartDate.
+- `Public Property StartDate() As Date` [R/W] The start date of the activity. Field name: Recontact.
+- `Public Property StartTime() As Date` [R/W] The start time (hh:mm) of the activity. Field name: BeginTime.
+- `Public Property State() As String` [R/W] The code of the state where the activity (Meeting type only) with the business partner takes place. Field name: State. Length: 3 characters. This is a foreign key to the States table (OCST).
+  - remarks: Only state codes that are defined in the States table are applicable.
+- `Public Property Status() As Long` [R/W] The status of the activity (Task type only) as defined in ActivityStatus object. Field name: status. This is a foreign key to the ActivityStatus object.
+- `Public Property Street() As String` [R/W] The street part of the address at which the activity (Meeting type only) with the business partner takes place. Field name: street. Length: 100 characters.
+- `Public Property Subject() As Long` [R/W] The subject of the activity. Field name: CntctSbjct.
+- `Public Property Sunday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Sunday. Used in a weekly pattern. Field name: Sunday.
+- `Public Property Tentativeflag() As BoYesNoEnum` [R/W] Specifies whether or not the activity is tentative. Field name: tentative.
+- `Public Property Thursday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Thursday. Used in a weekly pattern. Field name: Thursday.
+- `Public Property Tuesday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Tuesday. Used in a weekly pattern. Field name: Tuesday.
+- `Public Property UserFields() As Fields` [R] Returns the UserFields object.
+- `Public Property Wednesday() As BoYesNoEnum` [R/W] Defines whether the recurring activity occurs on Wednesday. Used in a weekly pattern. Field name: Wednesday.
+
+## Methods (5)
+- `Public Sub FromXMLFile(ByVal bstrFileName As String)` Sets the object's properties using data from an XML file. The XML file can be created using the object's ToXMLFile method.
+  - param `bstrFileName`: The path and name of the XML file from which to retrieve the object's data.
+- `Public Sub FromXMLString(ByVal bstrXML As String)` Sets the object's properties using data from an XML string. The XML string can be created using the object's ToXMLString method.
+  - param `bstrXML`: The XML from which to retrieve the object's data.
+- `Public Function GetXMLSchema() As String` Returns the XML schema for the XML generated by the ToXMLFile and ToXMLString methods.
+- `Public Sub ToXMLFile(ByVal bstrFileName As String)` Creates an XML file that represents the object.
+  - param `bstrFileName`: The path and file name of the XML file.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.
+- `Public Function ToXMLString() As String` Creates and returns an XML string that represents the object.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.

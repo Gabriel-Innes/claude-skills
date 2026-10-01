@@ -1,0 +1,21 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# SIVE - FIFO Based Sales Return
+Module: Inventory and Production | 13 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+  TRANS_SEQ: TransSeq, LayerID
+  TreeID: TreeID
+Fields (name type(len) description [values] ->parent table):
+  TreeID Int(11) Tree ID default=0
+  ParentID Int(11) Parent ID default=-1
+  AbsEntry Int(11) Internal Number
+  LocType Int(6) Location Type
+  LocCode nVarChar(8) Location Code
+  TransSeq Int(11) Transaction Sequence No. ->SIVL
+  LayerID Int(11) Layer ID
+  LayerInQty Num(19,6) Layer In Quantity
+  LayerOutQ Num(19,6) Layer Out Quantity
+  LayerVal Num(19,6) Layer Value
+  ItemCode nVarChar(50) Item Code ->SITM
+  EntryTreeI Int(11) Entry Tree ID
+  LayerCogs Num(19,6) Layer - Cost of Goods Sold

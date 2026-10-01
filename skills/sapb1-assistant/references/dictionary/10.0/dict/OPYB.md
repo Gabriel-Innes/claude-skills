@@ -1,0 +1,9 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# OPYB - Payment Block
+Module: Banking | 2 columns | ObjType: 159
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+  PAYBLOCK U: PayBlock
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number
+  PayBlock nVarChar(50) Payment Block

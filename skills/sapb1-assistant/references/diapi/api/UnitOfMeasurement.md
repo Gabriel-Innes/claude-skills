@@ -1,0 +1,65 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# UnitOfMeasurement (Object)
+
+To manage inventory items by different UoMs (units of measurement) applicable to your business, you need to define the individual UoMs. These are the units in which the items will be purchased, sold, and stocked. You can later group associated ones together as a set of UoMs with a definition of its conversion rules. Source table: OUOM.
+
+**Remarks:** To access the Units of Measurement - Setup window, choose Administration --> Setup --> Inventory --> Units of Measurement.
+
+## Properties (28)
+- `Public Property AbsEntry() As Long` [R] The internal key of a UoM. Field name: UomEntry.
+- `Public Property Code() As String` [R/W] The unique code for the UoM. Field name: UomCode. Length: 20 characters.
+- `Public Property EWBUnitEntry() As Long` [R/W] property EWBUnitEntry
+- `Public Property Height1() As Double` [R/W] The height for the unit. Field name: Height1.
+- `Public Property Height1Unit() As Long` [R/W] The height UoM. Field name: Hght1Unit.
+- `Public Property Height2() As Double` [R/W] The height for the unit. Field name: Height2.
+- `Public Property Height2Unit() As Long` [R/W] The height UoM. Field name: Hght2Unit.
+- `Public Property InternationalSymbol() As String` [R/W] The international symbol for the UoM. Field name: IntSymbol. Length: 20 characters.
+- `Public Property Length1() As Double` [R/W] The length for the unit. Field name: Length1.
+- `Public Property Length1Unit() As Long` [R/W] The length UoM. Field name: Len1Unit.
+- `Public Property Length2() As Double` [R/W] The length for the unit. Field name: Length2.
+- `Public Property Length2Unit() As Long` [R/W] The length UoM. Field name: Len2Unit.
+- `Public Property Name() As String` [R/W] The name for the UoM. Field name: UomName. Length: 100 characters.
+- `Public Property PPWe1Unit() As Long` [R/W] Weight of plastic packaging, 1, unit. Number, default 0. Field name: PPWe1Unit.
+  - remarks: For UK localization only.
+  - C# example (from SAP's help):
+    ```csharp
+    UnitOfMeasurement uomAdd = service.GetDataInterface(UnitOfMeasurementsServiceDataInterfaces.uomsUnitOfMeasurement);
+    uomAdd.Code = ""DI_API_TEST_CODE"";
+    uomAdd.Name = ""DI_API_TEST_NAME"";
+    uomAdd.PPWeight1 = 3;
+    uomAdd.PPWe1Unit = 2;
+    uomAdd.PPWeight2 = 3;
+    uomAdd.PPWe2Unit = 1;
+    service.Add(uomAdd);
+    ```
+- `Public Property PPWe2Unit() As Long` [R/W] Weight of plastic packaging, 2, unit. Number, default 0. Field name: PPWe2Unit.
+  - remarks: For UK localization only.
+- `Public Property PPWeight1() As Double` [R/W] Weight of plastic packaging, 1. Number, default 0. Field name: PPWeight1.
+  - remarks: For UK localization only.
+- `Public Property PPWeight2() As Double` [R/W] Weight of plastic packaging, 2. Number, default 0. Field name: PPWeight2.
+  - remarks: For UK localization only.
+- `Public Property UserFields() As Fields` [R] Get User Fields
+- `Public Property Volume() As Double` [R/W] The volume for the unit. Field name: Volume.
+  - remarks: The application automatically calculates the volume according to the length, width, and height you have defined, and displays the result in the grid. You can change it by manually entering a different value, but the values in the Length, Width and Height fields will be cleared immediately.
+- `Public Property VolumeUnit() As Long` [R/W] The volume UoM. Field name: VolUnit.
+  - remarks: The default volume UoM corresponds to the default length UoM specified on the Display tab of the General Settings window.
+- `Public Property Weight1() As Double` [R/W] The weight for the unit. Field name: Weight1.
+- `Public Property Weight1Unit() As Long` [R/W] The weight UoM. Field name: WghtUnit.
+- `Public Property Weight2() As Double` [R/W] The weight for the unit. Field name: Weight2.
+- `Public Property Weight2Unit() As Long` [R/W] The weight UoM. Field name: Wght2Unit.
+- `Public Property Width1() As Double` [R/W] The width for the unit. Field name: Width1.
+- `Public Property Width1Unit() As Long` [R/W] The width UoM. Field name: Wdth1Unit.
+- `Public Property Width2() As Double` [R/W] The width for the unit. Field name: Width2.
+- `Public Property Width2Unit() As Long` [R/W] The width UoM. Field name: Wdth2Unit.
+
+## Methods (5)
+- `Public Sub FromXMLFile(ByVal bstrFileName As String)` Sets the object's properties using data from an XML file. The XML file can be created using the object's ToXMLFile method.
+  - param `bstrFileName`: The path and name of the XML file from which to retrieve the object's data.
+- `Public Sub FromXMLString(ByVal bstrXML As String)` Sets the object's properties using data from an XML string. The XML string can be created using the object's ToXMLString method.
+  - param `bstrXML`: The XML from which to retrieve the object's data.
+- `Public Function GetXMLSchema() As String` Returns the XML schema for the XML generated by the ToXMLFile and ToXMLString methods.
+- `Public Sub ToXMLFile(ByVal bstrFileName As String)` Creates an XML file that represents the object.
+  - param `bstrFileName`: The path and file name of the XML file.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.
+- `Public Function ToXMLString() As String` Creates and returns an XML string that represents the object.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.

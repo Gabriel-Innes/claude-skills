@@ -1,0 +1,10 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# TRB4 - Tax Report Wizard - Selected Tax Entries
+Module: Reports | 4 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry, TaxSrcType, TaxEntry, TaxLine
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number ->OTRB
+  TaxSrcType Int(11) Tax Source Object TYpe default=10000011 [10000011=VAT Transactions, 243000003=Brazil - Tax Adjustment]
+  TaxEntry Int(11) Tax Entry
+  TaxLine Int(11) Tax Line

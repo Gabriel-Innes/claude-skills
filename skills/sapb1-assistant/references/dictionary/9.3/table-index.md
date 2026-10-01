@@ -2,7 +2,7 @@
 
 # SAP Business One 9.3 table index
 
-> **Version disclaimer:** this is the SAP Business One 9.3 schema only. Later releases can differ, and a client's own user-defined tables and fields are not included. Confirm columns on the client's database.
+> **Version disclaimer:** this is the SAP Business One 9.3 schema only. Later releases can differ, and a client's own user-defined tables and fields are not included. Confirm columns on the client's database. **WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md)**
 
 2546 tables, one line each, sorted by name. Open `dict/<TABLE>.md` for columns, indexes, valid values and parent-table links. Grep by description or module for topic search.
 

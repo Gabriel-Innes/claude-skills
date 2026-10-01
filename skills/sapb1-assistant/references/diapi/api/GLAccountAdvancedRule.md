@@ -1,0 +1,101 @@
+<!-- source: REFDI.chm, SAP Business One DI API 10.0 (10.00.190) | version: DI API 10.0 | verified: 2026-10-01 -->
+# GLAccountAdvancedRule (Object)
+
+The set of rules according to which the G/L account determination takes place. The advanced G/L account determination rules are defined per posting period. Source table: OGAR.
+
+**Remarks:** For detailed information about the structure of this window and the different settings, see the How To Setup and Work with Advanced G/L Account Determination guide in the documentation resource center.
+
+## Properties (81)
+- `Public Property AbsoluteEntry() As Long` [R] The key of the advanced G/L account determination rule. Field name: AbsEntry.
+- `Public Property BeginningofFinancialYear() As Date` [R/W] The beginning date of the financial year. Field name: FinancYear.
+- `Public Property BPCode() As String` [R/W] property BPCode
+- `Public Property BPGroup() As Long` [R/W] The code of the business partner group. Field name: BPGrpCod. Length: 6 characters.
+- `Public Property BusinessPartnerType() As BoBusinessPartnerTypes` [R/W] property BusinessPartnerType
+- `Public Property Code() As String` [R/W] The code of the advanced G/L account determination rule. Field name: RuleCode. Length: 20 characters.
+- `Public Property CostAccount() As String` [R/W] Cost of Goods Sold Account Field name: COGM_Act.
+- `Public Property CostInflationAccount() As String` [R/W] Cost Inflation Account Field name: CostRevAct.
+- `Public Property CostInflationOffsetAccount() As String` [R/W] Cost Inflation Offset Account Field name: CostOffAct.
+- `Public Property DecreasingAccount() As String` [R/W] property DecreasingAccount
+- `Public Property Description() As String` [R/W] The description. Field name: Comments. Length: 254 characters.
+- `Public Property EUExpensesAccount() As String` [R/W] EU Expenses Account Field name: ECExepnses.
+- `Public Property EUPurchaseCreditAcc() As String` [R/W] property EUPurchaseCreditAcc
+- `Public Property EURevenuesAccount() As String` [R/W] EU Revenues Account Field name: ECIncome.
+- `Public Property ExchangeRateDifferencesAcct() As String` [R/W] Exchange Rate Differences Account Field name: ExDiffAct.
+- `Public Property ExemptedCredits() As String` [R/W] Tax Exempt Credit Account Field name: ARCMExpAct.
+- `Public Property ExemptIncomeAcc() As String` [R/W] Tax Exempt Revenue Account Field name: ExmptIncom.
+- `Public Property ExpenseClearingAct() As String` [R/W] Expense Clearing Account Field name: ExpClrAct.
+- `Public Property ExpenseOffsettingAccount() As String` [R/W] Expense Offset Account Field name: ExpOfstAct.
+- `Public Property ExpensesAccount() As String` [R/W] Expenses Account Field name: DfltExpn.
+- `Public Property FederalTaxID() As String` [R/W] The federal tax ID. Field name: LicTradNum. Length: 32 characters.
+- `Public Property FinancialYear() As Long` [R/W] The financial year. Field name: Year.
+- `Public Property ForeignExpensAcc() As String` [R/W] Foreign Expenses Account Field name: ForgnExpn.
+- `Public Property ForeignPurchaseCreditAcc() As String` [R/W] Purchase Credit Account - Foreign Field name: APCMFrnAct.
+- `Public Property ForeignRevenueAcc() As String` [R/W] Foreign Revenues Account Field name: ForgnIncm.
+- `Public Property FromDate() As Date` [R/W] Field name: FromDate.
+- `Public Property FromDocumentDate() As Date` [R/W] Field name: F_TaxDate.
+- `Public Property FromDueDate() As Date` [R/W] Field name: F_DueDate.
+- `Public Property FromPostingDate() As Date` [R/W] Field name: F_RefDate.
+- `Public Property GetGLAccountBy() As GetGLAccountByEnum` [R/W] The methods to get the G/L account. Field name: GLMethod.
+- `Public Property GLDecreaseAcct() As String` [R/W] G/L Decrease Account Field name: DecresGlAc.
+- `Public Property GLIncreaseAcct() As String` [R/W] G/L Increase Account Field name: IncresGlAc.
+- `Public Property GoodsClearingAcct() As String` [R/W] Goods Clearing Account Field name: BalanceAct.
+- `Public Property IncreasingAccount() As String` [R/W] property IncreasingAccount
+- `Public Property InventoryAccount() As String` [R/W] Inventory Account Field name: StockAct.
+- `Public Property InventoryOffsetProfitAndLossAccount() As String` [R/W] Inventory Offset Profit and Loss Account Field name: StockOffst.
+- `Public Property IsActive() As BoYesNoEnum` [R/W] The active status of the advanced G/L account determination rule. Field name: Active.
+- `Public Property ItemCode() As String` [R/W] The code of the item. Field name: ItemCode. Length: 20 characters.
+- `Public Property ItemGroup() As Long` [R/W] The code of the item group. Field name: ItmsGrpCod. Length: 6 characters.
+- `Public Property NegativeInventoryAdjustmentAccount() As String` [R/W] Negative Inventory Adjustment Account Field name: NegStckAct.
+- `Public Property NumberOfPeriods() As Long` [R/W] Number of periods. Field name: PeriodNum.
+- `Public Property PAReturnAcct() As String` [R/W] Purchase Return Account Field name: PaReturnAc.
+- `Public Property Period() As String` [R/W] The period category. Field name: PeriodCat. Length: 10 characters.
+- `Public Property PeriodName() As String` [R/W] The name of the period. Field name: PeriodName. Length: 20 characters.
+- `Public Property PriceDifferenceAcc() As String` [R/W] Price Difference Account Field name: PricDifAct.
+- `Public Property PurchaseAcct() As String` [R/W] Purchase Account Field name: PurchseAct.
+- `Public Property PurchaseBalanceAccount() As String` [R/W] Purchase Balance Account Field name: PurBalAct.
+- `Public Property PurchaseCreditAcc() As String` [R/W] Purchase Credit Account Field name: APCMAct.
+- `Public Property PurchaseOffsetAcct() As String` [R/W] Purchase Offset Account Field name: PaOffsetAc.
+- `Public Property ReturningAccount() As String` [R/W] Sales Returns Account Field name: RturnngAct.
+- `Public Property RevenuesAccount() As String` [R/W] Revenues Account Field name: DfltIncom.
+- `Public Property SalesCreditAcc() As String` [R/W] Sales Credit Account Field name: ARCMAct.
+- `Public Property SalesCreditEUAcc() As String` [R/W] Sales Credit Account - EU Field name: ARCMEUAct.
+- `Public Property SalesCreditForeignAcc() As String` [R/W] Sales Credit Account - Foreign Field name: ARCMFrnAct.
+- `Public Property ShippedGoodsAccount() As String` [R/W] Shipped Goods Account Field name: ShpdGdsAct.
+- `Public Property ShipToCountry() As String` [R/W] The ship-to country. Field name: ShipCountr. Length: 3 characters.
+- `Public Property ShipToState() As String` [R/W] The ship-to state. Field name: ShipState. Length: 3 characters.
+- `Public Property StockInflationAdjustAccount() As String` [R/W] Inventory Inflation Adjustment Account Field name: StockRvAct.
+- `Public Property StockInflationOffsetAccount() As String` [R/W] Inventory Inflation Offset Account Field name: StkRvOfAct.
+- `Public Property StockInTransitAccount() As String` [R/W] Stock In Transit Account Field name: StkInTnAct.
+- `Public Property SubPeriodType() As BoSubPeriodTypeEnum` [R/W] The type of the sub period. Field name: SubType.
+- `Public Property ToDate() As Date` [R/W] Field name: ToDate.
+- `Public Property ToDocumentDate() As Date` [R/W] Field name: T_TaxDate.
+- `Public Property ToDueDate() As Date` [R/W] Field name: T_DueDate.
+- `Public Property ToPostingDate() As Date` [R/W] Field name: T_RefDate.
+- `Public Property TransferAccount() As String` [R/W] property TransferAccount
+- `Public Property UDF1() As String` [R/W] property UDF1
+- `Public Property UDF2() As String` [R/W] property UDF2
+- `Public Property UDF3() As String` [R/W] property UDF3
+- `Public Property UDF4() As String` [R/W] property UDF4
+- `Public Property UDF5() As String` [R/W] property UDF5
+- `Public Property Usage() As Long` [R/W] property Usage
+- `Public Property VarienceAccount() As String` [R/W] Variance Account Field name: VariancAct.
+- `Public Property VatGroup() As String` [R/W] property VATGroup
+- `Public Property VATInRevenueAccount() As String` [R/W] VAT in Revenue Account Field name: VatRevAct.
+- `Public Property Warehouse() As String` [R/W] The code of the warehouse. Field name: WhsCode. Length: 8 characters.
+- `Public Property WHIncomingCenvatAccount() As String` [R/W] Incoming CENVAT Account (Warehouse) Field name: WhICenAct.
+- `Public Property WHOutgoingCenvatAccount() As String` [R/W] Outgoing CENVAT Account (Warehouse) Field name: WhOCenAct.
+- `Public Property WipAccount() As String` [R/W] WIP Inventory Account Field name: WipAcct.
+- `Public Property WipOffsetProfitAndLossAccount() As String` [R/W] WIP Offset Profit and Loss Account Field name: WipOffset.
+- `Public Property WipVarianceAccount() As String` [R/W] WIP Inventory Variance Account Field name: WipVarAcct.
+
+## Methods (5)
+- `Public Sub FromXMLFile(ByVal bstrFileName As String)` Sets the object's properties using data from an XML file. The XML file can be created using the object's ToXMLFile method.
+  - param `bstrFileName`: The path and name of the XML file from which to retrieve the object's data.
+- `Public Sub FromXMLString(ByVal bstrXML As String)` Sets the object's properties using data from an XML string. The XML string can be created using the object's ToXMLString method.
+  - param `bstrXML`: The XML from which to retrieve the object's data.
+- `Public Function GetXMLSchema() As String` Returns the XML schema for the XML generated by the ToXMLFile and ToXMLString methods.
+- `Public Sub ToXMLFile(ByVal bstrFileName As String)` Creates an XML file that represents the object.
+  - param `bstrFileName`: The path and file name of the XML file.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.
+- `Public Function ToXMLString() As String` Creates and returns an XML string that represents the object.
+  - remarks: The schema of the XML can be retrieved with the GetXMLSchema method.

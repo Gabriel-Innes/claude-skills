@@ -1,0 +1,14 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# SEWH1 - 
+Module: General | 8 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: MachineNam, CompDbNam, ID
+Fields (name type(len) description [values] ->parent table):
+  MachineNam nVarChar(254) Machine Name
+  CompDbNam nVarChar(100) Company Db Name
+  ID Int(11) AddOn ID
+  Name nVarChar(40) AddOn Name
+  Version nVarChar(13) AddOn Version
+  Status nVarChar(50) AddOn Status
+  InstStatus VarChar(1) AddOn Installation Status default=P [I=Installed, P=Pending]
+  EwaSentDat nVarChar(10) EWA Sent Date

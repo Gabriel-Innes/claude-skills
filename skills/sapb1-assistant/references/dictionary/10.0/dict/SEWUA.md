@@ -1,0 +1,12 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# SEWUA - 
+Module: General | 6 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: CompDbNam
+Fields (name type(len) description [values] ->parent table):
+  CompDbNam nVarChar(100) Company Db Name
+  NoUdfDb Int(11) number of UDFs
+  NoTblUdf Int(11) UDFs per table
+  NoAutoFMS Int(11) Auto Refresh in use
+  NoRegFMS Int(11) No FMS with Refresh Regular
+  NoCustTmpl Int(11) No of customised Document

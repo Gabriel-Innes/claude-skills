@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # OSWA - Specific Withholding Amounts
 Module: General | 70 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: CardCode, PymntRsnCd
 Fields (name type(len) description [values] ->parent table):
   PymntRsnCd nVarChar(2) Payment Reason Code [A=A, B=B, C=C, D=D, E=E, G=G, H=H, I=I, L=L, L1=L1, M=M, M1=M1, M2=M2, N=N, O=O, O1=O1, P=P, Q=Q, R=R, S=S, T=T, U=U, V=V, V1=V1, V2=V2, W=W, X=X, Y=Y, ZO=ZO]

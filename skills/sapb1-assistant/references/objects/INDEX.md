@@ -4,7 +4,7 @@ SAP Business One object types: object type number ↔ table ↔ description ↔ 
 
 | Path | Covers | Verified |
 |---|---|---|
-| `object-types.md` | **The list.** 326 object types sorted by number, one line each: table, description, primary key, which sources carry it, and a Notes column flagging source conflicts and blanks. Read this first and grep it; don't open `raw/`. | 2026-10-01 |
+| `object-types.md` | **The list.** 329 object types sorted by number, one line each: table, description, primary key, the DI API `BoObjectTypes` member (134 rows), which sources carry it, and a Notes column flagging source conflicts and blanks. Read this first and grep it; don't open `raw/`. | 2026-10-01 |
 | `raw/sapbusinessone.in.md` | Verbatim extract of the sapbusinessone.in table (326 rows). Kept so the next refresh can be diffed against what was last ingested. | 2026-10-01 |
 | `raw/sap-b1-blog.com.md` | Verbatim extract of the sap-b1-blog.com table (320 rows), including its garbled translated columns. | 2026-10-01 |
 
@@ -14,12 +14,15 @@ SAP Business One object types: object type number ↔ table ↔ description ↔ 
 |---|---|---|---|---|
 | `in` | https://sapbusinessone.in/list-of-object-types-sap-business-one.html | Authoritative for table name, description, primary key (uses real DB column names) | 326 | none on page |
 | `blog` | https://sap-b1-blog.com/en/glossary/list-of-object-types-in-sap-business-one/ | Cross-check only. Machine-translated from German, so some table names are corrupted | 320 | modified 2025-01-19 |
+| `sap-di` | `../diapi/enums/BoObjectTypes.md` (compiled from SAP's `REFDI.chm`, DI API 10.0) | SAP's own documentation. Confirms object numbers and gives the DI API enum member; names a class, not a table, so it doesn't override table/key | 134 | copyright 2022 |
 
-Both are community sites, not SAP documentation, and neither states a B1 version. Fetched 2026-10-01.
+`in` and `blog` are community sites, not SAP documentation, and neither states a B1 version. Fetched 2026-10-01.
 
 ## Known source issues
 
-- 6 rows exist only on `in` and are empty or near-empty: 209 (no data), 225-227 (`OAPA3`-`OAPA5`, no description or key), 300 (`RecordSet`, no table), 305 (`Bridge`, no table). They are kept so the numbering stays complete; don't infer anything about them.
+- 6 rows exist only on `in` and are empty or near-empty: 209 (no data), 225-227 (`OAPA3`-`OAPA5`, no description or key), 300 (`RecordSet`, no table), 305 (`Bridge`, no table). They are kept so the numbering stays complete. SAP's enum confirms 300 (`BoRecordset`, "Recordset object") and 305 (`BoBridge`, "SBObob object"); nothing confirms 209 or 225-227, so don't infer anything about those.
 - 8 table names are corrupted on `blog` (e.g. 16 `ORDER` vs `ORDN`, 10000206 `WHETHER IN` vs `OBIN`, 10000196 `TYPE` vs `RTYP`). `object-types.md` uses the `in` value and flags each one.
 - `in` has a few typos carried through verbatim in descriptions: "Catagories" (134), "Bill Of Exchang" (182), "Autorization" (214).
 - Descriptions and primary-key spellings differ cosmetically between the sources in about 50 rows; the `in` spelling is used.
+- **SAP's enum vs the community list**: 131 of SAP's 134 numbers were already on the community list, which independently validates it. Three were missing and are added with `sap-di` only: 301 (`BoRecordsetEx`), 234000031 (`oReturnRequest`) and 234000032 (`oGoodsReturnRequest`). Of 102 rows where SAP's class has a source table to compare, 99 match the community table; 28, 46 and 219 differ in the way noted on those rows (the SAP class spans tables or names a variant). The community table is kept and the difference is noted.
+- SAP's enum is **DI API 10.0**; the 195 rows without `sap-di` are not covered by it and may still be valid B1 objects.

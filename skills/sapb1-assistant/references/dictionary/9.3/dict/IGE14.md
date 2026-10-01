@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # IGE14 - Goods Issue - Assembly - Rows
 Module: Inventory and Production | 11 columns
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: ChildNum, LineNum, DocEntry
 Fields (name type(len) description [values] ->parent table):
   DocEntry Int(11) Document Internal ID ->OIGE

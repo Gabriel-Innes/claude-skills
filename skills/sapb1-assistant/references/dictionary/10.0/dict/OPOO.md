@@ -1,0 +1,9 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# OPOO - Outgoing Payment Order
+Module: Banking | 3 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number
+  Number Int(11) Number
+  Series Int(11) Series

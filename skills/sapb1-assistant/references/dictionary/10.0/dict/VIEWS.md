@@ -1,0 +1,9 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# VIEWS - SQL Company Views
+Module: Administration | 3 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: ViewName
+Fields (name type(len) description [values] ->parent table):
+  ViewName nVarChar(100) View Name
+  ViewString Text(16) View String
+  ViewType VarChar(1) View Type default=S [S=Static, D=Dynamic]

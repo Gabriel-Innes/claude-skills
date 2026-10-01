@@ -1,0 +1,14 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# CTBR - Toolbars
+Module: Administration | 8 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: UserSign, ToolbarId
+Fields (name type(len) description [values] ->parent table):
+  UserSign Int(6) ->OUSR
+  ToolbarId Int(11)
+  Docking Int(6)
+  LeftID Int(6)
+  TopID Int(6)
+  RightID Int(6)
+  BottomID Int(6)
+  VisibleID VarChar(1) default=N [Y=, N=]

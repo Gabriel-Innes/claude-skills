@@ -1,0 +1,11 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# AWD1 - Withholding Tax Dates
+Module: Finance | 5 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry, LineNum, LogInstanc
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number ->OWTD
+  LineNum Int(11) Row Number
+  DateFrom Date(8) Effective From
+  Rate Num(19,6) Rate
+  LogInstanc Int(11) Log Instance default=0

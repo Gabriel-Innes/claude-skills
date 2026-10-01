@@ -1,0 +1,13 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# KPI1 - Key Performance Indicator Field
+Module: General | 7 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number
+  KPIEntry Int(11) KPI Number
+  Type Int(11) KPI Field Type
+  FieldName nVarChar(250) KPI Field Name
+  Method nVarChar(250) Aggregation Method
+  DbType nVarChar(250) Database Type
+  DefValue nVarChar(250) Default Value

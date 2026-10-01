@@ -1,7 +1,7 @@
 <!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
 # OBGD - Budget Cost Assess. Mthd
 Module: Finance | 17 columns | ObjType: 78
-Indexes (name: columns; first = primary key; U = unique):
+Indexes (name: columns; first = primary key; U = unique) - WARNING: multi-column key order here is reversed vs SAP's 10.0 reference (read as a set; see references/dictionary/INDEX.md):
   PRIMARY U: BgdCode
   NAME U: BgdName
 Fields (name type(len) description [values] ->parent table):

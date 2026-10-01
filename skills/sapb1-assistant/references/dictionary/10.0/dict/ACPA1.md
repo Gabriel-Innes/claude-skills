@@ -1,0 +1,11 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# ACPA1 - Periods Category - WIP Mapping - Log
+Module: General | 5 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: AbsEntry, LineNum, LogInstanc
+Fields (name type(len) description [values] ->parent table):
+  AbsEntry Int(11) Internal Number ->OACP
+  LineNum Int(11) Line Number
+  LogInstanc Int(11) Log Instance
+  AcctFrom nVarChar(15) Consolidate from Account ->OACT
+  AcctTo nVarChar(15) Consolidate to Account ->OACT

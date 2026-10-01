@@ -1,0 +1,16 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# MDKY - MetaData Tables DKeys
+Module: General | 10 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: TableName, HKeyIndex, DKeyIndex, ResCode, RevCode
+Fields (name type(len) description [values] ->parent table):
+  TableName nVarChar(5) Table Name
+  HKeyIndex Int(6) HKey Index
+  DKeyIndex Int(6) DKey Index
+  FieldName nVarChar(20) Field in Key
+  Upper VarChar(1) Upper default=Y [Y=Yes, N=No]
+  UpdateDate Date(8) Update Date
+  UpdateTime Int(11) Update Time default=0
+  UsrSgnAttr Int(11) User Sign For Attribs Change default=-1
+  ResCode Int(11) Resource Code from RSBD default=-1
+  RevCode Int(11) Revision Code default=-1

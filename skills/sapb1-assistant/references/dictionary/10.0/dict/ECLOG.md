@@ -1,0 +1,8 @@
+<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
+# ECLOG - 
+Module: General | 2 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: Id
+Fields (name type(len) description [values] ->parent table):
+  Id nVarChar(100)
+  TimeStamp Date(8)
