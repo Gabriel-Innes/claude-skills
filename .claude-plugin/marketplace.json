@@ -20,6 +20,13 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/sapb1-assistant"]
+    },
+    {
+      "name": "team-comms",
+      "description": "Personal writing assistant for short, clear team and work emails: drafts, polishes, and replies in a simple, warm, plain-English voice with hard length limits.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/team-comms"]
     }
   ]
 }
