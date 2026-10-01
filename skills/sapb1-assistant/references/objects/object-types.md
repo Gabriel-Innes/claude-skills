@@ -5,7 +5,7 @@
 329 object types, sorted by object type number. One line per object: grep `^| 17 |` for a number, or the table name / description / DI API member for the reverse.
 
 - **Table** = the SAP B1 table for the object. **Primary Key** = the column name(s) as written by the source.
-- **DI API** = the member of SAP's `BoObjectTypes` enumeration (DI API 10.0) with that number; see `../diapi/enums/BoObjectTypes.md`. Blank = the enumeration has no member for it.
+- **DI API** = the member of SAP's `BoObjectTypes` enumeration (DI API 10.0) with that number; see the `BoObjectTypes` enum (`../diapi/enums/`, located through its `INDEX.md`). Blank = the enumeration has no member for it.
 - **Src** = ids of the sources carrying the row (`in` = sapbusinessone.in, `blog` = sap-b1-blog.com, `sap-di` = SAP's DI API 10.0 reference; URLs in `INDEX.md`). Multi-source rows agree on the object number.
 - Table, description and primary key come from sapbusinessone.in, which uses the real database column names. The blog page is machine-translated and carries corrupted table names; every table-name disagreement is flagged in Notes.
 - Table `ODRF` appears under two object numbers (112 Drafts, 1179 Stock Transfer Draft) in both sources.

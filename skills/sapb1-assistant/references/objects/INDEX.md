@@ -14,7 +14,7 @@ SAP Business One object types: object type number ↔ table ↔ description ↔ 
 |---|---|---|---|---|
 | `in` | https://sapbusinessone.in/list-of-object-types-sap-business-one.html | Authoritative for table name, description, primary key (uses real DB column names) | 326 | none on page |
 | `blog` | https://sap-b1-blog.com/en/glossary/list-of-object-types-in-sap-business-one/ | Cross-check only. Machine-translated from German, so some table names are corrupted | 320 | modified 2025-01-19 |
-| `sap-di` | `../diapi/enums/BoObjectTypes.md` (compiled from SAP's `REFDI.chm`, DI API 10.0) | SAP's own documentation. Confirms object numbers and gives the DI API enum member; names a class, not a table, so it doesn't override table/key | 134 | copyright 2022 |
+| `sap-di` | the `BoObjectTypes` enum in `../diapi/enums/` (find it through `../diapi/enums/INDEX.md`; compiled from SAP's `REFDI.chm`, DI API 10.0) | SAP's own documentation. Confirms object numbers and gives the DI API enum member; names a class, not a table, so it doesn't override table/key | 134 | copyright 2022 |
 
 `in` and `blog` are community sites, not SAP documentation, and neither states a B1 version. Fetched 2026-10-01.
 

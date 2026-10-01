@@ -1,9 +1,0 @@
-<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
-# OMAP - Mapping Elements
-Module: Administration | 3 columns
-Indexes (name: columns; first = primary key; U = unique):
-  PRIMARY U: AbsEntry
-Fields (name type(len) description [values] ->parent table):
-  AbsEntry Int(11) Internal Number
-  FrmId Int(11) Format Object ID ->OFRM
-  MapId Int(11) Mapping ID in Format

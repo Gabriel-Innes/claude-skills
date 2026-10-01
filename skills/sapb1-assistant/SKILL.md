@@ -22,7 +22,7 @@ Object type numbers, table names and key columns are exactly the things a model 
 |---|---|
 | "what's the object type for X", "what is object type N", "which table / primary key is behind N", "list the objects for sales / inventory / banking", UDO or DI API work that needs an object number | § 3 Object types |
 | a view, query, report extract, "what table/field holds X", join, valid-value / status questions against B1 data | § 4 SQL / schema |
-| generate or fix **C# against the DI API** (`SAPbobsCOM`): connect, create/update an invoice, order, business partner or item, read errors, transactions, UDFs/UDTs/UDOs, "what does this DI API property/method do", an enum value | § 5 DI API |
+| generate, **review** or fix **C# against the DI API** (`SAPbobsCOM`): connect, create/update an invoice, order, business partner or item, read errors, transactions, UDFs/UDTs/UDOs, "what does this DI API property/method do", an enum value, "audit / clean up my integration" | § 5 DI API |
 | both — "build a view over sales orders and tell me the ObjType" | § 4, using § 3 for object numbers |
 
 Anything else (Service Layer or UI API code, version and upgrade questions, how-to procedures) is a planned
@@ -84,10 +84,11 @@ folder you chose. `references/dictionary/INDEX.md` has the sources, counts, the 
    tables, so grain decides the join. If grain, open-vs-closed or the database (SQL Server / HANA) is
    ambiguous, ask — status fields are multi-valued and a wrong guess silently drops or duplicates rows.
 2. **Find the tables** by grepping `references/dictionary/<ver>/table-index.md` (one line per table: name,
-   description, module, column and index counts, `ObjType`). Header and row tables read as a family
-   (e.g. an order and its lines); check both.
-3. **Verify every column** in `references/dictionary/<ver>/dict/<TABLE>.md` (one file per table, named exactly
-   as the table). Never emit a column you haven't seen there. Lines read
+   description, module, column and index counts, `ObjType`, and the `File`, `Line` and `Lines` where its entry
+   is). Header and row tables read as a family (e.g. an order and its lines); check both.
+3. **Verify every column** by reading the table's entry: open `references/dictionary/<ver>/dict/<File>` from
+   line `Line` for `Lines` lines (a line-range read; or grep `^# TABLE - ` in that file). Entries are bundled by
+   module, so never read a whole file. Never emit a column you haven't seen there. Lines read
    `name type(len) description default=… [valid values] ->parent table`. The `Indexes:` block lists physical
    indexes; the **first one is the primary key** (usually named `PRIMARY`) — join and filter on it.
 4. **Join through the `->PARENT` links and index columns**, not by name similarity. A `->` link names the table
@@ -106,8 +107,9 @@ folder you chose. `references/dictionary/INDEX.md` has the sources, counts, the 
    first, and say which schema version you used, so columns should be confirmed on the client's database.
 
 Grep recipes (paths relative to the skill root): `(?i)bin` in `references/dictionary/<ver>/table-index.md` →
-tables by topic; `^  CardCode ` across `references/dictionary/<ver>/dict/` → which tables carry a column;
-`->OCRD` across `references/dictionary/<ver>/dict/` → every column that points at the business partner table.
+tables by topic. For "which tables carry a column" or "what points at the business partner table", grep the
+bundles for the table headings and the column together, e.g. `^(# |  CardCode )` or `^(# |.*->OCRD$)` across
+`references/dictionary/<ver>/dict/`: a matching field line belongs to the nearest `# TABLE - ` heading above it.
 
 ## 5. DI API development (C#)
 
@@ -121,10 +123,13 @@ this object library only, not the UI API, the Service Layer or DI Server. The re
 2. **Read** `references/diapi/INDEX.md`, then `references/diapi/di-api-guide.md`, and
    `references/diapi/common-mistakes.md` before writing code, so you produce the documented pattern and not the
    usual wrong one.
-3. **Look up every class, member and enum you use** — never from memory. Find the class in
-   `references/diapi/api/INDEX.md`, read `references/diapi/api/<Class>.md` (VB signature, parameters, return value,
-   remarks, SAP's C# example where there is one), and read enum values in `references/diapi/enums/<Enum>.md`
-   (`BoObjectTypes` holds the object numbers). An unfamiliar member gets looked up, not guessed.
+3. **Look up every class, member and enum you use** — never from memory. For "does it exist and what type is it",
+   grep `references/diapi/api/members.md` (`Class.Member : VBType [R/W]`, one line each) and
+   `references/diapi/enums/members.md` (`Enum.Member = Value`). For remarks, parameters and SAP's sample, find the
+   class in `references/diapi/api/INDEX.md` (it gives the `File`, `Line` and `Lines` of each class) and read that
+   range of `references/diapi/api/<File>`; enums the same way through `references/diapi/enums/INDEX.md`
+   (`BoObjectTypes` holds the object numbers). Never read a whole bundle. An unfamiliar member gets looked up,
+   not guessed.
 4. **Verify table and column names** (for `Recordset` reads, field names, UDFs next to standard fields) in
    `references/dictionary/<ver>/` (§ 4) and say which version. A class's source table is in `api/INDEX.md`.
 5. **Generate the documented pattern**: connect with the mandatory properties from configuration; check every
@@ -136,6 +141,11 @@ this object library only, not the UI API, the Service Layer or DI Server. The re
 7. **Deliver**: one ```csharp block, then a short note: which members and enums were verified in the reference,
    what is still unverified (for example a 10.0-only member on a 9.3 client, or a later feature pack), and the environment caveats from § 6.
    Offer a test plan or the matching read-only SQL (§ 4) as follow-ups.
+8. **Reviewing an existing project** ("review / audit / clean up my DI API code"): run the greps in
+   `references/diapi/review-checklist.md` over the whole tree before reading files, verify each flagged member in
+   `api/members.md`, and report data-affecting defects first, then connection and COM lifetime, then the rest.
+   Behaviours that look wrong but may be intended for the client go in a separate list to decide, not fix. For a
+   restructuring, the guide § 12 describes a testable build-then-commit layout (practice, not SAP guidance).
 
 ## 6. Gotchas (things a careful engineer still gets wrong)
 
@@ -177,17 +187,26 @@ this object library only, not the UI API, the Service Layer or DI Server. The re
 - **The DI API reference and the default schema are both 10.0.** 420 of the 438 source tables its classes name are
   in the 10.0 dictionary (404 in 9.3); the rest look like views or localization tables. Confirm columns on the
   client's database.
+- **The interop can know more than the CHM.** `dst_MSSQL2022 = 17` exists in the 10.0 interop though the reference
+  stops at 2019; parse `DbServerType` with `Enum.TryParse` and fail at connect time with the valid names.
+- **A service `Add` posts the whole document.** Calling it inside the line loop posts one document per line
+  (guide § 11, mistakes row 18).
+- **`Lines.Add()` after the last line is tolerated**, not a bug: the DI API ignores the trailing empty line. Set
+  `DocObjectCode` first on drafts and the base reference before `ItemCode`; those orders do matter (guide § 11).
+- **`BaseType` is two kinds**: the object number on `Document_Lines`, `InvBaseDocTypeEnum` (InventoryTransferRequest
+  = 5) on `StockTransfer_Lines` (mistakes row 23).
 
 ## 7. Layout
 
 ```
 references/objects/      INDEX.md, object-types.md (the list), raw/<source>.md (verbatim extracts per source site)
-references/dictionary/   INDEX.md, 10.0/ and 9.3/ each with table-index.md + dict/<TABLE>.md (one file per table)
-references/diapi/        INDEX.md, di-api-guide.md (how-to), common-mistakes.md, api/ (INDEX.md + one file per class), enums/ (INDEX.md + one file per enumeration)
+references/dictionary/   INDEX.md, 10.0/ and 9.3/ each with table-index.md + dict/<Module>.md (tables bundled by module)
+references/diapi/        INDEX.md, di-api-guide.md (how-to), common-mistakes.md, review-checklist.md, api/ (INDEX.md + members.md + classes-NN.md bundles), enums/ (INDEX.md + members.md + enums-NN.md bundles)
 scripts/                 maintenance only (compile the 10.0 schema and the DI API reference from the SDK's CHMs; fetch + compile the 9.3 schema) — never needed to answer
 evals/evals.json         test prompts per capability
 MAINTENANCE.md           how to refresh the object list, the schema or the DI API reference, add a source, add a capability
 ```
 
 Every `references/` folder has an `INDEX.md` with sources and verified dates per file — read it first, open
-only what the request needs.
+only what the request needs. The skill is limited to under 200 files, so large references are bundled and their
+indexes give the file and line range of every entry.

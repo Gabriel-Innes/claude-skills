@@ -6,8 +6,8 @@ Two versions are bundled. **Use 10.0 unless the client is on 9.3.**
 | Path | Covers | Version | Verified |
 |---|---|---|---|
 | `10.0/table-index.md` | **Start here.** One line per table (2,784): name, description, module, column and index counts, `ObjType` where the table appears in `../objects/object-types.md`. Grep it by topic. | B1 10.0 | 2026-10-01 |
-| `10.0/dict/<TABLE>.md` | One file per table, named exactly as the table (`dict/ORDR.md`). Header (module, column count, ObjType), `Indexes:` block (first = primary key, `U` = unique), then one line per column: `name type(len) description default=… [valid values] ->parent table`. | B1 10.0 | 2026-10-01 |
-| `9.3/table-index.md`, `9.3/dict/<TABLE>.md` | Same layout for B1 9.3 (2,546 tables). Kept for clients still on 9.3. **Composite-key column order is unreliable here, see Known issues.** | B1 9.3 | 2026-10-01 |
+| `10.0/dict/<Module>.md` | The tables of one module (a module is split into numbered parts past about 1 MB). Each table is an entry that starts `# TABLE - description`: module line (column count, ObjType), `Indexes:` block (first = primary key, `U` = unique), then one line per column: `name type(len) description default=… [valid values] ->parent table`. | B1 10.0 | 2026-10-01 |
+| `9.3/table-index.md`, `9.3/dict/<Module>.md` | Same layout for B1 9.3 (2,546 tables). Kept for clients still on 9.3. **Composite-key column order is unreliable here, see Known issues.** | B1 9.3 | 2026-10-01 |
 
 ## Version map
 

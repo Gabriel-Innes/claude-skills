@@ -1,9 +1,0 @@
-<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
-# UGR1 - Group Authorization
-Module: Administration | 3 columns
-Indexes (name: columns; first = primary key; U = unique):
-  PRIMARY U: GroupLink, PermId
-Fields (name type(len) description [values] ->parent table):
-  GroupLink Int(6) Group Link ->OUGR
-  PermId nVarChar(20) Authorization ID ->OUPT
-  Permission VarChar(1) Authorization default=N [V=Various, F=Full, R=Read Only, N=None, U=Undefined Type]

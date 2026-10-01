@@ -6,11 +6,14 @@ Read `di-api-guide.md` first, then open only what the request needs.
 | Path | Covers | Version | Verified |
 |---|---|---|---|
 | `di-api-guide.md` | **Start here.** The how-to: the Company/business-object/service model, connect, errors, create/read/update (documents and lines), transactions, COM release, `Recordset`, user-defined fields/tables/objects, VB → C# type mapping | DI API 10.0 | 2026-10-01 |
-| `common-mistakes.md` | 17 wrong patterns → the correct one, each tied to the reference file that backs it | DI API 10.0 | 2026-10-01 |
-| `api/INDEX.md` | One line per class (1,378: 1,044 Objects, 334 Collections): kind, property/method counts, **source table** (557 classes name one), description. Find the class here | DI API 10.0 | 2026-10-01 |
-| `api/<Class>.md` | One file per class, named exactly as the class: description, remarks, then every property (`[R]`/`[R/W]`/`[W]`) and method with its VB signature, parameters, return value, remarks, enum pointer and SAP's C# (or tagged VB) example | DI API 10.0 | 2026-10-01 |
-| `enums/INDEX.md` | One line per enumeration (633): member count, description | DI API 10.0 | 2026-10-01 |
-| `enums/<Enum>.md` | One file per enumeration: Member / Value / Description table (`BoObjectTypes` holds the object numbers) | DI API 10.0 | 2026-10-01 |
+| `common-mistakes.md` | 24 wrong patterns → the correct one, each tied to the reference file that backs it | DI API 10.0 | 2026-10-01 |
+| `review-checklist.md` | Reviewing existing DI API code: grep recipes per mistake, COM-lifetime checks, what not to flag, how to report | DI API 10.0 | 2026-10-01 |
+| `api/members.md` | Flat index, one line per class member (17,798): `Class.Property : VBType [R/W]`, `Class.Method(params) -> VBType`. One grep answers "does this member exist and what type is it" | DI API 10.0 | 2026-10-01 |
+| `enums/members.md` | Flat index, one line per enumeration member (3,342): `Enum.Member = Value` | DI API 10.0 | 2026-10-01 |
+| `api/INDEX.md` | One line per class (1,378: 1,044 Objects, 334 Collections): kind, property/method counts, **source table** (557 classes name one), the `File`, `Line` and `Lines` of its entry, description. Find the class here | DI API 10.0 | 2026-10-01 |
+| `api/classes-NN.md` | The classes in alphabetical order, about 150 KB per file (27 files). Each class is an entry that starts `# Class (Kind)`: description, remarks, then every property (`[R]`/`[R/W]`/`[W]`) and method with its VB signature, parameters, return value, remarks, enum pointer and SAP's C# (or tagged VB) example | DI API 10.0 | 2026-10-01 |
+| `enums/INDEX.md` | One line per enumeration (633): member count, the `File`, `Line` and `Lines` of its entry, description | DI API 10.0 | 2026-10-01 |
+| `enums/enums-NN.md` | The enumerations in alphabetical order (3 files). Each is an entry that starts `# Enum (Enumeration)` with its Member / Value / Description table (`BoObjectTypes` holds the object numbers) | DI API 10.0 | 2026-10-01 |
 
 ## Source
 
@@ -18,8 +21,12 @@ Read `di-api-guide.md` first, then open only what the request needs.
 |---|---|
 | File | `REFDI.chm`, "SAP Business One DI API 10.0 - Objects Reference (10.00.190)", copyright 2022 SAP SE |
 | Where | `<SAP Business One SDK>\Help\REFDI.chm`, supplied with the SDK; not redistributed in this repo, only compiled |
-| Built | `scripts/build_diapi_ref.py` (decompile with `hh.exe -decompile`, then run the script); 1,378 classes, 17,799 members, 633 enumerations, 0 pages missing |
+| Built | `scripts/build_diapi_ref.py` (decompile with `hh.exe -decompile`, then run the script); 1,378 classes, 17,799 members, 633 enumerations, 0 pages missing. Then `scripts/build_member_index.py` for the two `members.md` flat indexes |
 | Terms | SAP's documentation. This project is not affiliated with or endorsed by SAP; check SAP's terms before redistributing |
+
+## How the files are organised
+
+The skill is limited to 200 files, so classes and enumerations are bundled. Never read a whole bundle: take the `File`, `Line` and `Lines` from `api/INDEX.md` or `enums/INDEX.md` and read exactly that range, or grep `^# <Class> (` / `^# <Enum> (`. Other documents cite a class or enumeration by name (the `Company` class, the `BoObjectTypes` enum) and the index says where it is.
 
 ## Contents and what's left out
 

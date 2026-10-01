@@ -9,10 +9,13 @@ extracts CHMs. The result is ~21,000 flat .html files plus DI_API.hhc (table of 
 Step 1: python build_diapi_ref.py <extractdir> <out> --verified YYYY-MM-DD
 
 Writes, under <out>:
-  api/INDEX.md         one line per class (kind, member counts, first sentence of its description)
-  api/<Class>.md       one file per class: description, object-model/remarks, properties, methods, events
-  enums/INDEX.md       one line per enumeration (member count, first sentence of its description)
-  enums/<Enum>.md      one file per enumeration: description + Member / Value / Description table
+  api/INDEX.md         one line per class (kind, member counts, source table, file/line/lines, first sentence)
+  api/classes-NN.md    classes in alphabetical order, ~150 KB per file; each starts `# Class (Kind)`: description,
+                       object-model/remarks, properties, methods, events
+  enums/INDEX.md       one line per enumeration (member count, file/line/lines, first sentence)
+  enums/enums-NN.md    enumerations, ~90 KB per file; each starts `# Enum (Enumeration)`: description + member table
+
+The skill must stay under 200 files, hence the bundles; the INDEX files say where each entry is.
 
 Structure of the CHM (Doc-O-Matic): DI_API.hhc nests Objects -> class -> Methods/Properties/Events -> member
 pages (SAPbobsCOM~<Class>~<Member>.html); Enumerations -> SAPbobsCOM~Enumerations~<Enum>_EN.html. Every page is
@@ -22,11 +25,16 @@ the separate *_Sample_E.html sample pages are not read.
 """
 import argparse, html, json, os, re, sys, collections
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import bundle_util
+
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("extract")
 ap.add_argument("out")
 ap.add_argument("--verified", required=True)
 ap.add_argument("--label", default="SAP Business One DI API 10.0 (10.00.190)")
+ap.add_argument("--max-bytes", type=int, default=150_000, help="class bundle size")
+ap.add_argument("--max-bytes-enums", type=int, default=90_000, help="enumeration bundle size")
 A = ap.parse_args()
 EX, OUT = A.extract, A.out
 HEAD = f"<!-- source: REFDI.chm, {A.label} | version: DI API 10.0 | verified: {A.verified} -->"
@@ -217,12 +225,39 @@ def member_block(kind, name, local, owner):
     if rem:
         out.append(f"  - remarks: {rem}")
     if enum:
-        out.append(f"  - enum: `../enums/{enum}.md`")
+        out.append(f"  - enum: `{enum}` in `../enums/{enum_where[enum][0]}`" if enum in enum_where else f"  - enum: `{enum}`")
     out += example_lines(sc.get("Example", ""), "  ")
     return "\n".join(out), True
 
 
-index_rows, enum_rows, nmem, missing = [], [], 0, 0
+# ------------------------------------------------------------------------ enums ---
+# Enumerations are bundled first: class members point at the bundle that holds each enumeration.
+enum_entries, enum_meta = [], []
+for ename, local in enums:
+    s = read(local)
+    sc = sections(s)
+    L = [HEAD, f"# {ename} (Enumeration)", ""]
+    d = text(sc.get("Description", ""), 1500)
+    if d:
+        L += [d, ""]
+    L.append("| Member | Value | Description |\n|---|---|---|")
+    for tr in re.findall(r"<TR[^>]*>(.*?)</TR>", sc.get("Members", ""), re.S | re.I)[1:]:
+        tds = [text(x) for x in re.findall(r"<TD[^>]*>(.*?)</TD>", tr, re.S | re.I)]
+        if len(tds) >= 2:
+            tds = (tds + [""] * 3)[:3]
+            L.append("| " + " | ".join(x.replace("|", "/") for x in tds) + " |")
+    rem = text(sc.get("Remarks", ""), 1500)
+    if rem:
+        L += ["", f"**Remarks:** {rem}"]
+    nm = sum(1 for l in L if l.startswith("| ")) - 1
+    first = re.split(r"(?<=[.!?])\s", d, maxsplit=1)[0][:200] if d else ""
+    enum_entries.append((ename, "\n".join(L[1:])))
+    enum_meta.append((ename, nm, first))
+enum_where = bundle_util.write_bundles([("enums", enum_entries)], os.path.join(OUT, "enums"), HEAD,
+                                       A.max_bytes_enums, numbered_prefix="enums")
+
+# ---------------------------------------------------------------------- classes ---
+class_entries, class_meta, nmem, missing = [], [], 0, 0
 for cname, c in classes.items():
     s = read(c["local"])
     sc = sections(s)
@@ -248,42 +283,28 @@ for cname, c in classes.items():
                 nmem += 1
                 L.append(blk)
             L.append("")
-    open(os.path.join(OUT, "api", f"{cname}.md"), "w", encoding="utf-8", newline="\n").write("\n".join(L).rstrip() + "\n")
-    index_rows.append(f"| {cname} | {c['kind']} | {len(c['props'])} | {len(c['methods'])} | {src_table.replace('|', '/')} | {first.replace('|', '/')} |")
+    class_entries.append((cname, "\n".join(L[1:])))
+    class_meta.append((cname, c["kind"], len(c["props"]), len(c["methods"]), src_table, first))
+class_where = bundle_util.write_bundles([("classes", class_entries)], os.path.join(OUT, "api"), HEAD,
+                                        A.max_bytes, numbered_prefix="classes")
 
-# ------------------------------------------------------------------------ enums ---
-for ename, local in enums:
-    s = read(local)
-    sc = sections(s)
-    L = [HEAD, f"# {ename} (Enumeration)", ""]
-    d = text(sc.get("Description", ""), 1500)
-    if d:
-        L += [d, ""]
-    L.append("| Member | Value | Description |\n|---|---|---|")
-    for tr in re.findall(r"<TR[^>]*>(.*?)</TR>", sc.get("Members", ""), re.S | re.I)[1:]:
-        tds = [text(x) for x in re.findall(r"<TD[^>]*>(.*?)</TD>", tr, re.S | re.I)]
-        if len(tds) >= 2:
-            tds = (tds + [""] * 3)[:3]
-            L.append("| " + " | ".join(x.replace("|", "/") for x in tds) + " |")
-    rem = text(sc.get("Remarks", ""), 1500)
-    if rem:
-        L += ["", f"**Remarks:** {rem}"]
-    nm = sum(1 for l in L if l.startswith("| ")) - 1
-    first = re.split(r"(?<=[.!?])\s", d, maxsplit=1)[0][:200] if d else ""
-    enum_rows.append(f"| {ename} | {nm} | {first.replace('|', '/')} |")
-    open(os.path.join(OUT, "enums", f"{ename}.md"), "w", encoding="utf-8", newline="\n").write("\n".join(L) + "\n")
-
+# ---------------------------------------------------------------------- indexes ---
 with open(os.path.join(OUT, "enums", "INDEX.md"), "w", encoding="utf-8", newline="\n") as f:
     f.write(HEAD + "\n\n# DI API enumerations\n\n")
-    f.write(f"{len(enums)} enumerations. Open `enums/<Enum>.md` for the Member / Value / Description table. "
-            "Grep a member name across `enums/` to find its enumeration.\n\n")
-    f.write("| Enumeration | Members | Description |\n|---|---|---|\n")
-    f.write("\n".join(enum_rows) + "\n")
+    f.write(f"{len(enums)} enumerations. Each is in `enums/<File>` from line `Line` for `Lines` lines (read exactly that range, "
+            "or grep `^# <Enum> `). Grep a member name across `enums/` to find its enumeration.\n\n")
+    f.write("| Enumeration | Members | File | Line | Lines | Description |\n|---|---|---|---|---|---|\n")
+    for ename, nm, first in enum_meta:
+        fn, ln, nl = enum_where[ename]
+        f.write(f"| {ename} | {nm} | {fn} | {ln} | {nl} | {first.replace('|', '/')} |\n")
 
 with open(os.path.join(OUT, "api", "INDEX.md"), "w", encoding="utf-8", newline="\n") as f:
     f.write(HEAD + "\n\n# DI API classes\n\n")
-    f.write(f"{len(classes)} classes. Open `api/<Class>.md` for a class (enumerations are in `../enums/`). "
-            "Kind is the CHM's own label (Object or Collection).\n\n")
-    f.write("| Class | Kind | Props | Methods | Source table | Description |\n|---|---|---|---|---|---|\n")
-    f.write("\n".join(index_rows) + "\n")
-print(f"{len(classes)} classes, {nmem} members ({missing} pages missing), {len(enums)} enums -> {OUT}")
+    f.write(f"{len(classes)} classes. Each is in `api/<File>` from line `Line` for `Lines` lines (read exactly that range, "
+            "or grep `^# <Class> (`); enumerations are in `../enums/`. Kind is the CHM's own label (Object or Collection).\n\n")
+    f.write("| Class | Kind | Props | Methods | Source table | File | Line | Lines | Description |\n|---|---|---|---|---|---|---|---|---|\n")
+    for cname, kind, npr, nme, src_table, first in class_meta:
+        fn, ln, nl = class_where[cname]
+        f.write(f"| {cname} | {kind} | {npr} | {nme} | {src_table.replace('|', '/')} | {fn} | {ln} | {nl} | {first.replace('|', '/')} |\n")
+print(f"{len(classes)} classes in {len(set(v[0] for v in class_where.values()))} files, {nmem} members ({missing} pages missing), "
+      f"{len(enums)} enums in {len(set(v[0] for v in enum_where.values()))} files -> {OUT}")

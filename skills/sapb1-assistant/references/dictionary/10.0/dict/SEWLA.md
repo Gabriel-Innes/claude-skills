@@ -1,8 +1,0 @@
-<!-- source: REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference) | version: SAP Business One 10.0 | verified: 2026-10-01 -->
-# SEWLA - 
-Module: General | 2 columns
-Indexes (name: columns; first = primary key; U = unique):
-  PRIMARY U: MachineNam
-Fields (name type(len) description [values] ->parent table):
-  MachineNam nVarChar(254) Machine Name
-  IsErr nVarChar(4) Is Error InLog

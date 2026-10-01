@@ -21,6 +21,19 @@ and a 2,500-file build must be re-runnable. Neither script is needed to answer q
 - Gotchas (corrections an engineer would otherwise get wrong) belong in `SKILL.md`, not buried in references.
   There is no Gotchas section yet; add one when the first real correction turns up.
 
+## File limit and packaging
+
+Claude accepts at most **200 files** in an uploaded skill, so the large references are **bundled**: the schema
+dictionaries by module (`dict/<Module>.md`, split into numbered parts past ~1 MB), the DI API classes and
+enumerations alphabetically (`api/classes-NN.md`, `enums/enums-NN.md`). Each build script writes the bundles and
+an index whose rows give the `File`, `Line` and `Lines` of every entry, so a reader opens exactly one entry.
+Other documents cite entries by name (the `Company` class, the `OITM` table), never by bundle file, because
+bundle numbers shift when entries are added. The skill is about 80 files; check after any rebuild.
+
+Package for upload: `python scripts/package_skill.py skills/sapb1-assistant dist` (needs PyYAML). It refuses to
+write the archive if the frontmatter is invalid or there are more than 200 files, and writes `dist/sapb1-assistant.skill`
+plus an identical `.zip`. Both are git-ignored. Upload in Claude under Settings, Capabilities, Skills.
+
 ## Conventions for reference files
 
 - **Provenance header** on every file:
@@ -66,7 +79,7 @@ All files are under `references/objects/`.
 
 ### The `sap-di` source (SAP's own enumeration)
 
-`sap-di` is not a website: it is `references/diapi/enums/BoObjectTypes.md`, compiled from the DI API reference.
+`sap-di` is not a website: it is the `BoObjectTypes` enum in `references/diapi/enums/` (located through its `INDEX.md`), compiled from the DI API reference.
 It supplies the **DI API** column and confirms object numbers; it names classes, not tables, so it never
 overrides Table or Primary Key. After rebuilding the DI API reference (below), re-merge it: add or update the
 `DI API` member and `sap-di` in `Src` for every number in the enumeration, add any number the list lacks
@@ -129,7 +142,7 @@ third-party site, the default delay is 0.5 s between requests, and a full run ta
 2. **Build**: `python scripts/build_schema_dict.py --cache <dir> --out references/dictionary/<version> --objects
    references/objects/object-types.md --verified YYYY-MM-DD --label "SAP Business One <version>" --index-note
    "<warning>"`. It refuses to build from an incomplete cache (`--allow-partial` for testing only) and writes
-   `dict/<TABLE>.md` per table plus `table-index.md`. 9.3 is built with the `--index-note` that its composite-key
+   `dict/<Module>.md` bundles plus `table-index.md`. 9.3 is built with the `--index-note` that its composite-key
    order is reversed against SAP's reference (see the dictionary `INDEX.md`); keep it on every rebuild.
 3. **Sanity-check** before committing: table, column and index totals against the listing; a few well-known
    tables read end to end (e.g. the sales order and business partner families); every `->PARENT` points at a
@@ -154,15 +167,20 @@ from it, don't commit the CHM or its HTML.
 2. **Build**: `PYTHONUTF8=1 python scripts/build_diapi_ref.py <extractdir> references/diapi --verified YYYY-MM-DD
    [--label "SAP Business One DI API <release> (<build>)"]`. It parses the table of contents into class → members
    and each page's `Description / Syntax / Parameters / Return Type / Remarks / Example` sections, and writes
-   `api/<Class>.md`, `enums/<Enum>.md` and the two `INDEX.md` files. It stops if a class or enum name would clash
+   `api/classes-NN.md`, `enums/enums-NN.md` and the two `INDEX.md` files. It stops if a class or enum name would clash
    case-insensitively. Delete the old `references/diapi/api` and `enums` first so removed classes don't linger.
+   Then `python scripts/build_member_index.py references/diapi` to regenerate `api/members.md` and `enums/members.md`
+   (flat one-line-per-member indexes; it reports how many member lines it parsed, which should match the build count
+   within one or two unusual signatures).
 3. **Check** before committing: class, member and enum counts against the previous run (a new release adds
-   classes); `0 pages missing`; every `../enums/<Enum>.md` pointer resolves; no `[Missing` or `&nbsp;` in the
-   output; read `api/Company.md`, `api/Documents.md` and `enums/BoObjectTypes.md` end to end.
+   classes); `0 pages missing`; every `../enums/enums-NN.md` pointer in a class entry names an existing file; no `[Missing` or `&nbsp;` in the
+   output; read `Company` class, `Documents` class and the `BoObjectTypes` enum end to end.
 4. **Update** `references/diapi/INDEX.md` (counts, release, known issues, the source-table comparison with the
    schema dictionary), the version wording in `SKILL.md` § 5 and § 6, and re-merge `sap-di` into the object list
    (above). Re-read `di-api-guide.md` and `common-mistakes.md` against the new reference: each claim cites a file,
-   so check the cited pages still say it.
+   so check the cited pages still say it. `review-checklist.md` cites rows of `common-mistakes.md`, so renumbering
+   rows means updating it too. `di-api-guide.md` § 11 holds facts observed on a 10.0 install rather than CHM
+   statements; re-verify them when the interop or the release changes.
 5. **Counts to re-derive for `INDEX.md`**: C# and VB example blocks (`grep` the fenced blocks), the SAP-labelled-C#
    -but-VB warnings, classes naming a source table, and how many of those tables are missing from the schema
    dictionary (the version-gap measure).

@@ -2,8 +2,9 @@
 """Compile the erpref.com cache (see fetch_erpref_schema.py) into the skill's dictionary (maintenance only).
 
 Writes, under <out>:
-  dict/<TABLE>.md   one file per table: module, ObjType, indexes, then one line per column
-  table-index.md    one line per table (description, module, column/index counts, ObjType)
+  dict/<Module>.md  the tables of a module (numbered parts past ~1 MB), each starting `# TABLE - description`:
+                    module line, ObjType, indexes, then one line per column
+  table-index.md    one line per table (description, module, column/index counts, ObjType, file/line/lines)
 
     python build_schema_dict.py --cache <dir> --out references/dictionary/9.3 \
         --objects references/objects/object-types.md --verified YYYY-MM-DD [--label "SAP Business One 9.3"]
@@ -13,6 +14,9 @@ listing; otherwise it stops and names the table, so a half-finished crawl can't 
 Add --allow-partial to build only what is cached (testing).
 """
 import argparse, collections, html, json, os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import bundle_util
 
 strip = lambda s: re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", "", s or ""))).strip()
 
@@ -51,6 +55,7 @@ def main():
     ap.add_argument("--verified", required=True, help="YYYY-MM-DD for the provenance headers")
     ap.add_argument("--label", default="SAP Business One 9.3")
     ap.add_argument("--allow-partial", action="store_true")
+    ap.add_argument("--max-bytes", type=int, default=1_000_000, help="bundle size before a module file is split")
     ap.add_argument("--index-note", default="", help="warning added to each file's Indexes line and to the index header")
     a = ap.parse_args()
 
@@ -62,7 +67,7 @@ def main():
     os.makedirs(os.path.join(a.out, "dict"), exist_ok=True)
     head = f"<!-- source: erpref.com (schema IP: SAP) | version: {a.label} | verified: {a.verified} -->"
 
-    index_lines, ncols, skipped = [], 0, []
+    meta, entries, ncols, skipped = [], collections.defaultdict(list), 0, []
     for t in sorted(tables, key=lambda x: x["table"]):
         name = t["table"]
         cp, ip = os.path.join(a.cache, "cols", f"{name}.json"), os.path.join(a.cache, "idx", f"{name}.html")
@@ -94,22 +99,27 @@ def main():
                 parts.append("->" + "/".join(re.findall(r">([^<]+)</a>", d["relation"])))
             out.append(" ".join(parts))
             ncols += 1
-        with open(os.path.join(a.out, "dict", f"{name}.md"), "w", encoding="utf-8", newline="\n") as f:
-            f.write("\n".join(out) + "\n")
-        index_lines.append(f"| {name} | {t['description'].replace('|', '/')} | {t['module']} | {len(cols)} | "
-                           f"{len(idx)} | {','.join(ot) if ot else ''} |")
+        entries[t["module"]].append((name, "\n".join(out[1:])))
+        meta.append((name, t["description"], t["module"], len(cols), len(idx), ot))
 
     if skipped and not a.allow_partial:
         sys.exit(f"{len(skipped)} tables not cached (first: {skipped[:5]}); finish the fetch or pass --allow-partial")
+    groups = [(m, sorted(es)) for m, es in sorted(entries.items())]
+    where = bundle_util.write_bundles(groups, os.path.join(a.out, "dict"), head, a.max_bytes)
+    index_lines = []
+    for name, desc, module, nc, ni, ot in sorted(meta):
+        fn, ln, nl = where[name]
+        index_lines.append(f"| {name} | {desc.replace('|', '/')} | {module} | {nc} | {ni} | {','.join(ot) if ot else ''} | {fn} | {ln} | {nl} |")
     with open(os.path.join(a.out, "table-index.md"), "w", encoding="utf-8", newline="\n") as f:
         f.write(f"<!-- source: erpref.com (schema IP: SAP); ObjType from references/objects/object-types.md | "
                 f"version: {a.label} | verified: {a.verified} -->\n\n# {a.label} table index\n\n")
         f.write(f"> **Version disclaimer:** this is the {a.label} schema only. Later releases can differ, and a client's own "
                 "user-defined tables and fields are not included. Confirm columns on the client's database."
                 + (f" **{a.index_note}**" if a.index_note else "") + "\n\n"
-                f"{len(index_lines)} tables, one line each, sorted by name. Open `dict/<TABLE>.md` for columns, indexes, "
-                "valid values and parent-table links. Grep by description or module for topic search.\n\n")
-        f.write("| Table | Description | Module | Cols | Idx | ObjType |\n|---|---|---|---|---|---|\n")
+                f"{len(index_lines)} tables, one line each, sorted by name. Each table's entry is in "
+                "`dict/<File>` from line `Line` for `Lines` lines (read exactly that range, or grep `^# TABLE - `). Grep this index by "
+                "description or module for topic search.\n\n")
+        f.write("| Table | Description | Module | Cols | Idx | ObjType | File | Line | Lines |\n|---|---|---|---|---|---|---|---|---|\n")
         f.write("\n".join(index_lines) + "\n")
     print(f"{len(index_lines)} tables, {ncols} columns written to {a.out}" + (f" ({len(skipped)} skipped)" if skipped else ""))
 

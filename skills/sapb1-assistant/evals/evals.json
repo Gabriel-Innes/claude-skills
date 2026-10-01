@@ -35,7 +35,7 @@
       "id": 6,
       "capability": "SQL / schema",
       "prompt": "I need a SQL view of open sales orders with the customer name and document total. The client is on SAP B1 10.0.",
-      "expected_output": "Asks (or states an assumption about) SQL Server vs HANA and the grain (one row per order). Uses the 10.0 dictionary: ORDR joined to OCRD on CardCode (ORDR.CardCode links to OCRD; OCRD key confirmed from its first index). Uses only columns seen in dict/ORDR.md and dict/OCRD.md (DocNum, DocDate, CardCode, CardName, DocTotal, DocCur). Defines open from the documented values: DocStatus [O=Open, C=Closed] and CANCELED [Y=Yes, N=No], saying both were used. Delivers one sql block, a note on tables/joins/assumptions, a TOP 20 sanity check, and says it used the 10.0 schema. Cites the dictionary files."
+      "expected_output": "Asks (or states an assumption about) SQL Server vs HANA and the grain (one row per order). Uses the 10.0 dictionary: ORDR joined to OCRD on CardCode (ORDR.CardCode links to OCRD; OCRD key confirmed from its first index). Uses only columns seen in the ORDR table and the OCRD table (DocNum, DocDate, CardCode, CardName, DocTotal, DocCur). Defines open from the documented values: DocStatus [O=Open, C=Closed] and CANCELED [Y=Yes, N=No], saying both were used. Delivers one sql block, a note on tables/joins/assumptions, a TOP 20 sanity check, and says it used the 10.0 schema. Cites the dictionary files."
     },
     {
       "id": 7,
@@ -59,25 +59,25 @@
       "id": 10,
       "capability": "SQL / schema (edge: enum decoding)",
       "prompt": "Write a query that shows a text status for each A/R invoice, using the CANCELED column.",
-      "expected_output": "Reads dict/OINV.md and decodes CANCELED as Y=Yes, N=No, C=Cancellation (three values on OINV, not the two seen on ORDR), using CASE, and cites the file. Does not copy the two-value list from another table."
+      "expected_output": "Reads the OINV table and decodes CANCELED as Y=Yes, N=No, C=Cancellation (three values on OINV, not the two seen on ORDR), using CASE, and cites the file. Does not copy the two-value list from another table."
     },
     {
       "id": 11,
       "capability": "DI API (C#)",
       "prompt": "Write C# that connects to a SAP B1 company on SQL Server 2019 and creates an A/R invoice for customer BP234 with two item lines.",
-      "expected_output": "Reads di-api-guide.md and the Company/Documents/Document_Lines reference. Builds a SAPbobsCOM.Company with the mandatory properties (Server, DbServerType = dst_MSSQL2019, CompanyDB, UserName, Password) from configuration, int rc = Connect(), and on failure GetLastError(out int, out string). Creates Documents via GetBusinessObject(BoObjectTypes.oInvoices), sets CardCode, sets the first line directly and calls Lines.Add() before the second, checks Add()'s return code, reads GetNewObjectKey(), disconnects. Uses no member that is not in api/Documents.md or api/Document_Lines.md. Notes the reference is DI API 10.0 and says what was verified."
+      "expected_output": "Reads di-api-guide.md and the Company/Documents/Document_Lines reference. Builds a SAPbobsCOM.Company with the mandatory properties (Server, DbServerType = dst_MSSQL2019, CompanyDB, UserName, Password) from configuration, int rc = Connect(), and on failure GetLastError(out int, out string). Creates Documents via GetBusinessObject(BoObjectTypes.oInvoices), sets CardCode, sets the first line directly and calls Lines.Add() before the second, checks Add()'s return code, reads GetNewObjectKey(), disconnects. Uses no member that is not in the Documents class or the Document_Lines class. Notes the reference is DI API 10.0 and says what was verified."
     },
     {
       "id": 12,
       "capability": "DI API (C#)",
       "prompt": "I need to update an item's barcode and add a predefined text in one go so either both happen or neither. How do I do that with the DI API?",
-      "expected_output": "Uses Company.StartTransaction()/EndTransaction(BoWfTransOpt.wf_Commit) (wf_Commit = 0, wf_RollBack = 1, cited from enums/BoWfTransOpt.md), checks the return code of the Items Update and exits at once on failure, catches COMException for the service call, and explains that SAP rolls the transaction back automatically when a call fails so code that carries on runs outside it. Follows the pattern in SAP's StartTransaction sample (api/Company.md)."
+      "expected_output": "Uses Company.StartTransaction()/EndTransaction(BoWfTransOpt.wf_Commit) (wf_Commit = 0, wf_RollBack = 1, cited from the BoWfTransOpt enum), checks the return code of the Items Update and exits at once on failure, catches COMException for the service call, and explains that SAP rolls the transaction back automatically when a call fails so code that carries on runs outside it. Follows the pattern in SAP's StartTransaction sample (the Company class)."
     },
     {
       "id": 13,
       "capability": "DI API (C#)",
       "prompt": "Add a user-defined field to the OITM table from C#.",
-      "expected_output": "Uses the UserFieldsMD object (source table CUFD; mandatory Name and TableName, per api/UserFieldsMD.md), checks the Add return code with GetLastError, and calls System.Runtime.InteropServices.Marshal.ReleaseComObject on the UserFieldsMD object afterwards, citing SAP's IMPORTANT note. Does not invent properties."
+      "expected_output": "Uses the UserFieldsMD object (source table CUFD; mandatory Name and TableName, per the UserFieldsMD class), checks the Add return code with GetLastError, and calls System.Runtime.InteropServices.Marshal.ReleaseComObject on the UserFieldsMD object afterwards, citing SAP's IMPORTANT note. Does not invent properties."
     },
     {
       "id": 14,
@@ -89,7 +89,7 @@
       "id": 15,
       "capability": "DI API (enum lookup)",
       "prompt": "What are the DbServerType enum values for SQL Server 2019 and HANA?",
-      "expected_output": "Reads enums/BoDataServerTypes.md: dst_MSSQL2019 = 15 and dst_HANADB = 9. Notes the enum documents SQL Server up to 2019 and that older members are not supported from 8.8. Does not guess values."
+      "expected_output": "Reads the BoDataServerTypes enum: dst_MSSQL2019 = 15 and dst_HANADB = 9. Notes the enum documents SQL Server up to 2019 and that older members are not supported from 8.8. Does not guess values."
     },
     {
       "id": 16,
@@ -101,19 +101,37 @@
       "id": 17,
       "capability": "SQL / schema (gotcha: 9.3 key order)",
       "prompt": "The client is on B1 9.3. What is the primary key of RDR1, and in what column order?",
-      "expected_output": "Reads dict/RDR1.md in both folders: the column set is DocEntry and LineNum; the 10.0 file (SAP's own reference) gives DocEntry, LineNum, while the 9.3 file shows LineNum, DocEntry with a warning that 9.3 composite-key order is reversed. Answers DocEntry, LineNum, explains why, and says to confirm on the client's database."
+      "expected_output": "Reads the RDR1 table in both folders: the column set is DocEntry and LineNum; the 10.0 file (SAP's own reference) gives DocEntry, LineNum, while the 9.3 file shows LineNum, DocEntry with a warning that 9.3 composite-key order is reversed. Answers DocEntry, LineNum, explains why, and says to confirm on the client's database."
     },
     {
       "id": 18,
       "capability": "SQL / schema (version diff)",
       "prompt": "What changed on the sales order header table between B1 9.3 and 10.0?",
-      "expected_output": "Compares dict/ORDR.md in references/dictionary/9.3 and 10.0: 424 columns in 9.3, 448 in 10.0 (24 more), plus any type or valid-value changes it actually finds by comparing the files. Cites both files and the dictionary INDEX, and says the sources differ (erpref.com vs SAP's REFDB.chm) so small differences need care."
+      "expected_output": "Compares the ORDR table in references/dictionary/9.3 and 10.0: 424 columns in 9.3, 448 in 10.0 (24 more), plus any type or valid-value changes it actually finds by comparing the files. Cites both files and the dictionary INDEX, and says the sources differ (erpref.com vs SAP's REFDB.chm) so small differences need care."
     },
     {
       "id": 19,
       "capability": "SQL / schema (default version)",
       "prompt": "Which table holds the bin locations and what columns does it have?",
-      "expected_output": "Finds OBIN via table-index.md in the 10.0 folder (default, says so), reads dict/OBIN.md, lists columns with types and indexes from that file, notes the ObjType 10000206 link to the object list, and does not invent columns. Offers to confirm on the client's database."
+      "expected_output": "Finds OBIN via table-index.md in the 10.0 folder (default, says so), reads the OBIN table, lists columns with types and indexes from that file, notes the ObjType 10000206 link to the object list, and does not invent columns. Offers to confirm on the client's database."
+    },
+    {
+      "id": 20,
+      "capability": "DI API (review existing code)",
+      "prompt": "Review this DI API module: it connects in the constructor, loops over my transactions calling oItems.GetByKey(code); oInventoryPostingsService.Add(oInventoryPosting) inside the foreach, and a GetOnHand helper that catches exceptions and returns 0. Then it does Marshal.ReleaseComObject(sapCompany) in finally while a ComPtr wrapper also releases it in its finalizer.",
+      "expected_output": "Uses references/diapi/review-checklist.md. Reports, in order: the service Add inside the loop posts one inventory posting per line (common-mistakes row 18, InventoryPostingsService.Add takes the whole data interface); GetOnHand returning 0 on error makes the counted quantity wrong instead of failing (row 19); GetByKey called as a statement ignores the false result (row 12); the Company is released by two owners and from a finalizer (row 20). Does not flag Lines.Add() after the last line as a defect. Cites the rows/classes and separates any intended-looking behaviour into a decision list."
+    },
+    {
+      "id": 21,
+      "capability": "DI API (member check)",
+      "prompt": "Quick one: does StockTransfer_Lines have a BaseType property and what type is it? And what's the enum value for an inventory transfer request base document?",
+      "expected_output": "Greps references/diapi/api/members.md for StockTransfer_Lines.BaseType: Property, type InvBaseDocTypeEnum [R/W]. Greps references/diapi/enums/members.md: InvBaseDocTypeEnum.InventoryTransferRequest = 5. Notes that Document_Lines.BaseType is Long (the object number) instead, citing the files."
+    },
+    {
+      "id": 22,
+      "capability": "DI API (architecture)",
+      "prompt": "We have 40 near-identical C# classes that each connect to SAP, GetByKey a base document, copy header and lines, and Add. No tests. How should we restructure this so it is testable?",
+      "expected_output": "Describes the build-then-commit layout from di-api-guide.md § 12: one ISapSession facade owning COM, posting logic producing a plain TargetDocument from a SourceDocument snapshot, one DocumentWriter replaying it in the order-sensitive sequence (DocObjectCode first on drafts, base reference before ItemCode, allocations before Lines.Add), declarative copy specs executed by one handler, a method registry with the name list pinned in a test, client profiles for series and user fields, a single exception type raised right after GetLastError, and characterisation tests written from the legacy code before migrating each class. Marks it as engineering practice rather than SAP guidance."
     }
   ]
 }

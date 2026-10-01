@@ -15,13 +15,17 @@ table (Key, Unique, Field - the columns of a multi-column key continue on follow
         --objects references/objects/object-types.md --verified YYYY-MM-DD [--label "SAP Business One 10.0"]
 
 Writes, in the same format as build_schema_dict.py (so SKILL.md's workflow is identical for both versions):
-  dict/<TABLE>.md   module, column count, ObjType, indexes, then one line per column
-  table-index.md    one line per table
+  dict/<Module>.md  every table of a module (split into -2, -3 ... past ~1 MB), each starting `# TABLE - description`:
+                    module, column count, ObjType, indexes, then one line per column
+  table-index.md    one line per table, with the file, start line and line count of its entry
 
 Checks: every page named in refdb.hhc is read, every page has the expected headers and 8-cell rows, table names match
 file names, and each table's columns/keys are non-empty. Anything else stops the build with the table named.
 """
 import argparse, collections, html, os, re, sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import bundle_util
 
 ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
 ap.add_argument("extract")
@@ -29,6 +33,7 @@ ap.add_argument("--out", required=True)
 ap.add_argument("--objects")
 ap.add_argument("--verified", required=True)
 ap.add_argument("--label", default="SAP Business One 10.0")
+ap.add_argument("--max-bytes", type=int, default=1_000_000, help="bundle size before a module file is split")
 ap.add_argument("--source", default="REFDB.chm (SAP Business One SDK 10.0 - Database Tables Reference)")
 A = ap.parse_args()
 
@@ -69,7 +74,7 @@ if hhc:
 
 os.makedirs(os.path.join(A.out, "dict"), exist_ok=True)
 head = f"<!-- source: {A.source} | version: {A.label} | verified: {A.verified} -->"
-index_lines, ncols, nkeys, seen = [], 0, 0, set()
+meta, entries, ncols, nkeys, seen = [], collections.defaultdict(list), 0, 0, set()
 no_primary, issues = [], collections.Counter()
 
 for mod in modules:
@@ -145,22 +150,26 @@ for mod in modules:
             out.append(" ".join(parts))
         ncols += len(fields)
         nkeys += len(keys)
-        with open(os.path.join(A.out, "dict", f"{name}.md"), "w", encoding="utf-8", newline="\n") as fh:
-            fh.write("\n".join(out) + "\n")
-        index_lines.append(f"| {name} | {desc.replace('|', '/')} | {modname} | {len(fields)} | {len(keys)} | "
-                           f"{','.join(ot) if ot else ''} |")
+        entries[modname].append((name, "\n".join(out[1:])))
+        meta.append((name, desc, modname, len(fields), len(keys), ot))
 
 missing = sorted(toc_pages - seen)
 if missing:
     sys.exit(f"{len(missing)} pages named in the table of contents were not read (first: {missing[:5]})")
 
-index_lines.sort(key=lambda l: l.split("|")[1].strip())
+groups = [(m, sorted(es)) for m, es in sorted(entries.items())]
+where = bundle_util.write_bundles(groups, os.path.join(A.out, "dict"), head, A.max_bytes)
+index_lines = []
+for name, desc, modname, nf, nk, ot in sorted(meta):
+    fn, ln, nl = where[name]
+    index_lines.append(f"| {name} | {desc.replace('|', '/')} | {modname} | {nf} | {nk} | {','.join(ot) if ot else ''} | {fn} | {ln} | {nl} |")
 with open(os.path.join(A.out, "table-index.md"), "w", encoding="utf-8", newline="\n") as fh:
     fh.write(f"<!-- source: {A.source}; ObjType from references/objects/object-types.md | version: {A.label} | "
              f"verified: {A.verified} -->\n\n# {A.label} table index\n\n")
-    fh.write(f"{len(index_lines)} tables, one line each, sorted by name. Open `dict/<TABLE>.md` for columns, indexes, "
-             "valid values and parent-table links. Grep by description or module for topic search.\n\n")
-    fh.write("| Table | Description | Module | Cols | Idx | ObjType |\n|---|---|---|---|---|---|\n")
+    fh.write(f"{len(index_lines)} tables, one line each, sorted by name. Each table's entry is in "
+             "`dict/<File>` from line `Line` for `Lines` lines (read exactly that range, or grep `^# TABLE - `). Grep this index by "
+             "description or module for topic search.\n\n")
+    fh.write("| Table | Description | Module | Cols | Idx | ObjType | File | Line | Lines |\n|---|---|---|---|---|---|---|---|---|\n")
     fh.write("\n".join(index_lines) + "\n")
 print(f"{len(index_lines)} tables, {ncols} columns, {nkeys} keys written to {A.out}"
       f" | TOC pages checked: {len(toc_pages)}"
