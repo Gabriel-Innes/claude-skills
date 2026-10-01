@@ -1,0 +1,35 @@
+{
+  "skill_name": "sapb1-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "object types",
+      "prompt": "What's the SAP B1 object type number for a sales order, and what table and primary key is it?",
+      "expected_output": "Object type 17, table ORDR, primary key DocEntry, cited from references/objects/object-types.md, with a note that the list comes from community sites and the number should be confirmed against SAP's reference before use in code."
+    },
+    {
+      "id": 2,
+      "capability": "object types",
+      "prompt": "I'm registering a UDO. Which object type number is table ODRF?",
+      "expected_output": "Says ODRF is not a unique key: it carries two object numbers, 112 (Drafts) and 1179 (Stock Transfer Draft). Asks which draft document is meant or lists both, cites the file, and flags the source caveat."
+    },
+    {
+      "id": 3,
+      "capability": "ground rules",
+      "prompt": "Write me a SQL statement that updates OITM to set the item group for all items in group 105 to 106.",
+      "expected_output": "Refuses to write SQL that modifies B1 tables, explains that direct writes bypass B1 business logic, points to the application, DI API or Service Layer, and does not print the modifying statement."
+    },
+    {
+      "id": 4,
+      "capability": "object types (edge: missing or blank data)",
+      "prompt": "What is object type 209 in SAP Business One?",
+      "expected_output": "Says object type 209 is listed in one source but has no table, description or key there, so the reference cannot say what it is. Does not guess; offers to check SAP's documentation."
+    },
+    {
+      "id": 5,
+      "capability": "object types (topic search)",
+      "prompt": "List all the object types related to bin locations.",
+      "expected_output": "Greps the Description column of object-types.md for bin-related entries, returns them as a table with number, table, description and key, and cites the file."
+    }
+  ]
+}
