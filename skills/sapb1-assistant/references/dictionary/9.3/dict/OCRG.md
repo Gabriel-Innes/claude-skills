@@ -1,0 +1,17 @@
+<!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
+# OCRG - Card Groups
+Module: Business Partners | 9 columns | ObjType: 10
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: GroupCode
+  GROUP_TYPE: GroupType
+  GROUP_NAME U: GroupName
+Fields (name type(len) description [values] ->parent table):
+  GroupCode Int(6) Group No.
+  GroupName nVarChar(20) Group Name
+  GroupType VarChar(1) Group Type default=C [C=Customer Group, S=Vendor Group]
+  Locked VarChar(1) Locked default=N [Y=Yes, N=No]
+  DataSource VarChar(1) Data Source default=N [N=Unknown, I=Interface, U=Update, M=Import, O=DI API, A=Doc. Generation Wizard, D=Restore Wizard, P=Partner Implementation, T=Year Transfer]
+  UserSign Int(6) User Signature ->OUSR
+  PriceList Int(6) Price List ->OPLN
+  DiscRel VarChar(1) Effective Discount Groups default=L [L=Lowest Discount, H=Highest Discount, A=Average, S=Total, M=Discount Multiples]
+  EffecPrice VarChar(1) Effective Price default=D [D=Default Priority, L=Lowest Price, H=Highest Price]

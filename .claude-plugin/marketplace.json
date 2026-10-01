@@ -16,7 +16,7 @@
     },
     {
       "name": "sapb1-assistant",
-      "description": "SAP Business One (B1) ERP assistant: look up object type numbers, tables and primary keys from a bundled list of all B1 object types. More capabilities to follow.",
+      "description": "SAP Business One (B1) ERP assistant: object type number, table and primary key lookup from a bundled list of all B1 object types, and verified SQL views/queries from a bundled B1 9.3 data dictionary. More capabilities to follow.",
       "source": "./",
       "strict": false,
       "skills": ["./skills/sapb1-assistant"]

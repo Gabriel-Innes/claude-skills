@@ -1,0 +1,10 @@
+<!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
+# SXRDB - XLR Databases
+Module: General | 4 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: DatabaseId
+Fields (name type(len) description [values] ->parent table):
+  Name nVarChar(50) Name
+  ConnectStr nVarChar(250) ConnectString
+  Constrain nVarChar(250) Constraint
+  DatabaseId nVarChar(250) DatabaseId

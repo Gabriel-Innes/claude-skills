@@ -7,7 +7,7 @@ A public collection of [Agent Skills](https://agentskills.io/specification) for 
 | Skill | What it does |
 |---|---|
 | [`sage300-assistant`](skills/sage300-assistant) | Sage 300 (Accpac) ERP assistant for consultants and integrators: verified T-SQL views/queries from bundled AOM data dictionaries, version/upgrade guidance and release notes, and C# against the `ACCPAC.Advantage` .NET library. |
-| [`sapb1-assistant`](skills/sapb1-assistant) | SAP Business One ERP assistant for consultants and integrators: object type number, table and primary key lookup from a bundled list of all B1 object types. More capabilities to follow. |
+| [`sapb1-assistant`](skills/sapb1-assistant) | SAP Business One ERP assistant for consultants and integrators: object type number, table and primary key lookup from a bundled list of all B1 object types, and verified SQL views/queries from a bundled B1 9.3 data dictionary (tables, columns, indexes, valid values, parent-table links). More capabilities to follow. |
 
 ## Installing a skill
 
@@ -58,4 +58,4 @@ The code and original content in this repository are released under the [MIT Lic
 
 Sage 300 and Accpac are trademarks of their respective owners. This project is independent and not affiliated with or endorsed by Sage. Reference material bundled with `sage300-assistant` is derived from Sage's published documentation and product metadata for use as a lookup aid; always verify against official Sage documentation before acting on it in a production system.
 
-SAP and SAP Business One are trademarks of SAP SE. `sapb1-assistant` is independent and not affiliated with or endorsed by SAP. Its object type list is compiled from community websites, not SAP documentation (sources and caveats are in `skills/sapb1-assistant/references/objects/INDEX.md`); confirm against SAP's own documentation before relying on it.
+SAP and SAP Business One are trademarks of SAP SE. `sapb1-assistant` is independent and not affiliated with or endorsed by SAP. Its object type list is compiled from community websites, and its B1 9.3 schema dictionary from erpref.com; neither is SAP documentation, and the schema IP belongs to SAP (sources and caveats are in `skills/sapb1-assistant/references/objects/INDEX.md` and `skills/sapb1-assistant/references/dictionary/INDEX.md`). The schema dictionary covers SAP Business One **9.3 only**; later releases and client-specific user-defined tables and fields are not included. Confirm against SAP's own documentation, and on the client's database, before relying on any of it.

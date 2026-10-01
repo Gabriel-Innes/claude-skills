@@ -2,9 +2,10 @@
 
 Owner: Francois Taljaard. Format: [Agent Skills](https://agentskills.io/specification).
 
-This skill has **no maintenance scripts** (unlike `sage300-assistant`): its source material is web pages with
-different shapes, so refreshes are done by Claude following the procedures below. Keep any throwaway parsing
-script outside the repo.
+Maintenance tooling is minimal. The **object list** has no scripts: its sources are plain web pages with
+different shapes, so Claude refreshes it by following the procedure below (keep any throwaway parsing script
+outside the repo). The **schema dictionary** has two scripts in `scripts/`, because a crawl of ~5,000 requests
+and a 2,500-file build must be re-runnable. Neither script is needed to answer questions.
 
 ## Structure and budgets
 
@@ -74,6 +75,33 @@ names, B1 version), raise it with the user before widening the table schema; a n
 
 Never silently drop a source. Mark it `status: superseded by X` in its `raw/` provenance header and in the
 `INDEX.md` sources table; remove its id from `Src` only when the user agrees.
+
+## Refresh the schema dictionary from erpref.com
+
+Source: `https://erpref.com/BusinessOne<version>/Schema/Detail/BusinessOne<version>` (9.3 today). The pages are
+empty shells filled by JSON `POST` endpoints, so plain HTML scraping returns nothing; the scripts call the same
+endpoints the site's own pages use. The site's terms don't prohibit automated access (no `robots.txt` either)
+but state that the page content belongs to ERPRef.com and the schema IP to SAP. Be gentle: it's a small
+third-party site, the default delay is 0.5 s between requests, and a full run takes **2-3 hours**.
+
+1. **Fetch** (resumable; re-run after any interruption, it skips what's cached):
+   `python scripts/fetch_erpref_schema.py --cache <dir outside the repo> [--site-version BusinessOne9.3]`.
+   Try `--module MRP` first (10 tables). It fetches the table list (12 module calls), then per table the columns
+   (`GetTable`) and the index HTML (`Table/Detail`), and checks each table's column count against the listing.
+2. **Build**: `python scripts/build_schema_dict.py --cache <dir> --out references/dictionary/<version> --objects
+   references/objects/object-types.md --verified YYYY-MM-DD --label "SAP Business One <version>"`. It refuses
+   to build from an incomplete cache (`--allow-partial` for testing only) and writes `dict/<TABLE>.md` per table
+   plus `table-index.md`.
+3. **Sanity-check** before committing: table, column and index totals against the listing; a few well-known
+   tables read end to end (e.g. the sales order and business partner families); every `->PARENT` points at a
+   file that exists; every table has an index and the first is the primary key; no columns without a type.
+4. **Update** `references/dictionary/INDEX.md` (counts, source date, known issues, diff against the previous
+   version), the version wording in `SKILL.md` § 2 and § 4, and `metadata.version`.
+5. **Adding a version**: new folder named by version (`references/dictionary/10.0/`); keep the old one (clients
+   on it still need it) and map version → folder in the dictionary `INDEX.md`. erpref.com only lists releases up
+   to 9.3, so a newer version needs a different source: raise it with the user before building.
+6. Anything unexplained in the source (e.g. why `Int` lengths differ) stays unexplained in the references;
+   record it as a known issue, don't invent a meaning.
 
 ## Add a capability
 

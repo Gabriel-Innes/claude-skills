@@ -30,6 +30,36 @@
       "capability": "object types (topic search)",
       "prompt": "List all the object types related to bin locations.",
       "expected_output": "Greps the Description column of object-types.md for bin-related entries, returns them as a table with number, table, description and key, and cites the file."
+    },
+    {
+      "id": 6,
+      "capability": "SQL / schema",
+      "prompt": "I need a SQL view of open sales orders with the customer name and document total. They're on SAP B1 9.3.",
+      "expected_output": "Asks (or states an assumption about) SQL Server vs HANA and the grain (one row per order). Uses ORDR joined to OCRD on CardCode (ORDR.CardCode links to OCRD; OCRD key confirmed from its first index). Uses only columns seen in dict/ORDR.md and dict/OCRD.md (DocNum, DocDate, CardCode, CardName, DocTotal, DocCur). Defines open from the documented values: DocStatus [O=Open, C=Closed] and CANCELED [Y=Yes, N=No], saying both were used. Delivers one sql block, a note on tables/joins/assumptions, a TOP 20 sanity check, and the 9.3 caveat. Cites the dictionary files."
+    },
+    {
+      "id": 7,
+      "capability": "SQL / schema",
+      "prompt": "Which tables have a column that points at the business partner table?",
+      "expected_output": "Greps the dictionary for ->OCRD, reports the matching tables/columns (131 files carry a CardCode column linked to OCRD, plus other differently named columns) rather than listing from memory, and notes the links are the source's own mapping naming the parent table only."
+    },
+    {
+      "id": 8,
+      "capability": "SQL / schema (gotcha: ->ADP1)",
+      "prompt": "On ORDR the ObjType column links to ADP1 in the dictionary. Can I join ORDR to ADP1 on ObjType to get the document type name?",
+      "expected_output": "Says no: the ObjType links to ADP1 (Object Settings - History) are the source's mapping, not a usable join. Resolves the object number via references/objects/object-types.md (ORDR = 17, Sales Order), citing that file and its source caveat."
+    },
+    {
+      "id": 9,
+      "capability": "SQL / schema (edge: version)",
+      "prompt": "Our client is on SAP B1 10.0 and wants a view using a column that was added in 10.0. Can you write it?",
+      "expected_output": "States the bundled dictionary is B1 9.3 only and cannot confirm a 10.0-only column or table; does not invent one. Offers to write the rest of the view from verified 9.3 columns and asks the user to confirm the new column's exact name and table on the client's database."
+    },
+    {
+      "id": 10,
+      "capability": "SQL / schema (edge: enum decoding)",
+      "prompt": "Write a query that shows a text status for each A/R invoice, using the CANCELED column.",
+      "expected_output": "Reads dict/OINV.md and decodes CANCELED as Y=Yes, N=No, C=Cancellation (three values on OINV, not the two seen on ORDR), using CASE, and cites the file. Does not copy the two-value list from another table."
     }
   ]
 }

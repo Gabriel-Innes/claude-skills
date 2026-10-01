@@ -1,0 +1,12 @@
+<!-- source: erpref.com (schema IP: SAP) | version: SAP Business One 9.3 | verified: 2026-10-01 -->
+# RSC1 - Resources - Warehouses
+Module: General | 5 columns
+Indexes (name: columns; first = primary key; U = unique):
+  PRIMARY U: WhsCode, ResCode
+  WHS: WhsCode
+Fields (name type(len) description [values] ->parent table):
+  ResCode nVarChar(50) Internal Resource ID ->ORSC
+  WhsCode nVarChar(8) Warehouse Code ->OWHS
+  Locked VarChar(1) Locked default=N [N=No, Y=Yes]
+  ObjType nVarChar(20) Object default=290
+  LogInstanc Int(11) Log Instance default=0
