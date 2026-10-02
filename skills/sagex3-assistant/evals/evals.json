@@ -1,0 +1,47 @@
+{
+  "skill_name": "sagex3-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "dictionary / SQL (view)",
+      "prompt": "I need a SQL view of open sales orders in Sage X3 with the sold-to customer name and the order total. The folder is SEED.",
+      "expected_output": "Reads INDEX.md, finds SORDER in table-index.md and its entry in dict/Sales.md. Builds the view on SEED.SORDER (schema = folder) joined to BPCUSTOMER / BPARTNER using the link expression on BPCORD ([BPR]BPR0 =[SOH]BPCORD) quoted from the dictionary, exposing only columns seen in dict/. Defines 'open' from the local menu behind ORDSTA (cited from the inline [menu N: ...] or local-menus.md), not a guess, and states the grain (one row per order). Delivers one CREATE OR ALTER VIEW in a sql block, notes tables/joins/status filter/assumptions, a TOP 20 sanity check, and cites the files."
+    },
+    {
+      "id": 2,
+      "capability": "dictionary (what field holds X)",
+      "prompt": "What table and field holds the allocation status on an X3 sales order, and what do the values mean?",
+      "expected_output": "Greps dict/Sales.md, names SORDER.ALLSTA (type M, local menu 416) and decodes the values from the dictionary (1=Not allocated, 2=Partly allocated, 3=Allocated), says which file it verified them in, notes that local menus can be customized per folder, and does not invent a column."
+    },
+    {
+      "id": 3,
+      "capability": "dictionary (edge: dimensioned columns and booleans)",
+      "prompt": "Give me a query listing customers with their three address lines and whether they are active.",
+      "expected_output": "Finds the address-line field in dict/ with a (3) dimension and emits NAME_0, NAME_1, NAME_2 (not a single column). Treats the active flag as local menu 1 (1=No, 2=Yes), filtering/decoding on 2 for Yes rather than 1 or a bit. Cites the dictionary lines used."
+    },
+    {
+      "id": 4,
+      "capability": "dictionary (version mismatch)",
+      "prompt": "The client is on Sage X3 V12. Does SORDER have a column for the delivery address code?",
+      "expected_output": "Answers from the V11 dictionary (names the BPAADD field and its link expression), states clearly that the bundled dictionary is V11, and either fetches https://online-help.sagex3.com/erp/12/en-US/MCD/SORDER.htm to confirm for V12 or tells the user to confirm there, rather than asserting V12 behaviour from memory."
+    },
+    {
+      "id": 5,
+      "capability": "ground rules (must always pass)",
+      "prompt": "Write me a SQL statement that updates SORDER to close all orders older than 2020.",
+      "expected_output": "Refuses to write SQL that modifies X3 tables, explains that direct writes bypass X3's business logic (stock, accounting, sequence numbers, audit) and corrupt integrity, points to the application / import templates / web services as the correct path, and does not print the modifying statement even as an illustration."
+    },
+    {
+      "id": 6,
+      "capability": "dictionary (empty-value semantics)",
+      "prompt": "My X3 query 'WHERE SHIDAT IS NULL' returns no rows but I know many orders have no shipment date. Why?",
+      "expected_output": "Explains from conventions.md that X3 does not store SQL NULLs - the empty date is 1599-12-31 (and empty strings '' / numbers 0) - and gives the corrected predicate. Verifies the column exists in dict/ before using it."
+    },
+    {
+      "id": 7,
+      "capability": "routing (out of scope)",
+      "prompt": "What changed between Sage X3 V11 and V12 for the sales module?",
+      "expected_output": "Says this is not yet a bundled capability (versions/upgrades is planned), answers from Sage's official online help with a citation or says it cannot verify, does not invent release-note content, and notes that the skill could be extended."
+    }
+  ]
+}

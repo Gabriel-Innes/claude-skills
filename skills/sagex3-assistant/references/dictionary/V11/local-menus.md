@@ -1,0 +1,1053 @@
+<!-- source: https://online-help.sagex3.com/erp/11/en-US/MCD/ATB_0.htm and the linked table / local-menu / data-type pages (Sage X3 V11 online help, 'Table dictionary') compiled by scripts/build_dict_x3.py | version: Sage X3 V11 | verified: 2026-10-02 -->
+# Sage X3 V11 local menus (enum values)
+
+Every local menu referenced by a type-M column in `dict/`. Format: `menu N - title: value=text, ...`. The stored value is the number; `[menu N: ...]` on a field line in `dict/` is this list inlined when short. Local menus are customizable per folder - confirm on the client's system before relying on a value that matters.
+
+- menu 1 - No / Yes: 1=No, 2=Yes
+- menu 4 - Coding Mode: 1=Decimal, 2=Octal, 3=Hexadecimal
+- menu 9 - Character Format: 1=ISO 8859, 2=IBM PC, 3=7 bits US, 4=7 bits France, 5=MacIntosh, 6=HP Roman 8
+- menu 10 - Sort Type: 1=None, 2=Ascending, 3=Descending
+- menu 11 - Field Type: 1=Alphanumeric, 2=Numeric, 3=Date, 4=Local menu
+- menu 13 - Object Type: 1=Process, 2=Menu
+- menu 14 - Module Table: 1=Supervisor, 2=Financials, 3=A/P-A/R accounting, 4=External, 5=Sales, 6=Purchasing, 7=Stock, 8=Manufacturing, 9=Common Data, 10=Development, 11=Sage X3 Internals, 12=Help Desk, 13=CRM activities, 14=Fixed Assets, 15=Human Resources administration, 16=Module Spe 1, 17=Module Spe 2, 18=Module Spe 3, 19=Module Spe 4, 20=Human Capital management
+- menu 17 - Fiscal Year / Period Status: 1=Not open, 2=Open, 3=Closed
+- menu 20 - Batch Task Type: 1=Processing, 2=Script
+- menu 21 - Query progress status: 1=Standby, 2=In progress, 3=Finished, 4=Held, 5=Kill, 6=Canceled, 7=Error, 8=Overdue, 9=Warning
+- menu 22 - Printer Type: 1=Normal, 2=Fax, 3=Thermal, 4=Color
+- menu 23 - Base Type: 1=C-ISAM, 2=Oracle, 3=Folder, 4=SQL Server, 5=DB2
+- menu 24 - Cancellation Code: 1=Block, 2=Delete, 3=RTZ, 4=Other
+- menu 25 - Copy Type: 1=No copy, 2=Automatic copy, 3=Conditional copy
+- menu 26 - Copy Option: 1=Users and profiles, 2=Miscellaneous tables, 3=Sequence numbers, 4=Parameters, 5=Control tables, 6=Companies / Sites, 7=Statistics, 8=Import / Export, 9=General chart of accounts, 10=Analytical chart of accounts, 11=Accounting transactions, 12=Budget parameters, 13=BP Reference system, 14=Banks, 15=Fixed asset parameters, 16=Fixed asset data, 17=Financial data extraction
+- menu 27 - Database Status: 1=Normal, 2=Extension dictionary, 3=Dictionary, 4=A.E. system, 5=Other
+- menu 29 - Object Management Type: 1=Simple, 2=Table, 3=Combined, 4=Browser
+- menu 30 - Data Types: 1=Local menu, 2=Short integer, 3=Long integer, 4=Decimal, 5=Floating, 6=Double, 7=Alphanumeric, 8=Date, 9=Image file, 10=Text file, 11=UUID, 12=Datetime
+- menu 31 - Action / Field Type: 1=Init button, 2=Before field, 3=Initialization, 4=Before entry, 5=Control, 6=After field, 7=After change, 8=Selection, 9=Button 1, 10=Button 2, 11=Button 3, 12=Button 4, 13=Before line, 14=After line, 15=Button 5, 16=Button 6, 17=Button 7, 18=Button 8, 19=Button 9, 20=Button10, 21=Button 11, 22=Button 12, 23=Button 13, 24=Button 14, 25=Button 15, 26=Button 16, 27=Button 17, 28=Button 18, 29=Button 19, 30=Button 20, 31=Click
+- menu 33 - Parameter Type: 1=Char, 2=Integer, 3=Decimal, 4=Date, 5=Libelle, 6=Clbfile, 7=Blbfile, 8=Instance, 9=Uuident, 10=Datetime
+- menu 34 - Argument Type: 1=Address, 2=Value, 3=Constant
+- menu 35 - Entry Mode: 1=Entered, 2=Displayed, 3=Hidden
+- menu 38 - Block Type: 1=Table, 2=List, 3=Photo, 4=Text, 5=Hidden, 6=Flash, 7=Office, 8=Browser, 9=Html editor, 10=Technique, 11=Business Intelligence
+- menu 39 - Table Type: 1=Application, 2=Supervisor, 3=Sage X3 system, 4=Dictionary, 5=Internal
+- menu 40 - Header / Line: 1=***, 2=Header, 3=Line
+- menu 42 - Object type: 1=Dictionary, 2=Screen, 3=Documents, 4=Objects, 5=Data type, 6=Actions, 7=Parameters, 8=Activity codes, 9=Functions, 10=Miscellaneous, 11=Windows, 12=Inquiries, 13=Batch tasks, 14=Dashboard, 15=Windows, 16=(free), 17=(free), 18=(free), 19=(free), 20=Dimension element, 21=Reports, 22=Transaction types, 23=Styles, 24=Reports (.rpt), 25=Report (BO), 26=GDPR setup
+- menu 43 - Graphic Object Type: 1=None, 2=Check box, 3=Buttons (Vc), 4=Buttons (Vs), 5=Buttons (Hc), 6=Buttons (Hs), 7=Spin edit, 8=Program bar, 9=Photo, 10=Multiline text, 11=Relative rtf file, 12=Absolute text file rtf, 13=Icon
+- menu 45 - Definition Level: 1=Folder, 2=Company, 3=Site
+- menu 46 - Sequence Number Type: 1=Alphanumeric, 2=Numeric
+- menu 47 - Sequence Number Fields: 1=Constant, 2=Year, 3=Month, 4=Week, 5=Day, 6=Company, 7=Site, 8=Sequence number, 9=Complement, 10=Fiscal year, 11=Period, 12=Formula
+- menu 48 - Reset Sequence Number to Zero: 1=No RTZ, 2=Annual, 3=Monthly, 4=Fiscal year, 5=Period
+- menu 49 - Linked Field Type: 1=No, 2=Long, 3=Short
+- menu 50 - Manager Type: 1=Supervisor, 2=Department Head, 3=Director
+- menu 51 - Statistical Type: 1=Real time, 2=Batch
+- menu 52 - Statistical Frequency: 1=Daily, 2=Weekly, 3=2-week period, 4=Monthly, 5=Quarterly, 6=Yearly, 7=Decade
+- menu 55 - Selection Operators: 1=All, 2=Equal, 3=Not equal to, 4=Greater than, 5=Greater than or equal to, 6=Less than, 7=Less than or equal to, 8=Like
+- menu 56 - And / Or: 1=And, 2=Or
+- menu 57 - Base Type: 1=Oracle, 2=SQL Server
+- menu 58 - Delivery Type: 1=Not delivered, 2=Delivered empty, 3=Delivered with indus data, 4=Common data, 5=Data by country
+- menu 59 - Representation parameter type: 1=Property parameter, 2=Displayed property parameter, 3=Link parameter
+- menu 60 - Field Type for Statuses: 1=Displayed, 2=Hidden
+- menu 74 - Type of dependency: 1=None, 2=Reverse, 3=Sizing, 4=Formula
+- menu 76 - Recipient Type: 1=User, 2=Business partner
+- menu 78 - Process Type: 1=No initial entry, 2=Yes / No confirmation, 3=Dialog box, 4=Window entry, 5=List selection, 6=Table selection
+- menu 79 - Control Type: 1=Mandatory values, 2=Prohibited values, 3=Range of values, 4=Table reference, 5=Expression, 6=Other
+- menu 81 - Action models: 1=Object management, 2=Inquiry, 3=Standard processing, 4=Window entry, 5=List selection, 6=Table selection, 7=Miscellaneous display, 8=Outside model
+- menu 83 - Operation Account for 'Spy' Fi: 1=Create, 2=Change, 3=Cancel, 4=Validate, 5=Edit, 6=Code
+- menu 87 - Window Type: 1=Full screen, 2=Dialog box, 3=Message box, 4=Selecting
+- menu 88 - Button Type: 1=Button, 2=Menu, 3=Line
+- menu 90 - Sort Order: 1=Ascending, 2=Descending
+- menu 91 - Reorder Type: 1=Crystal Report, 2=?disabled since V5 - Interchange data format, 3=Word for Windows, 4=?disabled since V5 - Value columns, 5=Rich Text (rtf), 6=?disabled since V5 - Values separated by commas (CSV), 7=?disabled since V5 - Values separated by tabs, 8=?disabled since V5 - Values separated by a character, 9=ASCII text, 10=Paginated ASCII text, 11=?disabled since V5 - ASCII text separated by tabs, 12=?disabled since 136 release, 13=?disabled since 136 release, 14=?disabled since 136 release, 15=?disabled since 136 release, 16=?disabled since 136 release, 17=?disabled since 136 release, 18=?disabled since 136 release, 19=?disabled since 136 release, 20=?disabled since 140 ODBC, 21=?disabled since 140 HTML 3.2, 22=?disabled since 136 release, 23=?disabled since 136 release, 24=?disabled since 140 HTML 4, 25=?disabled since 136 release, 26=?disabled since 136 release, 27=Excel 97-2000, 28=Excel 97-2000 (extended), 29=PDF, 30=?, 31=Workbook (extended)
+- menu 93 - Types of Activity Code: 1=Functional, 2=Sizing, 3=Localization
+- menu 94 - Data File Type: 1=ASCII (1), 2=ASCII (2), 3=Delimited, 4=Fixed length, 5=XML, 6=Flat, 7=With header
+- menu 95 - Destination Types: 1=Preview, 2=Printer, 3=Message, 4=File, 5=Printer/file, 6=ZPL printer, 7=Archiving
+- menu 96 - Text Roles: 1=Confidential, 2=Internal, 3=External, 4=External 2
+- menu 97 - Report Group: 1=Supervisor, 2=Master data, 3=General accounting, 4=Analytical accounting, 5=A/R and A/P, 6=Legal reports, 7=VAT, 8=Treasury, 9=Open items, 10=Payments, 11=Customer reminders, 12=Sales - External documents, 13=Sales - Internal documents, 14=Sales - Prices, 15=Sales - Analysis, 16=Sales - Listings, 17=Purchasing - Parameters, 18=Purchasing - External documents, 19=Purchasing - Internal documents, 20=Purchasing - Prices, 21=Purchasing - Analysis, 22=Purchasing - Listings, 23=Help Desk, 24=Commercial activity, 25=Stock - Counts, 26=Stock - Reordering, 27=List of stock to move, 28=Stock - Analysis, 29=Stock - Internal documents, 30=Manufacturing - Weighing, 31=Manufacturing - Reordering, 32=Manufacturing - Work order documents, 33=Manufacturing - Technical data, 34=Manufacturing - Valuation, 35=Manufacturing - Analysis, 36=1099, 37=IAS reports, 38=Fixed assets, 39=Specific, 40=Fixed Assets - setup and core data, 41=Fixed Assets - Fixed assets, 42=Fixed Assets - Miscellaneous, 43=Fixed Assets - Physical management, 44=Fixed Assets - Funding, 45=Operating budgets, 46=Stock - External documents, 47=Not used, 48=Not used, 49=Not used, 50=HR - Legal Reports, 51=Not used, 52=Not used, 53=Not used, 54=Not used, 55=Not used, 56=Not used, 57=Not used, 58=Not used, 59=Not used, 60=VAT - Others, 61=VAT - Germany, 62=VAT - Spain, 63=VAT - Portugal, 64=Fees - France, 65=Fees - Belgium, 66=Fees - United States, 67=VAT - Austria, 68=Fees - Others, 69=VAT - Belgium, 70=Asset management - Germany and Austria, 71=Asset management - Portugal, 72=Asset management - Italy, 73=Asset management - UKI, 74=Asset management - France, 75=Not used, 76=VAT - France, 77=Not used, 78=VAT - Boxes management
+- menu 98 - Orientation: 1=Portrait, 2=Landscape
+- menu 99 - Form or Table Entry Mode: 1=Form and table, 2=Form, 3=Table
+- menu 201 - Amount Conversion into Letters: 1=No Conversion, 2=French, 3=English, 4=German, 5=Italian, 6=Spanish, 7=Portuguese, 8=Turkish
+- menu 202 - Exchange rate type: 1=Daily rate, 2=Monthly rate, 3=Average rate, 4=Customs doc file exchange
+- menu 204 - Debit / Collection Type: 1=On debit, 2=On payment
+- menu 205 - Flow Rule: 1=Arrivals, 2=Dispatches, 3=Arrivals and Dispatches, 4=
+- menu 210 - Serial number management: 1=Not managed, 2=Issued, 3=Received/Issued
+- menu 211 - Expiration management: 1=Not managed, 2=Without rounding, 3=Rounding month end, 4=Rounding beginning month+1, 5=Mandatory entry, 6=Manual entry
+- menu 212 - Product ABC Class: 1=Class A, 2=Class B, 3=Class C, 4=Class D
+- menu 213 - Formula Type: 1=Tax, 2=Routing operations, 3=Sales rep commissions, 4=Freight charges, 5=Overhead costs, 6=ABC class, 7=Configurator, 8=Documents, 9=Modify technical files, 10=Enterprise planning, 11=Stock selections, 12=Weighing plan, 13=Returns, 14=Time tracking, 15=Manufacturing plan, 16=Material tracking plan, 17=Put-away plan, 18="Products" count, 19=Consumption reorder calculation, 20=Locations subject to reorder, 21=Automatic journals, 22=Tracking workbench monitoring, 23=Technical record workbench, 24=Consumption areas, 25=Shortage on location, 26=Orders to pick, 27="Stock" count, 28="Locations" count, 29="Totals" count, 30=Category change, 31=BOM, 32=Quality records - question, 33=Package content, 34=Sales selections, 35=Purchase selection, 36=Subcontract order, 37=Work centers, 38="Products" work orders, 39="Operations" work orders, 40="Materials" work orders, 41=Products, 42=Stock count "Products - Warehouses", 43=Stock count "Warehouses", 44=Work orders, 45=SCM Orders, 46=SCM Deliveries/invoices, 47="Products" subcontract orders, 48="Services" subcontract orders, 49="Material" subcontract orders, 50=BP, 51=Mass creation of product-site, 52=View routes, 53=Select components, 54=Component quantities, 55=Costs, 56=Cost structure
+- menu 214 - Fiscal Year / Period Status: 1=Not open, 2=Open, 3=Closed
+- menu 215 - Stock management: 1=Not managed, 2=Managed, 3=Potency managed
+- menu 216 - Count: 1=Cycle count, 2=Annual count, 3=No count
+- menu 217 - Stock withdrawal: 1=Immediate, 2=Backflush, 3=Not managed
+- menu 218 - Suggestion Type: 1=No processing, 2=With MRP pegging, 3=Wthout MRP pegging, 4=MRP pegging only
+- menu 219 - Cost type: 1=Standard, 2=Revised, 3=Budgeted, 4=Simulated
+- menu 220 - Price Update Mode: 1=Calculated, 2=Entered
+- menu 221 - Rounded Type: 1=Round up, 2=Round down, 3=Round to the nearest
+- menu 223 - Product Creation Mode: 1=Direct, 2=With validation
+- menu 224 - BOM code type: 1=Sales (Kit), 2=Manufacturing, 3=Subcontracting
+- menu 225 - Management Unit: 1=One, 2=Per hundred, 3=Per thousand, 4=Percentage, 5=By lot
+- menu 226 - BOM Quantity Link: 1=Proportional, 2=Fixed
+- menu 227 - Stock withdrawal mode: 1=Immediate, 2=Backflush, 3=All
+- menu 228 - Stock Transactions Status: 1=Open, 2=Deferred, 3=Balance adjustment, 4=Closed
+- menu 230 - Unit Type: 1=Length, 2=Area, 3=Volume, 4=Weight, 5=Time, 6=Each, 7=Packing, 8=Other
+- menu 232 - Tax Type: 1=VAT, 2=Additional tax, 3=Special tax, 4=Local tax
+- menu 233 - Function (Contact): 1=Managing Director, 2=Sales Manager, 3=Technical Manager, 4=Financial and Legal Manager, 5=Site Manager, 6=Company manager, 7=Manager, 8=Staff manager, 9=Accountant, 10=Other, 11=Liquidator, 12=Official receiver
+- menu 234 - Work-in-progress Control: 1=Check, 2=No check, 3=Hold
+- menu 235 - Reminder Type: 1=No reminder, 2=By invoice, 3=Global, 4=Global by level, 5=Global by date
+- menu 236 - Country Location: 1=Domestic, 2=Other EU, 3=Outside EU
+- menu 237 - EU Transport Mode: 1=By sea, 2=By rail, 3=By road, 4=By air, 5=By mail, 6=., 7=By inland navigation, 8=Internal navigation, 9=Self-propelled
+- menu 238 - Freight Calculation Rounding: 1=Band <, 2=Band >, 3=Nearest band
+- menu 239 - Price Classes: 1=No, 2=Yes, 3=Quantity bands, 4=Gross price bands, 5=Net price bands
+- menu 240 - Use Status: 1=In development, 2=Available to use
+- menu 241 - Price Type: 1=Normal, 2=Grouped, 3=Restricted, 4=Component
+- menu 242 - Supplier Customer Type: 1=Customer, 2=Supplier
+- menu 243 - Price/Amount -Tax / +Tax: 1=Exclude tax, 2=Include tax
+- menu 244 - Commission Type: 1=Yes, 2=No, 3=Initialization
+- menu 245 - Field Type: 1=Alphanumeric, 2=Numeric, 3=Date
+- menu 246 - Product Status: 1=Active, 2=In development, 3=On shortage, 4=Not renewed, 5=Obsolete, 6=Not usable
+- menu 250 - Suggestion Type: 1=No suggestion, 2=Purchase, 3=Manufacturing, 4=Intersite, 5=Subcontracting
+- menu 252 - Field Type: 1=Alphanumeric, 2=Numeric, 3=Date, 4=Boolean, 5=Text, 6=Photo (image file), 7=Text file
+- menu 253 - Control Type: 1=Value list, 2=Ranges, 3=No control
+- menu 254 - Increase / Decrease: 1=Increase, 2=Decrease
+- menu 255 - Discount Calculation Rules: 1=Amount, 2=% combined, 3=% series
+- menu 257 - Stored Intermediate Amount: 1=No, 2=Amount 1, 3=Amount 2
+- menu 258 - Reorder Quantity: 1=Net quantity, 2=Minimum quantity without rounding, 3=Minimum quantity with rounding
+- menu 262 - Account Field: 1=Alphanumeric, 2=Numeric
+- menu 263 - Costing Method: 1=Standard cost, 2=Revised standard, 3=Last cost, 4=Cumulative AUC, 5=FIFO cost, 6=Lot AUC, 7=Order cost, 8=LIFO cost, 9=Last purchase price
+- menu 266 - Hold Type: 1=No block, 2=Operation block, 3=Status block, 4=Next sheet
+- menu 268 - Rounded lot: 1=None, 2=Round up, 3=Round down, 4=One lot minimum
+- menu 269 - Rate / Amount: 1=Percent, 2=Amount
+- menu 270 - Price: 1=No, 2=Value, 3=Value for N, 4=Factor, 5=Calculation
+- menu 271 - Processing Mode: 1=Modifiable, 2=Not modifiable, 3=Inactive
+- menu 273 - Free Products: 1=No, 2=Same product, 3=Other products, 4=Order total
+- menu 274 - Free Product Type: 1=Threshold, 2=Multiple
+- menu 275 - Subject to control: 1=No control, 2=Non-changeable control, 3=Changeable control, 4=Periodic control
+- menu 276 - Charge / Discount Calculation: 1=By unit, 2=By line, 3=By document
+- menu 277 - Business Partner Type: 1=Customer, 2=Supplier, 3=Carrier, 4=Factor, 5=Sales rep, 6=Miscellaneous BPs
+- menu 278 - Timing: 1=Day, 2=Week, 3=Month
+- menu 279 - Line Status: 1=Pending, 2=Late, 3=Closed
+- menu 280 - No/In part/In full: 1=No, 2=In part, 3=In full, 4=Not managed, 5=Yes automatic
+- menu 283 - Tax Rule: 1=Product, 2=Maximum rate, 3=Minimum rate, 4=Fixed rate, 5=Distribution
+- menu 285 - Technical Sheet Tracking Type: 1=Quality control tracking, 2=Work order tracking
+- menu 291 - Lead Time Unit: 1=Calendar days, 2=Work days, 3=Weeks, 4=Fortnights, 5=Months
+- menu 292 - Open item type: 1=Open item, 2=Prepayment, 3=Holdback
+- menu 293 - Component Rounded: 1=Round to the nearest, 2=Greater than, 3=Less than
+- menu 294 - Allocation Type: 1=Global, 2=Detailed, 3=Not used, 4=Shortages/Detailed, 5=Shortages/Global, 6=Not used
+- menu 297 - Standard product code: 1=Not managed, 2=By project, 3=Available stock, 4=By order
+- menu 298 - Request Source: 1=Purchasing, 2=Sales, 3=Stock, 4=Production, 5=MPS, 6=MRP, 7=Projet
+- menu 301 - Time Unit Code: 1=Hours, 2=Minutes
+- menu 302 - Work Order Management Mode: 1=No change, 2=Materials change, 3=Operation change, 4=Change materials and operations
+- menu 303 - Operation Time Codes: 1=Time for 1, 2=Time for 100, 3=Time for 1000, 4=Time per lot
+- menu 304 - Splitting: 1=None, 2=Equal quantities, 3=Equal run times, 4=Equal run times / 1 rule, 5=Equal quantities + efficiency
+- menu 305 - Scheduling Code: 1=Absolute successor, 2=Overlapping wait = lots, 3=Overlapping wait = time, 4=Overlapping wait = quantity, 5=Start synchronization, 6=End synchronization, 7=All order operations parallel, 8=Subcontract synchronization, 9=Simple successor
+- menu 306 - Order Type: 1=Customer order, 2=Supplier order, 3=Subcontracted material, 4=Subcontracted service, 5=Work order, 6=Material requirements, 7=Transfer order, 8=Transfer request, 9=By-product, 10=Miscellaneous requests, 11=Miscellaneous resources, 12=Customer reservation, 13=Subcontract order, 14=Project demand
+- menu 308 - Operation Status: 1=Pending, 2=Previous operation in process, 3=Previous operation closed, 4=In process, 5=Closed, 6=Excluded, 7=Ordered
+- menu 311 - Subcontracting: 1=No, 2=Normal, 3=By exception
+- menu 312 - Run time type: 1=Proportional, 2=Rate, 3=Fixed
+- menu 313 - Work Center Type (Abrev.): 1=MAC, 2=LBR, 3=SUB
+- menu 314 - Cost Type: 1=Unit, 2=Fixed
+- menu 316 - Dimension Cost Group: 1=Subtotal 1, 2=Subtotal 2, 3=Subtotal 3, 4=Subtotal 4, 5=Subtotal 5, 6=Subtotal 6, 7=Subtotal 7, 8=Subtotal 8, 9=Subtotal 9, 10=Subtotal 10, 11=Subtotal 11, 12=Subtotal 12, 13=Subtotal 13, 14=Subtotal 14, 15=Subtotal 15
+- menu 317 - Status In Progress: 1=Firm, 2=Planned, 3=Suggested, 4=Closed
+- menu 318 - MRP Message: 1=No action, 2=Advance, 3=Delay, 4=Increase, 5=Reduce, 6=Cancel, 7=Advance/Increase, 8=Advance/Reduce, 9=Delay/Increase, 10=Delay/Reduce, 11=Delay firm horizon, 12=Obsolete product (end of life), 13=Overstock, 14=Invalid routing version
+- menu 319 - Group Cost Report: 1=Material, 2=Machine, 3=Labor, 4=Subcontracting, 5=Overhead costs, 6=Calculated cost
+- menu 320 - Overhead Formula Headings: 1=Formula A, 2=Formula B, 3=Formula C, 4=Formula D
+- menu 321 - Overhead calculation method: 1=Cumulated, 2=Compound
+- menu 323 - Fixed Cost Distribution Mode: 1=Pro rata, 2=Total
+- menu 324 - Dimension Rate Selection: 1=Standard, 2=Revised standard, 3=Budget, 4=Simulation
+- menu 325 - Material Cost Group: 1=Material Cost 1, 2=Material Cost 2, 3=Material Cost 3, 4=Material Cost 4, 5=Material Cost 5, 6=Material Cost 6, 7=Material Cost 7, 8=Material cost 8, 9=Material cost 9, 10=Material cost 10, 11=Material cost 11, 12=Material cost 12, 13=Material cost 13, 14=Material cost 14, 15=Material cost 15, 16=Material cost 16, 17=Material cost 17, 18=Material cost 18, 19=Material cost 19, 20=Material cost 20
+- menu 328 - Material Cost Selection: 1=Standard cost, 2=Revised standard cost, 3=Budget cost, 4=Simulated cost, 5=Last cost, 6=Average cost, 7=Last purchase price, 8=List price
+- menu 329 - Material Valuation Price / PR: 1=Standard cost, 2=Revised standard cost, 3=Last cost, 4=Average cost, 5=Transaction cost
+- menu 331 - Overhead Application Method: 1=Stock receipt, 2=Stock issue
+- menu 333 - Release Mode: 1=Complete, 2=Materials only, 3=Operations only
+- menu 334 - Scheduling Mode: 1=Backward, 2=Forward
+- menu 335 - Scheduling Status: 1=Not scheduled, 2=Scheduled, 3=Reschedule, 4=Optimized
+- menu 336 - Work Order Allocation Status: 1=Not allocated, 2=Partial, 3=Complete, 4=Partial/Shortage, 5=Complete/Shortage
+- menu 338 - Work Order Preparation Status: 1=Not prepared, 2=Partial, 3=Full
+- menu 339 - Work Order Situation: 1=Pending, 2=Being optimized, 3=Printed, 4=In progress, 5=Completed, 6=Closed + Costed
+- menu 340 - Material Allocation Status: 1=None, 2=Global with shortage, 3=Global, 4=Detailed with shortage, 5=Detailed
+- menu 341 - Order Mnemonics (No Translate): 1=SO, 2=PO, 3=MS, 4=SC, 5=WO, 6=MW, 7=TR, 8=TP, 9=BW, 10=VD, 11=VR, 12=CR, 13=EO, 14=MT
+- menu 342 - Order Status (No Translate): 1=F, 2=P, 3=S, 4=C
+- menu 347 - Cost to Compare: 1=Standard, 2=Revised, 3=Budget, 4=Simulated, 5=Estimated theoretical, 6=Estimated release, 7=Estimated production, 8=Estimated cost price
+- menu 350 - Charge Type: 1=Manufacturing operation, 2=Macro-operation
+- menu 352 - Schedule Type: 1=None, 2=Normal tracking, 3=Range
+- menu 353 - Transaction Type: 1=Manufacturing release, 2=Production tracking
+- menu 354 - Material Consumption Mode: 1=For expected quantity on first track, 2=By quantity produced (limited), 3=By quantity produced (unlimited)
+- menu 355 - Filter operations: 1=Not closed, 2=Closed, 3=All
+- menu 362 - Material Sort: 1=By product, 2=By operation/product, 3=By reservation date/product, 4=By sequence/product
+- menu 363 - Production Status: 1=Pending, 2=In process, 3=Completed, 4=Cancelled
+- menu 365 - Priority: 1=Normal, 2=Urgent, 3=Very urgent
+- menu 370 - authorized Status: 1=Planned, 2=Firm, 3=By selection
+- menu 371 - Mode Type: 1=To be completed, 2=Complete
+- menu 372 - Processing Mode: 1=Manual, 2=Automatic
+- menu 377 - Default Quantity: 1=None, 2=Technical lot, 3=Economic lot
+- menu 385 - Update: 1=No, 2=Deferred, 3=Immediate
+- menu 391 - Labeling Mode: 1=Manual, 2=Automatic
+- menu 398 - Allocation mode: 1=Manual, 2=Automatic (global), 3=Automatic (detailed)
+- menu 399 - Type of time: 1=Work order, 2=Product, 3=Miscellaneous
+- menu 401 - Customer Type: 1=Normal, 2=Miscellaneous, 3=Intra-company, 4=Prospect
+- menu 402 - Freight Invoicing: 1=Invoiced, 2=Not invoiced, 3=Up to threshold 1, 4=Up to threshold 2, 5=Up to threshold 3, 6=Up to threshold 4, 7=Up to threshold 5
+- menu 403 - Commission Category: 1=Category 1, 2=Category 2, 3=Category 3
+- menu 404 - Statement Period: 1=Per request, 2=Weekly, 3=10-day period, 4=2-week period, 5=Monthly
+- menu 405 - Sales rep commission base: 1=% on net price, 2=% on margin, 3=% on calculation formula
+- menu 406 - Invoicing Frequency: 1=Per request, 2=Daily, 3=Weekly, 4=10-day period, 5=2-week period, 6=Monthly
+- menu 407 - Due date calculation source da: 1=Invoice date, 2=Shipment date
+- menu 408 - Invoicing Mode: 1=One/slip, 2=One/closed order, 3=One/order, 4=One/ship-to, 5=One/period, 6=Manual
+- menu 409 - Route Code: 1=Route code 1, 2=Route code 2, 3=Route code 3
+- menu 410 - Shipment Priority: 1=Normal, 2=Urgent, 3=Critical
+- menu 412 - Order Category: 1=Normal, 2=Loan, 3=Direct invoicing, 4=Contract
+- menu 413 - Invoice Source: 1=Direct, 2=Order, 3=Shipment, 4=Invoice, 5=Quote, 6=Return, 7=Service contract, 8=Service request, 9=Transfer, 10=Scheduled invoice
+- menu 414 - Partial delivery: 1=Authorized, 2=Full delivery line, 3=Full order line
+- menu 415 - Order Status: 1=Open, 2=Closed
+- menu 416 - Allocation Status: 1=Not allocated, 2=Partly allocated, 3=Allocated
+- menu 417 - Delivery status: 1=Not delivered, 2=Partly delivered, 3=Delivered
+- menu 418 - Invoice Status: 1=Not invoiced, 2=Partly invoiced, 3=Invoiced
+- menu 419 - Credit Status: 1=OK, 2=On hold, 3=Limit exceeded, 4=Prepayment not paid, 5=Credit card
+- menu 423 - Line Type: 1=Normal, 2=Fixed kit, 3=Kit component, 4=Kit option, 5=Kit variant, 6=Flex kit, 7=BOM component, 8=BOM option, 9=BOM variant, 10=Subcontracted, 11=Service, 12=Supplied material, 13=Fixed-amount service
+- menu 430 - Quote Status: 1=Not ordered, 2=Partially ordered, 3=Completely ordered
+- menu 431 - Contact Type: 1=No type, 2=Telephone, 3=Visit, 4=Courier, 5=Mail, 6=Mass mailing
+- menu 435 - Transaction Type: 1=Quote, 2=Order, 3=Contract order, 4=Delivery, 5=Invoice, 6=Customer return, 7=Loan return, 8=Subcontract material return
+- menu 436 - Product Type: 1=Normal, 2=Flexible kit, 3=Fixed kit
+- menu 438 - Component type: 1=Normal, 2=Option, 3=Variant, 4=By-product, 5=Text, 6=Costing, 7=Service, 8=Multiple option, 9=Normal (with formula)
+- menu 439 - Free: 1=No, 2=Source, 3=Yes
+- menu 442 - Inv elt trf - Ord to Ship/Inv: 1=First, 2=All
+- menu 445 - Source of Shipment: 1=Normal, 2=PO - Direct to customer, 3=PO - Receive and ship, 4=Transfer, 5=Work order
+- menu 446 - Order Category in Transactions: 1=Normal, 2=Loan, 3=Direct invoice, 4=All categories
+- menu 447 - Shipment Transaction Types: 1=Normal, 2=Loan, 3=Subcontract, 4=All types, 5=Nonbillable
+- menu 448 - Transaction Invoice Types: 1=Invoice, 2=Credit memo, 3=Proforma, 4=All types
+- menu 450 - Allocation type: 1=Global, 2=Detailed
+- menu 451 - Return Status: 1=Not returned, 2=Partially returned, 3=Returned
+- menu 454 - Price Increase: 1=Copy record, 2=Modify record, 3=Currency change
+- menu 455 - Increase Type: 1=Not modified, 2=Variation in %, 3=Variation in value, 4=Assignment
+- menu 463 - Sundry rules (Std.): 1=None, 2=Discount on tax
+- menu 464 - Sundry rules (personalized): 1=None
+- menu 469 - Line category: 1=Standard and product, 2=Component and option and variant
+- menu 470 - Category - line of product: 1=Standard line, 2=Kit line, 3=BOM line
+- menu 471 - Category - line of component: 1=Component, 2=Option, 3=Variant
+- menu 472 - Grouping rules: 1=1st quote, 2=1st order, 3=1st delivery, 4=1st invoice, 5=Quote amount sum, 6=Order amount sum, 7=Delivery amount sum, 8=Invoice amount sum, 9=Min amount, 10=Max amount, 11=Min percentage, 12=Max percentage, 13=Average percentage, 14=1st return, 15=Return amount sum, 16=1st service contract, 17=Service contract amount sum
+- menu 473 - Split rules: 1=1st order, 2=1st delivery, 3=1st invoice, 4=1st credit memo, 5=All orders, 6=All deliveries, 7=All invoices, 8=All credit memos, 9=Amount pro rata, 10=Quantity pro rata, 11=Weight pro rata, 12=Volume pro rata
+- menu 474 - Grouping: 1=Yes, 2=No if different
+- menu 475 - Distribution on lines: 1=No, 2=Quantity pro rata, 3=Amount pro rata, 4=Weight pro rata, 5=Volume pro rata
+- menu 476 - Sales document type: 1=Quote, 2=Delivery, 3=Return, 4=Invoice, 5=Credit memo, 6=Proforma, 7=Loan delivery, 8=Loan return, 9=Price list record, 10=Normal order, 11=Loan order, 12=Direct invoice order, 13=Contract, 14=Final delivery, 15=Delivery for subcontracting, 16=Intracompany delivery, 17=Intracompany return, 18=Order invoice, 19=Delivery invoice, 20=Order, 21=Subcontract material return, 22=Transport note, 23=Service contracts
+- menu 477 - Sales Journal Type: 1=Invoice, 2=Credit memo, 3=Return, 4=Delivery, 5=Pick ticket, 6=Preparation list, 7=Open order, 8=Order, 9=Quote, 10=Journal, 11=Project, 12=Open item, 13=Payment, 14=Statement, 15=Prepayment, 16=Task, 17=Call, 18=Appointment, 19=Service contract, 20=Installed base, 21=Service request, 22=Service response, 23=Solution, 24=Purchase invoice, 25=Purchase credit memo, 26=Purchase return, 27=Purchase receipt, 28=Purchase open order, 29=Purchase order, 30=Subcontract order, 31=Purchase request, 32=RFQs, 33=Purchase additional invoice, 34=Expense, 35=Asset, 36=Supplier BP invoice, 37=Container, 38=Shipping, 39=Transport, 40=Project management
+- menu 480 - Valuation method: 1=Standard cost, 2=Updated standard price, 3=Last cost, 4=Moving average cost, 5=FIFO cost, 6=Average lot cost, 7=Order cost, 8=LIFO cost, 9=Primary issue method, 10=Secondary issue method, 11=Simulated cost, 12=Simulated price
+- menu 484 - Lot issue (Expiration/UBD): 1=No, expiration date control, 2=No, use by date control, 3=Yes
+- menu 490 - Delivery category: 1=Normal, 2=Loan, 3=For subcontract, 4=Nonbillable
+- menu 491 - Hold status: 1=OK, 2=On hold
+- menu 493 - Return category: 1=Normal, 2=Loan, 3=For subcontract
+- menu 501 - Supplier Type: 1=Normal, 2=Prospect, 3=Miscellaneous
+- menu 502 - Due date calculation base: 1=Receipt date, 2=Invoice date
+- menu 503 - Currency Rate Search Date: 1=Order date, 2=Receipt date, 3=Invoice date
+- menu 505 - Request Source: 1=Purchases, 2=Direct order, 3=Received direct order, 4=Transfer, 5=Production
+- menu 506 - Order Type: 1=Order, 2=Contract
+- menu 507 - Purchase Type: 1=Commercial, 2=General
+- menu 509 - Invoice Status: 1=Pending, 2=To validate, 3=Validated
+- menu 510 - Payment approval type: 1=Pending, 2=Conflict, 3=Delayed, 4=Authorized to pay
+- menu 511 - Invoice Source: 1=Order, 2=Receipt, 3=Return, 4=Invoice, 5=Miscellaneous, 6=Shipment
+- menu 514 - Quantity Entry Mode: 1=Entered with unit, 2=Entered without unit, 3=Displayed, 4=Hidden
+- menu 516 - Conflict: 1=No, 2=Warning, 3=Hold
+- menu 517 - Purchase Document Type: 1=RFQ, 2=Purchase request, 3=Standard order, 4=Subcontract order, 5=Open order, 6=Receipt, 7=Return, 8=Invoice/Credit note, 9=Subcontract order (EO)
+- menu 520 - Allocation: 1=No, 2=Quantity pro rata, 3=Amount pro rata, 4=Weight pro rata, 5=Volume pro rata
+- menu 533 - Purchase Invoice Type: 1=Invoice, 2=Additional invoice, 3=Credit memo, 4=Credit memo/Return
+- menu 537 - Calculation Base: 1=None, 2=Exclude tax amount, 3=Include tax amount, 4=Action
+- menu 538 - Tax Rule: 1=Product rate, 2=Fixed rate
+- menu 540 - Re-instatement on Order: 1=No, 2=Yes, same Llne, 3=Yes, other line, 4=Yes, other order
+- menu 549 - Control Type: 1=Not blocking, 2=Blocking
+- menu 556 - Start/End of line: 1=Start of line, 2=End of line, 3=According to reference product
+- menu 565 - Supplier information type: 1=Last call for tenders, 2=Last purchase request, 3=Last order, 4=Last receipt, 5=Last return, 6=Last invoice, 7=Last credit memo, 8=Last payment
+- menu 566 - Supplier movement type: 1=Call for tenders, 2=Purchase request, 3=Order, 4=Receipt, 5=Return, 6=Invoice, 7=Payment
+- menu 567 - Transfer of order to invoice: 1=Amount pro rata, 2=Quantity pro rata, 3=Weight pro rata, 4=Volume pro rata, 5=First document, 6=All documents
+- menu 570 - Order line type: 1=Normal, 2=Parent product BOM, 3=Service, 4=Supplied material
+- menu 574 - Movement category: 1=Standard, 2=For subcontracting
+- menu 577 - Supplier source: 1=Order supplier, 2=Invoice supplier
+- menu 578 - Commitment type: 1=Tax-excl. amount, 2=Tax-excl. amount + Non-deductible VAT
+- menu 581 - Ordered quantity control: 1=Blocking, 2=Warning, 3=No control
+- menu 585 - Match status: 1=Not applicable, 2=Successful, 3=Warning, 4=Blocked, 5=Unblocked
+- menu 591 - Status: 1=Created, 2=In progress, 3=Arrived
+- menu 592 - Shipment management: 1=Order line, 2=Multiple containers, 3=Single container
+- menu 593 - Step status: 1=To do, 2=In progress, 3=Completed
+- menu 602 - Accounting code type: 1=Product, 2=Customer, 3=Supplier, 4=Sales rep, 5=Buyer, 6=Journal, 7=Company, 8=Site, 9=Currency, 10=Tax, 11=Sales footer, 12=Discount, 13=Bank, 14=Payment, 15=Fixed assets, 16=Purchase footer, 17=Miscellaneous business partners, 18=Cost center, 19=Overheads, 20=Expenses costs, 21=Factor, 22=Lease contract, 23=Grant, 24=Concession agreement, 25=Cost, 26=Interface
+- menu 604 - Type of Accounting Codes: 1=Account, 2=Modifier, 3=Control
+- menu 608 - VAT Management: 1=Not subjected, 2=Subjected, 3=Tax account, 4=EU tax, 5=Prepayment account
+- menu 609 - Tax allocation: 1=Collected sales, 2=Collected fixed assets, 3=Deductible purchases, 4=Deductible fixed assets, 5=Deductible G&S, 6=State rules, 7=Company rules, 8=Collected G & S
+- menu 610 - Sign by Default: 1=Debit, 2=Credit, 3=Unspecified
+- menu 612 - Account Structure: 1=Bank BP, 2=Bank Account, 3=Account BP
+- menu 613 - Journal Type: 1=Sales, 2=Purchasing, 3=Treasury, 4=Misc. operations 1, 5=Misc. operations 2, 6=Misc. operations 3, 7=Carryforward, 8=Misc. operations 4, 9=General journal, 10=Misc. operations 6
+- menu 615 - 1099 Account: 1=Fees and vacations, 2=Commissions, 3=Brokerages, 4=Rebates, 5=Attendance tokens, 6=Royalties, 7=Inventor rights, 8=Other payments, 9=Indemnities and reimbursements, 10=Perquisites, 11=Withholding tax on income, 12=Net tax on royalties
+- menu 617 - Accounting Journal Status: 1=Temporary, 2=Final
+- menu 618 - Accounting Journal category: 1=Actual, 2=Active simulation, 3=Inactive simulation, 4=Off-balance-sheet, 5=Template
+- menu 619 - Reverse Code: 1=No, 2=Yes, 3=Reversed
+- menu 620 - Restriction Type: 1=Dimension/dimension restriction, 2=Account/dimension restriction, 3=Account/account restriction
+- menu 621 - Journal Category: 1=Normal, 2=Carryforward, 3=Closing
+- menu 623 - Budget Definition Level: 1=Company, 2=Site
+- menu 625 - Automatic Line Type: 1=Unique, 2=Repetitive, 3=Linked table
+- menu 626 - Debit - Credit: 1=Debit, 2=Credit
+- menu 631 - Commitment Type: 1=Precommitment, 2=Commitment
+- menu 632 - Expense / Revenue: 1=Expense, 2=Revenue
+- menu 633 - Entered/Calculated: 1=Entry, 2=Calculated amount, 3=Calculated quantity
+- menu 635 - Periodicity Type: 1=Days, 2=Week, 3=10-day period, 4=2-week period, 5=Month
+- menu 638 - Operation type: 1=Not included on type 4, 2=Not used, 3=Not used, 4=Triangular operations, 5=Services
+- menu 640 - Recurring Journal Type: 1=Fixed, 2=Variable
+- menu 644 - Business Partner Type: 1=Customer, 2=Supplier
+- menu 645 - Invoice Type: 1=Invoice, 2=Credit memo, 3=Debit note, 4=Credit note, 5=Proforma
+- menu 646 - Purchase Type: 1=Purchase, 2=Fixed asset, 3=Services
+- menu 650 - Matching Type: 1=Uppercase letter, 2=Lowercase letter, 3=Uppercase and lowercase letter
+- menu 651 - Generation Type: 1=Global, 2=By BP
+- menu 653 - Bank / Cash: 1=Bank, 2=Cash
+- menu 654 - Check Type: 1=Check type 1, 2=Check type 2, 3=Foreign, 4=Euro
+- menu 655 - Deposit type: 1=Receipt, 2=Discount, 3=Receipt in value, 4=Discount in value
+- menu 656 - Record Type: 1=Header, 2=Detail, 3=Total, 4=Subtotal, 5=Detail 2
+- menu 657 - Journal Generation Type: 1=Payment, 2=Deposit slip/Paying bank, 3=Due date
+- menu 658 - VAT Management: 1=No, 2=Prepayment, 3=Tax recovery, 4=Tax/Charges
+- menu 659 - Allocated journal: 1=Customer order, 2=Supplier order, 3=Accounting journal, 4=Supplier proforma
+- menu 660 - Journal Types: 1=Bank, 2=Check to cash, 3=Notes payable to receive, 4=Drafts payable on purchases, 5=Drafts payable on fixed assets, 6=Remittance for collection, 7=Remittance for discount, 8=Notes P/R risk closing, 9=None
+- menu 661 - Expense / Revenue / Indeterminate: 1=Expense, 2=Revenue, 3=Unspecified
+- menu 663 - No-Yes-Unspecified: 1=No, 2=Yes, 3=Unspecified
+- menu 665 - Automatic Journal Type: 1=General, 2=Payments
+- menu 669 - Automatic Journal: 1=1 Journal per line, 2=Grouped journal
+- menu 671 - Accounting Sign: 1=Payment sign, 2=Expense, 3=Revenue
+- menu 672 - Business Partner Type: 1=Pay-by BP, 2=Bill-to BP
+- menu 679 - Balance Update: 1=No, 2=Customer, 3=Supplier
+- menu 680 - Draft Management Update: 1=No, 2=Notes P/R 1, 3=Notes P/R 2, 4=Notes P/R 3
+- menu 681 - Bank File Field Type: 1=Alphanumeric, 2=Numeric, 3=Date (DDMMYY), 4=Date (YYMMDD), 5=Year, 6=Month, 7=Day, 8=Binary, 9=Cent amount
+- menu 682 - Acceptance Code: 1=Letter of credit not accepted, 2=Letter of credit accepted, 3=Promissory note, 4=Letter of credit to accept
+- menu 685 - Discount Form Type: 1=Bank deposits, 2=Paying bank notice, 3=Payment
+- menu 686 - Amount Type: 1=Base, 2=Amount
+- menu 687 - VAT Declaration Date: 1=Accounting date, 2=Document date
+- menu 688 - VAT Options for Shipments: 1=VAT/debit allocated first, 2=Pro rata
+- menu 689 - Payment status: 1=Entered, 2=Accepted, 3=In draft management, 4=Stage 4, 5=Slip entered, 6=Slip on file, 7=Paying bank entered, 8=On intermediate account, 9=In the bank, 10=Stage 10, 11=Unpaid
+- menu 690 - Account Category: 1=Normal, 2=Off-balance-sheet, 3=Unused
+- menu 693 - Default Dimension Type: 1=Product, 2=Customer, 3=Supplier, 4=Sales rep, 5=Buyer, 6=Document, 7=Company, 8=Site, 9=Currency, 10=Tax, 11=Sales footer, 12=Discount, 13=Bank, 14=Account, 15=Fixed asset, 16=Purchase footer, 17=Miscellaneous business partner, 18=Costing dimensions, 19=Overhead costs, 20=Source document, 21=Previous dimensions, 22=Requester, 23=Purchase costs, 24=Project, 25=Project cost type, 26=None
+- menu 694 - Bank Statement Source: 1=Imported, 2=Entered
+- menu 695 - 1099 Declaration Mode: 1=1, 2=2
+- menu 696 - TDS Record Type: 1=Start flag, 2=Company header, 3=Site header, 4=Fee lines, 5=Declaration site total +, 6=Company total +, 7=End flag
+- menu 701 - Entry type: 1=Customer, 2=Sales order, 3=Picking, 4=Delivery, 5=Sales invoice, 6=Receipt, 7=Transfer (inactive), 8=Supplier return, 9=Count, 10=Work order, 11=Suggestion, 12=Production tracking, 13=Customer return, 14=Purchase order, 15=Production declaration, 16=Miscellaneous stock (inactive), 17=Supplier invoice, 18=Sales credit, 19=Miscellaneous receipt, 20=Miscellaneous issue, 21=Location change (inactive), 22=Intersite transfer (inactive), 23=Intersite transfer receipt (inactive), 24=Transfer for subcontracting (inactive), 25=Receipt for subcontracting (inactive), 26=Return to stock (inactive), 27=Putaway plan, 28=Quality control, 29=Stock change, 30=Value change, 31=Assembly, 32=Disassembly, 33=Service request, 34=Reorder plan, 35=Lot modification, 36=Subcontract order, 37=Tracking w/o WO, 38=Shipment, 39=Transport, 40=Project
+- menu 704 - Stock Transaction Type: 1=Miscellaneous receipt, 2=Miscellaneous issue, 3=Supplier receipt, 4=Customer delivery, 5=Work order receipt, 6=Work order issue, 7=Location change, 8=Quality control, 9=Status change, 10=Intersite transfer receipt (not active), 11=Receipt return, 12=Delivery return, 13=Count, 14=Intersite transfer, 15=Transfer for subcontract (not active), 16=Subcontract receipt, 17=Loan delivery, 18=Loan delivery return, 19=Stock return, 20=Subcontract delivery, 21=Resplitting, 22=Putaway plan, 23=Value change, 24=Service request, 25=Replenishment, 26=Stock change, 27=Internal transfer issue, 28=Internal transfer receipt, 29=Subcontract issue, 30=Loan receipt (not active), 31=Loan receipt return (not active), 32=Subcontract receipt return, 33=Subcontract delivery return, 34=Analysis request, 35=Stock value adjustment
+- menu 705 - Cost source: 1=Entered, 2=Standard cost, 3=Revised standard cost, 4=Last cost, 5=Historical AUC, 6=FIFO cost, 7=Lot average cost, 8=Order cost, 9=LIFO cost, 10=Last purchase price
+- menu 708 - Label printing: 1=No print, 2=Labels, 3=., 4=Transfer document, 5=Analysis document
+- menu 711 - Release Mode Management: 1=Immediately, 2=Temporarily blocked, 3=Blocked
+- menu 715 - Entered Stock Line Status: 1=New line, 2=Old line, 3=Changed unit, 4=Not controlled, 5=Controlled, 6=Analysis requested, 7=Suspended
+- menu 722 - Transfer Selection: 1=Site, 2=Customer, 3=Supplier
+- menu 724 - Stock issue code: 1=By lot, 2=FIFO, 3=FEFO
+- menu 727 - Reorder mode: 1=Not managed, 2=By MRP, 3=By MPS, 4=By ROP, 5=By period
+- menu 738 - Re-planning Selection: 1=No processing, 2=Messages only, 3=Simulation
+- menu 739 - Suggestion Splitting: 1=None, 2=Parallel, 3=Successive
+- menu 741 - Average cost initialization: 1=Monthly, 2=Annual, 3=Moving
+- menu 742 - First day of week: 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday, 7=Sunday
+- menu 746 - Consolidations Previsions Roun: 1=No rounding, 2=Round to the nearest, 3=Round down, 4=Round up
+- menu 747 - Manufacture Lead-time MRP + MP: 1=Product lead times, 2=Routing/product lead times, 3=Always routing lead times
+- menu 752 - Symbol Type: 1=Question, 2=Variable, 3=Scenario, 4=Selection, 5=Options/variants, 6=Link table, 7=Procedure, 8=Message, 9=Forms/templates, 10=Free, 11=Comment, 12=Entry point, 13=Master product, 14=Product site, 15=Product totals, 16=Sold products, 17=BOM header, 18=BOM detail, 19=Route header, 20=Route operation, 21=Product - Sales, 22=Operation scheduling, 23=Product costs, 24=Material cost, 25=Machine cost, 26=Labor cost, 27=Subcontract cost, 28=Supplier product, 29=Free, 30=Formula
+- menu 754 - Traceability management: 1=No traceability, 2=Detailed traceability, 3=Summary traceability
+- menu 756 - Stock count list choice: 1=Manual selection, 2=Cycle stock count, 3=Annual stock count
+- menu 757 - Storage location code: 1=Empty, 2=Occupied, 3=Full
+- menu 760 - Product line Field titles: 1=Not affected
+- menu 761 - Sequence Selection: 1=Product number, 2=Product description, 3=Search key, 4=Product line, 5=Cfg document number
+- menu 762 - Configurator field control: 1=Mandatory entry, 2=Optional entry, 3=Display, 4=Hidden
+- menu 763 - Configurator actions: 1=No action, 2=No selection, 3=Select 0 or 1 line, 4=Select 1 line, 5=Select 0 to n lines, 6=Select 1 to n lines, 7=Re work, 8=Information, 9=Blocking
+- menu 764 - Scenario line type: 1=Select parent product, 2=Create parent product, 3=Select components, 4=List components, 5=Create components, 6=Unused, 7=List operations, 8=Create operations, 9=Final controls
+- menu 765 - Configurator selection type: 1=Select products, 2=Select options/variants
+- menu 766 - Options/variants entry: 1=Enter 0 or 1, 2=Free entry, 3=No entry
+- menu 767 - Choose quantity column: 1=No, 2=Stock unit column, 3=Sales unit column
+- menu 768 - Choose standard process: 1=For selections, 2=For scenarios, 3=Master scenario
+- menu 770 - Symbol control: 1=No control, 2=List of values, 3=Table, 4=Forms/templates, 5=Ranges, 6=Miscellaneous table
+- menu 771 - Configurator symbol origin: 1=User, 2=System(2), 3=System(3), 4=System(4)
+- menu 773 - Constraints options/variants: 1=Mandatory choice, 2=Linked with, 3=Not allowed with
+- menu 774 - Price column: 1=No calculation, 2=Formula, 3=Base price, 4=Price list, 5=Standard cost, 6=Revised standard cost, 7=Last price, 8=Calculated by scenario, 9=Budget
+- menu 775 - Search equivalence: 1=No search, 2=Search equivalence, 3=Always create, 4=Search + automatic selection
+- menu 782 - Status EDI field: 1=Mandatory, 2=Required, 3=Dependant, 4=Advised, 5=Optional, 6=Not used
+- menu 783 - Type of EDI field: 1=Alphanumeric, 2=Numeric, 3=Alpha
+- menu 784 - Type of calculation table: 1=Simple calculation table, 2=Conversion table, 3=Double entry table
+- menu 785 - Take QC stock into account: 1=No, 2=Yes in starting stock, 3=Yes at date end control
+- menu 789 - Config. scenarios entry mode: 1=Standard, 2=Assisted, 3=Question by question
+- menu 790 - Document category: 1=No, 2=Sales, 3=Production, 4=Internal
+- menu 791 - Adjustment of stock shortages: 1=No processing, 2=Suspended transactions, 3=Shortages on non-validated issues, 4=Shortages on order & WO
+- menu 792 - Destination choice: 1=Internal, 2=Intersite, 3=Customer, 4=Subcontract transfer, 5=Subcontract return
+- menu 796 - Stock take sequence: 1=Product location, 2=Location product
+- menu 807 - Site / Company: 1=Site, 2=Company
+- menu 872 - Print Format: 1=Normal, 2=Bold, 3=Italic, 4=Bold italic
+- menu 873 - Print Effect: 1=Normal, 2=Strikethrough, 3=Underlined
+- menu 874 - Formula type: 1=Budgeted, 2=Actual, 3=Commited, 4=Precommitted
+- menu 875 - Column information: 1=Quantity, 2=Amount, 3=Actual quantity, 4=Actual amount, 5=Quantity committed, 6=Amount committed, 7=Quantity precommitted, 8=Amount precommitted, 9=Formula, 10=Text
+- menu 876 - Budget category: 1=Period, 2=Account, 3=Dimension
+- menu 880 - Status: 1=In progress, 2=Validated, 3=Submitted, 4=Rejected, 5=Completed
+- menu 881 - CRE sending medium type code: 1=Email, 2=Paper material by postal mail
+- menu 883 - VAT return type: 1=Monthly, 2=Quarterly, 3=Yearly
+- menu 890 - No/Yes/Criteria not displayed: 1=No, 2=Yes, 3=Criteria not displayed
+- menu 906 - Web services type: 1=Object, 2=Sub-program
+- menu 910 - Type of date: 1=Current date, 2=Start of month, 3=End of month, 4=Start of year, 5=End of year, 6=Start of quarter, 7=End of quarter, 8=Start of week, 9=End of week, 10=Start of fortnight, 11=End of fortnight, 12=Start of 10-day period, 13=End of 10-day period, 14=Formula, 15=Absolute date
+- menu 911 - Batch frequency: 1=Weekly, 2=Monthly
+- menu 912 - Regrouping/site: 1=Site grouping, 2=Site
+- menu 913 - Type of date: 1=Days, 2=Weeks, 3=Months, 4=Years
+- menu 915 - System Transaction Type: 1=Modification, 2=Deletion, 3=Creation
+- menu 917 - Rate date: 1=Journal entry date, 2=Source document date
+- menu 918 - Preloading: 1=No, 2=Partial, 3=Total
+- menu 919 - Type of QuickSelect List: 1=Simple, 2=Hierarchical, 3=Selection, 4=Recursive, 5=Simple selection
+- menu 920 - Link type: 1=Miscellaneous, 2=To Accounting, 3=To Fixed Assets, 4=To payroll, 5=To Logistics
+- menu 921 - E-mail Type: 1=Client, 2=Server
+- menu 923 - Window Type: 1=Miscellaneous, 2=Object, 3=Inquiry, 4=Inquiry criteria, 5=Selection table
+- menu 924 - Type of session: 1=Primary, 2=Secondary, 3=Batch, 4=Web services, 5=Terminal, 6=Eclipse, 7=Java bridge, 8=#, 9=Primary, 10=Secondary, 11=Batch, 12=Web services, 13=Terminal, 14=Eclipse, 15=Java bridge, 16=#, 17=Console, 18=#, 19=#, 20=Web services, 21=Terminal, 22=#, 23=#, 24=#, 25=Classic page, 26=#, 27=#, 28=#, 29=#, 30=Eclipse, 31=#, 32=#, 33=Web page, 34=Remote classic call, 35=Batch
+- menu 926 - Profile type function: 1=Standard, 2=Administrator, 3=Developer
+- menu 927 - Management type button: 1=Non validating, 2=Validating
+- menu 928 - Execution type: 1=Interactive, 2=Import/batch, 3=Always
+- menu 929 - Screen type: 1=Tab, 2=Dialogue box, 3=Full screen, 4=Full screen with list, 5=Header, 6=VT screen
+- menu 930 - Coding of the base: 1=ASCII, 2=Unicode
+- menu 932 - Sequence type: 1=Normal, 2=Database sequence, 3=Grouped
+- menu 936 - Entry method: 1=Enter, 2=Display, 3=Hidden, 4=Technical
+- menu 937 - Text type: 1=Text, 2=Message
+- menu 940 - Send type: 1=Any, 2=Server, 3=Client
+- menu 941 - Title: 1=Mr, 2=Mrs, 3=Ms
+- menu 942 - Function (contact): 1=Small, 2=Average, 3=Large
+- menu 943 - Entity type (BP, site ...): 1=Business partner, 2=Company, 3=Site, 4=User, 5=Accounts, 6=Leads, 7=Building, 8=Place
+- menu 945 - Character coding: 1=ascii, 2=utf-8, 3=ucs-2
+- menu 946 - OS type: 1=Unix, 2=Windows, 3=Linux
+- menu 947 - Workflow status: 1=None, 2=To process, 3=Processed
+- menu 950 - Withholding category: 1=At source, 2=INPS, 3=ENASARCO, 4=FIRR, 5=Other, 6=VAT, 7=Gross income, 8=Gains, 9=SUSS, 10=W3, 11=W4
+- menu 951 - Withholding type: 1=On payment, 2=On invoice
+- menu 952 - Calculation method: 1=Single rate, 2=Rate per installment, 3=Min./Max threshold
+- menu 953 - Type of Charge: 1=Exempt, 2=Benefits, 3=Charges, 4=Commission, 5=INPS, 6=VAT, 7=Other
+- menu 954 - Type of Address: 1=Contact, 2=BP, 3=Company, 4=Site
+- menu 955 - Place of Appointment: 1=At customer's site, 2=On our premises, 3=Other
+- menu 956 - Call Type: 1=Incoming call, 2=Outgoing call
+- menu 959 - Script Response Storage: 1=Business Partners, 2=Prospects/Customers, 3=Contacts
+- menu 962 - Routing Conditions: 1=Next, 2=Exit, 3=Starting with, 4=Containing, 5=Ending with, 6=Greater than, 7=Greater than or equal to, 8=Less than, 9=Less than or equal to, 10=Between, 11=True, 12=False, 13=Before the, 14=After the, 15=Other
+- menu 963 - Mailing Shipment Methods: 1=Post, 2=E-Mail, 3=Fax, 4=XML
+- menu 965 - Type of Mailing Address: 1=By Business Partner, 2=By Contact
+- menu 968 - Status of expeditions: 1=Successful termination, 2=Waiting Dispatch
+- menu 969 - Marketing operation types: 1=Mass mailing, 2=Call campaign, 3=Trade show, 4=Media Campaign, 5=.
+- menu 974 - Call cover: 1=by service contract, 2=by order, 3=by commercial decision, 4=by direct invoicing, 5=By loan contract, 6=.
+- menu 975 - Help-Desk Call assignment: 1=Dispatching, 2=Employee, 3=Queue, 4=Commercial, 5=Closed
+- menu 976 - Base of expression: 1=hours, 2=days, 3=weeks, 4=months, 5=years, 6=
+- menu 977 - User functions: 1=Sales Engineer, 2=Telesales, 3=Sales Director, 4=Customer support, 5=Other
+- menu 978 - User status: 1=Permanent, 2=Temporary, 3=Part time
+- menu 983 - Type of cover: 1=According to base, 2=According to product reference, 3=According to commercial group
+- menu 986 - Type of statistic: 1=Normal, 2=Rolling total, 3=% of total, 4=% accumulated
+- menu 987 - Definition level: 1=Folder, 2=Company, 3=Site, 4=User, 5=Legislation
+- menu 988 - Event type: 1=Miscellaneous, 2=Object, 3=Function start, 4=Report, 5=End of task, 6=Task cancellation, 7=Time management, 8=Import/export, 9=Signature, 10=Manual
+- menu 2000 - Dematerialization status: 1=Disabled, 2=Accepted, 3=Closed, 4=In progress, 5=Rejected, 6=In process
+- menu 2002 - Identifier type: 1=Fiscal code, 2=Local code, 3=GLN, 4=DUNS, 5=VAT Number, 6=Free
+- menu 2003 - EDI status: 1=Pending, 2=In progress, 3=Completed, 4=Error
+- menu 2004 - Document type: 1=Site tax ID number, 2=Intracommunity tax ID number, 3=Passport, 4=Official document, 5=Fiscal residence certificate, 6=Others
+- menu 2005 - Sense: 1=Outbound, 2=Inbound
+- menu 2008 - Protocol type: 1=Emails, 2=Directories
+- menu 2009 - EDI partner type: 1=Sage eFacture, 2=Miscellaneous exchanges
+- menu 2010 - Duplicate authorization: 1=Authorized, 2=Not authorized
+- menu 2011 - Action: 1=Send, 2=Receive
+- menu 2012 - Category: 1=Purchase invoice, 2=Sales invoice, 3=Purchase order, 4=Sales order, 5=Sales delivery
+- menu 2013 - Message file format: 1=Sequential, 2=XML
+- menu 2014 - (page not read)
+- menu 2017 - EDI events: 1=Checking EDI authorizations for companies, 2=Checking EDI authorizations for sites, 3=Checking EDI authorizations for BP/addresses, 4=Checking combination of EDI flow with BP/companies, 5=Recovering EDI flow information, 6=Checking EDI flow setup, 7=EDI document processing, 8=EDI status of the document, 9=New EDI document processing, 10=Creating EDI temporary storage space, 11=Updating status of the EDI temp storage space, 12=Accessing the EDI temporary storage space, 13=Instantiating EDI representation, 14=Updating uuid of the EDI representation instance, 15=Processing EDI file generation, 16=Sending EDI file, 17=Controling EDI flow, 18=Controling EDI message mapping, 19=Controling EDI sequential file, 20=Generating EDI import file, 21=Copying EDI temporary storage space and document tracking, 22=Checking EDI flow, 23=Checking EDI message mapping, 24=Checking EDI sequential file, 25=Incorrect EDI flow parameters, 26=Loading EDI representation instance, 27=Saving EDI representation instance, 28=Test mode, 29=The document has already been processed: select the duplicate option to process it again, 30=The document is a copy and cannot be processed, 31=Generating the EDI representation prototype, 32=Process completed successfully, 33=Process completed with errors, 34=Updating temporary storage space, 35=Signing EDI generated file, 36=User certificate or private key not found
+- menu 2018 - Mandatory: 1=Optional, 2=Mandatory, 3=Warning
+- menu 2019 - Name structure: 1=File name, 2=Main key, 3=Merge key, 4=Date, 5=Time, 6=Constant, 7=Batch number, 8=Extension
+- menu 2020 - Severity: 1=Information, 2=Warning, 3=Error
+- menu 2021 - Type: 1=Functional, 2=Technical, 3=Transfer
+- menu 2022 - Origin: 1=Internal, 2=External
+- menu 2023 - Operators: 1=Value range, 2=Equal to, 3=Greater than or equal to, 4=Less than or equal to
+- menu 2024 - Message mapping type: 1=Query, 2=Attachment, 3=SDATA
+- menu 2025 - Operation: 1=Read, 2=Create
+- menu 2026 - Signature format: 1=Without Signature, 2=XAdES
+- menu 2027 - Transport mode: 1=Air, 2=Sea, 3=Road, 4=Rail, 5=Multimodal, 6=Not defined
+- menu 2028 - SAFT document: 1=Invoice, 2=Simplified invoice, 3=Debit note, 4=Credit note, 5=Fixed assets sale, 6=Fixed assets return, 7=Invoice-Receipt, 8=Proforma, 9=Consignment invoice
+- menu 2029 - Record type: 1=Normal, 2=Manual document recovery, 3=Backup document recovery, 4=External document
+- menu 2030 - Severity level: 1=- Select -, 2=Critical, 3=Major, 4=Moderate, 5=Minor (Cosmetic)
+- menu 2031 - Product version impact: 1=- Select -, 2=Major, 3=Minor, 4=Unknown
+- menu 2032 - Actions: 1=- Select -, 2=Scrap, 3=Use up, 4=Modify, 5=Move to spares, 6=Complete, 7=Complete and modify, 8=Disassemble, 9=Change, 10=Remove, 11=Block, 12=Delay, 13=Cancel, 14=Return to supplier, 15=Receive and modify, 16=Delete lines, 17=Concession, 18=Close, 19=View, 20=Inform, 21=Add operations, 22=Modify operations, 23=Create new forecast, 24=Update forecast
+- menu 2033 - Change status: 1=New, 2=In review, 3=Rejected, 4=In planning, 5=Being implemented, 6=Completed, 7=Closed
+- menu 2034 - Change request status: 1=- Select -, 2=New requirement, 3=Enhancement, 4=Defect, 5=Other
+- menu 2035 - Reason for rejection: 1=- Select -, 2=Not enough evidence, 3=Not cost-effective, 4=Change is out of scope / budget, 5=Request conflicts with other scheduled change, 6=Implementation date is in a freeze period, 7=Other, 8=Not selected
+- menu 2039 - Transaction type: 1=-Select-, 2=ALL, 3=BOMs, 4=Customer, 5=Demand forecasts, 6=Purchase requests, 7=Purchase orders, 8=Sales quote, 9=Routing, 10=Sales order, 11=Stock, 12=Subcontract orders, 13=Supplier, 14=Work order, 15=Other
+- menu 2040 - Plan status: 1=Pending, 2=In progress, 3=Completed
+- menu 2041 - Approval status: 1=Pending, 2=Approved, 3=Rejected
+- menu 2042 - Closed state: 1=-Select-, 2=Rejected, 3=Completed
+- menu 2043 - Attachment categories: 1=- Select -, 2=Request detail, 3=Approval, 4=Recommendation, 5=Planning, 6=Implementation, 7=Rejection, 8=Other
+- menu 2044 - Orders action status: 1=Pending, 2=Blocking, 3=No action, 4=Complete
+- menu 2045 - Plan status: 1=In planning, 2=Being implemented, 3=Completed, 4=Not applicable
+- menu 2046 - SAFT Document type: 1=GT (transport note), 2=GR (packing slip), 3=GA (assets transport), 4=GC (loan packing slip), 5=GD (supplier returns)
+- menu 2047 - Document type: 1=All types, 2=Deliveries, 3=Customer returns, 4=Loan returns, 5=Sub-cont material returns, 6=Inter-site transfers, 7=Sub-contract transfers, 8=Sub-contract returns, 9=Purchase returns, 10=Transport note, 11=Orders, 12=Quotes, 13=Proforma
+- menu 2049 - AT Record Type: 1=Manual, 2=SAFT-T, 3=Web service
+- menu 2050 - Sales order stage: 1=Order, 2=Preparation, 3=Delivery
+- menu 2051 - Type de produit: 1=Goods, 2=Raw materials, subsidiaries and consumables, 3=Finished and intermediate goods, 4=By-products, waste and scrap, 5=Products and works in progress, 6=Not applicable
+- menu 2052 - Origin: 1=Counts, 2=Stock by date
+- menu 2059 - Flow: 1=Kit, 2=Manufacturing BOM, 3=Sub-contract BOM, 4=Stock
+- menu 2069 - Correction method: 1=Rectificación íntegra, 2=Rectificación por diferencias, 3=Rectificación por descuento por volumen de operaciones durante un periodo, 4=Autorizadas por la Agencia Tributaria
+- menu 2071 - Center role: 1=Accounting office, 2=Management organ, 3=Processing unit, 4=Proposing organ
+- menu 2073 - Function: 1=Service request, 2=Intervention
+- menu 2074 - Time entry status: 1=New, 2=Validated, 3=Invoiced, 4=Posted
+- menu 2076 - PJM budget distribution: 1=Even Period Spread, 2=User Defined Spread, 3=Annual Even Spread
+- menu 2077 - Spanish setup values: 1=Company, 2=Site, 3=Date, 4=Employee, 5=Description, 6=Currency, 7=Dimension 1, 8=Dimension 2, 9=Dimension 3, 10=Dimension 4, 11=Dimension 5
+- menu 2078 - Time entry origin: 1=Manual, 2=Imported
+- menu 2079 - Tax type: 1=Not applicable, 2=VAT, 3=Tax stamp, 4=IEC, 5=Other
+- menu 2080 - Location type: 1=Harbor, 2=Airport, 3=Station, 4=Warehouse, 5=Customs, 6=Site, 7=Supplier, 8=Other
+- menu 2081 - Shipment unit type: 1=Container, 2=Pallet, 3=Pack, 4=Parcel, 5=Other
+- menu 2084 - Freight commodity code: 1=NMFC number, 2=HS code
+- menu 2085 - Packing slip types: 1=Customer, 2=Supplier, 3=Miscellaneous
+- menu 2087 - Notes categories: 1=Product, 2=Customer, 3=Supplier
+- menu 2088 - Notes functions: 1=Sales quotes, 2=Sales orders, 3=Shipments, 4=Sales invoices, 5=Sales open orders, 6=Customer BP invoices, 7=Supplier BP invoices, 8=Purchase request, 9=Purchase orders, 10=Purchase open orders, 11=Purchase receipts, 12=Purchase invoices, 13=Subcontract orders, 14=RFQs, 15=Work orders, 16=BOMs, 17=Multilevel planning, 18=Tasks, 19=Calls, 20=Appointment, 21=Projects, 22=Service requests, 23=Installed base, 24=Warranty requests, 25=Service contracts, 26=Service responses
+- menu 2089 - Cost calculation method: 1=Percentage per net price, 2=Fixed amount, 3=Amount per unit, 4=Amount by fixed bracket, 5=Schedule, 6=Weighted amount, 7=Formula
+- menu 2090 - Cost distribution: 1=No, 2=Net amount pro rata, 3=Net weight pro rata, 4=Gross weight pro rata, 5=Volume pro rata, 6=Cost amount pro rata
+- menu 2091 - Basis: 1=Quantity, 2=Volume, 3=Weight
+- menu 2093 - Authorization step: 1=Order entry, 2=Post order
+- menu 2094 - Schedule: 1=Per unit, 2=Amount
+- menu 2095 - Payment card status: 1=Selected, 2=Verified, 3=Authorized, 4=Rejected, 5=Voided, 6=Captured, 7=Settled, 8=Manual
+- menu 2096 - Request/Response: 1=Request, 2=Response
+- menu 2098 - Payment processor: 1=Sage Exchange, 2=Sage Pay
+- menu 2107 - Control system status: 1=Accepted, 2=In error, 3=Canceled
+- menu 2108 - Territory declaration: 1=Common territory, 2=Navarre, 3=Biscay, 4=Gipuzkoa, 5=Álava, 6=Canary Islands
+- menu 2109 - Spanish invoice type: 1=F1-Invoice (Art. 6.7.7 and 7.3 from RD 1619/2012), 2=F2-Simplified invoice and invoice Art. 6.1.d) RD 1619/2012, 3=R1-Rectificative invoice (Art 80.1 and 80.2), 4=R2-Rectificative invoice (Art 80.3), 5=R3-Rectificative invoice (Art 80.4), 6=R4-Rectificative invoice, 7=R5-Rectificative simplified invoice, 8=F3-Replacement of simplified invoice, 9=F4-Journal entry, 10=F5-Imported invoice, 11=F6-Other document, 12=LC-Customs clearance
+- menu 2110 - Periodicity: 1=Monthly, 2=Quarterly, 3=Yearly, 4=Bi-monthly, 5=Not periodic
+- menu 2111 - Payment method: 1=En metálico, 2=Cargado a cuenta
+- menu 2112 - Media type: 1=Telematic, 2=CD-R, 3=Form
+- menu 2114 - Child unit in declaration: 1=No, 2=Whole unit, 3=Half unit
+- menu 2203 - Flow type: 1=Intersite, 2=Intercompany
+- menu 2207 - Entities managed by company: 1=Business partner, 2=Customer / Prospect, 3=Ship-to customer, 4=Supplier, 5=Product, 6=Product-sales, 7=Product-customer, 8=Product-supplier, 9=Sales invoicing elements, 10=Purchase invoicing elements, 11=Secondary representatives, 12=Prospect
+- menu 2208 - Customs File Doc taken into ac: 1=No, 2=Fiscal value, 3=Statistical value
+- menu 2210 - BP concerned by price list: 1=Outside group, 2=Group, 3=All
+- menu 2213 - Customer information type: 1=First contact, 2=Last contact, 3=Next contact, 4=Last quote, 5=First order, 6=Last order, 7=Last delivery, 8=Last return, 9=Last invoice, 10=Last credit memo, 11=Last service request, 12=Last service response, 13=Last project, 14=Last service contract, 15=Last payment, 16=Last payment due, 17=Number of payments due, 18=Last reminder, 19=Last reminder level, 20=Maximum reminder level
+- menu 2214 - Customer movement type: 1=Quote, 2=Order, 3=Delivery, 4=Return, 5=Invoice, 6=Service contract, 7=Service request, 8=Service response, 9=Project, 10=Payment, 11=Payment due, 12=Reminder, 13=Without type (task), 14=Telephone, 15=Visit
+- menu 2218 - Customer source: 1=Invoice customer, 2=Order customer
+- menu 2219 - Calculation chronology: 1=Before tax calculation, 2=After tax calculation, 3=Action
+- menu 2221 - Subcontracted product status: 1=On hold, 2=Under progress, 3=Ordered, 4=Received, 5=Closed
+- menu 2222 - Quarter: 1=1st quarter, 2=2nd quarter, 3=3rd quarter, 4=4th quarter
+- menu 2223 - Subcontract material status: 1=On hold, 2=Under progress, 3=Closed, 4=Excluded, 5=Ordered, 6=Received
+- menu 2224 - Low level type: 1=Business, 2=Manufacturing/Subcontracting
+- menu 2225 - Material replenish type: 1=Internal, 2=To be sent to the subcontractor, 3=Supplied by the subcontractor
+- menu 2226 - Frequency: 1=Day, 2=Week, 3=Month, 4=Quarter, 5=Year
+- menu 2227 - Value type: 1=Tax excluded, 2=Tax included, 3=%
+- menu 2230 - Entities: 1=Product, 2=Customer, 3=Supplier, 4=Sales rep, 5=User, 6=Overhead, 7=Expenses for expense notes, 8=Currency, 9=Tax, 10=Sales invoice footer, 11=Early discount, 12=Bank, 13=Payment attribute, 14=Purchase invoice footer, 15=Miscellaneous BP, 16=Costing dimension, 17=Purchase cost
+- menu 2231 - Frequency: 1=Day, 2=Week, 3=Half-month, 4=Month, 5=Quarter, 6=Half-year, 7=Year, 8=Decade
+- menu 2236 - Movements and flows: 1=Standard delivery, 2=Intercompany delivery, 3=Loan delivery, 4=Delivery for subcontracting, 5=Intersite delivery, 6=Export delivery with forwarding agent, 7=Direct order delivery, 8=Standard receipt, 9=Subcontract receipt, 10=Intersite receipt, 11=Intercompany receipt, 12=Customer return, 13=Loan return, 14=Supplier return, 15=Sales invoices, 16=Sales credit memos, 17=Loan invoices, 18=Free product delivery, 19=Subcontract material return, 20=Receipt for subcontracting, 21=Subcontract delivery, 22=Subcontract end product supplier return, 23=Material for subcontract supplier return, 24=Subcontract end product customer return
+- menu 2237 - End of month calculation: 1=No, 2=End of next month, 3=End of current month
+- menu 2238 - Sub-contract order status: 1=On hold, 2=Being optimized, 3=Printed, 4=In progress, 5=Closed, 6=Cost price calculated
+- menu 2239 - Service status: 1=On hold, 2=In progress, 3=Closed, 4=Ordered, 5=Received, 6=Inoviced
+- menu 2240 - Pivot types: 1=PLM Products, 2=PLM BOMs, 3=WO detailed scheduling, 4=Operations detailed scheduling, 5=Successions detailed scheduling, 6=Products detailed scheduling, 7=Work center group detailed scheduling, 8=Work center detailed scheduling, 9=Work center detailed scheduling by group, 10=Secondary resource detailed scheduling, 11=Replacement work center detailed scheduling, 12=Capacity variation detailed scheduling by work center, 13=Customer detailed scheduling, 14=Project detailed scheduling, 15=Order detailed scheduling, 16=BOM detailed scheduling, 17=Purchase detailed scheduling, 18=Stocks detailed scheduling, 19=MMS Products/Spare parts, 20=MMS Cost centers/Dimensions, 21=MMS Storage sites, 22=MMS Product stock/site, 23=MMS Stock journal, 24=MMS Movements, 25=MMS Suppliers, 26=MMS Supplier contacts, 27=MMS Supplier classifications, 28=MMS Supplier products, 29=MMS Purchase requests, 30=MMS Purchase request progress, 31=MMS Projects, 32=MMS Units, 33=MMS Users, 34=MMS Unit conversions, 35=SCM Items/Products, 36=SCM Items/Conversions, 37=SCM Items/Criteria, 38=SCM Customers, 39=SCM Sites, 40=SCM Sites/Criteria, 41=SCM Sales history, 42=SCM Orders in progress, 43=SCM Sales forecasts, 44=SCM Items/Sites, 45=REACH Items, 46=REACH Suppliers, 47=ENERGY Entries, 48=Accounting entry file
+- menu 2241 - Rule flow: 1=Receipt, 2=Shipment
+- menu 2242 - Pivot headers: 1=No header, 2=Standard header, 3=Specific header, 4=Header with titles
+- menu 2247 - Aggregation level: 1=Detail, 2=Date, 3=Week, 4=Month
+- menu 2248 - Code/description extraction: 1=Code only, 2=Description only, 3=Code and description
+- menu 2249 - Project status: 1=New, 2=Launched, 3=Delivered, 4=Closed, 5=, 6=, 7=, 8=, 9=Suspended
+- menu 2250 - Project task status: 1=New, 2=Launched, 3=Started, 4=Closed, 5=Planned, 6=, 7=, 8=, 9=Suspended
+- menu 2251 - Project budget status: 1=New, 2=Open, 3=Delivered, 4=Closed, 5=, 6=, 7=, 8=, 9=Suspended
+- menu 2252 - Project task type: 1=Material, 2=Labor, 3=Mixed, 4=Miscellaneous
+- menu 2254 - Project allocation type: 1=CRM, 2=Project, 3=Mixed project, 4=Budget, 5=Labor task, 6=Material task, 7=Mixed task, 8=Miscellaneous
+- menu 2258 - Ope./prov. task: 1=Provisional, 2=Operational
+- menu 2261 - Invoice status: 1=Not posted, 2=Not used, 3=Posted
+- menu 2263 - Planning mode: 1=Date of tasks, 2=Manual date, 3=Calculated date, 4=No operation
+- menu 2265 - Document types: 1=Supplier invoice, 2=Customer invoice
+- menu 2269 - Context: 1=Labor, 2=Products, 3=Expenses, 4=Finance, 5=Time entry
+- menu 2270 - File sort: 1=Product, 2=Supplier
+- menu 2271 - Price origin: 1=Entered, 2=Purchase price %
+- menu 2273 - SAF-T Product type: 1=None, 2=Product, 3=Service, 4=Other
+- menu 2274 - Tax country region: 1=Mainland, 2=Azores, 3=Madeira, 4=Non applicable
+- menu 2275 - Tax level: 1=Reduced, 2=Intermediate, 3=Normal, 4=Exemption, 5=Other, 6=Not applicable
+- menu 2276 - Cost nature: 1=Packaging, 2=Loading, 3=Pre-transport, 4=Export customs formality, 5=Main transport loading, 6=Main transport, 7=Main transport unloading, 8=Import customs formalities, 9=Post-transport, 10=Unloading, 11=Insurance, 12=Others
+- menu 2277 - Costs payable by: 1=Neither the buyer, nor the seller, 2=Buyer, 3=Seller, 4=Buyer and seller
+- menu 2296 - Quantity / Amount: 1=Quantity, 2=Amount
+- menu 2301 - Product type: 1=Product, 2=By-product
+- menu 2302 - Operation sort criteria: 1=Expected completion date, 2=Work order, 3=Released product, 4=Work center
+- menu 2303 - Enter measurement: 1=Mandatory, 2=Optional, 3=Prohibited
+- menu 2306 - Tracking type: 1=WO, 2=BOM, 3=WO reintegration, 4=BOM reintegration
+- menu 2311 - Quantity type: 1=Active, 2=Physical
+- menu 2312 - Origin of suggestions: 1=MPS, 2=MRP, 3=All
+- menu 2314 - Entry unit: 1=Unit of operation, 2=Unit of stock
+- menu 2315 - Stop bit: 1=1 stop bit, 2=2 stop bits
+- menu 2316 - Parity: 1=No parity, 2=Odd parity, 3=Even parity
+- menu 2317 - Calibration Code: 1=No calibration, 2=Number of days, 3=Number of weighings, 4=Number of days and weighings, 5=Each weighing
+- menu 2318 - Type of Container: 1=Internal, 2=Supplier
+- menu 2319 - Weighing method: 1=By variance, 2=Accumulated
+- menu 2320 - Type of sentence: 1=Risk, 2=Security, 3=Environment
+- menu 2321 - Weighing Status WO (WOF): 1=Not weighed, 2=Weighing in station under progress, 3=Weighing in station completed, 4=Weighing in production under progress, 5=In production, 6=End of production, 7=Reconciliation control, 8=Total weighing completed, 9=Order blocked for weighing, 10=Order blocked for reconciliation control, 11=Order blocked for process start control
+- menu 2322 - Weighing Status material (MWF: 1=Not weighed, 2=In weighing process, 3=Weighing, 4=Reconciliation control, 5=Reconciled, 6=Process start control, 7=Process started, 8=Consumed
+- menu 2323 - Supplier packaging: 1=Internal packaging, 2=Supplier packaging, 3=Mixed
+- menu 2325 - Type of weighing: 1=Center, 2=Top right corner, 3=Top left corner, 4=Bottom right corner, 5=Bottom left corner
+- menu 2326 - Separator: 1=Point, 2=Comma
+- menu 2327 - Display level: 1=Level 1, 2=Level 2, 3=Level 3
+- menu 2328 - Code to serve: 1=Component not weighed on weighing stations, 2=Component weighed on weighing stations, 3=Component weighed in production, 4=Excipient phase on weighing stations, 5=Excipient phase in manufacturing, 6=Final work order excipient phase on weighing stations, 7=Final work order excipient phase in manufacturing, 8=Material correction on weighing stations, 9=Material correction in manufacturing, 10=QSF at end of manufacture
+- menu 2329 - Weigh. station taken into acc.: 1=No, 2=To weigh, 3=Weighing plan, 4=Being weighed, 5=Weighed, 6=Reconciled, 7=Committed, 8=Weighing under progress by product
+- menu 2331 - Availability balance: 1=Available, 2=Unavailable, 3=Being weighed, 4=Being calibrated, 5=Defective
+- menu 2332 - State of the balance: 1=In service, 2=Not in service
+- menu 2333 - Result standarization: 1=Correct, 2=Incorrect
+- menu 2334 - Label printing: 1=No printing, 2=Not printed, 3=Printed, 4=Re-printed
+- menu 2335 - Weighing options: 1=Weighed by work order, 2=Weighed by product, 3=Weighed in production
+- menu 2336 - Procedure Types Box: 1=Opening of box, 2=Empty box at end of work order, 3=Empty box at end of phase
+- menu 2342 - Sort booked times: 1=By tracking number, 2=By tracking date, 3=By work order number, 4=By work center
+- menu 2344 - Weighing: 1=None, 2=Partial, 3=Complete, 4=Close packaging, 5=Stock count
+- menu 2345 - Cancellation Mode: 1=With return, 2=Without return
+- menu 2348 - Select scheduling mode: 1=Backward, 2=Forward, 3=By selection
+- menu 2355 - Type of manufacturing cost: 1=Theoretical, 2=Release, 3=Expected, 4=Actual, 5=Real cost price for planned quantity, 6=Provisional production for achieved quantity
+- menu 2358 - WIP transaction type: 1=Material cost, 2=Labor cost, 3=Machine cost, 4=Subcontractor cost, 5=Material expenses, 6=Labor expenses, 7=Machine expenses, 8=Subcontractor expenses, 9=Material variance, 10=Labor variance, 11=Machine variance, 12=Subcontractor variance, 13=Overhead variance, 14=Production statement, 15=WIP balance, 16=Operation reject, 17=Adjustment, 18=Closing tracking without WO, 19=Invoice element, 20=Invoice element variance
+- menu 2359 - WIP line type: 1=New, 2=Modified, 3=Deleted
+- menu 2360 - Base formula to calculate cost: 1=Amount, 2=Hours (operations) or quantities
+- menu 2366 - Provisional cost print: 1=No, 2=Report, 3=Trace, 4=Report and trace
+- menu 2371 - Launching mode: 1=Full, 2=Materials only, 3=Operations only, 4=All
+- menu 2377 - Method of correction: 1=Lot, 2=Allocation
+- menu 2381 - Trigger: 1=Document, 2=Source document
+- menu 2384 - OH type: 1=As per context, 2=Material, 3=Machine, 4=Labor, 5=Subcontracting
+- menu 2394 - Tolerance definition level: 1=, 2=SHI record, 3=Product-site, 4=BOM
+- menu 2395 - BC type: 1=Field separator, 2=Fixed length
+- menu 2398 - Reason for reprint: 1=Printer unavailable, 2=End of roller, 3=Format error, 4=Label illegible
+- menu 2416 - Shop floor activities: 1=Clock in/out, 2=Indirect, 3=Break, 4=Setup, 5=Run
+- menu 2417 - Exclusive Codes: 1=Time off, 2=Break, 3=Non-exclusive labor, 4=Exclusive labor, 5=Auto break
+- menu 2419 - Status: 1=To be invoiced, 2=Invoiced, 3=Credit memo, 4=Closed, 5=Included on invoice, 6=Included on credit memo
+- menu 2420 - Schedule type: 1=Normal, 2=Fixed percentage, 3=Frequency
+- menu 2421 - Modification: 1=No, 2=Price, 3=Quantity, 4=Splitting, 5=Grouping, 6=Generation
+- menu 2423 - Work center type: 1=Labor only, 2=Machine only, 3=Labor and machine
+- menu 2425 - Employee type: 1=Employee, 2=Detailed team, 3=Summary team
+- menu 2426 - EFAT status: 1=Not sent, 2=Sent with error, 3=Pending response from EFAT, 4=Pending response from business partner, 5=Communication successful
+- menu 2427 - Communication type: 1=SAFT, 2=Electronic invoice
+- menu 2504 - Amount type: 1=Adjusted, 2=Calculated
+- menu 2510 - SHIPMENT record type: 1=Shipment, 2=Pre-received order
+- menu 2512 - Document origin: 1=Not applicable, 2=Air, 3=Sea, 4=Road, 5=Rail
+- menu 2600 - Control type: 1=None, 2=Annual, 3=Period, 4=Sliding, 5=Accumulated
+- menu 2601 - Generation type: 1=Actual, 2=Simulation
+- menu 2602 - Type of Sales (Portugal): 1=Goods, 2=Fixed assets, 3=Services
+- menu 2603 - Type of rule: 1=Normal, 2=Export, 3=Tax exempt, 4=EU
+- menu 2604 - Payment transaction type: 1=None, 2=LCR, 3=PRE, 4=VIR, 5=SCT, 6=SDD
+- menu 2606 - Currency: 1=Transaction, 2=Company
+- menu 2609 - Budgetary GL management: 1=None, 2=Manual, 3=Complete
+- menu 2614 - Due date item type: 1=Order, 2=Invoice, 3=Payment, 4=Others
+- menu 2618 - Fiscal year report: 1=Not open, 2=Open, 3=Closed
+- menu 2623 - Source document type: 1=Order, 2=Delivery request, 3=Purchase request, 4=Direct
+- menu 2626 - Payment item reference: 1=Main account, 2=Account journal - business partner, 3=Bank journal > account, 4=Treasury currency MO, 5=Currency MO, 6=Business partner MO, 7=Account transfer, 8=Discounted drafts, 9=Draft transfer, 10=Tax stamp
+- menu 2628 - Accounting nature: 1=Fixed assets in progress, 2=Fixed assets in service, 3=Cost, 4=Others
+- menu 2629 - Follow-up mode: 1=Letter, 2=Email, 3=Telephone, 4=Fax
+- menu 2637 - Flow management: 1=Not entered, 2=Optional, 3=Mandatory
+- menu 2638 - Open item selection: 1=None, 2=Partial, 3=Total
+- menu 2643 - VAT declaration type: 1=Periodic, 2=Annual, 3=Recapitulative, 4=European services
+- menu 2644 - General ledger types: 1=Legal, 2=Analytical, 3=IAS, 4=Ledger 4, 5=Ledger 5, 6=Ledger 6, 7=Ledger 7, 8=Ledger 8, 9=Ledger 9, 10=Alternative Currency
+- menu 2645 - Rate entry mode: 1=Multiplier, 2=Divisor, 3=Both
+- menu 2646 - Entry type: 1=Column, 2=Row, 3=Tab
+- menu 2647 - Ledger authorizations: 1=None, 2=Authorized, 3=Mandatory
+- menu 2648 - Matching option: 1=Allocation, 2=Rounding variance
+- menu 2651 - Document type: 1=Customer invoices, 2=Supplier invoices
+- menu 2652 - Record type: 1=Entered line, 2=Extracted line
+- menu 2653 - Ledger type: 1=Not applicable, 2=SNC base, 3=IAS/IFRS standards, 4=SNS micro entities, 5=Others
+- menu 2654 - Follow-up text type: 1=By invoice, 2=Global, 3=By mail
+- menu 2656 - 1099 record usage: 1=Mandatory, 2=Conditional, 3=Optional
+- menu 2657 - 1099 record type: 1=Alphanumeric, 2=Numeric, 3=Date
+- menu 2658 - Check status: 1=Unissued, 2=Issued, 3=Voided, 4=Posted, 5=Cleared
+- menu 2664 - Analytical sense: 1=Expense, 2=Revenue
+- menu 2665 - FDE amount type: 1=Movements + CR + Closing, 2=Movements + CR, 3=Movements + Closing, 4=Movements only, 5=CR only, 6=Closing only
+- menu 2669 - Version status: 1=Open, 2=Closed
+- menu 2673 - Cash interface: 1=None, 2=Notes payable/receivable posting, 3=Intermediate posting, 4=Bank posting
+- menu 2683 - Reason for action: 1=Creation, 2=Modification, 3=Deletion, 4=Closing, 5=Reversal, 6=Closing cancellation, 7=Carryforward, 8=Resynchronization
+- menu 2684 - Document reason: 1=Purchase request, 2=Order, 3=Invoice, 4=GRNI (GoodsReceivedNotInvoiced), 5=Receivable credit memos, 6=Carryforward, 7=Credit memo, 8=Accounting document
+- menu 2688 - Renewal type: 1=Normal, 2=Commitment carried forward
+- menu 2691 - Envelope status: 1=Entered, 2=To be approved, 3=Approved, 4=Closed, 5=Commitments carried forward
+- menu 2692 - Budget category: 1=Annual, 2=Multiannual
+- menu 2694 - Approval level: 1=Envelope, 2=Fiscal year budget, 3=Budget line, 4=Multiple
+- menu 2699 - Review status: 1=Rejected, 2=Requested, 3=Approved, 4=Cancelled
+- menu 2701 - Quality filter: 1=Status 'A', 2=Status 'Q', 3=Status 'A'+'Q', 4=Status 'R', 5=Status 'A'+'R', 6=Status 'Q'+'R', 7=Status 'A'+'Q'+'R'
+- menu 2702 - Filter coefficient: 1=No filter, 2=Coefficient =, 3=Coefficient <=, 4=Coefficient >=
+- menu 2703 - Sort by coef: 1=No, 2=Descending, 3=Ascending
+- menu 2704 - Filter location: 1=No filter, 2=Local location, 3=Location 1 product, 4=Location 2 product, 5=Location 3 product
+- menu 2705 - Lot entry: 1=No, 2=Free, 3=New lot
+- menu 2706 - Unpacking rules PAC: 1=Unpack, 2=Adjust coefficient (recalc PAC coeff), 3=Fraction (calculate decimal PAC)
+- menu 2707 - Title of location: 1=Receipt, 2=Stock, 3=Picking, 4=Workstation, 5=Delivery, 6=Store, 7=Customer return, 8=Return from return, 9=To be defined, 10=To be defined, 11=To be defined
+- menu 2708 - Default Lot: 1=None, 2=Supplier lot, 3=Document number
+- menu 2709 - Sequence of lots: 1=By lot, 2=FIFO, 3=FEFO, 4=LIFO
+- menu 2710 - Location category: 1=Internal, 2=Dock, 3=Customer, 4=Subcontract
+- menu 2711 - Lot management: 1=Not managed, 2=Optional lot, 3=Mandatory lot, 4=Lot and sublot
+- menu 2713 - Title of location: 1=, 2=Receipt, 3=Stock, 4=Picking, 5=Workstation, 6=Delivery, 7=Store, 8=Customer return, 9=Return from return, 10=To be defined, 11=To be defined, 12=To be defined
+- menu 2716 - Put-away plan situation: 1=Awaiting put-away, 2=Put-away plan
+- menu 2717 - Stock count type: 1=Product, 2=Locations
+- menu 2719 - Sort put-away plan: 1=(None), 2=Allocation date, 3=Product, 4=Location, 5=Journal type/Number
+- menu 2720 - Origin of put-away plan: 1=Awaiting put-away, 2=Replenishment
+- menu 2721 - Type of stock transaction: 1=Miscellaneous receipt, 2=Miscellaneous issue, 3=Stock change, 4=Lot modification, 5=Putaway plan, 6=Counting, 7=Assembly/Disassembly, 8=Quality control, 9=Reorder plan, 10=Shipment picking plan, 11=Packing, 12=Pick tickets
+- menu 2722 - Stock count session status: 1=In creation, 2=To be counted, 3=Closed
+- menu 2723 - Stock count status list: 1=To be counted, 2=Cancelled, 3=Counted, 4=Partial validation, 5=Validated, 6=Closed
+- menu 2724 - Blocked stock: 1=No, 2=Yes, 3=Partial
+- menu 2729 - Stock count detail status: 1=To be counted, 2=Counted, 3=Abandoned, 4=Validated
+- menu 2730 - Assembly type: 1=Assembly, 2=Disassembly
+- menu 2731 - Line type: 1=Parent product, 2=Component
+- menu 2732 - Qty assembly/disassembly: 1=Without losses, 2=With losses
+- menu 2734 - Orders to be replanned: 1=WOF, 2=WOP, 3=POF, 4=POP, 5=TRF, 6=TRP, 7=EOF, 8=EOP
+- menu 2735 - Replan quantities: 1=None, 2=Decrease, 3=Increase, 4=Decrease/increase
+- menu 2736 - Replan date: 1=None, 2=Early, 3=Late, 4=Early/late
+- menu 2737 - Reorder situation: 1=Waiting reorder, 2=Reorder plan
+- menu 2739 - Lot modif type: 1=Lot characteristics modification, 2=Renumbering, mixing and splitting
+- menu 2740 - WIP protection: 1=No, 2=Always, 3=According to product
+- menu 2741 - Safety stock reconstitution: 1=Always, 2=At first requirement
+- menu 2744 - Inter company: 1=Display all, 2=Only display intercompany orders, 3=Do not display intercompany orders
+- menu 2745 - Modification Lot type: 1=Renumbering, 2=Mixing
+- menu 2747 - Preparation source: 1=Order, 2=Loan order, 3=Subcontract repl., 4=Subcontract shortage
+- menu 2748 - Qty Pre-charged: 1=All (Not allocated+allocated), 2=Not allocated, 3=Allocated
+- menu 2750 - Replenishment source: 1=Replenishment, 2=Consumption, 3=Shortage
+- menu 2751 - Picking note source: 1=Order, 2=Loan order, 3=Subcontract requirement
+- menu 2753 - Packing type: 1=Declarative, 2=Postpacking
+- menu 2754 - Picking note status: 1=In process, 2=Deliverable, 3=Delivered, 4=Canceled
+- menu 2755 - Sampling type: 1=None, 2=Single
+- menu 2756 - Sampling mode: 1=Global, 2=Lot, 3=No management
+- menu 2757 - General control level: 1=I, 2=II, 3=III
+- menu 2758 - Acceptable quality level: 1=1.0, 2=1.5, 3=2.5, 4=4.0, 5=6.5, 6=10, 7=15, 8=25, 9=40, 10=65, 11=100, 12=0.0
+- menu 2759 - Expiration leadtime units: 1=Calendar days, 2=Month
+- menu 2760 - Check format: 1=Not used, 2=Check-stub-stub, 3=Stub-check-stub, 4=Check-stub
+- menu 2761 - Check type: 1=Manual, 2=Normal
+- menu 2771 - FICLOTVCR status source doc: 1=Delivery, 2=Analysis request
+- menu 2776 - Version status: 1=Prototype, 2=Active, 3=Stopped, 4=To activate
+- menu 2777 - Stock version management: 1=No, 2=Major, 3=Major and minor
+- menu 2778 - Traceability level: 1=By default, 2=Lot, 3=Sub-lot, 4=Serial number
+- menu 2779 - Sequence calculation method: 1=0 to 9, 2=a to z, 3=A to Z, 4=0 to 9 then a to z, 5=0 to 9 then A to Z
+- menu 2782 - Prototype or active version: 1=No, 2=Yes, except on hold, 3=Yes
+- menu 2783 - Version stopped: 1=No, 2=No, unless exception, 3=Yes
+- menu 2801 - Entry origin: 1=Direct entry, 2=Automatic loading, 3=Import
+- menu 2802 - Analytical init. type: 1=Fixed, 2=User
+- menu 2803 - Valuation type: 1=Fixed value, 2=User value, 3=Mileage
+- menu 2806 - Status: 1=Not posted, 2=Posted simulation, 3=Posted actual
+- menu 2807 - Milleage bracket: 1=10000, 2=20000, 3=999999
+- menu 2808 - Vehicle category for expenses: 1=Category 1, 2=Category 2, 3=Category 3
+- menu 2811 - Recurrence Pattern: 1=Daily, 2=Weekly, 3=Monthly
+- menu 2812 - Daily: 1=Daily, 2=Weekdays
+- menu 2813 - Recurrence: 1=Customer BP invoice, 2=Supplier BP invoice
+- menu 2814 - Recurring invoice status: 1=Pending, 2=In process, 3=Completed, 4=Canceled
+- menu 2903 - Font type: 1=Standard, 2=Arial, 3=Times New Roman
+- menu 2906 - Product Edition: 1=, 2=Premium, 3=Standard, 4=Standard NA, 5=Standard UK, 6=Standard SPAIN, 7=Standard PORTUGAL, 8=Standard GERMANY, 9=Standard SWITZERLAND, 10=Standard CHINA, 11=Standard South Africa and ASEAN, 12=Standard AUSTRALIA
+- menu 2907 - Status Doc.: 1=Deliverable, 2=Setup kit
+- menu 2908 - URL location: 1=World wide web, 2=Public folder, 3=Current folder
+- menu 2909 - Security level: 1=High, 2=Medium, 3=Low
+- menu 2912 - Dashboard parameter type: 1=Data Source, 2=Visual component
+- menu 2913 - Dashboard framework: 1=1 framework, 2=4 identical, 3=2 vertical, 4=2 horizontal, 5=1+2 horizontal, 6=2+1 horizontal, 7=1+2 vertical, 8=2+1 vertical
+- menu 2915 - Query type: 1=Normal, 2=Shared, 3=Recalculated
+- menu 2916 - Link type: 1=0,1, 2=0,n, 3=1,1, 4=1,n
+- menu 2917 - Delegation type: 1=Copy for information, 2=With authority, 3=Exceptional
+- menu 2918 - Delegate options: 1=No, 2=All, 3=Cascade, 4=First available
+- menu 2919 - E-mail transmission: 1=No, 2=Yes, 3=Copy
+- menu 2920 - Approval request: 1=No, 2=Yes, 3=With signature
+- menu 2921 - Synthesis operators: 1=Mini, 2=Maxi, 3=Sum, 4=Average
+- menu 2922 - Signature: 1=Cancelled, 2=To be read, 3=To be signed, 4=Read, 5=Signed
+- menu 2923 - Execution type: 1=Workflow start, 2=Workflow end, 3=During signature, 4=Line, 5=Before line, 6=Before group
+- menu 2930 - Table type: 1=Character, 2=Character or graph, 3=Character and graph, 4=Graph
+- menu 2931 - Graphical position: 1=To the right, 2=To the left, 3=Above, 4=Below
+- menu 2932 - Graphical type: 1=Simple graph, 2=Multiple graph, 3=Planning calendar, 4=XSL, 5=Gantt, 6=Query tool
+- menu 2933 - Default graph: 1=Bars, 2=Lines, 3=Areas, 4=Sectors
+- menu 2934 - Link type: 1=URL, 2=XSL, 3=Html
+- menu 2936 - Default display: 1=Table, 2=Graph
+- menu 2937 - Graphical field type: 1=Value, 2=Default, 3=Description, 4=None
+- menu 2938 - Representation: 1=Default, 2=Bar, 3=Line
+- menu 2939 - Graphical representation: 1=Multiple, 2=Cumulation, 3=Comparison, 4=Month, 5=Week, 6=Day
+- menu 2942 - Download: 1=Not downloaded, 2=All clients, 3=Web services
+- menu 2944 - Action deactivation: 1=None, 2=Standard, 3=Vertical, 4=All
+- menu 2945 - Formula environments: 1=Global variables, 2=Local variables, 3=Functions
+- menu 2953 - Translation priority level: 1=Normal, 2=High, 3=Maximum, 4=Do not translate
+- menu 2955 - And/Or: 1=., 2=And, 3=Or
+- menu 2958 - Tables of criteria: 1=BPs, 2=Prospects/Customers, 3=Addresses, 4=Contacts
+- menu 2959 - And/Or/Not: 1=., 2=and, 3=or, 4=and not, 5=or not
+- menu 2960 - Operators: 1=Equal, 2=Different, 3=Starting with, 4=Containing, 5=Ending with, 6=Greater than, 7=Greater than or equal to, 8=Less than, 9=Less than or equal to, 10=Included between
+- menu 2965 - Types of support of selection: 1=Regrouping of tables, 2=Process, 3=All records, 4=First level link
+- menu 2967 - Type of merge: 1=Use Seagate Crystal Report, 2=Use Microsoft Word, 3=Generated on the client machine, 4=Generated on the server
+- menu 2971 - Base record source: 1=Manual creation, 2=Split, 3=Shipment validation, 4=Invoice validation, 5=Warranty request, 6=Manual modification of the installation, 7=Sales return, 8=Loan return
+- menu 2972 - Installation type: 1=End user, 2=Reseller, 3=Wholesaler, 4=In stock, 5=Rejected
+- menu 2974 - Re-evaluation aids: 1=Index development, 2=Mathematical formula
+- menu 2976 - Service contract categories: 1=Warranty, 2=Meeting, 3=Maintenance, 4=By points
+- menu 2977 - Service contract source: 1=Manual creation, 2=Sales order, 3=Sales shipment, 4=Sales invoice, 5=Warranty request, 6=Service contract duplication, 7=Points credit
+- menu 2978 - Invoicing method: 1=Pre-invoicing (term to mature), 2=Post-invoicing (over due term)
+- menu 2979 - Re-evaluation method: 1=Post re-evaluation, 2=Pre re-evaluation
+- menu 2981 - Include/Exclude: 1=Exclude, 2=Include
+- menu 2982 - Service request source: 1=Manual creation, 2=Maintenance plan
+- menu 2983 - Base type: 1=Listed base, 2=Filtered base
+- menu 2984 - Type of product: 1=Other, 2=Part, 3=Labor, 4=Expenses, 5=Service contract
+- menu 2985 - Global request coverage: 1=Totally covered, 2=Partially covered, 3=Not covered
+- menu 2986 - After-sales service departments: 1=Units, 2=Days, 3=Hours, 4=Minutes, 5=Other
+- menu 2987 - Type of After-sales services employee: 1=Internal contact, 2=External service provider
+- menu 2988 - Assignment type SRE: 1=According to market sector, 2=Dispatching, 3=Queue, 4=Nominal, 5=Person on the base, 6=External service provider
+- menu 2989 - Invoicing type: 1=According to coverage, 2=Always invoiced, 3=Never invoiced
+- menu 2990 - Periodicity type: 1=Recurrance, 2=Value check, 3=Entry point
+- menu 2991 - Supplementary invoicing: 1=According to contract due dates, 2=On closing of the service request
+- menu 2992 - Task link: 1=None, 2=Service Request, 3=Mass mailing, 4=Call campaign, 5=Trade show, 6=Media campaign, 7=Follow-up campaign, 8=Marketing campaign
+- menu 2993 - Call origin: 1=Manual creation, 2=Mass mail, 3=Call campaign, 4=Trade show, 5=Media campaign, 6=Marketing campaign
+- menu 2994 - Appointments origins: 1=Manual creation, 2=Mass mail, 3=Call campaign, 4=Trade show, 5=Media campaign, 6=Marketing campaign
+- menu 2995 - Project origins: 1=Manual creation, 2=Mass mail, 3=Call campaign, 4=Trade show, 5=Media campaign, 6=Service Request, 7=Marketing campaign
+- menu 2996 - Action origins: 1=Manual creation, 2=Agenda
+- menu 2997 - Resource reservation origin: 1=Manual creation, 2=Appointment, 3=After-sales service action
+- menu 2998 - Execution type: 1=Global, 2=By base
+- menu 2999 - Include/Exclude: 1=Exclude non-listed components, 2=Include non-listed components
+- menu 3000 - test cp: 1=Exclude non-listed products, 2=Include non-listed products
+- menu 3001 - Inclusive/Exclusive: 1=Exclude non-listed labor, 2=Include non-listed labor
+- menu 3002 - Inclusive/Exclusive: 1=Exclude the expenses not listed, 2=Include the expenses not listed
+- menu 3003 - Global request coverage: 1=Totally covered, 2=Partially covered, 3=Not covered, 4=Covered by service contract, 5=Covered by sales order, 6=Covered commercially, 7=Covered by direct invoicing
+- menu 3004 - Service request invoicing: 1=Non-invoicable, 2=Invoicable, 3=Invoiced
+- menu 3010 - Warranty voucher source: 1=Sales order, 2=Sales delivery, 3=Sales invoice
+- menu 3013 - Points report: 1=Mobilized, 2=Consumed
+- menu 3017 - Points type: 1=Fixed, 2=Supplementary
+- menu 3020 - CRM Entry transactions: 1=Base, 2=Service request, 3=Service response, 4=Hotline planning calendar
+- menu 3021 - Mass mailing type: 1=BPs, 2=Contacts
+- menu 3028 - Escalation type: 1=Hidden, 2=Archived, 3=Incremental
+- menu 3037 - Origin type: 1=Manual, 2=Generated, 3=Synchronization, 4=Import
+- menu 3040 - Lead status: 1=Disqualified, 2=On hold, 3=Qualified, 4=Contacted
+- menu 3041 - Level of interest: 1=Low, 2=Medium, 3=Strong
+- menu 3042 - Lead link: 1=None, 2=Mass mailing, 3=Call campaign, 4=Trade show, 5=Media campaign, 6=Marketing campaign
+- menu 3049 - Data type: 1=Alphanumeric, 2=Numeric, 3=Date
+- menu 3050 - CRM activities entry trxs: 1=CRM activities planning calendar
+- menu 3051 - Clause selection: 1=Criteria, 2=Formula, 3=Criteria and formula
+- menu 3100 - Depreciation contexts: 1=Finance, 2=Context 2, 3=Context 3, 4=Context 4, 5=Context 5, 6=Context 6, 7=Context 7, 8=Context 8, 9=Context 9, 10=Context 10, 11=Context 11
+- menu 3101 - Depreciation plans: 1=Accounts, 2=Finance, 3=Minimum, 4=Source, 5=Reevaluation 76, 6=IAS/IFRS, 7=Technical, 8=Reprocessed, 9=Subsidy, 10=Free 1, 11=Free 2, 12=Free 3, 13=Free 4, 14=Free 5, 15=Free 6, 16=All
+- menu 3102 - Financial year type: 1=Closed, 2=Current, 3=Next, 4=Next +1
+- menu 3103 - Depreciation method type: 1=Free, 2=Standard
+- menu 3104 - Depreciation start date type: 1=On the specified day, 2=From first day of the month, 3=From first day of the next month, 4=From first day of investment FY, 5=From first day of next FY, 6=From first day of investment half-year
+- menu 3105 - Type of prorata temporis: 1=Day, 2=Month, 3=Week, 4=1/2 year, 5=1/2 month, 6=1/2 quarter
+- menu 3106 - Depreciation basis type: 1=Balance sheet value, 2=Net value, 3=Balance sheet value/Depreciation duration, 4=Net value/residual duration, 5=Net value/total duration, 6=Balance sheet value - salvage value, 7=Net value - Salvage value, 8=Net value/residual duration
+- menu 3107 - Original entry supplement: 1=Purchase invoices, 2=BP invoices, 3=Journal, 4=Payment, 5=Import, 6=Stock issue
+- menu 3109 - Event types: 1=Action, 2=Action cancellation
+- menu 3110 - Calculation - closing status: 1=Not calculated, 2=calculated, 3=Closed
+- menu 3113 - Direct associations: 1=Asset group, 2=Accounting code
+- menu 3114 - Set up option type: 1=Replacement of constant rate, 2=Increase of constant rate, 3=Decrease of constant rate, 4=Replacement of minimum value, 5=Replacement of ceiling value, 6=Replacement of exceptional depreciation, 7=Option Belgian mode, 8=Option Italian mode, 9=Option German mode, 10=Option straight-line mode
+- menu 3115 - Reference date type: 1=Depreciation start date, 2=Asset purchase date, 3=Reference date for the calculation of the +/- value, 4=No reference date
+- menu 3116 - Free miscellaneous method code: 1=None, 2=Rate by annuity, 3=Basis * fixed tax, 4=Basis / fixed tax, 5=Basis * monthly tax, 6=Depreciation basis %, 7=Previous FY end net value %, 8=Balance sheet value/Depreciation duration, 9=Net value / residual duration, 10=To be reintegrated in first FY, 11=To be reintegrated in first period, 12=Simplification rule, 13=Without prorata calculation, 14=Investment financial year prorata, 15=Investment withdrawal financial year prorata, 16=Prorata calculation in months, 17=Prorata calculation in days, 18=Net value/Residual duration, 19=% net value at the end of the previous FY, 20=Depreciation basis/depreciation duration, 21=Priority to the rate
+- menu 3117 - Invoice type: 1=Invoice, 2=Credit note, 3=Pre-payment, 4=To be received, 5=Return, 6=Early discount/late charge, 7=Stock issue
+- menu 3118 - Migration parameters: 1=Temporary, 2=Final, 3=To be defined
+- menu 3121 - Original depreciation basis: 1=CoA valuation, 2=IAS valuation, 3=Subsidy amount, 4=To be entered
+- menu 3122 - Distribution key - split: 1=Group, 2=Accounting code, 3=CoA account, 4=IFRS account
+- menu 3123 - Free amount currency: 1=Company, 2=Object
+- menu 3124 - Deprec end and disp date rule: 1=On the specified day, 2=From the last day of the previous month, 3=From the last day of the current month, 4=From the last day of the previous financial year, 5=From the last day of the current financial year, 6=From the last day of the previous half year, 7=From the last day of the current half year, 8=From the previous day, 9=From the first day of the next half year, 10=From the last day of the current quarter
+- menu 3127 - Flow tracking type: 1=Account group, 2=Account
+- menu 3128 - Flow classes: 1=Intangible, 2=Tangible, 3=In process, 4=Financial
+- menu 3129 - Upd fields - split: 1=, 2=Description 1, 3=Description 2, 4=Group, 5=Accounting code, 6=Free field 1, 7=Free field 2, 8=Free field 3, 9=Free field 4, 10=Free field 5, 11=Free field 6, 12=Free field 7, 13=Free field 8, 14=Free field 9, 15=Free field 10
+- menu 3130 - Accounting date rules: 1=Automatic Journal, 2=Start of processed period, 3=End of processed period, 4=Start of processed FY, 5=End of processed FY, 6=Start of current period, 7=End of current period, 8=Entered date, 9=Specific date
+- menu 3131 - Intra-group sale status: 1=In preparation, 2=Processed issues, 3=Processed receipts
+- menu 3132 - TP/TF basis rule target company: 1=Renewal, 2=Max (Contribution value / 80% srf tax basis), 3=80% source tax basis, 4=Contribution value, 5=50% source tax basis, 6=Contribution value
+- menu 3133 - Purchase/In service date rule: 1=Sale effective date, 2=Renewal date source company
+- menu 3134 - Target company asset status: 1=Second-hand, 2=Renewal of previous status
+- menu 3138 - Target comp deprec duration rule: 1=Remaining duration, 2=Previous renewal duration
+- menu 3141 - Business object: 1=Expense, 2=Asset, 3=Subsidy, 4=Lease contract, 5=Physical asset count, 6=Physical asset, 7=Concession
+- menu 3151 - Fixed asset type: 1=Tangible, 2=Intangible, 3=Goodwill, 4=Financial, 5=Investment properties, 6=Biological assets
+- menu 3152 - Asset status at purchase: 1=New, 2=Second-hand
+- menu 3153 - Insurance type: 1=Not insured, 2=Other insurance, 3=Building insurance
+- menu 3154 - Insurance calc basis: 1=Professional tax basis, 2=Reference basis +/- value, 3=CoA receipt value, 4=CoA balance sheet value
+- menu 3155 - Lease contract source: 1=New contract, 2=Transferred contract
+- menu 3156 - Asset stability type: 1=Fixed, 2=General installation, 3=Mobile
+- menu 3157 - Asset receipt nature: 1=Purchase, 2=Internal production, 3=Partial provision for asset, 4=Merger, 5=Split, 6=Intra-group sales, 7=Lease buyback
+- menu 3158 - Asset nature for the TP/TF: 1=BNPTF, 2=BPTF, 3=Ex-field
+- menu 3159 - Disposal reason: 1=Sales, 2=Scrap, 3=Intra-group sale, 4=Stolen or disappeared, 5=Lease contract end, 6=Partial acquisition, 7=Merger, 8=Split, 9=Lease contract end, 10=Cancelled contract, 11=Imported asset, 12=Renewal, 13=Transferred to grantor
+- menu 3160 - VAT rule for dispoal: 1=1/5th rule, 2=1/10th rule, 3=1/20th rule, 4=No VAT adjustment, 5=Deductible VAT amount adjustment: increase, 6=Deductible VAT amount adjustment: decrease
+- menu 3161 - Period status: 1=Not open, 2=Current, 3=Open, 4=Closed
+- menu 3162 - Object creation origin: 1=Transactional entry, 2=Split, 3=Return, 4=Interface, 5=Others, 6=Intra-group sale, 7=Automatic creation, 8=Expense grouping
+- menu 3163 - Intra-group sale fiscal rule: 1=Favorable rule, 2=Ordinary rule, 3=Others
+- menu 3164 - Vehicle tax rate: 1=Full rate, 2=50% exempt, 3=Total exemption
+- menu 3165 - Tax rule: 1=Fiscal engine size (HP), 2=CO2 emission rate
+- menu 3166 - Lease contract nature: 1=Fixed assets, 2=Movable assets
+- menu 3167 - Fuel type: 1=Fuel and similar products, 2=Diesel and similar products, 3=Electric, 4=Other
+- menu 3168 - Specific deprec. rules: 1=None, 2=25% help, 3=50% help, 4=Depreciation charge x2, 5=Cancel depreciation charge x2, 6=30 % depreciation increase [17/10/01-31/03/02], 7=30 % rate increase (Wood), 8=Energy saving, 9=1. increase of the degressivity coef., 10=Press (39 bis), 11=Dedicated to research, 12=1st FY counts for 1 year, 13=Software 12 months, 14=Depreciation adjust./reint., 15=Cancel amortization expense, 16=Based on Period, 17=Based on FY, 18=Bonus, 19=40% deduction [15/04/15-14/04/17]
+- menu 3169 - Methd chge variance recovery: 1=Carryforward, 2=Exceptional depre fiscal year, 3=Exceptional depre period, 4=Charge fiscal year, 5=Charge period
+- menu 3171 - Asset holding type: 1=Owned, 2=Rented, 3=Leased, 4=Provisional, 5=Concession, 6=Template, 7=Cancelled
+- menu 3172 - Intra-group sale type: 1=Partial transfer of assets, 2=Merger, 3=Split, 4=Intra-group sales
+- menu 3173 - IGS disposal status: 1=Asset to be issued, 2=Issued asset to be modified, 3=Asset to be cancelled
+- menu 3175 - Disposal reason: 1=Not disposed, 2=Stock count issue, 3=Sale, 4=Scrap, 5=Theft or disappearance
+- menu 3181 - Subsidy type: 1=Fixed rate, 2=Percentage, 3=Capped percentage
+- menu 3187 - Depreciation priority rule: 1=Depreciation rate, 2=Depreciation end date
+- menu 3190 - Empty or Main: 1=Empty, 2=Main
+- menu 3192 - Depreciation plan standards: 1=Standard, 2=CRC2002-10, 3=IAS/IFRS
+- menu 3194 - Physical asset count result: 1=Disposal cancelled, 2=Geographic change, 3=Analytical change, 4=Analytical and geographic change, 5=Bar code allocation, 6=Bar code change, 7=Asset not found, 8=Counted asset
+- menu 3211 - Posting type: 1=Actual, 2=Simulation
+- menu 3212 - Date types: 1=Purchase date, 2=First use date, 3=Posting date
+- menu 3213 - Acc. : Source type: 1=Event, 2=Depreciation, 3=Other table, 4=Provisions for renewal, 5=Variance between plans
+- menu 3224 - Lease contract type: 1=Lease, 2=Long term rent, 3=Rent
+- menu 3225 - Subsidy status: 1=In process, 2=Investment complete, 3=Deleted, 4=Totally reintegrated
+- menu 3226 - Lease contract balance sheet line: 1=Land & Construction, 2=Transport equipment, 3=Equipment and tools, 4=IT/office/ furniture equip., 5=Layout and installation
+- menu 3227 - Lease contract status: 1=to be validated, 2=in process, 3=completed, 4=buyback, 5=terminated, 6=sold
+- menu 3228 - Standard depreciation methods: 1=Straight line, 2=Amort./Gross val., 3=German declining, 4=Belgian declining, 5=Declining balance, 6=Spanish declining, 7=French declining, 8=Mixed German declining, 9=Portuguese declining, 10=Mixed Spanish declining, 11=Residual, 12=Forms and molds, 13=Spanish straightline month, 14=Laundry, 15=French straightline, 16=Gradual, 17=Without depreciation, 18=SOFTY, 19=Production unit, 20=Straightline beyond null salvage unit, 21=Portuguese mixed declining, 22=Ordinario / Anticipato, 23=Portuguese Constants, 24=Portuguese Duodecimos, 25=Amort./Net val., 26=Belgian straightline, 27=Moroccan declining, 28=Russian straightline, 29=Russian declining, 30=Russian constant, 31=Russian SOFTY, 32=Russian units, 33=Polish straightline, 34=Polish declining, 35=Romanian straightline, 36=Romanian accelerated, 37=Romanian declining, 38=Spanish straightline day, 39=One period, 40=Prime cost, 41=Diminishing value, 42=Swiss straightline, 43=Swiss declining, 44=Turkish straightline, 45=Turkish declining
+- menu 3229 - Asset status: 1=Autonomous, 2=Principal, 3=Component, 4=Component waiting assignment, 5=Pool, 6=LVA
+- menu 3232 - Deferred depreciation type: 1=None, 2=Loss-making deferred depreciation, 3=Profit-making deferred depreciation, 4=Deferred depreciation reversal, 5=2013 2014 deferred
+- menu 3233 - Accounting referential: 1=Undetermined, 2=Company accounting, 3=Group accounting
+- menu 3234 - Date chosen for reevaluation: 1=Purchase date, 2=Posting date, 3=In service date
+- menu 3235 - Nature chosen for reevaluation: 1=Asset group, 2=Accounting code
+- menu 3236 - Recoding status: 1=To be processed, 2=To be processed (intra-group sale), 3=Processed, 4=Processed (intra-group sale)
+- menu 3237 - Prev code management (recoding): 1=Saved, 2=Inactive, 3=Deleted
+- menu 3239 - Deferred depreciation rule: 1=None, 2=Percentage, 3=No book vs tax deferred depreciation, 4=Reversal on residual duration
+- menu 3253 - Reevaluation method: 1=Coefficient, 2=Index, 3=Market value
+- menu 3266 - Status of the funds: 1=Non generated funds, 2=Provisional funds, 3=Final funds
+- menu 3268 - Method change effective date: 1=Depreciation start, 2=FY start, 3=Period start
+- menu 3269 - Types of VAT update: 1=Creation or integration, 2=Determination of real deduction coefficient, 3=Variation of the deduction coeff over time, 4=Sale not taxed, 5=Transfer of Sector, 6=Taxed sale, 7=Legal modifications of the exclusion rules, 8=Asset becoming used, 9=Asset no longer used, 10=Asset no longer used & issued, 11=Cancellation of coefficient variance in time, 12=Sale cancelled, 13=Cancellation of real deduction coefficient determination
+- menu 3273 - Reevaluation effective date: 1=FY start, 2=Period start, 3=FY end
+- menu 3274 - Applicable rule upon disposal: 1=Disposal on the specified day, 2=Disposal at the end of the previous month, 3=Disposal at the end of the current month, 4=Disposal at the end of the previous FY, 5=Disposal at the end of the current FY, 6=Disposal at the end of the previous half-year, 7=Disposal at the end of the current half-year, 8=No depreciation charge on the disposal day, 9=1st asset from the concession sold, 10=Excep. deprec. = Net value
+- menu 3275 - Pending movement: 1=None, 2=Disposal, 3=Disposal cancellation, 4=Geographic transfer, 5=Geographic transfer cancellation
+- menu 3276 - Base rule +/- value comp.target: 1=Contribution value, 2=Renewal to previous basis
+- menu 3278 - Src comp sale price calcul: 1=NV at effective date for spec. plan, 2=GV of specified plan, 3=Distrib. Envelope according to spec plan NV, 4=Distrib. Envelope according to spec plan GV, 5=Sale price identical to that entered by user
+- menu 3280 - Impairment loss type: 1=Exceptional, 2=A voir
+- menu 3281 - Context recalculation: 1=No, 2=Yes, 3=Yes after closing
+- menu 3282 - Concession management mode: 1=1st concession asset, 2=Renewal
+- menu 3283 - Provision type: 1=Tax, 2=Account
+- menu 3284 - Concession status: 1=Under preparation, 2=Active, 3=Ended
+- menu 3285 - Type of asset under concession: 1=Out-of-network, 2=Networked
+- menu 3286 - Type of concession input: 1=1st concession asset, 2=Renewal
+- menu 3287 - Supply by: 1=Grantor, 2=Grantee
+- menu 3289 - Depreciation stop status: 1=No stop, 2=Improvement, 3=Preservation, 4=Stopped for improvement, 5=Stopped for preservation, 6=Restarted after improvement, 7=Restarted after preservation, 8=Suspend, 9=Stopped, 10=Restarted after extension, 11=Restarted, 12=Extension deprec, 13=Suspended for extension
+- menu 3291 - Seasonality type: 1=Decreasing, 2=Increasing
+- menu 3293 - Movement type: 1=Disposal, 2=Transfer, 3=Allocation change, 4=Method change, 5=Modification, 6=All
+- menu 3294 - Movement status: 1=To be processed, 2=Import in progress, 3=Archived, 4=Rejected
+- menu 3295 - Movement origin: 1=Import, 2=Screen entry, 3=Other
+- menu 3296 - Main expense: 1=Upper excl tax amount, 2=Most recent invoice date, 3=Oldest invoice date, 4=Most recent accounting date, 5=Oldest accounting date
+- menu 3297 - LVA management: 1=None, 2=LVA, 3=Pool
+- menu 3299 - Distribution rule: 1=Period distribution, 2=1st available period
+- menu 3303 - Invoicing element: 1=Distribution based on invoicing element, 2=No distribution
+- menu 3601 - 1099 form: 1=None, 2=MISC, 3=INT, 4=DIV, 5=NEC
+- menu 3603 - Box type: 1=Amount, 2=Text, 3=Checkbox
+- menu 3605 - Amounts to be displayed: 1=Balances in ledger currency, 2=Movements and balances in ledger currency, 3=Balances in transaction currency, 4=Movements and balances in transaction currency
+- menu 3606 - Amounts to be displayed: 1=Balances, 2=Movements and balances
+- menu 3611 - Building location: 1=Located on national territory, 2=Located in Basque Country or Navarre, 3=Without cadastre reference, 4=Located abroad
+- menu 3614 - Report type VAT reporting: 1=VAT declaration, 2=Recapitulative statement
+- menu 3618 - Financial Statement Pages: 1=Main, 2=Annex R-1, 3=Annex R-2
+- menu 3619 - Receipt communication status: 1=Entered, 2=Printed, 3=Communicated
+- menu 3620 - Receipt status: 1=Normal receipt, 2=Receipt canceled
+- menu 3621 - Allocation type: 1=None, 2=Account
+- menu 3622 - Belgian bank statement format: 1=CODA, 2=Manual
+- menu 3623 - 281.5 category: 1=Commission brokerage rebate, 2=Fees or sessional payments, 3=Benefits in kind, 4=Expenses incurred on behalf of the beneficiary
+- menu 3624 - 281.5 Type of declared amounts: 1=Invoiced amounts, 2=Paid amounts
+- menu 3626 - Factoring type: 1=Standard, 2=Recourse, 3=No recourse
+- menu 3627 - Format: 1=Fixed, 2=Variable
+- menu 3629 - Direct debit type: 1=CORE, 2=B2B, 3=COR1
+- menu 3630 - Payment type: 1=Recurring, 2=One-off
+- menu 3631 - Mandate status: 1=Initial, 2=Approved, 3=Adjourned, 4=Revoked, 5=Expired, 6=Closed
+- menu 3632 - Dispute reason: 1=Revocation, 2=Reject, 3=Return
+- menu 3636 - Cash forecast types: 1=Purchase requests, 2=Purchase contracts, 3=Purchase orders, 4=Receipts notes, 5=Quotes, 6=Sales orders, 7=Sales contracts, 8=CRM contracts, 9=Packing slips, 10=Leasing, 11=Reserved, 12=Reserved, 13=Reserved, 14=Reserved, 15=Reserved, 16=Reserved, 17=Reserved, 18=Reserved, 19=Reserved, 20=User type 1, 21=User type 2
+- menu 3637 - Forecast status: 1=Active, 2=Inactive, 3=Modified, 4=Obsolete
+- menu 3638 - Frequency: 1=Weekly, 2=Monthly, 3=First, 4=Last
+- menu 3639 - Fiscal year or period: 1=Full fiscal year, 2=Period
+- menu 3640 - Swiss VAT codes: 1=200, 2=205, 3=220, 4=221, 5=225, 6=230, 7=235, 8=280, 9=300, 10=301, 11=302, 12=310, 13=311, 14=312, 15=340, 16=341, 17=342, 18=380, 19=381, 20=382, 21=400, 22=405, 23=410, 24=415, 25=420, 26=900, 27=910
+- menu 3641 - Type of economic reason: 1=Not used, 2=Service, 3=Capital flow, 4=Transit trade
+- menu 3642 - Country address code: 1=BP address, 2=Payment address
+- menu 3643 - Currency: 1=Original transaction currency, 2=Ledger currency
+- menu 3644 - Process type: 1=Payments, 2=Open items, 3=Both
+- menu 3645 - Orientation: 1=Credit=incoming and debit=outgoing, 2=Credit=outgoing and debit=incoming
+- menu 3646 - Company activity type: 1=Other, 2=Retail
+- menu 3649 - Indicateur Operations: 1=Create, 2=Delete, 3=Modify
+- menu 3650 - PBD account type: 1=Internal bank account, 2=External bank account, 3=Other external account, 4=Compensation account, 5=Without account transactions
+- menu 3651 - VAT box type: 1=Title, 2=Detail, 3=Total, 4=Off declaration
+- menu 3652 - VAT group: 1=Issue operation (=collected -tax amount), 2=Taxes due (=collected VAT), 3=Receipt operations (=deductible -tax amount), 4=Deductible taxes (=deductible VAT)
+- menu 3656 - Formula condition: 1=None, 2=Positive balance, 3=Negative balance
+- menu 3658 - Bank charge bearer: 1=Shared, 2=Beneficiary, 3=Applicant
+- menu 3659 - Instruction keys DTA: 1=None, 2=Salary, Pension
+- menu 3660 - Instruction keys EZAG: 1=None, 2=Personally, 3=Urgent
+- menu 3661 - Swiss type codes: 1=Non-ISR, 2=Print, 3=DTA, 4=EZAG, 5=ISO
+- menu 3662 - Swiss payment types: 1=Normal, 2=DTA, 3=EZAG, 4=ISO
+- menu 3664 - Related company settings: 1=Not related, 2=Voting rights >= 10%, 3=Voting rights < 10%
+- menu 3666 - Assessment method: 1=None, 2=By journal entry, 3=By account balance
+- menu 3667 - Type: 1=Data, 2=Segment ID, 3=Field ID, 4=Constant
+- menu 3668 - Control: 1=No control, 2=Debit/Credit, 3=Bank account ID
+- menu 3669 - Search destination: 1=Sage X3, 2=File
+- menu 3670 - Begin search at: 1=First character, 2=Last character, 3=Start position
+- menu 3671 - Bank statement import: 1=Document no., 2=Source document no.
+- menu 3672 - Database operation: 1=Unspecified, 2=Create, 3=Update
+- menu 3673 - Merge description field: 1=No, 2=Always, 3=Second pass
+- menu 3674 - Use search term list: 1=No, 2=First pass, 3=Last pass
+- menu 3675 - Statement status: 1=Not matched, 2=Matched, 3=Validated, 4=Reconcile
+- menu 3676 - Tax Basis: 1=1A, 2=1B
+- menu 3677 - File type: 1=MT940, 2=CSV, 3=CAMT, 4=BAI
+- menu 3678 - Reminder frequency types: 1=Threshold, 2=Interval
+- menu 3682 - Tax credit to recover: 1=None, 2=Request reimbursement, 3=Carry-forward excess
+- menu 3683 - Field type: 1=Alphanumeric, 2=Numeric, 3=Date
+- menu 3684 - Tax code control: 1=Inactive, 2=Authorization, 3=Restriction
+- menu 3685 - Webservice for EU VAT ID check: 1=None, 2=EU, 3=Germany
+- menu 3686 - Waste disposal management: 1=Germany, 2=Austria
+- menu 3687 - Waste disposal management: 1=Product group, 2=Packing material, 3=Pack size, 4=Tariff type, 5=Tariff category
+- menu 3689 - Header / Line: 1=Line detail, 2=Header, 3=Line
+- menu 3690 - Payment status: 1=Not validated, 2=Validated, 3=Partially validated, 4=Manually completed
+- menu 3694 - Flow type: 1=Standard, 2=Reconciliation only
+- menu 3695 - Type code: 1=Status, 2=Summary, 3=Detail
+- menu 3696 - Sign: 1=Credit, 2=Debit
+- menu 3698 - Reporting period: 1=Monthly, 2=Quarterly
+- menu 3699 - Reporting status: 1=In review, 2=Validated, 3=Closed
+- menu 3700 - Sage 50 import transcribe: 1=Site, 2=Account, 3=Employee dimension, 4=Cost centre dimension, 5=Department dimension, 6=A/c code dimension
+- menu 3703 - Reasons for Non-conformance: 1=- Select -, 2=Nonfulfillment of requirement, 3=Potential Nonconformity, 4=Customer feedback, 5=Observation during internal audit
+- menu 3706 - VAT adjustment level: 1=Company level, 2=Entity level
+- menu 3715 - Origin: 1=- Select -, 2=Customer, 3=Supplier, 4=Internal, 5=External
+- menu 3716 - Root cause: 1=- Select -, 2=Late delivery, 3=Buyer communication error, 4=Functionality, 5=Sub-contract operation non-conformance, 6=Warranty, 7=Aged inventory, 8=Product damaged, 9=Wrong parts, 10=Missed operation, 11=Missing item, 12=Incorrect raw material, 13=Operator error, 14=Manufacturing/assembly process, 15=Packing, 16=Incorrect BOM, 17=Material substitution, 18=Unable to determine root cause, 19=Other
+- menu 3717 - Probable cause: 1=- Select -, 2=Supplier issue, 3=Transport issue, 4=Production issue, 5=Inventory issue, 6=Sales issue, 7=Design issue, 8=Other
+- menu 7713 - Sold products line origin: 1=Manual, 2=Operations, 3=Product requirements, 4=Budget lines, 5=Project
+- menu 7715 - Sold products line prd grp lvl: 1=Not grouped, 2=Project, 3=Budget code, 4=Task code
+- menu 7718 - Sold products document type: 1=Quote, 2=Sales order, 3=Direct invoice
+- menu 7729 - Comsumption mode: 1=Direct delivery, 2=Sales order
+- menu 7731 - Delivery status: 1=Not delivered, 2=Partially delivered, 3=Delivered, 4=No deliverable
+- menu 7800 - Parameter type: 1=Single, 2=Range, 3=Multiple
+- menu 7801 - Web Service element: 1=Mask, 2=Element, 3=Group, 4=Table
+- menu 7806 - Type of non-standard file: 1=Unspecified, 2=Text, 3=Image, 4=Office, 5=Word, 6=Excel, 7=PowerPoint
+- menu 7810 - Link order for helps: 1=Before, 2=After
+- menu 7811 - Contact type: 1=Standard, 2=Lead
+- menu 7812 - Authorizations between folders: 1=None, 2=Read, 3=All
+- menu 7815 - Selection operators: 1=Indifferent, 2=Equal to, 3=Different, 4=Greater than, 5=Greater than or equal to, 6=Less than, 7=Less than or equal to, 8=Like, 9=Modified, 10=Increased, 11=Reduced
+- menu 7818 - Print types: 1=Reports, 2=Queries, 3=SQL queries, 4=Exports, 5=Business objects
+- menu 7820 - Updating type: 1=Incremental, 2=Cancels and replaces, 3=Incremental Audit
+- menu 7821 - Field type: 1=Measurement, 2=Information, 3=Dimension, 4=Technical
+- menu 7823 - Join option: 1=Inner, 2=Left outer, 3=Right outer
+- menu 7824 - Join type: 1=Mandatory, 2=Shortcut
+- menu 7825 - Aggregation level: 1=Day, 2=Week, 3=10-day period, 4=Half-month, 5=Month, 6=Quarter, 7=Half-year, 8=Year
+- menu 7826 - Field type: 1=Dimension, 2=Information, 3=Parent dimension, 4=Technical
+- menu 7831 - Subdivision entry: 1=None, 2=Subdivision 1, 3=Subdivision 2
+- menu 7832 - Error type: 1=Text does not exist, 2=Text without its translation, 3=Duplicates, 4=Translated text
+- menu 7833 - BO prompt type: 1=Simple, 2=Multiple
+- menu 7835 - Authentication mode: 1=Enterprise, 2=LDAP, 3=Windows AD, 4=Windows NT
+- menu 7836 - Type of gadget: 1=Gadget, 2=Menu, 3=Separator
+- menu 7838 - Type of parameters: 1=Character, 2=Integer, 3=Boolean, 4=Numeric, 5=Date, 6=Text, 7=Enumeration
+- menu 7840 - Customization version: 1=Version 1, 2=Version 2, 3=Version 3
+- menu 7843 - Data type: 1=Date, 2=Char, 3=Integer, 4=Decimal, 5=Text file, 6=Image file
+- menu 7844 - Specific flag: 1=Standard, 2=Vertical, 3=Specific
+- menu 7846 - Field type: 1=Identifier, 2=Identifier 2, 3=Record, 4=Parameter
+- menu 7848 - Function navigation: 1=Authorized, 2=Prohibited to this function, 3=Prohibited from this function, 4=Prohibited in all cases
+- menu 7849 - Sub-program types: 1=Miscellaneous, 2=Control, 3=Entry, 4=Selection, 5=Update, 6=Xsl, 7=Status, 8=Info search, 9=Calculation
+- menu 7854 - Range: 1=No, 2=Start range, 3=End range
+- menu 7855 - Processes: 1=Process, 2=Menu
+- menu 7858 - Events: 1=Connection, 2=Function, 3=Others
+- menu 7859 - Levels: 1=Level 1, 2=Level 2, 3=Level 3
+- menu 7860 - Action type: 1=Miscellaneous, 2=Control, 3=Entry, 4=Selection, 5=Update, 6=Information search, 7=Calculation
+- menu 7862 - Appointment type: 1=Pending, 2=Under progress, 3=Ended, 4=Canceled, 5=Error
+- menu 7864 - Message importance: 1=Low, 2=Normal, 3=High
+- menu 7865 - Range type: 1=Object, 2=Message, 3=Miscellaneous table, 4=Field
+- menu 7866 - X3 products: 1=All, 2=Supervisor, 3=X3, 4=Geode, 5=Payroll
+- menu 7867 - Development level: 1=Standard, 2=Add-on, 3=Vertical, 4=Specific
+- menu 7868 - Record type: 1=Header, 2=Line, 3=Footer
+- menu 7869 - Template type: 1=Structures, 2=Mask
+- menu 7870 - Archiving event type: 1=Object, 2=Report, 3=Export, 4=Log, 5=Excel, 6=Manual
+- menu 7871 - Attachment type: 1=File, 2=Image file in database, 3=Text file in database
+- menu 7877 - Type de mise au point: 1=In progress, 2=Debug, 3=Other session
+- menu 7880 - Prototype format: 1=Aucun, 2=$email, 3=$phone, 4=$combo, 5=$radios, 6=TT, 7=password
+- menu 7881 - Type: 1=Simple, 2=Reference, 3=Rich media
+- menu 7882 - Type: 1=Char, 2=Integer, 3=Decimal, 4=Date
+- menu 7883 - Patch status: 1=Pending, 2=In progress, 3=Completed, 4=Not installed, 5=Error, 6=Completed with errors
+- menu 7884 - Products: 1=Sage X3, 2=Sage X3 Warehousing, 3=Sage X3 HR & Payroll, 4=Sage X3 Fixed Assets
+- menu 7885 - Technical origin: 1=Classic pages, 2=Classes
+- menu 7906 - Migration stages: 1=Initialization, 2=Common data, 3=Module, 4=Post-migration
+- menu 7910 - Web site type: 1=None, 2=Web sites, 3=Web pages, 4=Web site profiles, 5=Field tokens, 6=Entity, 7=Block tokens, 8=Conditioned block tokens, 9=Web action, 10=Dynamic links, 11=Special field tokens, 12=Web message, 13=Interface, 14=Advanced param., 15=List of values
+- menu 7911 - Protocol: 1=Http (standard), 2=Https (secure), 3=Web site
+- menu 7912 - Interface type: 1=Generated access to Table, 2=Sub-program access, 3=Left list access, 4=Generated access to View, 5=Free, 6=Free, 7=Free, 8=Free, 9=Free, 10=Free, 11=Free, 12=Free, 13=Free, 14=Free, 15=Free, 16=Free, 17=Free, 18=Free, 19=Free, 20=Sub-program action, 21=Object action
+- menu 7913 - Entity type: 1=Action, 2=Session, 3=Data access
+- menu 7914 - Block type: 1=Single-record, 2=Multi-record
+- menu 7915 - Display options w/o rec.: 1=Do not display anything, 2=HTML code without token, 3=HTML code with token
+- menu 7916 - Selection type: 1=None, 2=Code, 3=Query, 4=Last link clicked, 5=Detail
+- menu 7917 - Sort type: 1=None, 2=Field, 3=Random
+- menu 7918 - Action flow management: 1=Web site field, 2=Customization, 3=XSL processor
+- menu 7919 - Conditioned block: page crit: 1=First page, 2=Last page, 3=Other pages
+- menu 7920 - Object WS action: 1=Read, 2=Create, 3=Delete, 4=Save, 5=Other
+- menu 7921 - Conditioned block: action: 1=Hide block, 2=Dispaly block
+- menu 7922 - Conditioned block: criteria: 1=Formula, 2=Empty Block, 3=Paging of a Block, 4=Last dynamic link used, 5=Previous page, 6=User logged in, 7=Profile, 8=Empty gadget, 9=Selected line, 10=Current page
+- menu 7924 - Selection opt. main block: 1=Replaces the selection of the main block, 2=Is added to the selection of the main block, 3=Is added to all the current selections
+- menu 7925 - Value type: 1=Constant, 2=Field token, 3=Web field, 4=Web field mandat., 5=Access code, 6=Entry, 7=Block
+- menu 7926 - Selection operators: 1=Indifferent, 2==, 3=<>, 4=>, 5=>=, 6=<, 7=<=, 8=Starts with, 9=Contains, 10=Does not contain
+- menu 7927 - Form status: 1=To be processed, 2=Processed, 3=Reserved, 4=Reserved, 5=Reserved, 6=Reserved, 7=Reserved, 8=Reserved, 9=Reserved, 10=Reserved, 11=Reserved, 12=Reserved, 13=Reserved, 14=Reserved, 15=Reserved, 16=Reserved, 17=Reserved, 18=Reserved, 19=Reserved
+- menu 7931 - Web site field type: 1=Text, 2=Integer, 3=Decimal, 4=Currency, 5=Date, 6=Image access, 7=Attachment access, 8=Local menu, 9=Flash
+- menu 7933 - Interface optimization: 1=None, 2=No text file, 3=No image file, 4=Neither text file nor image file, 5=Gadget, 6=Photo, 7=Reserved, 8=Reserved, 9=Reserved, 10=Reserved, 11=Reserved, 12=Reserved, 13=Reserved, 14=Reserved, 15=Reserved, 16=Reserved, 17=Reserved, 18=Reserved, 19=Reserved
+- menu 7934 - List of values - Description: 1=Message, 2=Miscellaneous table
+- menu 7935 - List of values - Management: 1=Manual, 2=Automatic, 3=Batch
+- menu 7936 - Action type: 1=Standard, 2=Login, 3=Logout
+- menu 7937 - Root directory: 1=None, 2=HTML design, 3=X_FILAPP, 4=X_FILES, 5=X_TEND
+- menu 7939 - Directory location: 1=X3 server, 2=Web X3 server
+- menu 7940 - Object parameter type: 1=Keys, 2=Data
+- menu 7941 - Field use type: 1=Standard, 2=Constant, 3=Description
+- menu 7942 - Http cache expires: 1=Never, 2=Always, 3=1 mn, 4=15 mns, 5=30 mns, 6=1 h, 7=4 hs, 8=8 hs, 9=12 hs, 10=1 day, 11=7 days
+- menu 7943 - Paper sizes: 1=Default, 2=Report preference, 3=Printer preference, 4=Reserved, 5=Reserved, 6=Reserved, 7=Reserved, 8=Letter 8 1/2 x 11 in, 9=Letter Small 8 1/2 x 11 in, 10=Tabloid 11 x 17 in, 11=Ledger 17 x 11 in, 12=Legal 8 1/2 x 14 in, 13=Statement 5 1/2 x 8 1/2 in, 14=Executive 7 1/4 x 10 1/2 in, 15=A3 297 x 420 mm, 16=A4 210 x 297 mm, 17=A4 Small 210 x 297 mm, 18=A5 148 x 210 mm, 19=B4 (JIS) 250 x 354, 20=B5 (JIS) 182 x 257 mm, 21=Folio 8 1/2 x 13 in, 22=Quarto 215 x 275 mm, 23=10x14 in, 24=11x17 in, 25=Note 8 1/2 x 11 in, 26=Envelope #9 3 7/8 x 8 7/8, 27=Envelope #10 4 1/8 x 9 1/2, 28=Envelope #11 4 1/2 x 10 3/8, 29=Envelope #12 4 \276 x 11, 30=Envelope #14 5 x 11 1/2, 31=C size sheet, 32=D size sheet, 33=E size sheet, 34=Envelope DL 110 x 220mm, 35=Envelope C5 162 x 229 mm, 36=Envelope C3 324 x 458 mm, 37=Envelope C4 229 x 324 mm, 38=Envelope C6 114 x 162 mm, 39=Envelope C65 114 x 229 mm, 40=Envelope B4 250 x 353 mm, 41=Envelope B5 176 x 250 mm, 42=Envelope B6 176 x 125 mm, 43=Envelope 110 x 230 mm, 44=Envelope Monarch 3.875 x 7.5 in, 45=6 3/4 Envelope 3 5/8 x 6 1/2 in, 46=US Std Fanfold 14 7/8 x 11 in, 47=German Std Fanfold 8 1/2 x 12 in, 48=German Legal Fanfold 8 1/2 x 13 in
+- menu 7944 - Migration statuses: 1=Pending, 2=In progress, 3=Completed, 4=Completed with errors, 5=Interrupted, 6=Pending interruption, 7=Pending stop, 8=Launched, 9=Stopped, 10=Blocked, 11=Bypassed
+- menu 7945 - Report development status: 1=Shared, 2=Transfer request, 3=Sandbox, 4=Commit request, 5=Revert request, 6=CR Designer loading
+- menu 7947 - Types de données: 1=Reference, 2=E-mail, 3=Phone
+- menu 7961 - Rule types: 1=INIT, 2=CONTROL, 3=PROPAGATE, 4=GETVALUE, 5=FORMAT, 6=READ_MEDIA, 7=UPDATE_MEDIA, 8=DELETE_MEDIA, 9=INSERT_MEDIA, 10=READ_MEDIA_CNT, 11=EXIST_MEDIA
+- menu 7963 - Representation type: 1=Desktop, 2=Mobile phone, 3=Tablet
+- menu 7964 - Representation facets: 1=Detail, 2=Edit, 3=Query, 4=Lookup, 5=Summary
+- menu 7965 - Method assignment: 1=Property, 2=Collection line, 3=Collection, 4=Page, 5=Record
+- menu 7966 - Line minimum in a grid: 1=0, 2=1, 3=Maximum
+- menu 7967 - Representation type: 1=Main, 2=Child
+- menu 7968 - Behaviors: 1=Creation, 2=Update, 3=Deletion, 4=PDF printing, 5=Excel reporting, 6=Word reporting, 7=Word mail merge, 8=Quick edit
+- menu 7970 - Initial status: 1=Visible, 2=Invisible, 3=Technical
+- menu 7971 - Link type: 1=Create record, 2=Display detail, 3=Modify record, 4=Delete record, 5=Display list, 6=Duplicate record, 7=Display as Excel, 8=List in Excel, 9=Selection, 10=Display summary, 11=Display as PDF, 12=List as PDF, 13=Display in Word, 14=List in Word, 15=Mass-mail record, 16=Mass-mail list, 17=Save, 18=Cancel, 19=LOB management, 20=Print, 21=Direct print, 22=Help
+- menu 7973 - Link attributes: 1=Simple link, 2=Detail, 3=Lookup, 4=Summary
+- menu 7974 - Link type: 1=Representation, 2=Method, 3=Operation, 4=X3 Convergence, 5=Free, 6=Crystal report
+- menu 7975 - Link target: 1=Default, 2=New page, 3=Embedded
+- menu 7976 - Parameter types: 1=Parameter, 2=Key, 3=End parameter
+- menu 7985 - Help key-word field type: 1=Table, 2=Screen, 3=Class, 4=Representation
+- menu 7986 - Class type: 1=Basic, 2=Persistent, 3=Technical, 4=System, 5=Interface
+- menu 7987 - Size: 1=None, 2=From 1, 3=From 0
+- menu 7989 - Entry point environment: 1=Entry point, 2=Object
+- menu 7990 - Nature of session: 1=Internal, 2=External
+- menu 8330 - Backup integration reason: 1=Backup of production environment, 2=Backup of test environment, 3=Other not affecting document sequence numbers
+- menu 9001 - Months of the year: 1=January, 2=February, 3=March, 4=April, 5=May, 6=June, 7=July, 8=August, 9=September, 10=October, 11=November, 12=December
+- menu 9154 - Negative adjustment: 1=Automatic, 2=Manual, 3=No
+- menu 9833 - Days of the week: 1=Monday, 2=Tuesday, 3=Wednesday, 4=Thursday, 5=Friday, 6=Saturday, 7=Sunday
+- menu 9835 - XSL type: 1=Miscellaneous, 2=Planning, 3=BOM, 4=Radar
+- menu 10030 - Parameter types: 1=TinyInt, 2=Short integer, 3=Long integer, 4=Decimal, 5=Floating, 6=Double, 7=Alphanumeric, 8=Date, 9=Blob, 10=Clob, 11=Uuid, 12=Datetime, 13=Instance

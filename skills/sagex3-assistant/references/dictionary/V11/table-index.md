@@ -1,0 +1,1946 @@
+<!-- source: https://online-help.sagex3.com/erp/11/en-US/MCD/ATB_0.htm and the linked table / local-menu / data-type pages (Sage X3 V11 online help, 'Table dictionary') compiled by scripts/build_dict_x3.py | version: Sage X3 V11 | verified: 2026-10-02 -->
+# Sage X3 V11 table index
+
+Format: `TABLE` (ABBREVIATION) - description. Grouped by the module the dictionary assigns. Field details, keys, enum values and join links: read the table's entry in `dict/<Module>.md` (file named after the module heading below). Version marks, from Sage's own V9.0 P12 / V10 P1 columns: `+` = new table, absent from at least one of those versions; `*` = exists there but differs (Sage publishes the per-version difference at `AT3_<TABLE>.htm` (V9) / `ATD_<TABLE>.htm` (V10) under the same help folder). The table's `Notes:` line in `dict/` says which version.
+
+## A/P-A/R accounting (110 tables) - dict/AP-AR-accounting.md
+
+- `BANK`* (BAN) - Bank accounts
+- `BANKPOSD` (BPL) - Banking position
+- `BANREC` (BEH) - Bank Reconciliation Statement
+- `BANRECD` (BED) - Bank Statement Lines
+- `BGRBAN` (BGR) - Bank group
+- `BILSTA`* (BES) - Statement of bill of exchange
+- `BLOBEXPENSES` (BEXP) - Expense note photo
+- `BPCINVLIG`* (SIL) - Customer invoice lines
+- `BPCINVLIGA` (SIA) - Customer analytical line
+- `BPCINVVAT` (SIT) - Tax rates
+- `BPSINVLIG`* (PIL) - Supplier invoice lines
+- `BPSINVLIGA` (PIA) - Supplier analytical line
+- `BSIBPRNUM`+ (BSIBPN) - BP number definition
+- `BSIBPRNUMD`+ (BSIBPND) - BP number definition
+- `BSIDUD`+ (BSIDUD) - Open items
+- `BSIELTMAP`+ (BSIELT) - Camt element mapping detail
+- `BSIELTMAPD`+ (BSIELTD) - Camt element mapping
+- `BSIFILFMT`+ (BSIFFM) - Bank import format definition
+- `BSIFILFMTD`+ (BSIFFD) - Bank import format def. detail
+- `BSIIMP`+ (BSIIMP) - Bank statement import
+- `BSIIMPD`+ (BSIIMPD) - Bank statement import detail
+- `BSIIMPDS`+ (BSIIMPS) - Bank statement imp. sub-detail
+- `BSIIMPPAR`+ (BSIIP) - Bank import settings
+- `BSIIMPTC`+ (BSITC) - Bank import type codes
+- `BSIINVDIO`+ (BSIIND) - Invoice number definition
+- `BSIINVDIOD`+ (BSIINDD) - Invoice number definition
+- `BSIITCD`+ (BSIITCD) - Bank import type codes
+- `BSIMANENT`+ (BSIMAN) - Manual entry
+- `BSISCT`+ (BSISCT) - Bank import segment
+- `BSISCTD`+ (BSISCTD) - Bank import segment detail
+- `BSISEAEXD`+ (BSISEA) - Excluded terms
+- `BSISEALIS`+ (BSILIS) - Search term list
+- `BSISEALISD`+ (BSILISD) - Search term list detail
+- `CFODUDDATE` (CFODD) - Cash forecast management
+- `CFOMANMVT` (CFOMM) - Cash forecast movements
+- `CFOTYP` (CFOT) - Cash forecast types
+- `CHQBOK` (CHB) - Checks table
+- `CHQNUM` (CHN) - Table of checks
+- `EDIFRM` (EDM) - Formulas
+- `EDIPAR` (EDP) - Message setup
+- `EDISEG` (EDS) - Segments
+- `EDITRBK` (EBK) - Banking reconciliation report
+- `EXPARAM` (EXM) - Parameters
+- `EXPENSES`* (EXS) - Expense
+- `EXPENSESH` (EXH) - Expense
+- `FUP`* (FUP) - Reminders conducted
+- `FUPGRP`* (FGP) - Reminder groups
+- `FUPTXT` (FPT) - Reminder texts
+- `GACCDENCOD` (CDA) - Payment attribute
+- `GDUDSCR` (GDS) - Open item screens
+- `GFUPSCR` (GFP) - Reminders screen
+- `HISTODUD` (HDU) - Open item archive
+- `INVDACPAR` (IDP) - BP invoice entry settings
+- `NETAUTO` (NTO) - Netting
+- `PAYACCNUM` (PAN) - Accounting payment entry
+- `PAYACCNUMD` (PMD) - Accounting payment entry
+- `PAYFRM` (FRM) - Payment slips
+- `PAYLOT`* (PYL) - Entry batch
+- `PAYMENTA` (PYA) - Analytical payment lines
+- `PAYMENTD` (PYD) - Payment lines
+- `PAYMENTH`* (PYH) - Payment header
+- `PAYMENTPORD`+ (PYPTD) - Payment lines
+- `PAYMENTPORH`+ (PYPTH) - Payment header
+- `PAYMTCTMP` (PMP) - Payment matching temp table
+- `PAYMTCTMP2` (PM2) - Payment matching temp table
+- `PAYPTD` (PYP) - Payment order lines/receipt
+- `PAYPTH` (PAH) - Payment order header/receipts
+- `PAYPTHDOC` (PAO) - Payment orders/receipt documents
+- `PAYPTHRIT` (PRI) - Withholdings
+- `PAYTMP` (PTP) - Temporary payments table
+- `POOL` (POO) - Banking pool
+- `PROROG` (PRO) - Due date extension
+- `PROROGPCE` (PRP) - Due date extension
+- `RBKBELDET` (RBD) - Belgian bank statement detail
+- `RBKBELDUD` (RBU) - Belgian bank stmnt open item
+- `RBKBELHEA` (RBH) - Belgian bank statement
+- `RBKBELTMP` (RBW) - Belgian bank stmnt open item
+- `RBKRUBBEL` (RRB) - CODA headings
+- `RCRINVOICE` (RCH) - Recurring invoices
+- `RELBANK`* (RBK) - Bank account statement
+- `RELBANKREM` (RBR) - Bank statement comments
+- `RELMT940` (RLT) - File FMT940 (header)
+- `RELMT940D` (RLD) - File FMT940 (lines)
+- `RITCUM` (RCU) - Withholding total
+- `RSLINESGER1` (RSLG1) - Recapitulative statement
+- `RSLINESGER2` (RSLG2) - Recapitulative statement
+- `SOI` (SOI) - Statement creation
+- `SWIEZAG` (SWIEZ) - Temporary table
+- `SWIIMPBVR` (SWIIMP) - Import Swiss ISR file
+- `SWIIMPTMP` (SWITMP) - Import Swiss ISR file (temp.)
+- `SWIQRC`+ (SWIQRC) - Swiss QR-data
+- `TABCODEDT` (TED) - Report code table
+- `TABEXPENS`* (TES) - Expenses tables
+- `TABFILBAN`* (TFB) - Bank file definitions
+- `TABPAYTYP`* (TPY) - Payment transactions
+- `TMPARPT`* (TARPT) - Temporary print key table
+- `TMPARPTDET`+ (TARPTD) - Temporary print key table
+- `TMPCNSBAN` (TCB) - Bank inquiry
+- `TMPCSRQ` (TCR) - Temporary cash requirements
+- `TMPEXPENSE` (EXT) - Temporary table - Expenses
+- `TMPFUP0` (TF0) - Campaign criteria
+- `TMPFUP1`* (TF1) - BPs for reminding
+- `TMPFUP2`* (TF2) - Open items to remind
+- `TMPFUPCMT` (TCF) - Open item comments
+- `TMPPAYDUD`* (TPD) - Temporary payment proposal
+- `TMPPAYDUD2` (TP2) - Temporary payment proposal
+- `TMPPAYTOT` (PYT) - Temporary payment proposal
+- `TYPCOMBEL` (TYC) - Communication types
+- `UNPAID` (UNP) - Doubtful receipt entry
+- `VATLINITMGER` (VLI) - German VAT line items
+
+## CRM activities (48 tables) - dict/CRM.md
+
+- `CALLATTEMP` (CTT) - Call attempt
+- `CMARKETING` (CMG) - Marketing campaign
+- `CORREP` (COP) - Representative in charge
+- `CORRESPOND` (COR) - Outlook contact
+- `CRMCLOB` (CRC) - CRM text file
+- `CRMTRS` (CTR) - Entry transaction CRM
+- `CRMTRSVAL` (CTV) - CRM values entry transaction
+- `FIEDIC` (FID) - Criteria of target
+- `FIEDICFIE` (FDF) - Target criteria fields
+- `HD8CLOB` (HD8) - Clobs lead
+- `LEAD` (LDS) - Leads
+- `MARASSDEF` (MAD) - Content of sectors
+- `MARASSREP` (MAR) - Representative portfolio
+- `MARDEF` (MDF) - Definitions of sectors
+- `MARDEFVAL` (MDV) - Criteria details
+- `MARREPSEC` (MRS) - Allocation of sectors
+- `MARSCT` (MST) - Market sectors
+- `MKGLEVEL` (MKL) - Level
+- `MKGOPG` (MOG) - Target/operations relations
+- `MKGQUR` (MQR) - Marketing targets
+- `MKGQURPPL` (MQP) - Intermediate populations
+- `OMMRESULT` (MRE) - Merge data
+- `OMMRPT` (OMR) - Mailing report
+- `PLGMKG` (PLG) - Marketing schedule management
+- `PLGOPG` (PLO) - Marketing schedule management
+- `QURCRI` (QCR) - Criteria of target
+- `QURCRIVAL` (QCV) - Criteria values
+- `QUREXTRACT` (QTX) - Extraction of targets
+- `QURTMP` (QTP) - Target process
+- `RESOURCES` (RSS) - Resources
+- `RESRES` (RRS) - Resource reservations
+- `SCPASW` (SCA) - Call script responses
+- `SCPQST` (SCQ) - Call script questions
+- `SCPQSTCND` (SQC) - Routing conditions
+- `SCRIPT` (SCP) - Call script
+- `SECPST` (SPT) - Lead sector
+- `SECPSTSEL` (SPS) - Lead sector selection
+- `SELCMG` (SEC) - List of marketing selections
+- `SELCMGLIS` (SCL) - Marketing selection guide
+- `SELSSP` (SSP) - Support of selections
+- `SELSSPCPN` (SSC) - Selection support components
+- `SYNCDATA` (SYD) - Synchronization data
+- `SYNCLINK` (SYL) - Synchronise cross reference
+- `SYNCPAR` (SYP) - Synchronization setup
+- `TGRLIS` (TGL) - Dictionary of targets
+- `TGRLISFIE` (TLF) - Target inquiry
+- `TGRLISLNK` (TLL) - Linked tables
+- `TGRSSP` (TGP) - Presentation support
+
+## Common Data (585 tables) - dict/Common-Data.md
+
+- `AYTPRFX3` (AYR) - Website user
+- `BAPPOINT`* (BAP) - Appointment
+- `BBLOB`+ (BBB) - Special folders
+- `BCKITOREN`+ (BREN) - Backup integration reason
+- `BCLOB`+ (BCB) - Special folders
+- `BETCPY` (BCH) - Intercompany parameters
+- `BETCPYL` (BCL) - Intercompany parameters
+- `BILLLADC` (BOLC) - Bill of lading contents
+- `BILLLADD` (BOLD) - Bill of lading detail
+- `BILLLADH` (BOLH) - Bill of lading header
+- `BILLLADWRK`* (BOLW) - Bill of lading report
+- `BOM` (BOH) - Header BOMS
+- `BOMD` (BOD) - Detail BOMs
+- `BOMPRN`* (BOP) - Print BOMs
+- `BOMRET` (BMR) - Component requirements
+- `BOMWUS` (BOW) - Where-used BOM
+- `BPADDRESSSA`+ (BPASA) - Addresses
+- `BPARTNER`* (BPR) - Business partner
+- `BPCARRIER` (BPT) - Carriers
+- `BPCCATEG`* (BCG) - Customer category
+- `BPCUSTMVT` (MVC) - Customer transactions
+- `BPCUSTOMER`* (BPC) - Customers
+- `BPDLVCUST` (BPD) - Ship-to customer
+- `BPEXCEPT`* (BPE) - BP-Company exception
+- `BPMISC` (BPM) - Order-giver/miscellaneous BP
+- `BPMISCCGF` (BPG) - Miscellaneous BP configuration
+- `BPSCATEG` (BSG) - Supplier category
+- `BPSHISUPLN` (BSL) - Ship-to addresses
+- `BPSHISUPP` (BSS) - Shipping site suppliers
+- `BPSUPPLIER`* (BPS) - Suppliers
+- `BPSUPPMVT` (MVS) - Supplier transactions
+- `CAAUZ` (CAZ) - Restriction table
+- `CACCE` (CCE) - Dimensions
+- `CACCEDEF`* (CDE) - Default dimensions
+- `CADIEDEF` (CDI) - Default dimension types
+- `CADSP` (DSP) - Analytical allocations
+- `CAECOD`+ (CAEC) - CAE code
+- `CARAREA` (CAA) - Carrier regions
+- `CARPRICE` (CAP) - Carrier price lists
+- `CBLOB` (CBB) - Special folders
+- `CCMACTION`* (CCMACT) - Actions
+- `CCMAPPROVER`* (CCMAPPR) - Change request approvers
+- `CCMCHGREQ`* (CCMCR) - Change request
+- `CCMCRDESC`* (CCMCRD) - Change request description
+- `CCMCRNOTES`* (CCMCRN) - Change request attachments
+- `CCMCRORIGC`* (CCMCROC) - Customer originators
+- `CCMCRORIGE`* (CCMCROE) - External originators
+- `CCMCRORIGI`* (CCMCROI) - Internal originators
+- `CCMCRORIGS`* (CCMCROS) - Supplier originators
+- `CCMIMPBOD`* (CCMIBOD) - Impact analysis-BOM lines
+- `CCMIMPBOH`* (CCMIBOH) - Impact analysis-BOMs
+- `CCMIMPFOD`* (CCMIFOD) - Impact analysis-Forecasts
+- `CCMIMPFOH`* (CCMIFOH) - Impact analysis-Forecasts
+- `CCMIMPITM`* (CCMIITM) - Impact analysis-Stock
+- `CCMIMPITMDET`* (CCMITMD) - Impact analysis-Stock sites
+- `CCMIMPMFGD`* (CCMMFGD) - Impact analysis-Work orders
+- `CCMIMPMFGH`* (CCMMFGH) - Impact analysis-Work orders
+- `CCMIMPPOD`* (CCMIPOD) - Impact analysis-Purchases
+- `CCMIMPPOH`* (CCMIPOH) - Impact analysis-Purchases
+- `CCMIMPPRD`* (CCMIPRD) - Impact analysis-Purchase req
+- `CCMIMPROD`* (CCMROD) - Impact analysis-Routing lines
+- `CCMIMPROH`* (CCMROH) - Impact analysis-Routing
+- `CCMIMPSCD`* (CCMSCD) - Impact analysis-Subcontract
+- `CCMIMPSCH`* (CCMSCH) - Impact analysis-Subcontract
+- `CCMIMPSOD`* (CCMSOD) - Impact analysis-Sales orders
+- `CCMIMPSOH`* (CCMSOH) - Impact analysis-Sales orders
+- `CCMIMPSQD`* (CCMISQD) - Impact analysis-Sales quotes
+- `CCMIMPSQH`* (CCMISQH) - Impact analysis-Sales quotes
+- `CCMPLAND`* (CCMPD) - Change request plan detail
+- `CCMPLANH`* (CCMPH) - Change request plan header
+- `CCMREJDSC`* (CCMREJ) - Rejection description
+- `CERTIFCCS`+ (CCS) - Entertainment fund certificate
+- `CFGDEF` (CDF) - Config. default values
+- `CHEFWRK`+ (CEW) - Signature management
+- `CLACTR`+ (HRCLC) - Document clause
+- `CLASSCONV`+ (HRCCV) - Collective agreement classification
+- `COMPETENCE`+ (CPC) - Skills
+- `COMPETENCED`+ (CPD) - Skills
+- `COMREP` (COM) - Sales rep commissions
+- `CONTACTSA`+ (CNTSA) - Additional RSA fields
+- `CONTAMT` (CAM) - Annual databases
+- `CONTAMTX` (CAX) - Annual databases
+- `CONTCARE` (CCA) - Maintenance plan
+- `CONTCOV` (CCV) - Service contracts coverage
+- `CONTIDX` (CIX) - Index values
+- `CONTITM` (CIT) - Covered product
+- `CONTPBL` (CPL) - Skills covered
+- `CONTQUAL` (CQL) - Quality constraints
+- `CONTREW` (CRE) - Contract renewals
+- `CONTREWX` (CRX) - Contract renewals
+- `CONTSERV`* (CON) - Service contract
+- `CONTSERVX` (COX) - Service contract
+- `CONTTEMPL` (COT) - Service contract template
+- `COSTSTCB` (STCB) - Cost structure - schedules
+- `COSTSTCF` (STCF) - Cost structure - site
+- `COSTSTCH` (STCH) - Cost structure
+- `COSTSTCL` (STCL) - Cost structure - lines
+- `CPTANALIN` (CAL) - Analytical accounting lines
+- `CPTFOOTLNK` (CFL) - Analytical accounting lines
+- `CTRLNIVW` (CNW) - Lev. control workbench
+- `CTSWSP`+ (CTSW) - Control system
+- `DEB`* (DEB) - EU exchange declaration
+- `DEBPAR` (DER) - Intrastat computation parameters
+- `DEBREGNAT` (DRN) - Movement rule and nature
+- `DECAT`+ (DLA) - WI declaration
+- `DEFVAL` (DVA) - Complex default values
+- `DIAHOU` (DIH) - Time table schemas
+- `DICOEMP`+ (DIC) - Employee field dictionary
+- `DIETRS`* (DTR) - Analytical entry transaction
+- `DIETRSXX` (DTX) - Analytical entry transaction
+- `DKSDATA`* (DKD) - Electronic signatures
+- `DKSDATAFRA` (DKF) - Electronic signatures
+- `DKSDATAPOR`+ (DKP) - Electronic signatures
+- `DKSJAV` (DKJ) - Connection parameters
+- `DKSKEY`* (DKK) - Key management
+- `DKSLOG` (DKL) - Signature log
+- `DMWBPREXC`+ (DMWBPE) - Waste disposal exceptions
+- `DMWPAORD`+ (DMWPAOR) - Waste disposal management
+- `DMWPRODPACKD`+ (DMWPPAD) - Product packaging assignment
+- `DMWPRODPACKH`+ (DMWPPAH) - Product packaging assignment
+- `DMWQTY`+ (DMWQTY) - Waste disposal quantity
+- `DMWQUOTAD`+ (DMWQUOD) - Waste management quota
+- `DMWQUOTAH`+ (DMWQUOH) - Waste management quota
+- `DMWSCHEME`+ (DMWSC) - Waste disposal scheme
+- `DMWWEIGHT`+ (DMWWEI) - Waste disposal weight
+- `DOOBPCINT` (DBI) - Internal customers
+- `DROITVOTE`+ (DVT) - Voting rights
+- `DUEEMP`+ (DUE) - DUE extraction
+- `ECCSTA` (ECS) - Major version statuses
+- `ECCVAL`* (EVL) - Versions
+- `EDIBPRCPY`* (EBC) - EDI flows by BP/company
+- `EDIBPRCPYD` (EBCD) - EDI flows by BP/company
+- `EDIBPRPAR`* (EBP) - EDI partners by BP
+- `EDICAT`* (ECA) - EDI category
+- `EDICATD` (ECAD) - EDI category (filters)
+- `EDICATK` (ECAK) - EDI category (authorizations)
+- `EDICATL`* (ECAL) - EDI category (legislations)
+- `EDICATREF`+ (ECR) - Category authorization ref.
+- `EDICPYPAR`* (ECP) - EDI partners by company
+- `EDICPYPARD`+ (ECPD) - EDI partners by company
+- `EDIFCYPAR`* (EFP) - EDI partner by site
+- `EDIFLO` (EFL) - Flow
+- `EDIFLOA`+ (EFLA) - Attachment
+- `EDIFLOAP`+ (EFLAP) - Parameters
+- `EDIFLOD`* (EFLD) - Flow detail
+- `EDIMSG` (EMS) - Message mapping
+- `EDIMSGA` (EMSA) - Inbound authorizations
+- `EDIMSGD` (EMSD) - Message mapping detail
+- `EDIPARTNER` (EPR) - EDI partners
+- `EDIPARTNERD` (EPRD) - EDI partners
+- `EDIPTC` (EPT) - Protocol
+- `EDIPTCD` (EPTD) - Protocol detail
+- `EDIPTCM`+ (EPTM) - Protocol detail
+- `EDIRUN`* (EDR) - Process launch
+- `EDIRUND` (EDRD) - Process launch
+- `EDISEQFIL` (ESF) - Sequential file
+- `EDISEQFILD` (ESFD) - Sequential file detail
+- `EDISEQFILF` (ESFF) - Sequential files
+- `EDISTO` (EST) - Temp storage space
+- `EDISTOC` (ESTC) - Text file (clob)
+- `EDISTOE` (ESTE) - Events
+- `EDISTOF` (ESTF) - Flow detail
+- `EDISTOJ` (ESTJ) - Error
+- `EDISTOU` (ESTU) - Storage
+- `EDITMPDOC`* (ETC) - Documents
+- `EDITMPLOG` (EDL) - Log
+- `EDITRKDOC` (EDK) - Documents
+- `EDIXMLFIL`+ (EXF) - XML file
+- `EDIXMLFILD`+ (EXFD) - XML file detail
+- `EDIXMLFILF`+ (EXFF) - XML files
+- `EDIXMLFILP`+ (EXFP) - XML file detail
+- `EDIXMLFILXSD`+ (EXSD) - XSD files
+- `EDIXSDUPL`+ (EXU) - EDI upload XSD file
+- `EDIXSDUPLFIL`+ (EXUF) - File
+- `EDIXSDUPLLOB`+ (EXUL) - Lob field
+- `EECBIDWL`+ (EWL) - WL
+- `EMPCTR`+ (ECT) - Current contract
+- `EMPLOAD`+ (AD) - Administrative information
+- `EMPLOCHD`+ (CHD) - Children
+- `EMPLOCPT`+ (CPT) - Accounting information
+- `EMPLOCTR`+ (HRCTR) - Contract
+- `EMPLOCTRAFR`+ (CTRAFR) - Additional Africa fields
+- `EMPLOCTRAUS`+ (CTRAUS) - Additional Australia fields
+- `EMPLOCTRCPT`+ (CPR) - Contract accounting information
+- `EMPLOCTRFRA`+ (CTRFRA) - Additional France fields
+- `EMPLOCTRMID`+ (CTRMID) - Additional Middle east fields
+- `EMPLOCTRPEN`+ (CPN) - Position hazardous cond in cont
+- `EMPLOCTRPOR`+ (CTRPO) - Contract
+- `EMPLOCTRSA`+ (CTRSA) - Additional RSA fields
+- `EMPLOCUM`+ (EPC) - Totals
+- `EMPLOELC`+ (ELC) - Electoral lists
+- `EMPLOEXM`+ (HREXM) - Degrees
+- `EMPLOHAB`+ (HAB) - Authorizations
+- `EMPLOID`+ (ID) - Civil status
+- `EMPLOIDAFR`+ (EAF) - Additional Africa fields
+- `EMPLOIDAUS`+ (EAUS) - Additional Australia fields
+- `EMPLOIDMID`+ (EMID) - Additional Middle east fields
+- `EMPLOIDPOR`+ (IDPOR) - Civil status
+- `EMPLOIDSA`+ (ESA) - Additional RSA fields
+- `EMPLOJNT`+ (JNT) - Spouses (>1)
+- `EMPLOMED`+ (MED) - Medical examinations
+- `EMPLOPAR`+ (PAR) - Deferred-based
+- `EMPLOPOT`+ (EPO) - Position
+- `EMPLORIB`+ (RIB) - Bank ID statement
+- `EMPLOSAL`+ (SAL) - Salary gains
+- `EMPLOTAXREC`+ (ETR) - Tax info
+- `EMPLOTRY`+ (TRY) - Professional experience
+- `EMPSBD`+ (ESB) - Subordinate
+- `ESCSRE` (ECE) - Escalation history
+- `EVCRESULT`+ (EVCR) - EU VAT ID check result
+- `FACTOR`* (FCT) - Factors
+- `FAMPB` (PBL) - Skill group
+- `FILEDIH`+ (FEH) - EDI file structure
+- `FILEDIL`+ (FEL) - List of EDI values
+- `FISCALYEAR` (FIY) - Fiscal years
+- `FLXJOB`+ (FJH) - Business process
+- `FLXJOBRSP`+ (FJR) - Workflow - Managers
+- `FORCTR`+ (FOC) - Arrival document formula
+- `FRECST` (FCS) - Cost
+- `FRTCLS` (FRT) - Freight class
+- `FRTCOMCOD` (FCC) - Freight commodity code
+- `GACCAUZ` (GCA) - Compatible accounts
+- `GACCCLS` (CLS) - Account classes
+- `GACCCODE` (CAC) - Accounting codes
+- `GACCCODLIG`* (CCL) - Accounting code lines
+- `GACCDEF` (GCF) - Default accounts
+- `GACCDIM` (GCD) - Default dimension types
+- `GACCDUDATE` (DUD) - Open items
+- `GACCGRUPYM` (GRY) - Account groups
+- `GACCOUNT`* (GAC) - Accounts
+- `GACCOUNTA`+ (GAA) - Accounts (additional table)
+- `GACCPYM` (GYM) - Account pyramids
+- `GACCTMP` (HAT) - Accounting entries
+- `GACCTMPA` (AAT) - Analytical accounting line
+- `GACCTMPD`* (DAT) - Accounting entry lines
+- `GACM` (GCM) - Account core model
+- `GAUTACE` (GAU) - Automatic journals
+- `GAUTACED` (GAD) - Automatic journals (lines)
+- `GAUTACEF` (GAG) - Automatic journal formulas
+- `GAUTRCTMP` (GTT) - Temporary traceability table
+- `GAUTRCVCR`* (GAT) - Automatic journal traceability
+- `GCACCOA` (GCO) - Acct. code entry transactions
+- `GCCEGRUPYM` (CRY) - Group pyramid analysis
+- `GCCEPYM` (CYM) - Dimension pyramids
+- `GCOA` (COA) - Chart of accounts
+- `GDIE`* (DIE) - Dimension types
+- `GDPDUDUD`+ (GDPDUD) - Open items
+- `GLED`* (LED) - Ledger
+- `GRPACEMTC` (GRM) - Matching group entries
+- `GRPAUTACE` (GRA) - Automatic journal group
+- `GRPCPC`+ (GCP) - Group of skills
+- `GRPCPCD`+ (HRGCD) - Skill set detail
+- `GTYPACCENT` (GTE) - Document types
+- `GVARCODPAR` (GVA) - Parameters of variables
+- `GVARGAU` (GVG) - Automatic journal variables
+- `GVARPARGAU` (GVP) - Variables parameters
+- `GVARPARVAL` (GVV) - Parameter values
+- `HD1CLOB` (HD1) - Service reqts text files
+- `HD2CLOB` (HD2) - Actions text files
+- `HD3CLOB` (HD3) - Solutions text files
+- `HD4CLOB` (HD4) - Commerl reports text files
+- `HD5CLOB` (HD5) - Marketing text files
+- `HD6CLOB` (HD6) - CRM mini text files
+- `HD7CLOB` (HD7) - Aft-ss srv cons txt files
+- `HISTOCRM` (HST) - History
+- `HISTOMDT` (HMDT) - Payments made
+- `HISTOOMM` (HIM) - Mailing history
+- `HOROITM` (HOI) - Time stamped articles
+- `HRCATCSP`+ (HRCSP) - Socio-professional category
+- `HRCLLCVT`+ (HRCLV) - Collective agreement
+- `HRCOMPANYAFR`+ (CPYAFR) - Company
+- `HRCOMPANYKSA`+ (CPYKSA) - Company
+- `HRCOMPANYPO`+ (CPYPO) - Company
+- `HRCTRDOC`+ (HRDOC) - Documents to generate
+- `HRCTRGRD`+ (HRCGD) - Arrival reason
+- `HREXTRACT`+ (HREXT) - Extract template
+- `HREXTRACTDAT`+ (HREXD) - Source
+- `HREXTRACTDEF`+ (HREXL) - Definition
+- `HREXTRACTFIL`+ (HREXF) - Filters
+- `HREXTRACTGRP`+ (HREXG) - Groups
+- `HREXTRACTPAR`+ (HREXP) - Parameters
+- `HREXTRACTRES`+ (HREXR) - Results
+- `HREXTRACTVAL`+ (HREXV) - Validations
+- `HRFACILITYPO`+ (FCYPO) - Sites
+- `HRFACILITYSA`+ (FCYSA) - South African site fields
+- `HRLICAUT`+ (HRLIC) - Permits and authorizations
+- `HRMEDAPT`+ (HRMDP) - Ability
+- `HRMEDTYP`+ (HRMDT) - Visit type
+- `HRNATCON`+ (HRNCT) - Nature of contract
+- `HRPOTPEN`+ (HRPEN) - Position hazardous conditions
+- `HRRPLREN`+ (HRRPL) - Replacement reason
+- `HRSTDINDCLS`+ (HRSIC) - Std. industrial classification
+- `HRTRADECLASS`+ (HRTCC) - Trade classification
+- `HRXITGRD`+ (HRXGD) - Disposal reason
+- `HTMMAITXT` (HTMMAI) - CRM email text
+- `IMCDETPRT` (IMP) - Cost comparison
+- `INCOTERM` (ICTH) - Incoterms
+- `INCOTERMD` (ICTD) - Incoterms Detail
+- `INTCOFLO` (ICF) - Intercompany transactions
+- `INTERVEN`* (ITN) - Service response
+- `ITCDET` (ICD) - Detail cost for printing
+- `ITCDETPRT` (ICP) - Temporary products - cost
+- `ITCMAT` (ICC) - Temporary products - cost
+- `ITCMATCH` (IMC) - Cost comparison
+- `ITCNAT` (ICN) - Nature detail - costs
+- `ITCWST` (IWC) - Temporary products - cost
+- `ITCWSTW` (IWW) - Temporary products - cost
+- `ITMBOM` (ITB) - Products - BOMs
+- `ITMBOMCFG` (CFB) - Products - BOMs
+- `ITMBPC` (ITU) - Customer product
+- `ITMBPS` (ITP) - Supplier product
+- `ITMCATEG`* (ITG) - Product category
+- `ITMCOMP` (ICM) - Competitor products
+- `ITMCOST` (ITC) - Products-costs
+- `ITMCPPLNK` (ILK) - Competitor/product link
+- `ITMCPTVER` (ICV) - Version counter setup
+- `ITMCUSNOM` (INO) - NC8 product BOM
+- `ITMFACILIT`* (ITF) - Products-sites
+- `ITMMASTER`* (ITM) - Products
+- `ITMMVT` (ITV) - Product-site totals
+- `ITMMVTHIS` (ITH) - Total product - site history
+- `ITMSALES`* (ITS) - Products - sales
+- `ITMWRH` (ITW) - Products-warehouses
+- `JOBTYP`+ (JOT) - Standard jobs
+- `JOBTYPDEF`+ (JOD) - Job type default values
+- `JOBTYPKSA`+ (JSA) - Additional RSA fields
+- `JSNX3DET`+ (JXD) - JSON-X3 transform map detail
+- `JSNX3HEAD`+ (JXH) - JSON-X3 transformation mapper
+- `JSNX3TRAN`+ (JXT) - JSON-X3 transport
+- `LASTCUSMVT` (LCM) - Last customer movements
+- `LASTSUPMVT` (LSM) - Last supplier movements
+- `MACHINES`* (MAC) - Installed base
+- `MACITN` (MAI) - Machine installations
+- `MACWARREQ` (MWR) - Warranty request archive
+- `MAILING` (OMM) - Mass mailing
+- `MAILXML` (MXL) - Mass mailing XML
+- `MAILXMLD` (MXD) - Mass mailing lines XML
+- `MANDATE` (MDT) - Mandates
+- `MATCSTW` (MAW) - Material calculation
+- `MEAEMP`+ (MEA) - Monthly employer certificate
+- `MEDIA` (OMN) - Media campaign
+- `MEDWRK`+ (MEW) - Occupational health
+- `MEMFOR` (FOG) - Memos
+- `MFCDETPRT` (MCP) - Material detail
+- `MFCMAT` (MCC) - Material detail
+- `MFCNAT` (MCN) - Nature detail - PC
+- `MFCTYPREL` (MTR) - Cost comparison
+- `MFCWST`* (MCW) - Operation detail
+- `MFGCOST`* (MFC) - Cost price
+- `MFGWIP` (MWH) - WIP valuation - header
+- `MGTATCUD`+ (ATCUD) - ATCUD management
+- `MGTWASTE`+ (MGTW) - Waste management
+- `MISSION`+ (MIS) - Role
+- `MMSDEFVAL` (MMV) - MMS default values
+- `MMSPAR` (MMS) - MMS setup
+- `MOTENT`+ (MOE) - Arrival reason
+- `MTOHEAD`* (MTO) - MTO network
+- `MTOLINK` (MLK) - Demand/resource assignments
+- `NOTCATEG` (NTG) - Note category
+- `NOTE` (NTS) - Notes
+- `NUMCAI`* (NCA) - CAI assignment
+- `OBJECTIFBI`+ (OBI) - BI objectives
+- `OPPOR`* (OPP) - Project
+- `OPPORCPP`+ (OCP) - Project competitor
+- `OPPORCRM`+ (OPPCRM) - CRM project
+- `OPPORPJM`+ (OPPPJM) - PJM project
+- `OPPORSBB`+ (OBB) - Sub-project
+- `OPPORSTA`+ (OSA) - Project after-sales steps
+- `OPPORSTB`+ (OSB) - Project pre-sales steps
+- `ORDCOMP` (DOO) - Service caller
+- `ORDERS` (ORD) - WIP
+- `ORGAFFIL`+ (ORA) - Organization membership
+- `ORGANISME`+ (ORG) - Organizations
+- `ORGBAN`+ (ORB) - Organization
+- `OVENAT` (ONA) - Overhead category
+- `OVERHEAD` (OVE) - Overhead codes
+- `PARESC` (PEC) - Escalation parameter
+- `PARMTO` (PTO) - Assignment rules
+- `PARTAXUSA` (PTU) - American tax parameters
+- `PAYORDER` (PYO) - Prepayments
+- `PBDBPGRP` (PBDBPG) - Economic reason/BP groups
+- `PBDBPGRPD` (PBDBPD) - Economic reason/BP groups
+- `PBDECOCOD` (PBDECO) - Economic reason code
+- `PERIOD` (PER) - Periods
+- `PFOOTINV` (PFI) - Purchase invoicing elements
+- `PHONECALL`* (CLL) - Call
+- `PHONING` (OMP) - Phone campaign
+- `PIMPL`+ (PIM) - Project link
+- `PIMPLSEL`+ (PIS) - Temporary allocation lines
+- `PINVOICE`* (PIH) - Purchase invoices
+- `PITCOUNT` (PCT) - Point counter
+- `PITDEB` (PDB) - Points debit
+- `PITDEBD` (PBD) - Point debits (line)
+- `PIVOTS` (PIT) - Pivots
+- `PIVZON` (PIZ) - Pivot areas
+- `PIWRK` (PKW) - Temporary journal traceability
+- `PJMAFF`+ (PAF) - Employee assignment
+- `PJMAUS`+ (PAUS) - Project users
+- `PJMBUD`+ (PJBU) - Project budget
+- `PJMBUDLIG`+ (PJLB) - Budget line
+- `PJMBUDTRQ`+ (PJQ) - Financial overview queries
+- `PJMBUDTRS`+ (PJS) - Financial overview structure
+- `PJMCLOB`+ (PJCB) - Special folders
+- `PJMCOSTCTR`+ (PJCC) - Cost type
+- `PJMCOSTDAT`+ (PCD) - Rate at a given date
+- `PJMDE`+ (PJE) - Detailed expense
+- `PJMFINCTORPT`+ (PJMCTO) - Cost type reporting
+- `PJMFINOVRRPT`+ (PJMRPT) - Cost structure reporting
+- `PJMOPEAFF`+ (PJOA) - Employee assignment
+- `PJMSALITMD`+ (PSPLD) - Saleable product list
+- `PJMSC`+ (PJC) - Consolidated expenses
+- `PJMSCCT`+ (PJCCT) - Consolidated expenses
+- `PJMSOLITMD`+ (PSOD) - Sold product list
+- `PJMSOLITMH`+ (PSOH) - Sales document creation
+- `PJMSOLITMO`+ (PSOO) - Sold product list
+- `PJMTIMEMP`+ (PTE) - Time summary
+- `PJMTIMEMPH`+ (PTEH) - Time summary
+- `PJMTIMEMPI`+ (PTI) - Time summary
+- `PJMTSK`+ (PJTA) - Project task
+- `PJMTSKCAT`+ (PTC) - Project task category
+- `PJMTSKDEP`+ (PKD) - Project dependencies
+- `PJMTSKITM`+ (JTT) - Main product
+- `PJMTSKOPE`+ (PTKO) - Tasks - Operations
+- `PLMDEFVAL` (PDV) - PLM default values
+- `PLMPAR`* (PPA) - PLM setup
+- `POPUL`+ (HRPOP) - Employee populations
+- `POPULA`+ (HRPOA) - Employee populations
+- `POPULB`+ (POB) - Employee populations
+- `PORQRC`+ (PORQRC) - Portuguese QR-data
+- `POSTE`+ (POT) - Position
+- `POSTEDEF`+ (POD) - Item default value
+- `POSTEHAB`+ (PHA) - Authorizations
+- `POSTEKSA`+ (PSS) - Additional RSA fields
+- `PPREASON` (PPR) - Purchase price reasons
+- `PPRICCONF` (PPC) - Supplier pricing parameters
+- `PPRICFICH` (PPF) - Supplier prices (records)
+- `PPRICLIST` (PPL) - Supplier price lists
+- `PREREPORT` (PPP) - Calculate crystal report currency
+- `PRESTATION`+ (PSN) - Service provision
+- `PRESTCOV` (PCO) - Covered services
+- `PRICSTRUCT` (PRS) - Price structure (cust/supp)
+- `PROFIL`+ (PRF) - Employee profile
+- `PROFILDEF`+ (HRPFD) - Employee profile Default values
+- `PYRAPAR` (PYRA) - HRMS payroll NA setup
+- `QLYCRD` (QLC) - Technical sheets
+- `QLYCRDASW` (QLA) - Quality records - responses
+- `QLYCRDNQA` (NQA) - Sampling: AQL criteria
+- `QLYCRDQST` (QLQ) - Quality records - questions
+- `QLYWRK` (QLW) - Work file - responses
+- `QUEUE` (QUE) - Queue
+- `REACHPAR` (RPA) - REACH setup
+- `REPSEC` (RSE) - Secondary marketing contacts
+- `RETROCTR`+ (RCR) - Back-pay - Employees
+- `RITDUD` (RIU) - Withholdings by open item
+- `RITENZIONE` (RTZ) - Table of withholding codes
+- `RITHIS` (RTH) - History of paid withholdings
+- `RITMVT` (RTM) - Withholding movements
+- `RPTDS` (RDS) - Report electronic signatures
+- `SAFTPTTMP1` (SAFTP) - SAF-T
+- `SALESREP` (REP) - Sales rep
+- `SCALE`+ (HRSCA) - Level scale
+- `SCALED`+ (HRSDD) - Detail level scale
+- `SCREMPD`+ (HRSMD) - Employee screens
+- `SCREMPH`+ (HRSMH) - Employee screens
+- `SEARESULT` (LUP) - Search result
+- `SEASON` (SES) - Trend profiles
+- `SEAUTH` (SEU) - Credit card authorizations
+- `SEBPC` (SEB) - Payment gateway customer data
+- `SEPAR`* (SEP) - Payment gateways
+- `SEPRC` (SER) - Payment gateway setup
+- `SERREQUEST`* (SRE) - Service requests
+- `SERVICE`+ (SRV) - Services
+- `SETMAC` (SEM) - Listed base in requested model
+- `SETMACCPN` (SEN) - Components concerned
+- `SETXN` (SEX) - Credit card transactions
+- `SFANAPAR` (SFA) - Sage fixed assets NA setup
+- `SFOOTINV`* (SFI) - Invoicing elements
+- `SFTINDREF`+ (SFTIR) - Indirect references
+- `SFTSHIFT`+ (SFTS) - Shift code
+- `SFTTEM`+ (SFTTM) - Teams
+- `SFTTEMH`+ (SFTTH) - Team history
+- `SINVOICE`* (SIH) - Sales invoices
+- `SIPARJOU` (SPJ) - Integrale migration
+- `SIPARVAC` (SPV) - Integrale migration
+- `SIPARVACB` (SVB) - Integrale migration
+- `SIPARX3` (SPX) - Integrale migration
+- `SITEPAYE`+ (HRSIT) - Sites
+- `SITRACAR` (SIC) - Transcoding
+- `SITRACOD` (SIR) - Transcoding
+- `SITRAWRK` (SIW) - Transcoding
+- `SIWRKX3` (SWX) - Integrale migration
+- `SPREASON` (SPR) - Sales price list reasons
+- `SPRICCONF` (SPC) - Customer pricing parameters
+- `SPRICLIST` (SPL) - Customer price lists
+- `SREMAC` (SRM) - Base concerned
+- `SREMACCPN` (SRN) - Components concerned
+- `SRESTAT` (SST) - Requested statistics
+- `SRETEMPL` (SET) - Service request model
+- `STKMVTITC` (SMI) - Movement with value pending
+- `STKTRS`* (SRT) - Stock transactions
+- `STOQLYSMP` (SMP) - Qual. control sampling
+- `SUBCONT` (PRX) - Service supplier
+- `SUCURSAL` (SCU) - Branch
+- `SVATCTL`+ (SVAT) - Control SVAT rules
+- `TAAAXXX` (XXX) - Template table to copy
+- `TABACCINT` (TCI) - Intercompany account mapping
+- `TABACCLIK` (TCK) - Reciprocal accounts
+- `TABALLRUL` (TRU) - Allocation and issue rules
+- `TABBOMALT` (TBO) - BOM codes
+- `TABCONTAINER` (TCTR) - Freight container
+- `TABCOSTMET` (TCM) - Valuation methods
+- `TABCOSTMVT` (TVM) - Movement values
+- `TABCTL`* (TCT) - Response table
+- `TABDEPAGIO` (TDA) - Early discount/late charge table
+- `TABEECNAT` (TEC) - Intrastat transaction nature table
+- `TABEECSCH` (TSC) - Statistical rule table
+- `TABGEOCOD` (TGE) - Geographic codes
+- `TABINVCND`+ (INVCND) - Invoicing terms
+- `TABINVCNDLIN`+ (INVCNDD) - Invoicing terms
+- `TABLINCFG` (TLP) - Product lines
+- `TABMAT`* (TMA) - ID numbers
+- `TABMODELIV` (TMD) - Delivery mode table
+- `TABMSG` (TMS) - Message table
+- `TABPACKAGE` (TPA) - Packaging table
+- `TABPAM`* (TAM) - Payment method table
+- `TABPAYTERM` (TPT) - Payment term table
+- `TABPIVTYP` (TPV) - Supp invoice type table
+- `TABPLACE` (TPC) - Transit area
+- `TABPLACETIME` (TPCT) - Transport lead time
+- `TABPNHTYP` (TPN) - Return type table
+- `TABPRTMOD`* (TPM) - Print template table
+- `TABRATVAT` (TRA) - Tax rates
+- `TABREOPOL` (TRP) - Reorder policies table
+- `TABROUALT` (TRO) - BOM routings
+- `TABROUND` (TRN) - Roundings
+- `TABSCA` (TSR) - Rejects
+- `TABSDHTYP` (TSD) - Table types deliveries
+- `TABSGHTYP` (TSG) - Stock change type
+- `TABSIVTYP`* (TSV) - Customer invoice type table
+- `TABSTASTO` (TST) - Stock status report
+- `TABSTORUL` (SRU) - Stock management rules
+- `TABTNHTYP` (TTN) - Transport note type
+- `TABUNAVAIL` (TUV) - Unavailable periods
+- `TABVAC` (TVC) - Tax determination table
+- `TABVACBPR` (TVB) - BP tax rule table
+- `TABVACITM`* (TVI) - Tax level table
+- `TABVAT`* (TVT) - Tax code table
+- `TABVATEXE` (TEX) - Tax exemption table
+- `TABWEEDIA` (TWD) - Weekly structures
+- `TACONTAINERC` (TCTRC) - Container clobs
+- `TASK`* (TSK) - Task
+- `TAUTILIS` (TAU) - Safe X3 WAS users
+- `TAXLINK` (TLK) - Tax calc. basis calculation (link)
+- `TBASKET` (TBA) - Shopping basket
+- `TBASKETD` (TBD) - Shopping basket line
+- `TCBLOB` (TBB) - Special folders
+- `TCCLOB` (TBC) - Special text files
+- `TEXCLOB` (TXC) - Text files
+- `TEXCPT` (TCC) - Text counter by table
+- `TIMEADJUST`+ (TAD) - Daylight saving time
+- `TIMETRANS`+ (TTR) - Change to daylight saving time
+- `TIMEZONEINFO`+ (TZI) - Time zones
+- `TITMLINK` (TIK) - Linked WAS items
+- `TITMMASTER` (TIT) - Web items
+- `TMPCRPT`* (TCRPT) - Temporary print key table
+- `TMPSELCTR`+ (TMC) - Contract selection
+- `TMPSELMAT`+ (TMT) - Employee selection
+- `TRACKTPLD`+ (TKTD) - Logistical tracking temp. detail
+- `TRACKTPLH`+ (TKTH) - Logistical tracking template
+- `TRADESHOW` (OMT) - Professional trade shows
+- `TRANNOTED` (TND) - Transport note
+- `TRANNOTEH`* (TNH) - Transport note
+- `TRCVCRDOC` (TVD) - Log file of accounting entries
+- `TXTBOL`+ (TXB) - Text files
+- `TXTCTR`+ (HRTXC) - Input document text
+- `UNITOFTIME` (UOT) - Unit of time
+- `VATCLS`* (VCL) - Tax classification
+- `VATEXEREA`* (VER) - VAT exemption reasons
+- `WAREHOUSE` (WRH) - Warehouses
+- `WARFLYER` (FLY) - Warranty vouchers
+- `WARREQCPN` (RCW) - Warranty request lines
+- `WARREQUEST` (RQW) - Warranty requests
+- `WIPCOST` (MWI) - WIP valuation
+- `WIPRESW` (WRW) - WIPCOST summary for print
+- `WORKSTATIO`* (MWS) - Work centers
+
+## Development (4 tables) - dict/Development.md
+
+- `ABATABTD2` (A22) - Batch server (recurring tasks)
+- `ABATRQT2` (A11) - Batch server (queries)
+- `ATRADIS` (TAT) - Import/export tracking
+- `BOSIMP`+ (BOSI) - Subcontract BOM
+
+## Financials (202 tables) - dict/Financials.md
+
+- `BALAGEEOY`+ (BGY) - EOFY aged overdue invoice list
+- `BALANA` (BLA) - Analytical balance
+- `BALANCE` (BAL) - General balance
+- `BALCONSO`* (BLC) - Consolidation trial balance
+- `BALDEM` (BAM) - Double entry balance
+- `BALDEMIDT` (BAI) - Double entry balance index
+- `BALPRECSL`+ (BLP) - Pre-consolidation balances
+- `BATCH` (BTC) - Batch job parameters
+- `BLACMM` (BLM) - Analytical commitment balance
+- `BLAQTY` (BLQ) - Analytical quantity balance
+- `BNKTRSIMP` (BTI) - Import transfers from Sage treasury
+- `BOX1099` (BX9) - 1099 box
+- `BP1096PRN` (B96R) - 1096 print table
+- `BP1099BEGBAL` (B9B) - 1099 beginning balance
+- `BP1099PRN` (B9R) - 1099 print table
+- `BPS1099GEN` (B9G) - 1099 generation
+- `BPS1099MNT` (B9M) - Supplier 1099 maintenance
+- `BPS1099PAY` (B9P) - Supplier 1099 payments
+- `BSEINQ`+ (BSI) - Balance sheet inquiry
+- `BUD`* (BUD) - Budget table
+- `BUDAPP` (BOA) - Budget approval
+- `BUDAPPDET` (BAD) - Approval detail
+- `BUDFORCAL`* (BUC) - Budget calculation formula
+- `BUDOD` (BDE) - Budget misc. operations
+- `BUDODS`* (BDO) - Budget misc. operations
+- `BUDPAR`* (BUP) - Budget setup
+- `BUDPURAUD` (BUA) - Audit
+- `BUDREV` (BRV) - Budget review
+- `BUDREVDET` (BVD) - Review detail
+- `BUDTYP` (BUT) - Budget type
+- `BUDVARCAL` (BVC) - Budget calculation variable
+- `BUDVER` (BUV) - Budget versions
+- `BUILOCSPA` (BLS) - Building location
+- `CADISTMP` (DTP) - Budget weighting codes
+- `CAPFLOTMP` (CWT) - Capital flow
+- `CASHPAYSPA`* (CPS) - Cash payments
+- `CDIADSP` (DAD) - Dimension allocations
+- `CSFPARH` (CWH) - Header extraction parameters
+- `CSFPARL` (CWL) - Line extraction parameters
+- `CSFRES` (CWR) - Extraction result
+- `CSFRESD` (CSRD) - Cash flow analysis
+- `CSFRESH` (CSRH) - Cash flow analysis
+- `CSFRESL` (CSRL) - Cash flow analysis
+- `DADCPY` (DCP) - DASD company
+- `DADFCY` (DFC) - DAS2 site
+- `DATEVBPACC` (DTB) - DATEV BP assignment
+- `DATEVCHRONO` (DTC) - 
+- `DATEVGLACC` (DTA) - DATEV general acct. assignment
+- `DATEVTAX`* (DTT) - DATEV tax code assignment
+- `DCLCUSVATBE` (DLCB) - Annual customer listing
+- `DCLCUSVATBED` (DLCBD) - Annual customer listing
+- `DCLEECVATBE` (DLEB) - EU VAT statement (header)
+- `DCLEECVATBED` (DLEBD) - EU VAT statement (detail)
+- `DCLVAT`* (DLV) - Tax declaration on the debits
+- `DCLVATBOXDBD`+ (DLVBD) - VAT detail
+- `DCLVATBOXH`+ (DLVB) - VAT header
+- `DCLVATBOXPYD`+ (DLVBP) - VAT detail
+- `DCLVATITA` (DVI) - Italian VAT detail declaration
+- `DCLVATITA2` (DV2) - Italian VAT total declaration
+- `DCLVATITA3` (DV3) - Annual italian VAT declaration
+- `DCLVATPAY` (DVP) - Tax declaration / collection
+- `DCLVATPORB` (DVPB) - VAT base information
+- `DCLVATPORF` (DVPF) - VAT declaration fields
+- `DCLVATPORH`* (DVPH) - VAT declaration
+- `DCLVATPORL` (DVPL) - VAT declaration lines
+- `DCLVATPORP`* (DVPP) - VAT parameters
+- `DCLVATPORT`* (DVPT) - Taxes
+- `DCLVATSPA`* (DVS) - Tax working table (SPA)
+- `DUDLNK` (DLN) - Open item links
+- `EDTDADSU` (EDU) - DADSU file print
+- `EDTTDS` (ETD) - TDS file report
+- `ENTITE` (ENT) - Entity
+- `ENVELOPPE` (ENV) - Envelope
+- `ENVFIY` (ENF) - Distribute envelope/fiscal year
+- `EURSRVDCL` (ESH) - European services declaration
+- `EURSRVDCLD` (ESD) - European services declaration
+- `FAEPAR` (FAE) - ACCENTFIL setup
+- `FILTDS` (FTD) - File structure DADS-U
+- `GACCENTRY`* (HAE) - Accounting entries
+- `GACCENTRYA` (DAA) - Analytical accounting line
+- `GACCENTRYD`* (DAE) - Accounting entry lines
+- `GACCFIX` (GAF) - Recurring entries
+- `GACCFIYENA` (FYA) - C/fwd. temporary file
+- `GACCFIYEND` (FYD) - C/fwd. temporary file
+- `GACCINTCPY` (GIC) - Intercompany journal entry
+- `GACCINTCPYA` (GIA) - Intercompany journal ana lines
+- `GACCINTCPYD` (GID) - Intercompany journal ent lines
+- `GACCPYMLIK` (GYK) - Account pyramid links
+- `GACCPYMPRT` (GYP) - Print pyramids
+- `GAJOUSTA` (JST) - Journals - reports per period
+- `GAPARBSE` (PBS) - Default reporting codes
+- `GAPARDUM` (PDM) - Account balance transfer
+- `GBAGSCR` (GBS) - Aged balance screen
+- `GCCEPYMLIK` (CYK) - Dimension pyramid links
+- `GCCEPYMPRT` (CYP) - Print pyramids
+- `GCLCACEPAR` (CLC) - Calculated journal entries
+- `GCOMMIT` (CMM) - Commitments
+- `GCOMMITD` (CMD) - Commitment details
+- `GCOMMITX` (CMX) - Commitments (ref)
+- `GDIAACC` (GDA) - Account scheme header
+- `GDIAACCD` (GDC) - Account scheme lines
+- `GDIAENTRY` (GDE) - Entry transactions
+- `GDIAENTRYD` (GDD) - Journal entry transactions
+- `GENTLOT` (LOT) - Accounting journal batches
+- `GENTLOTA` (LOA) - Analytical batch entry lines
+- `GENTLOTD` (LOD) - General batch entry lines
+- `GENTLOTH` (LOH) - Batch entry header
+- `GJOUCOA` (JCO) - Journals - Chart of accounts
+- `GJOURNAL`* (JOU) - Journal codes
+- `GLCONSO` (GLC) - Consolidation ledger
+- `GRPCUR` (GCU) - Currency groups
+- `GRPDSP` (GSP) - Distribution groups
+- `GRPSAC` (GSC) - Control groups
+- `GSTDTL`+ (GDL) - GST detail
+- `GSTGRP`+ (GSTGH) - GST group header
+- `GSTGRPD`+ (GSTGD) - GST group details
+- `GSTHDR`+ (GHR) - GST header
+- `GSTPER`+ (GSTPH) - GST reporting period header
+- `GSTPERD`+ (GSTPD) - GST reporting period details
+- `GTABACC2` (GT2) - Account inquiries
+- `GTABACC3` (GTC3) - Balance graph
+- `GTMPMTC` (GMT) - Temporary matching table
+- `HISTAXSPA` (HTS) - Tax extraction history
+- `HISTOAMD` (HAM) - Amendment history
+- `HON281` (HHO) - 281.5 fees (Belgium)
+- `HON281D` (DHO) - 281.5 fees details
+- `HONLIN` (HLN) - Fee lines
+- `HONPRV`* (PRV) - Service suppliers
+- `IDTCCE`+ (IDTC) - Dimension index
+- `IMURANO`+ (IPM) - Spanish payroll interface setup
+- `IMURANOD`+ (IPMD) - Spanish payroll interface setup
+- `INVNUMSPA` (ISP) - Source document
+- `KPYIMPDTL`* (KPD) - Sage 50/Murano payroll detail
+- `KPYIMPDTLA`+ (KPA) - Analytical line
+- `KPYIMPHDR`* (KPH) - Sage 50/Murano payroll header
+- `KPYIMPTRAN`* (KPT) - Sage 50 import transcribe
+- `MATCHCODE` (MTC) - Match letters to use
+- `MTCAUTO` (MTU) - Automatic matching
+- `MTCBATCH` (MTB) - Batch matching
+- `MTCGAUTMP` (MGT) - Document matching preparation
+- `NRYPAR` (NRY) - ENERGY setup
+- `PAYVAT`* (PYHV) - Cash VAT (Portugal)
+- `PBDCONFIG` (PBDCNF) - Payment balance configuration
+- `PBDCONFIGD` (PBDCNFD) - Payment balance configuration
+- `PBDECODITM` (PBDEIT) - Economic reason by product
+- `PBDGEN` (PBDGEN) - Payment balance declaration
+- `PBDGEND` (PBDGEND) - Payment balance decl details
+- `PBDUICONF` (PBDUIC) - Payment balance field settings
+- `PBDUICONFD` (PBDUID) - Payment balance field lines
+- `PRJFAS` (PJF) - Assets
+- `PRJLOT` (PJL) - Lot
+- `PRMDADSU` (PRM) - Extraction parameterization
+- `PROJET` (PRJ) - Project
+- `PYHCAS` (PCH) - Treasury interface
+- `REPLINDEF` (RLI) - TaxUID management
+- `SPAMOD111`+ (SPM111) - Spanish form 111
+- `SPAMOD115`+ (SPM115) - Spanish form 115
+- `SPAMOD123`+ (SPM123) - Spanish form 123
+- `SPAMOD190`+ (SPM190) - Spanish form 190
+- `SPAMOD1901`+ (SPM1901) - Spanish form 190 details
+- `SPAMOD193`+ (SPM193) - Spanish form 193
+- `SPAMOD1931`+ (SPM1931) - Spanish form 193_1
+- `SPAMOD1932`+ (SPM1932) - Spanish form 193_2
+- `SPAMOD216`+ (SPM216) - Spanish form 216
+- `SPAMOD296`+ (SPM296) - Spanish form 296
+- `SPAMOD2961`+ (SPM2961) - Spanish form 296_1
+- `SPAMOD303`+ (SPM303) - Spanish form 303
+- `SPAMOD349`+ (SPM349) - Spanish form 349
+- `SPAMOD349D`+ (SPM349D) - Spanish 349 form detail
+- `SPAMODCPY`+ (SPMDC) - Spanish forms by company
+- `SPAMODELS`+ (SPMOD) - Spanish forms
+- `TABBUDTYP`* (TBU) - Budget transactions
+- `TABFILCASH` (TFC) - Treasury file
+- `TABFILTDS`* (TFT) - Fee declaration file
+- `TDSPRV` (TPR) - Fee total/service supplier
+- `TMPBLA`* (TBL) - Temporary print key table
+- `TMPCNVECAR` (TCE) - Exch. rate temporary table
+- `TMPGACCENTRD`+ (TMPDAE) - Accounting entry lines
+- `TMPGACCENTRY`+ (TMPHAE) - Accounting entries
+- `TXSA` (TXS) - Financial data extraction parameters
+- `TXSAC` (TXA) - Grid column setup
+- `TXSD` (TXD) - Financial data extraction detail
+- `TXSM` (TXM) - Amounts
+- `TXSP` (TXP) - Value parameters/version
+- `TXSV` (TXX) - Fin data extras variables
+- `TXSW` (TXW) - Versions
+- `VATBOX`* (VTB) - VAT boxes
+- `VATBOXD`* (VTD) - VAT boxes
+- `VATENTFRM` (VEF) - VAT form (definition)
+- `VATENTFRMD` (VEFD) - VAT form detail (definition)
+- `VATFRMENT` (VFE) - VAT form (values)
+- `VATFRMENTA` (VFEA) - VAT form
+- `VATFRMENTC` (VFEC) - VAT form by company
+- `VATFRMENTD` (VFED) - VAT form detail (values)
+- `VATFRMENTN` (VFEN) - VAT form queries
+- `VATGRP` (VATGH) - VAT entity header
+- `VATGRPD` (VATGD) - VAT entity details
+- `VDGERRSP` (RSP) - Recapitulative statem. param.
+- `VDGERTRP` (TRPG) - German tax return parameter
+- `VDSWITRP`* (TRSP) - Switzerland
+- `WHTDTL`+ (WDL) - WHT detail
+- `WHTHDR`+ (WHR) - WHT header
+
+## Fixed Assets (136 tables) - dict/Fixed-Assets.md
+
+- `BRDKEY` (BRD) - Distribution key
+- `CALCDBG` (CDG) - Calculation
+- `CASHING` (CAS) - Collections
+- `CCNCOE` (COE) - Update coefficients
+- `CCNRPR` (RPR) - Provisions for renewal
+- `CDFCOD` (CDC) - Recoding : codes
+- `CDFCPY` (CDS) - Recoding : select company
+- `CDFFCY` (CDY) - Recoding : select site
+- `CDFPAR` (CDP) - Recoding : parameter
+- `CIGDEF` (CIG) - IGS definition
+- `CIGFXDSOR` (CIB) - IGS adjustment : issued assets
+- `CIGREX` (CIR) - IGS parametern
+- `CIGREXSEL` (CIS) - IGS asset selection
+- `CONCESSION` (CCN) - Concession
+- `CONTEXT` (CNX) - Contexts
+- `DEPREC` (DEP) - Charge
+- `DEPRECARC` (DEA) - Charge archive
+- `DEPSIMU` (DPS) - Charge
+- `DPRMOD`* (DPM) - Depreciation methods
+- `DPRMODOPT` (DMO) - Depreciation method option
+- `DPRMODRAT` (DMR) - Depreciation method rate
+- `ECCNEND` (E52) - Evt - concession end
+- `ECCNREV` (E51) - Evt - concession add. clause
+- `EFASACT`* (E21) - Evt - update
+- `EFASAFFAGE`* (E22) - Evt - analytical/geo transfer
+- `EFASCCN` (E53) - Evt - concession attribute update
+- `EFASCCNAGE`* (E34) - Evt - provision transfer
+- `EFASCCNCNL`* (E32) - Evt - asset deletion
+- `EFASCCNISS`* (E33) - Evt - asset disposal provision
+- `EFASCFS`* (E38) - Evt -Classification for sale
+- `EFASCHGIMP`* (E23) - Evt - change acct allocation
+- `EFASCHGPPL`* (E37) - Evt-Production plan change
+- `EFASCNL`* (E30) - Evt - asset deletion
+- `EFASCRT`* (E24) - Evt - asset creation
+- `EFASIML`* (E25) - Evt - impairment loss
+- `EFASISS`* (E26) - Evt - asset disposal
+- `EFASLNKCNL`* (E36) - Evt - asset deletion
+- `EFASMTC` (E27) - Evt - method change
+- `EFASPLMDR`* (K33) - Evt - Improvement
+- `EFASREEVAL`* (E28) - Evt - revaluation
+- `EFASRNW` (E31) - Evt- renewal
+- `EFASRNWCNL` (E35) - Evt - asset deletion
+- `EFASRUCRT`* (K24) - Evt - asset creation
+- `EFASRURST`* (K32) - Evt - restart depreciation
+- `EFASRUSTP`* (K31) - Evt - stop depreciation
+- `EFASVATREG`* (E29) - Evt - adjust. asset sales tax
+- `EGRTCASH`* (E61) - Evt - subsidy transfer
+- `EGRTCNL`* (E64) - Evt - Subsidy deletion
+- `EGRTCRB`* (E63) - Evt- subsidy reintegration
+- `EGRTCRT`* (E62) - Evt - subsidy creation
+- `ELEAACTU`* (E41) - Evt - contract actualization
+- `ELEACNL`* (E47) - Evt - contract deletion
+- `ELEACRT`* (E42) - Evt - contract creation
+- `ELEAEND`* (E43) - Evt - end of contract
+- `ELEAPAY`* (E44) - Evt - contract fee
+- `ELEARPU`* (E45) - Evt - purchase option exercise
+- `ELEATRM`* (E46) - Evt - contract termination
+- `ELOFCIM`* (E01) - Evt - modify expense account
+- `ELOFCNL` (E03) - Evt - expense deletion
+- `ELOFVATREG`* (E02) - Evt - sales tax adjust expense
+- `EMODELE` (E00) - Evt - template table
+- `EPHYAFFGEO` (E82) - Evt - Phys. asset geo transfer
+- `EPHYCRT` (E81) - Evt - Physical asset creation
+- `EPHYISS` (E83) - Evt - Physical asset disposal
+- `FASFAM` (FAM) - Asset groups
+- `FISCYEAR` (FIS) - Fiscal year
+- `FREFLD` (FRF) - Free fields
+- `FXBLOB` (FBB) - Special folders
+- `FXDASSETS` (FAS) - Assets
+- `FXDLIFL` (FLU) - Track funds
+- `FXDLOFGRP` (LFG) - Grouping of expenses
+- `FXDMVT`* (FXM) - Movement import - Header
+- `FXDMVTD` (FXD) - Movement import - Detail
+- `GRANTS` (GRT) - Subsidies
+- `ITMACGGRP` (ITA) - Product
+- `KCOEF`* (KCO) - Impairment loss coefficients
+- `KTEMPPOR`* (KTP) - Temporary portuguese lists
+- `LAYOUTFAS` (LOF) - Expenses
+- `LEABILBOOK`* (LBB) - Lease contract schedules
+- `LEASE`* (LEA) - Lease contracts
+- `LNKCPTABD` (LCD) - ABELX3 acc link detail
+- `LNKCPTABX3` (LCA) - ABELX3 acc link
+- `PAREVT`* (PVT) - Parameterisation of events
+- `PAREVTD`* (PVD) - Parameterisation of events
+- `PARFLUX` (PFL) - Parametn of funds(header)
+- `PARFLUXDET` (PFD) - Parametn of funds(detail)
+- `PARLDAP` (LDA) - Expense asset link parameter
+- `PARTRZL` (TZL) - Transit fields paramtn
+- `PARTRZLDET` (TZD) - Transit flds paramtn detl
+- `PHYBUI` (BUI) - Building
+- `PHYELT` (PHY) - Physical assets
+- `PHYLCT` (LCT) - Localizations
+- `PHYMVT` (PMVT) - Physical assets - movements
+- `PROPLN` (PLP) - Production plan
+- `PROPLNH` (PLH) - Production plan
+- `PSEPLN` (PSE) - Seasonality plan
+- `RNWPREP` (RWP) - Renewal
+- `RUBASSDEF` (RDE) - Associations - definition
+- `RUBASSDEFP` (RDP) - Associations - definition/plan
+- `RUBASSVAL` (RVA) - Associations - values
+- `RUBASSVALP` (RVP) - Associations - values/plan
+- `RVACOED` (COD) - Reval. coefficient (detail)
+- `RVACOEH`* (COH) - Reval. coefficient (header)
+- `SAITRS` (SAI) - Entry transaction
+- `SAITRSDET` (DST) - Entry transaction detail
+- `SECACT` (SEA) - Activity sector
+- `TMP2054` (T54) - 2054 fiscal statement Temporary table
+- `TMP2055` (T55) - Fiscal statem. 2055 temp. table
+- `TMP2855` (TVS) - Temporary table Fisc. Stmt 2855
+- `TMPCPTDTA` (TCD) - Accounting interface -data
+- `TMPDERO` (TDE) - Temporary table
+- `TMPDFD` (TDF) - DFDDPEreport temp table
+- `TMPFAS1PAGE` (T1PG) - Tmp. depr. one page report
+- `TMPFAS246G` (T246) - Tmp. depreciation report
+- `TMPFASLIST` (TFL) - Temporary print key table
+- `TMPFASPHY` (TPH) - Temp table elem assignment
+- `TMPLEARNT` (TLR) - Temporary table
+- `TMPLISLOF` (TLI) - Temporary print key table
+- `TMPLOFGRP` (TLG) - Temporary table
+- `TMPMASFA2` (MF2) - Temporary table asset actions
+- `TMPMASFAS`* (MFS) - Temporary table asset actions
+- `TMPMASLCK` (TML) - Mass action table lock
+- `TMPMASLEA` (TLE) - Contract actions temp table
+- `TMPMASLOF` (MLF) - Temporary table
+- `TMPMASPHY` (MPY) - Temporary table actions elem
+- `TMPPLNFAS` (TPF) - Temporary table schedule actions
+- `TMPREEVAL` (TRV) - Temp table report DEPREEVAL
+- `TMPSIMDERO` (TDS) - Temporary print key table
+- `TMPSITU` (TSI) - Temp. table Report DEPSITU
+- `TMPSITUCUR`+ (TSIC) - Temp. table Report DEPSITU
+- `TMPTCHANGE` (TCG) - Currency rates temp. table
+- `TRCABX3` (TAB) - Abel X3 logs
+- `TYPACE` (TPE) - Accounting entry types
+- `TYPACEINT` (TPI) - Accounting entry types
+- `TYPACELEG` (TPL) - Accounting entry types
+- `VATHIS` (VAT) - Tax - history
+
+## Help Desk (13 tables) - dict/Help-Desk.md
+
+- `DOOBPCLNK` (DBL) - Order-giver association
+- `EXKWORD` (EKW) - Existing keywords
+- `FAMPBQUE` (PBQ) - Corresponding queues
+- `FAMPBREP` (PBR) - Qualified employees
+- `HDKTASK` (HDT) - After-sales serv. consumption
+- `HDKTASKINV` (HDI) - Consumptions to be invoiced
+- `HDKTRS`* (HTR) - HDK entry transaction
+- `HDKTRSVAL` (HTV) - HDK value entry transaction
+- `SBGEO` (SBG) - Consulting fields of service suppliers
+- `SBPBL` (SBP) - Service suppliers' skills
+- `SOLRESULT` (SOR) - Solutions found
+- `SOLUTION` (SOL) - Solutions
+- `SRESAT` (SRS) - Request status history
+
+## Human Capital management (36 tables) - dict/HCM.md
+
+- `BUDREF`+ (BUR) - Reference budget
+- `COMPEVAL`+ (CEV) - Interview campaign
+- `COURISLIG`+ (CIL) - Individual program lines
+- `COURSEI`+ (CSI) - Individual program
+- `COUT`+ (COU) - Provisional cost
+- `COUTFIN`+ (COF) - Financial cost
+- `COUTREEL`+ (HRCOR) - Actual cost
+- `CSICPC`+ (CIC) - Program skills
+- `DEC2483`+ (DEC) - 2483 declaration
+- `DEMANDE`+ (DEM) - Training request
+- `DEMLIG`+ (DML) - Lines of training requests
+- `EVAEMP`+ (EVE) - Interview
+- `EVAEMPCPC`+ (EVC) - Interview skills
+- `EVAEMPDET`+ (EVD) - Interview performance
+- `EVAEMPMIS`+ (EVM) - Mission interview
+- `HRSOFOCOD`+ (HROFO) - OFO code
+- `INSCRIPT`+ (INS) - Registrations
+- `INSJOU`+ (INJ) - Registration days
+- `INSJOUA`+ (INA) - Days absent
+- `MSHISTOH`+ (MHH) - TP history Tracking
+- `ORGFINTRA`+ (OFT) - Training funding organizations
+- `PLNBUD`+ (HRPLB) - Training plan budget
+- `PLNCOUT`+ (PLC) - Training plan costs
+- `PLNFORM`+ (PLF) - Training plan
+- `SCRPLFD`+ (HRSPD) - Entry transactions
+- `SCRPLFH`+ (HRSPH) - Entry transactions
+- `SESJOU`+ (SEJ) - Session days
+- `SESSIONS`+ (HRSES) - Session
+- `STAGE`+ (STG) - Training period
+- `TCOURLIG`+ (TCL) - Standard program lines
+- `TMPDEMANDE`+ (TDM) - Temporay request form table
+- `TMPMOB`+ (TMO) - Temporary table (mobility)
+- `TMPSES`+ (TSE) - Temporary table (session)
+- `TMPSUIMAS`+ (TSM) - Temporary table (TP tracking)
+- `TRAINER`+ (HRTRN) - Internal trainer
+- `TYPCOURSE`+ (TCS) - Standard program
+
+## Human Resources administration (178 tables) - dict/HR-administration.md
+
+- `BASGEN`+ (BAS) - Profit-sharing base
+- `BASIND`+ (HRBAI) - Individ. DPS scheme base
+- `BILIND`+ (BIN) - Annual employee report indicators
+- `BILRES`+ (BIL) - Annual employee report
+- `BILTXT`+ (BIX) - Annual employee report
+- `CAISSE`+ (PCA) - Contribution funds
+- `CALRUB`+ (CRB) - Headings to be calculated
+- `CALRUBHIS`+ (CRH) - Headings to be calculated
+- `CALVAR`+ (CVR) - Variables to calculate
+- `CHQDEJHEA`+ (CQH) - Chèques déjeuner
+- `CHQDEJLIG`+ (HRCQL) - Chèques déjeuner
+- `COTISATION`+ (HRCOT) - Contributions
+- `CUMUL`+ (CUM) - Totals
+- `DADDNA`+ (DNA) - DNA employees
+- `DADDNA2`+ (DNB) - DNA Premiums
+- `DADDNA3`+ (DNC) - DNA Monthly allowances
+- `DADDNA4`+ (DND) - DNA Notice
+- `DADDNA5`+ (DNE) - DNA Allowances
+- `DADDNA6`+ (DNF) - DNA Working hours
+- `DADDNA7`+ (DNG) - DNA Back pay paid
+- `DADDNA8`+ (DNH) - DNA Entertainment remuneration
+- `DADEMP`+ (HRDAE) - DADS-U employees
+- `DADEMP10`+ (DAL) - GPEC DADS-U allowances
+- `DADEMP11`+ (DAM) - Overtime DADS-U
+- `DADEMP12`+ (DAQ) - DADS-U beneficiaries welfare
+- `DADEMP121`+ (DQE) - DADS-U welfare
+- `DADEMP2`+ (DAS) - DADS-U employees
+- `DADEMP3`+ (DAP) - DADS-U welfare
+- `DADEMP31`+ (DPE) - DADS-U events welfare
+- `DADEMP32`+ (DPP) - DADS-U salary welfare
+- `DADEMP33`+ (DMU) - DADS-U comp. health ins.
+- `DADEMP34`+ (DME) - DADS-U events comp. health ins.
+- `DADEMP35`+ (DMP) - DADS-U remuneration comp. h. ins.
+- `DADEMP4`+ (DAC) - DADS-U employees
+- `DADEMP5`+ (DAG) - DAS-U savings
+- `DADEMP6`+ (DAH) - DADS-U shares
+- `DADEMP7`+ (DAI) - DADS-U benefits
+- `DADEMP8`+ (DAJ) - DADS-U exemptions
+- `DADEMP9`+ (DAK) - DADS-U allowances
+- `DADFCY1`+ (DFY) - DADS site
+- `DADFCY2`+ (DFP) - DADS site Welfare
+- `DADFCY3`+ (DFR) - DADS site Retirement
+- `DADFCY4`+ (DFQ) - DADS site Welfare
+- `DECCHARGE`+ (DCH) - Charge declarations
+- `DICODAD`+ (DDA) - DADS-U field dictionary
+- `DUCS0`+ (DCS) - DUCS
+- `DUCS1`+ (DCL) - DUCS
+- `DUCS2`+ (DCT) - DUCS Transport
+- `DUCS3`+ (DCX) - DUCS Transport tax
+- `EMPLODIRNUM`+ (HREDM) - Directive numbers
+- `EMPLOEXN`+ (EXN) - Expense notes
+- `EXCEPTC`+ (ECC) - Calculation exceptions
+- `EXCEPTD`+ (ECD) - Calculation exceptions
+- `EXCEPTH`+ (ECH) - Calculation exceptions
+- `EXCEPTV`+ (ECV) - Calculation exceptions
+- `EXOPAY`+ (EXO) - Pay exemption
+- `FILTDSLIS`+ (FTL) - N4DS file structure list
+- `FILTDSMSG`+ (FTM) - N4DS file structure list
+- `FONDS`+ (FDS) - Funds
+- `GGRILLE`+ (RIL) - Entry grid
+- `GRILLE`+ (GRI) - Entry grid
+- `HISPARMVT`+ (HPM) - Movement history
+- `HISPOA`+ (HIP) - Prepayment history
+- `HISTOCTX`+ (HIC) - Archive context
+- `HISTOPAYE`+ (HSP) - Payroll history
+- `HISTOREGUL`+ (HRHSR) - Payroll history
+- `HRFILTDS`+ (HRFTD) - DADS-U/DNA file structure
+- `HRTASSEDICSA`+ (HRATSSA) - Job center certificate
+- `IDADDNA`+ (IDN) - DN-AC employee import
+- `IDADDNA2`+ (ID2) - DNA import bonuses
+- `IDADDNA3`+ (ID3) - DNA import monthly allowances
+- `IDADDNA4`+ (ID4) - DNA import Notice
+- `IDADDNA5`+ (ID5) - DNA import Allowances
+- `IDADDNA6`+ (ID6) - DNA import Working hours
+- `IDADDNA7`+ (ID7) - DNA import Back-pay paid
+- `IDADDNA8`+ (ID8) - DNA import Entertainment
+- `IDADEMP`+ (IDA) - Annual declaration of employee data import
+- `IDADEMP10`+ (IDL) - Annual declaration of employee data and occupation and skills forecasting
+- `IDADEMP11`+ (IDM) - DADS-U overtime import
+- `IDADEMP12`+ (IDQ) - DADS-U welfare claims import
+- `IDADEMP121`+ (IDE) - Annual declaration of employee data welfare import
+- `IDADEMP2`+ (IDS) - Annual declaration of employee data import
+- `IDADEMP3`+ (HRIDP) - Annual declaration of employee data welfare import
+- `IDADEMP31`+ (IDF) - DADS-U events welfare import
+- `IDADEMP32`+ (IDR) - DADS-U payment welfare import
+- `IDADEMP33`+ (IDU) - DADS-U complementary health insurance import
+- `IDADEMP34`+ (IDV) - DADS-U events complementary health insurance import
+- `IDADEMP35`+ (IDW) - DADS-U payment complementary health insurance import
+- `IDADEMP4`+ (IDC) - Annual declaration of employee data import
+- `IDADEMP5`+ (IDG) - DADS-U savings import
+- `IDADEMP6`+ (IDH) - Import of DADS-U shares
+- `IDADEMP7`+ (IDI) - DADS-U benefits import
+- `IDADEMP8`+ (IDJ) - DADS-U exemptions import
+- `IDADEMP9`+ (IDK) - DADS-U allowances import
+- `LIVREPAYE`+ (LPA) - Payroll journals
+- `MALADIE`+ (MAL) - Sickness certificate/Maternity
+- `MSCALR`+ (MSC) - Headings to be calculated
+- `MSENTEML`+ (MHE) - TP employee arrival hypothesis
+- `MSFLDATM`+ (HRMFA) - Field initialized for RTP
+- `MSGGRIL`+ (MRI) - TP entry grids
+- `MSGRIL`+ (MGR) - TP entry grids
+- `MSHISTO`+ (MHS) - TP history
+- `MSHYPENP`+ (MHP) - Hypothesis of non-permanent elts
+- `MSHYPRUB`+ (MHR) - Heading hypothesis
+- `MSHYPTXAT`+ (MHT) - WI rate hypothesis
+- `MSHYPVAD`+ (MHD) - Variable hypotheses
+- `MSHYPVAH`+ (MHV) - Variable hypotheses
+- `MSHYPVAL`+ (MHL) - Variable hypotheses
+- `MSLIVREPAY`+ (LPM) - Total payroll journals
+- `MSLRUB`+ (MLR) - List of TP headings
+- `MSMODCTR`+ (MHC) - Contract modification hypotheses
+- `MSRUB`+ (MSR) - TP headings
+- `MSSCENAH`+ (MCH) - Scenario
+- `MSSCENAL`+ (MCL) - Scenario
+- `MSVALEUR`+ (MHA) - Variable value history TP
+- `MSXITEML`+ (MHX) - TP employee departure hypothesis
+- `N4DSTABD`+ (N4D) - N4DS code correspondences
+- `N4DSTABH`+ (N4H) - N4DS code correspondences
+- `PARCOL`+ (PAC) - Collective DPS scheme
+- `PARIND`+ (PAI) - Individual distribution
+- `PARVAR`+ (PVR) - Variables to configure
+- `PARVARIND`+ (PVI) - Variables to configure
+- `PATCHPDP`+ (HRPPP) - Payment plan patches follow-up
+- `PATCHPDPOBJ`+ (PPO) - Payment plan patches follow-up
+- `PPREQUESTD`+ (HRPPD) - Prepaid - Requests
+- `PPREQUESTH`+ (HRPPH) - Prepaid - Requests
+- `PPVRALISD`+ (HRPVD) - Prepay - List of Variables
+- `PPVRALISH`+ (PVH) - Prepay - List of Variables
+- `PRMDUCS`+ (DUC) - Extraction parameterization
+- `PRMTDS0`+ (TD0) - Extraction parameterization
+- `PRMTDS1`+ (TD1) - Extraction parameterization
+- `PRVCLOB`+ (HRPCB) - Provisional slip texts
+- `REGUL`+ (RGL) - Adjustments
+- `REPART`+ (HRREP) - Distribution methods
+- `REPCUMTDS`+ (RCT) - Recovery of Dads-U totals
+- `RETRO`+ (RET) - Back-pay file
+- `RETROCAL`+ (REC) - Back-pay - calculations
+- `RETRORUB`+ (RER) - Back-pay - Items
+- `RETROSAL`+ (RES) - Back-pay - Employees
+- `RETROVAL`+ (RVL) - Back-pay - Variables
+- `RETROVRA`+ (REV) - Back-pay - Variables
+- `RUBHIS`+ (RUH) - Heading
+- `RUBRIQUE`+ (RUB) - Heading
+- `SCRMHCD`+ (SCD) - Modif hypothesis transaction
+- `SCRMHCH`+ (HRSCH) - Modif hypothesis transaction
+- `SCRMHED`+ (SED) - Arrival hypothesis transaction
+- `SCRMHEH`+ (SEH) - Arrival hypothesis transaction
+- `SCRMHXD`+ (SXD) - Departure hypothesis transaction
+- `SCRMHXH`+ (SXH) - Departure hypothesis transaction
+- `SCRVRA`+ (SVR) - Variable entry screens
+- `SOLDPAY`+ (HRSDP) - Payment balance
+- `TABAT`+ (HRTAT) - WI/Occupational disease certificate
+- `TASSEDIC`+ (HRATS) - Job center certificate
+- `TASSEDIC2`+ (HRAT2) - Job center certificate
+- `TASSEDIC3`+ (HRAT3) - Job center certificate
+- `TIKRESHEA`+ (TRH) - Tickets restaurant
+- `TIKRESLIG`+ (TRL) - Tickets restaurant
+- `TMPDCH1`+ (TM1) - Temporary tables (charges)
+- `TMPDCH2`+ (TM2) - Temporary tables (charges)
+- `TMPDUCS`+ (TDU) - DUCS
+- `TMPDUCSEFF`+ (HRTDE) - DUCS
+- `TMPHISTO`+ (TMP) - Payroll history
+- `TMPHSR`+ (THR) - Payroll history
+- `TMPLIVRE`+ (HRTML) - Payroll journals
+- `TMPLIVRESTD`+ (HRTMD) - Payroll journals
+- `TMPMSLIVRE`+ (TMM) - Total payroll journals
+- `TRVACC`+ (WAC) - WA rate
+- `TRVACCRAT`+ (WAR) - WA rate
+- `VALANA`+ (VAN) - Analytical values
+- `VALCPY`+ (VCP) - Company values
+- `VALEMP`+ (VEP) - Employee values
+- `VALEUR`+ (VLA) - Values
+- `VALFCY`+ (VFC) - Site values
+- `VALFDR`+ (VFD) - Legislation values
+- `VALPRV`+ (VPR) - Provisional values
+- `VALPRVH`+ (VPH) - Provisional values
+- `VARIA`+ (VRA) - Variables
+- `VARTEXT`+ (VTX) - Text of the slip lines
+
+## Manufacturing (66 tables) - dict/Manufacturing.md
+
+- `ATEXMOD` (ATM) - Text sequence number by module
+- `CALIBRAT` (CBT) - Calibration
+- `CALIGUIDES` (CGD) - Calibration guides
+- `CAPVAR` (CPV) - Capacity variation
+- `CONTAINERS` (CTN) - Containers
+- `HANDLING` (HSH) - Stock process instruction
+- `HANDLINGR` (HSR) - Container instruction
+- `ILOGIMG` (ILO) - Ilog images
+- `MESPAR` (MPA) - MES setup
+- `MFCSCRAP` (MCS) - Scrap cost
+- `MFGANL` (MFA) - WO analysis
+- `MFGHEAD`* (MFG) - Work order - header
+- `MFGHEADTRK` (MTK) - Manufacture tracking - header
+- `MFGITM`* (MFI) - Work orders - products
+- `MFGITMTRK`* (MKI) - Manufacture tracking - products
+- `MFGMAT` (MFM) - Work order - materials
+- `MFGMATTRK`* (MKM) - Manufacture tracking - materia
+- `MFGOPE` (MFO) - Work order - operations
+- `MFGOPETRK`* (MKO) - Manufacture tracking - operati
+- `MFGPRN` (MFP) - Work orders - documents
+- `MFGTRS`* (MTS) - Production entry transaction
+- `MFGVERSION` (MFV) - MFG version change
+- `MODSCALE` (MODL) - Weighing scale templates
+- `MTKCRDASW` (MTA) - Technical sheets - responses
+- `MWMCRDASW` (MWA) - Booth procedures - Responses
+- `OPERATIONS`* (OPS) - Load in progress
+- `ORDOOPAR` (ORO) - APS setup
+- `ORDOPPAR` (ORP) - PREACTOR parameters
+- `PARJAL` (PJA) - Scheduling parameters
+- `PARWIPACC` (PWA) - Wipcost-interface parameter
+- `PDPDET`* (PDD) - MPS calculation detail
+- `PDPHEA` (PDH) - MPS calculation header
+- `POPSCALEXP`+ (CEP) - Calendar exception
+- `POPSCUSFLDS`+ (PSCF) - Prod. Sched. custom fields
+- `POPSCUSVALS`+ (PSCV) - Prod. Sched. custom values
+- `POPSMRK`+ (MRK) - Planner One marker
+- `POPSOBJ`+ (PSOBJ) - Objects in PS
+- `POPSPIN`+ (PIN) - Operation pin type
+- `POPSTAG`+ (TAG) - Planner One tag
+- `ROUOPE` (ROO) - Routing - operations
+- `ROUOPESTD` (ROT) - Standard operations
+- `ROUSCD` (ROS) - Routing - scheduling operation
+- `ROUTING` (ROH) - Routings - header
+- `RPLWST`* (RPW) - Alternate work centers
+- `RVMVAL`+ (RVV) - Routing versions
+- `SCALES` (SLE) - Weighing scales
+- `SCHEDULING`* (SCH) - Work order scheduling
+- `SENTENCES` (RSY) - Safety risk sentences
+- `SFTTXN`+ (SFTX) - Shop floor transactions
+- `SFTTXNH`+ (SFTH) - Shop floor trans. history
+- `STATION` (STX) - Weighing location
+- `STATIONBOX` (SBX) - Location/booth configuration
+- `TABCABCUT` (CUT) - BC division rules
+- `TABWRKCTR`* (TWC) - Work center groups
+- `TANKS` (TKS) - Tanks
+- `TANKSGATES` (TGT) - Gate tank assignments
+- `TDUPDCLC` (TUC) - Serial No. - calculation modification
+- `USERGUIDES` (UGD) - User guides
+- `WEIGHING` (WGG) - Weighing
+- `WEIGHPRT` (WGP) - Label printing
+- `WIPSCPM` (MSM) - Rejects temporary material
+- `WIPSCPO` (MSO) - Rejects temporary operation
+- `WIPTMP` (MWT) - Wipcost-interface
+- `WORKCOST` (MWC) - Costing dimension
+- `WORKLOAD` (WKL) - Production load
+- `WSTANL` (WSA) - Workstation analysis
+
+## Purchasing (60 tables) - dict/Purchasing.md
+
+- `BITMPPORDERP` (BIPOP) - POs price
+- `BITMPPORDERQ` (BIPOQ) - POs quantities
+- `CONTAINER`* (CTRH) - Container
+- `CONTAINERD` (CTRD) - Container detail
+- `COSTSTCD`* (STCD) - Cost structure - documents
+- `COSTSTCR` (STCR) - Cost matching
+- `EVENTTRNP`* (EVT) - Transport incident
+- `MATCHTOL` (MAT) - Matching tolerance
+- `PARWIPACCS` (SWA) - Wipcost-interface parameter
+- `PINVOICED`* (PID) - Purchase invoice detail
+- `PINVOICEV` (PIV) - Costing purchase invoices
+- `PORDER`* (POH) - POs
+- `PORDERC`* (POC) - Cumulative POs before returns
+- `PORDERP`* (POP) - POs price
+- `PORDERQ` (POQ) - POs quantities
+- `PORDITM` (POI) - Purchase orders by product
+- `PPRICLINK`* (PPK) - Purchase price list search (link)
+- `PPRIVARWRK` (PPV) - Purchase price variance report
+- `PQUOTAT` (PQH) - RFQs
+- `PQUOTATD` (PQD) - RFQ product detail
+- `PQUOTATF` (PQF) - RFQ supplier detail
+- `PRECEIPT`* (PTH) - Receipt
+- `PRECEIPTD`* (PTD) - Detail receipts
+- `PREQUIS`* (PSH) - Purchase requests
+- `PREQUISA` (PSA) - Link purchase requests
+- `PREQUISD`* (PSD) - Purchase request detail
+- `PREQUISO` (PSO) - Link purchase requests
+- `PRESP` (PPH) - RFQ responses
+- `PRESPD` (PPD) - Detail RFQ responses
+- `PRETURN`* (PNH) - Returns
+- `PRETURND`* (PND) - Detail return
+- `PURTRS`* (PTR) - Entered purchase transactions
+- `PVCRFOOT` (PVF) - Purchase documents - footer elt
+- `PVCRVAT` (PVV) - Purchase documents - taxes
+- `PWRKORDERS` (PWO) - Requirements considered
+- `PWRKPND`* (PWR) - Return line detail temporary
+- `PWRKPNH` (PWE) - Temporary return
+- `PWRKPOC`* (PWC) - Temporary product-contract
+- `PWRKPOP`* (PWP) - Temporary product-contract
+- `PWRKPOQ` (PWQ) - Temporary order detail
+- `PWRKPQF` (PWF) - RFQ ADR supplier temporary
+- `PWRKPTD`* (PWD) - Temporary detail receipt
+- `PWRKPTH` (PWH) - Temporary receipt
+- `PWRKSTT` (PWS) - Subcontract
+- `SCOHEAD` (SCO) - Subcontract order
+- `SCOITM`* (SCI) - Subcontract order
+- `SCOMAT` (SCM) - Order sub-contract materials
+- `SCOSRV` (SCS) - Order sub-contract services
+- `SCOTRK`* (SCK) - Sub-contract tracking
+- `SHIPDOC`+ (SHIPD) - Shipment documents
+- `SHIPMENT`* (SHH) - Shipment
+- `SHIPMENTD`* (SHD) - Shipment detail
+- `SHIPTRACK`+ (SHIPT) - Shipment logistical tracking
+- `TMPPRPT`* (TPRPT) - Temporary print key table
+- `TRANSPORT`* (TRNP) - Transport
+- `UPORDER` (UOH) - PO history
+- `UPORDERC` (UOC) - Cumulative PO history before R
+- `UPORDERP` (UOP) - PO price history
+- `UPORDERQ` (UOQ) - PO quantity history
+- `WRKPURFCS` (WPF) - Purchase cost report
+
+## Sales (44 tables) - dict/Sales.md
+
+- `BITMPSORDERP` (BISOP) - Sales orders - price
+- `BITMPSORDERQ` (BISOQ) - Sales orders - quantities
+- `COFAWRK` (CAW) - Certificate of analysis
+- `LTAPAR`* (LTP) - Sage Sales Tax connection
+- `LTAVCR` (LTV) - Local tax by sales document
+- `SALESTAX` (STB) - Sales tax report
+- `SALTRS`* (SLT) - Entered sales transactions
+- `SBODLINK`* (SBK) - Component qty. calculation (link)
+- `SDELIVERY`* (SDH) - Delivery header
+- `SDELIVERYD`* (SDD) - Delivery detail
+- `SINCDET` (SND) - Line price review definition
+- `SINCENT` (SNE) - Price update definition
+- `SINVOICED`* (SID) - Sales invoice detail
+- `SINVOICEV`* (SIV) - Costing sales invoice
+- `SORDER`* (SOH) - Sales orders - header
+- `SORDERC`* (SOC) - Sales orders - early / late
+- `SORDERP`* (SOP) - Sales orders - price
+- `SORDERQ`* (SOQ) - Sales orders - quantities
+- `SPPRTCONF` (SPP) - Price catalog definition
+- `SPRICFICH` (SPF) - Customer prices (records)
+- `SPRICINCR` (SPI) - Price increase
+- `SPRICLINK`* (SPK) - Sales price list search
+- `SPRICPRTQ` (SPQ) - Sales price catalog
+- `SQUOTE`* (SQH) - Quote header
+- `SQUOTED`* (SQD) - Quote detail
+- `SRETURN`* (SRH) - Sales return header
+- `SRETURND`* (SRD) - Sales return detail
+- `SVCRFOOT` (SVF) - Sales document - footer el.
+- `SVCRINVCND`+ (SVIC) - Scheduled invoice
+- `SVCRINVCNDD`+ (SVICD) - Scheduled invoice
+- `SVCRVAT`* (SVV) - Sales document - tax
+- `SWRKDLV` (SWD) - Automatic delivery generation
+- `SWRKINV` (SWI) - Automatic billing
+- `SWRKINVCND`+ (SWICND) - Automatic billing
+- `TABSOHTYP`* (TSO) - Order type table
+- `TABSQHTYP`* (TSQ) - Quote type table
+- `TABSRHTYP` (TRE) - Return type table
+- `TMPSRPT`* (TRPT) - Temporary print key table
+- `TMPSRPTDET`+ (TSRPTD) - Temporary print key table
+- `UNFILWRK` (UNF) - Unfilled orders report
+- `VSORDER`* (VOH) - Sales order history - header
+- `VSORDERC` (VOC) - Cumulative sales order history
+- `VSORDERP`* (VOP) - Sales order history - price
+- `VSORDERQ`* (VOQ) - Sales order history - Qties.
+
+## Stock (86 tables) - dict/Stock.md
+
+- `BENCHTRS`* (BTS) - Plan transaction
+- `CBNDET`* (CBD) - MRP detail
+- `CBNHEA` (CBH) - MRP processing
+- `CBNWRK` (CBW) - MRP workfile
+- `CFGABQ` (CAB) - Simple calculation tables
+- `CFGHIS` (CFH) - Configuration history
+- `CFGHISHEA` (CHH) - Configuration history header
+- `CFGLNK` (CLN) - Configurator symbol links
+- `CFGMAC` (CFM) - Standard processes
+- `CFGMEMO` (CME) - Configurator memo
+- `CFGMENLOC` (CML) - Local menus
+- `CFGOPTVAR` (COV) - Options / variants
+- `CFGQST` (CQU) - Configurator symbols
+- `CFGSCE` (CSC) - Configurator scenarios
+- `CFGSCELIN` (CSL) - Configurator scenario lines
+- `CFGSEL` (CSE) - Configurator selections
+- `CFGSHA` (CSH) - Shapes and patterns
+- `CFGTEX` (CFT) - Configurator work file
+- `CUNLISDET`* (CUD) - Counts
+- `CUNLISTE`* (CUL) - Count worksheets
+- `CUNSESSION`* (CUN) - Stock count session
+- `INVENTD` (INVD) - Counts
+- `INVENTH` (INV) - Counts
+- `ITMABCWRK` (ITK) - ABC Class calculation
+- `LABELPRN` (LBP) - Label printing
+- `ORDCOV`* (ORC) - WIP consideration history
+- `PARMRP`* (PCB) - Requirements parameters
+- `PARSTOACC` (PAS) - Stock interface setup
+- `SCHGD` (SGD) - Stock change line
+- `SCHGH`* (SGH) - Stock change header
+- `SCMAPAR` (SZP) - APS Forecast setup
+- `SCMDPAR` (SDP) - SCM n.skep setup
+- `SLOTMD` (SLD) - Lot modification line
+- `SLOTMH`* (SLH) - Lot modification header
+- `SMVTD` (SMD) - Stock movement detail
+- `SMVTDVAL` (SMV) - Movement price
+- `SMVTH`* (SMH) - Movement header
+- `SPACK` (SPH) - Delivery package
+- `SPACKD` (SPD) - Delivery package detail
+- `STJTMP` (SJT) - Interface - stock journal
+- `STKMVTADJ` (SMA) - Cost adjustment
+- `STKREGWRK` (SRW) - Cost adjustment
+- `STOACCPAR` (SAC) - Actng. interface parameter
+- `STOALL` (STA) - Allocations
+- `STOCK`* (STO) - Stock
+- `STOCOST` (STP) - Stock FIFO cost
+- `STOJOU`* (STJ) - Stock journal
+- `STOJOUOVE` (SJO) - Ovhds stock movements
+- `STOJOUVAL` (SJV) - Stock movement values
+- `STOLOC` (STC) - Locations
+- `STOLOCAFF` (STF) - Bin assignment
+- `STOLOCRES` (SWL) - Location work
+- `STOLOT` (STL) - Lot numbers
+- `STOLOTFCY` (SLF) - Lots - sites
+- `STOMVTCOST` (SMC) - Link documents / FIFO stack
+- `STOPAR` (STE) - Stock parameters
+- `STOPRED` (PRE) - Pick ticket detail
+- `STOPREH` (PRH) - Pick ticket header
+- `STOPRELIS` (PRL) - Shipment preparation list
+- `STOPRELISW`* (PLW) - Work preparation lists
+- `STOPREW` (PRW) - Work preparation sheet
+- `STOQLYD`* (QLD) - Quality control detail
+- `STOQLYH`* (QLH) - Quality control header
+- `STOQUAL`* (STQ) - Quality control
+- `STOREO` (REO) - Reorder
+- `STOSER` (STS) - Serial numbers
+- `STOSRG`* (SRG) - Storage
+- `STOSRGW` (SGW) - Storage (details)
+- `STOSYNW` (SYW) - Stock resynch work
+- `STOTRK` (STR) - Traceability
+- `STOTRKWRK` (SKW) - Traceability workfile
+- `STOVALCUM` (SVC) - Valuated stock totals report
+- `STOVALWRK` (STV) - Stock valuation report
+- `STOWIPW` (SWW) - Stock being processed
+- `TABLOCTYP` (TLO) - Location type table
+- `TABPRECOD` (PRC) - Preparation code
+- `TABSAFSTO` (TSA) - Safety stock coefficients
+- `TABWIPSTO` (TWS) - Blocked stock quantities
+- `TMPKRPT`* (TKRPT) - Temporary print key table
+- `WCUNLISDET` (WCU) - Print stock count
+- `WRKSTOCNS` (WCN) - Transfer stock inquiry
+- `WRKSTOPER` (WSP) - Stock by date inquiry
+- `WSTOALL` (WSTA) - Allocations
+- `WSTOLOTFCY` (WSL) - Lots - sites
+- `WSTOQLYD` (WQL) - Quality control detail
+- `WSTOREO` (WREO) - Reorder
+
+## Supervisor (331 tables) - dict/Supervisor.md
+
+- `AABREV` (AAB) - Abbreviation
+- `ABANK` (ABN) - Bank sort codes
+- `ABATABT`* (ABA) - Batch server (recurring tasks)
+- `ABATABTD` (ABD) - Batch server (recurring tasks)
+- `ABATCAL` (ABC) - Batch server calendar
+- `ABATGRP` (ABG) - Batch server (groups)
+- `ABATHOR` (ABH) - Hourly constraints
+- `ABATPAR` (ABP) - Batch server (parameters)
+- `ABATRQT`* (ABR) - Batch server (queries)
+- `ABATRQTL` (ABL) - Batch server (queries)
+- `ABATTAC`* (ABT) - Batch server (tasks)
+- `ABICOND` (AII) - Predefined conditions
+- `ABIDATMRT` (ABM) - Datamart
+- `ABIDATWRH` (ABW) - Data warehouse
+- `ABIDIM` (ABI) - Dimensions
+- `ABIDIMFLD` (ABJ) - Dimensions (fields)
+- `ABIHIERA` (AHH) - Hierarchies
+- `ABIPRFUSR` (AIU) - BI user profile
+- `ABIREGDES` (ABY) - Synchronization rules (dest)
+- `ABIREGORG` (ABV) - Synchronisation rules
+- `ABIREPORT` (ABO) - Business objects reports
+- `ABIREPORTD` (ABQ) - Business objects reports
+- `ABIREPORTID` (ABOID) - Business objects reports
+- `ABITABAGG` (ABE) - Fact table (aggregates)
+- `ABITABDAT` (ABF) - Fact tables
+- `ABITABFLD` (ABZ) - Fact table (fields)
+- `ABITABIND` (ABX) - Fact table (index)
+- `ABITABLNK` (ABK) - Fact table (links)
+- `ABITRAUNV` (ATV) - Report translation
+- `ABLBSYS` (ASB) - Graphic components
+- `ABLOB`* (ABB) - Special folders
+- `ACALCUL` (AKL) - Calculator history
+- `ACCCOD` (ACS) - Access codes
+- `ACCES` (ACC) - Access by user
+- `ACHANGE` (ACG) - Key change set up
+- `ACLACOL` (ACLAC) - Classes (Collections)
+- `ACLAFLD` (ACLAF) - Classes (lines)
+- `ACLALNK` (ACLAK) - Classes (tables)
+- `ACLAMAP` (ACLAKP) - Classes (mapping)
+- `ACLAMET` (ACLAM) - Classes (methods)
+- `ACLAMETSTD` (ACLAT) - Classes (standard methods)
+- `ACLAOPT` (ACLAO) - Classes (options)
+- `ACLAPARDEF` (ACLPD) - Classes (parameters)
+- `ACLAPARFLD` (ACLFP) - Classes (parameters)
+- `ACLASSE` (ACLA) - Classes
+- `ACLBSYS` (ASA) - Graphic components
+- `ACLOB`* (ACB) - Special folders
+- `ACODIF` (ACO) - Section coding
+- `ACODNUM` (ANM) - Doc sequence numbers
+- `ACONSTANT` (ACST) - Constants
+- `ACONSULT` (ACN) - Inquiries
+- `ACONTEXT` (ACTX) - Context
+- `ACTCODPAR` (AAR) - Action parameters
+- `ACTION` (ACT) - Action dictionary
+- `ACTIV` (ACV) - Activity codes
+- `ACTL` (ACL) - Control tables
+- `ACTLDEV` (ACD) - Reserved brackets
+- `ACTPAR` (ATR) - Action parameters
+- `ADELETE` (ADL) - Deletion
+- `ADELIVER` (ADLV) - Deliverable
+- `ADELIVERB` (ADLB) - Deliverable
+- `ADELIVERD` (ADLD) - Deliverable
+- `ADELIVERL` (ADLL) - Deliverable
+- `ADELIVERO` (ADLO) - Deliverable
+- `ADELIVERP` (ADLP) - Deliverable
+- `ADELIVERR` (ADLR) - Deliverable
+- `ADELIVERT` (ADLT) - Deliverable
+- `ADICTRT` (ADC) - Processes dictionary
+- `ADIMENSION` (ADM) - Sizing elements
+- `ADOCBLB` (ADB) - Documentation (linked files)
+- `ADOCCLB` (ADH) - Documentation (texts)
+- `ADOCFLD` (ADZ) - Field documentation
+- `ADOCFNC` (ADF) - Documentation links
+- `ADOCUMENT` (ADO) - Documentation
+- `ADOPAR` (ADP) - Parameters
+- `ADOSACT` (ADA) - Activity codes
+- `ADOSDIM` (ADE) - Sizing elements
+- `ADOSLIV` (ADK) - Deliverables
+- `ADOSSIER`* (ADS) - Folder table
+- `ADOSSOL` (ADD) - Solution by folder
+- `ADOVAL` (ADW) - Parameter values
+- `ADOVALAUS` (ADU) - User parameter values
+- `ADOVALGRP` (ADG) - Sets of values
+- `ADOVALHIS` (AHW) - Parameter values
+- `AECLIDBG` (AEG) - Eclipse
+- `AECLIRDV` (AEC) - Eclipse
+- `AELT` (AEL) - Web elements dictionary
+- `AELTLINK` (AEK) - Web element links
+- `AENCHAINE` (AEN) - Import/export sequence
+- `AENTREE` (APE) - Entry points
+- `AESPION` (AES) - Trace system transactions
+- `AEXPV3` (AEV) - Table setup/import
+- `AEXPV3D` (AED) - Table setup/import
+- `AFCTCUR`* (AFU) - Current function
+- `AFCTEXE` (AFE) - Last functions executed
+- `AFCTFCT` (AFT) - User function profile
+- `AFCTFCY` (AFF) - Site profile function
+- `AFCTPRF` (AFP) - Functional authorization
+- `AFONCTION` (AFC) - Function dictionary
+- `AFORDIM` (AFO) - Sizing formulas
+- `AGDPRMAI`+ (AGMAI) - 
+- `AGDPRPHONE`+ (AGPHO) - 
+- `AGDPRSETTING`+ (AGS) - GDPR setup
+- `AGDPRVCR`+ (AGVCR) - GDPR search
+- `AGLOBVAR` (AGB) - Global variables
+- `AGRPCPY` (AGC) - Company groupings
+- `AGRPFCY` (AGF) - Site groupings
+- `AHISTO` (AHI) - History/purge
+- `AHISTOD` (AHD) - History/purge
+- `AINDEX` (ANX) - Specific index
+- `AITRLNK` (AIT) - Interactive components
+- `AJSAUDIT` (AJA) - Audit
+- `AJSCONT` (AJC) - Sdata contract
+- `AJSEXCEPT` (AJE) - Exception
+- `AJSSYNC` (AJS) - Synchro
+- `ALINK` (ALI) - Link explorer
+- `ALISTEC` (ALC) - Graphical query tool
+- `ALISTED` (ALD) - Query tool
+- `ALISTEH` (ALH) - Query tool
+- `ALISTEL` (ALL) - Graphical query tool
+- `ALISTER` (ALR) - Query tool
+- `ALISTET` (ALT) - Graphical query tool
+- `ALNKSUB` (ALB) - Subdivision links
+- `ALOGIN` (ALO) - Login table
+- `ALSTRD` (ALS) - Last records read
+- `AMAINT` (AMI) - Database mass update
+- `AMEMO` (AMM) - Memo
+- `AMENLOC` (AML) - Header messages
+- `AMENUSER` (AMU) - User profile menu
+- `AMETUTI` (AME) - Professional profile
+- `AMIGKEY`* (AMY) - Keys
+- `AMOTCLE` (AMC) - Help key-words
+- `AMOULIN` (AI0) - Migration process
+- `AMOULIN1` (AI1) - Migration plan
+- `AMOULIN2` (AI2) - Migration plan detail
+- `AMSK` (AMK) - Screen dictionary
+- `AMSKACT` (AMA) - Action-object assignment table
+- `AMSKPAR` (AMP) - Action-object parameters
+- `AMSKZON` (AMZ) - Screen field dictionary
+- `ANAVCRE` (ANI) - Navigation
+- `ANAVFIL` (ANH) - Navigation
+- `ANAVIG` (ANG) - Navigation
+- `ANNUAIRE` (ANU) - User directory
+- `AOBJBUR` (AOA) - Office documents
+- `AOBJBURMOD` (AON) - Default documents
+- `AOBJET` (AOB) - Basic objects
+- `AOBJEXT` (AOE) - Import/export templates
+- `AOBJEXTD` (AOD) - Object import/export lines
+- `AOBJEXTMP` (AOW) - Import/export temporary storage space
+- `AOBJEXTMPB` (AOZ) - Import/export temporary storage space
+- `AOBJEXTMPC` (AOY) - Import/export temporary storage space
+- `AOBJEXTMPD` (AOV) - Import/export temporary storage space
+- `AOBJEXTMPE` (AOU) - Import/export temporary storage space
+- `AOBJEXTR` (AOR) - Transcribe import/export
+- `AOBJLNK` (AOK) - Link explorer
+- `AOBJLST` (AOL) - Basic objects
+- `AOBJPROP` (AOP) - Object properties
+- `AOBJSEL` (AOS) - Select memo file
+- `AOBJTAB` (AOT) - Object table
+- `AOBJTXT` (AOX) - Attachments
+- `AOBJTXTA` (AOM) - Key word table
+- `APARIMPEXP` (APX) - Import/export parameters
+- `APATCH`* (APT) - Patch tracking
+- `APATCHLOG` (APL) - Patch tracking
+- `APATCHLOGD` (APLD) - Patch tracking
+- `APATCHMOD` (APH) - Setup templates
+- `APATCHTMP` (APATMP) - Patch integration
+- `APLCOM` (ACM) - Sequence number definition
+- `APLCOMH` (ACMH) - Sequence number definition
+- `APLLCK` (ALK) - Lock table
+- `APLSTD` (AST) - Local menus
+- `APOOLBRG` (APB) - Pool of the java bridge
+- `APOOLWS` (APW) - Web services pool
+- `APORTMOD` (AMO) - Dashboard modules
+- `APORTTAB` (APA) - Dashboard gadgets
+- `APORTTYP` (ATP) - Gadget group
+- `APORTUSER` (APU) - User dashboard
+- `APORTVIG` (AVP) - Gadgets
+- `APRINTDES` (AID) - Printer description
+- `APRINTER` (AIM) - Destinations
+- `APROCESSUS` (APR) - Processes
+- `APROCTEXTE` (AXP) - Process texts
+- `APROFIL` (APF) - User profile
+- `APROMEN` (APO) - Process menu
+- `APRTAUS` (AIA) - Destinations by user
+- `APRTBRW` (AP2) - Multilists
+- `APTLPAGE` (APS) - Dashboard pages
+- `APTLPAR` (APP) - Dashboard view parameters
+- `APTLVW` (APV) - Dashboard views
+- `ARCHPAR` (ARC) - Archiving rules
+- `ARCHPARE` (ARE) - Archiving parameters
+- `ARCHPARU` (ARU) - EDM user profile
+- `ARCHPARW` (ARW) - Archiving parameters
+- `AREFAML` (ARN) - Text cross references
+- `AREFTXT` (ART) - Text cross references
+- `AREPORT` (ARP) - Report dictionary
+- `AREPORTA` (ARA) - Printer setup
+- `AREPORTD` (ARD) - Report parameters
+- `AREPORTG` (ARG) - Printer setup
+- `AREPORTM` (ARM) - Temporary print key table
+- `AREPORTS` (ARO) - Reports - data sources
+- `AREPORTV` (ARV) - Reports
+- `AREPORTX` (ARX) - Reports
+- `AREPORTZ` (ARZ) - ZPL reports
+- `AROLE` (ARL) - Row level permissions
+- `ASHW` (ASW) - Representations
+- `ASHWBLC` (ASWB) - Representation (Blocks)
+- `ASHWCOL` (ASWC) - Representations (Collections)
+- `ASHWEXPPRO` (ASWR) - Representations (displayed)
+- `ASHWFLD` (ASWF) - Representations (Lines)
+- `ASHWLNK` (ASWK) - Representations (Anchors)
+- `ASHWMENU` (ASWMN) - Representations (Menus)
+- `ASHWMET` (ASWM) - Representation (methods)
+- `ASHWOPT` (ASWO) - Representations (Options)
+- `ASHWPAR` (ASWP) - Representation (parameters)
+- `ASHWPARMET` (ASWMP) - Representation (method param)
+- `ASHWSEC` (ASWS) - Representation (Sections)
+- `ASTYLE` (ASY) - Presentation styles
+- `ASTYLEC` (ASL) - Conditional styles
+- `ASTYLEP` (AYP) - Personalized styles
+- `ASUBPROG` (ASU) - Subprogram table
+- `ASUBPROGD` (ASP) - Sub-program (fields)
+- `ASYSSMDBASSO`+ (ASM3) - X3
+- `ASYSSMEXTERN`+ (ASM1) - X3
+- `ASYSSMINTERN`+ (ASM0) - X3
+- `ASYSSMPROCES`+ (ASM2) - X3
+- `ATABAUD` (ATA) - Fields audited
+- `ATABDIV` (ADI) - Miscellaneous tables
+- `ATABIND` (ATI) - Index dictionary
+- `ATABLE` (ATB) - Table dictionary
+- `ATABTAB` (ADV) - Miscellaneous table set-up
+- `ATABZON` (ATZ) - Field dictionary
+- `ATEXTE`* (ATX) - Dictionary messages
+- `ATEXTEXCEP` (AEX) - Exceptions (translations)
+- `ATEXTRA` (AXX) - Texts to translate
+- `ATMPTRA` (ATT) - Temporary trace file
+- `ATRANSAC` (ATN) - Transaction type
+- `ATYPE` (ATY) - Data types
+- `ATYPELNK` (ATYL) - Data type links
+- `ATYPELPAR` (ATYLP) - Data type parameters
+- `ATYPEPRO` (ATYP) - Content type
+- `ATYPERPAR` (ATYRP) - Data type parameters
+- `ATYPERUL` (ATYR) - Data type rules
+- `AUDITBI`* (AUI) - Audit bl
+- `AUDITH`* (AUD) - Audit - header
+- `AUDITL` (AUL) - Audit - lines
+- `AURL` (AUR) - Definition of URL
+- `AUSRBPR` (AUB) - BP users
+- `AUSRSOL` (AUO) - Solution users
+- `AUSRSTA` (AUA) - Statistics
+- `AUTILIS` (AUS) - Users
+- `AVALATT` (AVA) - Sequence number values
+- `AVALNUM` (AVN) - Sequence number values
+- `AVARLOC` (AVR) - Formula wizard setup
+- `AVIEW` (AVW) - Dictionary of views
+- `AVIEWB` (AVB) - Dictionary of views
+- `AVIEWC` (AVC) - Dictionary of keys
+- `AVIEWD` (AVD) - Dictionary of views
+- `AVOCAB`* (AVO) - Personalized vocabulary
+- `AVOLUME` (AVL) - Volume
+- `AWEBSERDES` (AWY) - Web service mapping
+- `AWEBSERVIC` (AWE) - Web services
+- `AWINBOUT` (AWT) - Window button dictionary
+- `AWINBRO` (AWB) - Browser window dictionary
+- `AWINDOW` (AWI) - Window dictionary
+- `AWINPAR` (AWP) - Window parameters
+- `AWRKHISDES` (AWO) - Workflow history
+- `AWRKHISJOI` (AWJ) - Workflow history
+- `AWRKHISMES`* (AWG) - Worksflow message history
+- `AWRKHISSUI`* (AWS) - Workflow tracking archive
+- `AWRKLNK` (AWM) - Data models
+- `AWRKPAR`* (AWA) - Workflow rules
+- `AWRKPARC` (AWC) - Workflow rules (actions)
+- `AWRKPARF` (AWF) - Workflow rules (signature)
+- `AWRKPARH` (AWH) - Workflow rules (recipient)
+- `AWRKPARX` (AWX) - Simplified workflow
+- `AWRKREG` (AWR) - Assignment rules
+- `AWRKREGVAL` (AWV) - User assignment
+- `AWRKTAB` (AWK) - Data models
+- `AWRKTRN` (AWW) - Workflow workbench
+- `AWRKTRND` (AWD) - Workflow workbench
+- `AWRKUSR` (AWU) - User delegates
+- `AWSDL` (AXL) - Web services
+- `AWSDL1` (AX1) - Web services structure
+- `AYTACT` (AYA) - Web action
+- `AYTADVPAR` (AYU) - Advanced setup
+- `AYTBASKED` (AYK) - Basket line
+- `AYTDOC` (AYY) - Html document
+- `AYTELTBLC` (AYB) - Blocks
+- `AYTELTBLCW` (AYW) - Conditioned blocks
+- `AYTELTDLK` (AYL) - Dynamic links
+- `AYTELTFLD` (AYF) - Field token
+- `AYTELTSPE` (AYX) - Special fields
+- `AYTENT` (AYE) - Entity
+- `AYTFCY` (AYS) - Websites
+- `AYTFRM` (AYZ) - Form
+- `AYTINT` (AYI) - Interface
+- `AYTLINES` (AYN) - Lines by types
+- `AYTMEN` (AYC) - List of values
+- `AYTMES` (AYM) - Messages
+- `AYTPAG` (AYG) - Web pages
+- `AYTPOOWEB` (AYO) - Web services pools
+- `AYTPRF` (AYD) - Web site profile
+- `AYTPRFUSR` (AYH) - Safe X3 WAS profile
+- `AYTTEST` (AYT) - Tests
+- `BID`* (BID) - Bank ID statement
+- `BPADDRESS` (BPA) - Addresses
+- `CCMIMPPRH`* (CCMIPRH) - Impact analysis-Purchase req
+- `COMPANY`* (CPY) - Company
+- `CONTACT`* (CNT) - Contacts
+- `CONTACTCRM`* (AIN) - Contact relationships
+- `FACGROUP` (FGR) - Site grouping
+- `FACILITY`* (FCY) - Sites
+- `GTABACC` (GTC) - Inquiry screens
+- `PARSTA1` (PS1) - Statistical triggers
+- `PARSTA2` (PS2) - Statistical parameters
+- `PARSTALIG` (PSL) - Statistical report line parameters
+- `POSCOD` (POS) - Postal codes
+- `PRTSCRWRK` (PSW) - Screen print work
+- `STAT` (SAT) - Statistics
+- `STATPRV` (SAP) - Statistical forecasts
+- `TABCHANGE` (TCH) - Currency rate table
+- `TABCOEFF` (TCO) - Coefficients table
+- `TABCOUAFF` (TCA) - Sequence No assignments
+- `TABCOUNTRY`* (TCY) - Country table
+- `TABCUR` (TCU) - Currency table
+- `TABFOR` (TFO) - Formula table
+- `TABFORLEG` (TFOLEG) - Formulas per legislation
+- `TABLAN`* (TLA) - Language table
+- `TABSUBDIV` (ATU) - Geographic subdivisions
+- `TABUNIT` (TUN) - Table of units of measure
+

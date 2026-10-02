@@ -1,0 +1,545 @@
+<!-- source: https://online-help.sagex3.com/erp/11/en-US/MCD/ATB_0.htm and the linked table / local-menu / data-type pages (Sage X3 V11 online help, 'Table dictionary') compiled by scripts/build_dict_x3.py | version: Sage X3 V11 | verified: 2026-10-02 -->
+# Sage X3 V11 data types
+
+Every data type referenced by a column in `dict/`. Format: `CODE - name | internal type | linked table`. The internal type decides the SQL storage (see `../conventions.md`); the linked table is the table a column of this type points at (its control table / foreign key), used when a field has no explicit link expression.
+
+- A - Alphanumeric type | Alphanumeric | -
+- AAR - Parameter code | Alphanumeric | ACTCODPAR (AAR)
+- AAS - Asset | Alphanumeric | FXDASSETS (FAS)
+- AB0 - Image file | Image file | -
+- ABA - Recurring task code | Alphanumeric | ABATABT (ABA)
+- ABB - Image file | Image file | -
+- ABC - Batch server calendar | Alphanumeric | ABATCAL (ABC)
+- ABD - Doc. image file | Image file | -
+- ABF - Fact tables | Alphanumeric | ABITABDAT (ABF)
+- ABG - Groups of tasks | Alphanumeric | ABATGRP (ABG)
+- ABH - Hourly constraints | Alphanumeric | ABATHOR (ABH)
+- ABI - Dimensions | Alphanumeric | ABIDIM (ABI)
+- ABIMG - Image blob | Image file | -
+- ABM - Datamart | Alphanumeric | ABIDATMRT (ABM)
+- ABO - Business objects reports | Alphanumeric | ABIREPORT (ABO)
+- ABR - Abbreviation screen/table | Alphanumeric | -
+- ABS - Grid variable  | Short integer | -
+- ABT - Task code | Alphanumeric | ABATTAC (ABT)
+- ABV - Synchronisation rules | Alphanumeric | ABIREGORG (ABV)
+- ABW - Data warehouse | Alphanumeric | ABIDATWRH (ABW)
+- AC - Key type | Alphanumeric | -
+- AC0 - Text file (clob) | Text file | -
+- AC1 - Text file URL | Text file | -
+- ACB - Standard text file | Text file | -
+- ACG - Key change | Alphanumeric | ACHANGE (ACG)
+- ACL - Control table | Alphanumeric | ACTL (ACL)
+- ACLA - Structure | Alphanumeric | ACLASSE (ACLA)
+- ACN - Inquiries | Alphanumeric | ACONSULT (ACN)
+- ACPLAIN - Plain text clob | Text file | -
+- ACR - Crystal report name | Alphanumeric | -
+- ACRTF - RTF clob | Text file | -
+- ACS - Access code | Alphanumeric | ACCCOD (ACS)
+- ACST - Constant | Alphanumeric | ACONSTANT (ACST)
+- ACT - Action | Alphanumeric | ACTION (ACT)
+- ACTX - Context | Alphanumeric | ACONTEXT (ACTX)
+- ACV - Activity code | Alphanumeric | ACTIV (ACV)
+- ADATIM - Date time | Datetime | -
+- ADC - Processing | Alphanumeric | -
+- ADD - Remote folder | Alphanumeric | -
+- ADI - Miscellaneous table set-up | Alphanumeric | ATABDIV (ADI)
+- ADL - Address line | Alphanumeric | -
+- ADLK - Setup kit | Alphanumeric | ADELIVER (ADLK)
+- ADLV - Deliverable | Alphanumeric | ADELIVER (ADLV)
+- ADP - General parameters | Alphanumeric | -
+- ADR - Address code | Alphanumeric | -
+- ADS - Folder | Alphanumeric | ADOSSIER (ADS)
+- ADV - Miscellaneous table set-up | Short integer | ATABTAB (ADV)
+- ADW - Parameter value | Alphanumeric | -
+- ADZ - Help key-word | Alphanumeric | ADOCFLD (ADZ)
+- AEV - Table setup/import | Alphanumeric | AEXPV3 (AEV)
+- AFC - Functions | Alphanumeric | AFONCTION (AFC)
+- AFF - Adonix formula | Alphanumeric | -
+- AFR - Adonix formula | Alphanumeric | -
+- AFT - User function profile | Alphanumeric | AFCTFCT (AFT)
+- AGB - Global variable | Alphanumeric | AGLOBVAR (AGB)
+- AGC - Company groupings | Alphanumeric | AGRPFCY (AGF)
+- AGF - Site groupings | Alphanumeric | AGRPFCY (AGF)
+- AHH - Hierarchies | Alphanumeric | ABIHIERA (AHH)
+- AHI - History/purge | Alphanumeric | AHISTO (AHI)
+- AII - Predefined conditions | Alphanumeric | ABICOND (AII)
+- AIM - Printers | Alphanumeric | APRINTER (AIM)
+- AIN - Contact (relationship) | Alphanumeric | CONTACTCRM (AIN)
+- AIU - BI user profile | Alphanumeric | ABIPRFUSR (AIU)
+- ALH - Query tool | Alphanumeric | ALISTEH (ALH)
+- ALO - User login | Alphanumeric | -
+- AMC - Machine name | Alphanumeric | -
+- AME - Profession code | Alphanumeric | AMETUTI (AME)
+- AMK - Screen code | Alphanumeric | AMSK (AMK)
+- AMM - Memo code | Alphanumeric | -
+- ANB - Number of elements | Long integer | -
+- ANG - Navigation | Alphanumeric | ANAVIG (ANG)
+- ANM - Document number | Alphanumeric | ACODNUM (ANM)
+- ANU - User directory | Alphanumeric | ANNUAIRE (ANU)
+- ANX - Table index | Alphanumeric | -
+- AOB - Object | Alphanumeric | AOBJET (AOB)
+- AOE - Import/export templates | Alphanumeric | AOBJEXT (AOE)
+- AOI - Import/export flag | Alphanumeric | -
+- AOR - Transcribe import/export | Short integer | AOBJEXTR (AOR)
+- AOW - Lot number | Alphanumeric | -
+- AP2 - Multilists | Alphanumeric | APRTBRW (AP2)
+- APH - Setup templates | Alphanumeric | APATCHMOD (APH)
+- APM - User menu profile | Alphanumeric | APROFIL (APN)
+- APP - Dashboard view parameters | Alphanumeric | APTLPAR (APP)
+- APR - Processes | Alphanumeric | APROCESSUS (APR)
+- APS - Dashboard pages | Alphanumeric | APTLPAGE (APS)
+- APU - Publication group | Alphanumeric | -
+- APV - Dashboard views | Alphanumeric | APTLVW (APV)
+- ARA - ZPL file templates | Alphanumeric | -
+- ARC - Archiving rules | Alphanumeric | ARCHPAR (ARC)
+- ARP - Report | Alphanumeric | AREPORT (ARP)
+- ARU - EDM user profile | Alphanumeric | ARCHPARU (ARU)
+- ARX - Print code | Alphanumeric | -
+- ARZ - ZPL printer setup | Alphanumeric | AREPORTZ (ARZ)
+- ASB - Graphic components | Alphanumeric | ABLBSYS (ASB)
+- ASL - Conditional styles | Alphanumeric | ASTYLEC (ASL)
+- ASM - Methods | Alphanumeric | -
+- ASO - Solution | Alphanumeric | -
+- ASTO - File | Alphanumeric | -
+- ASU - Subprograms | Alphanumeric | -
+- ASW - Representations | Alphanumeric | ASHW (ASW)
+- ASY - Presentation styles | Alphanumeric | ASTYLE (ASY)
+- ASYM - Symbol | Alphanumeric | -
+- AT - Image file type | Local menu | -
+- ATB - Tables | Alphanumeric | ATABLE (ATB)
+- ATN - Transaction type | Alphanumeric | ATRANSAC (ATN)
+- ATP - Gadget type | Alphanumeric | APORTTYP (ATP)
+- ATX - Dictionary text | Long integer | -
+- ATY - Data type | Alphanumeric | ATYPE (ATY)
+- ATYP - Prototype type | Alphanumeric | ATYPEPRO (ATYP)
+- AUR - Links | Alphanumeric | AURL (AUR)
+- AUS - User | Alphanumeric | AUTILIS (AUS)
+- AUUID - Single identifier | UUID | -
+- AVA - Field name | Alphanumeric | -
+- AVB - Variable name | Alphanumeric | -
+- AVC - Property path | Alphanumeric | -
+- AVL - Volume | Alphanumeric | AVOLUME (AVL)
+- AVP - Gadget | Alphanumeric | APORTVIG (AVP)
+- AVR - Values | Alphanumeric | -
+- AVV - Variable format | Alphanumeric | -
+- AVW - Views | Alphanumeric | AVIEW (AVW)
+- AVWT - Table - view | Alphanumeric | -
+- AWA - Workflow rules | Alphanumeric | AWRKPAR (AWA)
+- AWE - Publication name | Alphanumeric | -
+- AWM - Data models | Alphanumeric | AWRKLNK (AWM)
+- AWR - Assignment rules | Alphanumeric | AWRKREG (AWR)
+- AWW - Workflow workbench | Alphanumeric | AWRKTRN (AWW)
+- AX1 - Short translatable text | Alphanumeric | -
+- AX2 - Normal translatable text | Alphanumeric | -
+- AX3 - Long translatable text | Alphanumeric | -
+- AXX - Translatable text (text) | Alphanumeric | -
+- AY9 - Composite key | Alphanumeric | -
+- AYA - Web action | Alphanumeric | AYTACT (AYA)
+- AYB - Blocks | Alphanumeric | AYTELTBLC (AYB)
+- AYC - List of values | Alphanumeric | AYTMEN (AYC)
+- AYD - Web site profile | Alphanumeric | AYTPRF (AYD)
+- AYE - Entity | Alphanumeric | AYTENT (AYE)
+- AYF - Field | Alphanumeric | AYTELTFLD (AYF)
+- AYG - Web pages | Alphanumeric | AYTPAG (AYG)
+- AYH - Safe X3 WAS profile | Alphanumeric | AYTPRFUSR (AYH)
+- AYI - Interface | Alphanumeric | AYTINT (AYI)
+- AYL - Dynamic links | Alphanumeric | AYTELTDLK (AYL)
+- AYM - Messages | Alphanumeric | AYTMES (AYM)
+- AYN - Lines by types | Alphanumeric | -
+- AYO - Web services pools | Alphanumeric | AYTPOOWEB (AYO)
+- AYP - Personalized styles | Alphanumeric | ASTYLEP (AYP)
+- AYR - Parameters | Alphanumeric | -
+- AYS - Website | Alphanumeric | AYTFCY (AYS)
+- AYV - Values | Alphanumeric | -
+- AYW - Conditioned blocks | Alphanumeric | AYTELTBLCW (AYW)
+- AYY - Html document | Alphanumeric | AYTDOC (AYY)
+- AYZ - Form | Alphanumeric | AYTFRM (AYZ)
+- BAC - Barcodes (assets) | Alphanumeric | -
+- BAN - Bank accounts | Alphanumeric | BANK (BAN)
+- BANACO - Bank account | Alphanumeric | -
+- BCG - Customer categories | Alphanumeric | BPCCATEG (BCG)
+- BGR - Bank group | Alphanumeric | BGRBAN (BGR)
+- BID - Bank account number | Alphanumeric | -
+- BLS - Location - site | Alphanumeric | FACILITY (FCY)
+- BPA - Entity number | Alphanumeric | -
+- BPC - Customer number | Alphanumeric | BPCUSTOMER (BPC)
+- BPD - Ship-to | Alphanumeric | BPDLVCUST (BPD)
+- BPF - Owner | Alphanumeric | -
+- BPN - BP number | Alphanumeric | -
+- BPR - BP number | Alphanumeric | BPARTNER (BPR)
+- BPS - Supplier number | Alphanumeric | BPSUPPLIER (BPS)
+- BPT - Carrier number | Alphanumeric | BPCARRIER (BPT)
+- BSG - Supplier categories | Alphanumeric | BPSCATEG (BSG)
+- BSIBFF - Bank import format definition | Alphanumeric | BSIFILFMT (BSIFILFM)
+- BSIELT - Camt element mapping | Alphanumeric | -
+- BSIIMPP - Bank statement import | Alphanumeric | BSIIMPPAR (BSIIMPP)
+- BSISCT - Bank import segment | Alphanumeric | -
+- BSITCF - Bank import format definition | Alphanumeric | BSIIMPTC (BSIIMPTC)
+- BTQ - Budget tracking | Alphanumeric | PJMBUDTRQ (BTQ)
+- BTS - Budget tracking | Alphanumeric | PJMBUDTRS (BTS)
+- BUI - Building | Alphanumeric | PHYBUI (BUI)
+- BUP - Budget code | Alphanumeric | BUDPAR (BUP)
+- BUT - Budget type | Alphanumeric | BUDTYP (BUT)
+- BUV - Budget versions | Alphanumeric | BUDVER (BUV)
+- C - Short integer | Short integer | -
+- CAB - Simple calculation tables | Alphanumeric | CFGABQ (CAB)
+- CAC - Accounting codes | Alphanumeric | GACCCODE (CAC)
+- CAD - Address line (long) | Alphanumeric | -
+- CAT - EDI category | Alphanumeric | EDICAT (ECA)
+- CCA - Update coefficient | Alphanumeric | -
+- CCC - Competitor products | Alphanumeric | ITMCOMP (CCC)
+- CCE - Analytical dimension | Alphanumeric | CACCE (CCE)
+- CCMACT - Actions | Alphanumeric | -
+- CCMAUS - User | Alphanumeric | AUTILIS (AUS)
+- CCMAUSAP - Approvers | Alphanumeric | AUTILIS (AUS)
+- CCMAUSCM - Change managers | Alphanumeric | AUTILIS (AUS)
+- CCMAUSPL - Planners | Alphanumeric | AUTILIS (AUS)
+- CCMCRID - Change request id | Alphanumeric | -
+- CCMECS - Major version statuses | Alphanumeric | -
+- CCMEVL - Minor versions | Alphanumeric | -
+- CCMPLAN - Change request - Plan | Alphanumeric | -
+- CCN - Concession contract | Alphanumeric | CONCESSION (CCN)
+- CCR - Sales rep commission coeff | Decimal | -
+- CDA - Payment attributes | Alphanumeric | GACCDENCOD (CDA)
+- CDE - Default dimensions | Alphanumeric | CACCEDEF (CDE)
+- CFG - Configurator scenario | Alphanumeric | CFGSCE (CFG)
+- CFM - Standard processes | Alphanumeric | CFGMAC (CFM)
+- CFY - Site or group of sites | Alphanumeric | -
+- CGD - Grading guides | Alphanumeric | CALIGUIDES (CGD)
+- CIG - Intra-group sale | Alphanumeric | CIGDEF (CIG)
+- CLA - Account classification | Alphanumeric | GACCCLS (CLS)
+- CLC - Chrono clob | Alphanumeric | -
+- CLT - Type clob | Alphanumeric | -
+- CLX - Text clob (table) | Alphanumeric | -
+- CMG - Marketing campaigns | Alphanumeric | CMARKETING (CMG)
+- CNT - Contact | Alphanumeric | -
+- COA - Chart of accounts | Alphanumeric | GCOA (COA)
+- COE - Coefficient | Decimal | -
+- CON - Service contract | Alphanumeric | CONTSERV (CON)
+- COR - Outlook contact  | Alphanumeric | CORRESPOND (COR)
+- COT - Service contract template | Alphanumeric | CONTTEMPL (COT)
+- COV - Coverage | Short integer | -
+- CPY - Company | Alphanumeric | COMPANY (CPY)
+- CQU - Configurator question | Alphanumeric | CFGQST (CQU)
+- CRN - Company tax ID number | Alphanumeric | -
+- CRT - Site tax ID code | Alphanumeric | -
+- CRY - Country code | Alphanumeric | TABCOUNTRY (TCY)
+- CSE - Configurator selection | Alphanumeric | CFGSEL (CSE)
+- CT0 - City | Alphanumeric | -
+- CTA - Project task category | Alphanumeric | PJMTSKCAT (CTA)
+- CTN - Containers | Alphanumeric | CONTAINERS (CTN)
+- CTR - Identifier 2 | Alphanumeric | -
+- CTY - City | Alphanumeric | -
+- CUR - Currency | Alphanumeric | TABCUR (TCU)
+- CYM - Dimension pyramids | Alphanumeric | GCCEPYM (CYM)
+- CYR - Dimension groups | Alphanumeric | GCCEGRUPYM (CRY)
+- D - Date | Date | -
+- D4 - Date with 4 number year | Date | -
+- DAD - Dimension allocations | Alphanumeric | CDIADSP (DAD)
+- DCB - BCD | Decimal | -
+- DCO - Long description | Alphanumeric | -
+- DCT - Long description | Alphanumeric | -
+- DDB - Start date | Date | -
+- DDF - End date | Date | -
+- DEP - Warehouse | Alphanumeric | -
+- DES - Description | Alphanumeric | -
+- DIE - Dimension types | Alphanumeric | GDIE (DIE)
+- DIH - Time table schemas | Alphanumeric | DIAHOU (DIH)
+- DMWPPNUM - Internal reference | Long integer | -
+- DMWPPVER - Version | Long integer | -
+- DMWSC - Waste disposal scheme | Alphanumeric | DMWSCHEME (DMWSC)
+- DOC - Manual document | Alphanumeric | -
+- DPM - Depreciation method | Alphanumeric | -
+- DSP - Analytical allocations | Alphanumeric | CADSP (DSP)
+- DTP - Budget weighting codes | Alphanumeric | CADISTMP (DTP)
+- DUR - Duration | Decimal | -
+- E164TEL - Telephone | Alphanumeric | -
+- ECS - Major version statuses | Alphanumeric | -
+- EDC - Code | Alphanumeric | -
+- EDO - EDI | Alphanumeric | -
+- EDR - Version | Alphanumeric | -
+- EDS - Segments | Alphanumeric | EDISEG (EDS)
+- EEC - EU VAT no. | Alphanumeric | -
+- EFC - Code | Alphanumeric | -
+- EFN - Function code | Alphanumeric | -
+- EFR - Version | Alphanumeric | -
+- EMP - Location | Alphanumeric | -
+- ENT - Entity | Alphanumeric | ENTITE (ENT)
+- ENV - Envelope | Alphanumeric | ENVELOPPE (ENV)
+- EPH - Path | Long integer | -
+- EPR - EDI partners | Alphanumeric | EDIPARTNER (EPR)
+- EVB - Alias | Alphanumeric | -
+- EVL - Minor versions | Alphanumeric | -
+- EXD - XSD files | Alphanumeric | -
+- FAM - Asset groups | Alphanumeric | FASFAM (FAM)
+- FAS - Fixed asset | Alphanumeric | FXDASSETS (FAS)
+- FCC - Freight commodity code | Alphanumeric | FRTCOMCOD (FCC)
+- FCS - Costs | Alphanumeric | FRECST (FCS)
+- FCT - Factor | Alphanumeric | FACTOR (FCT)
+- FCY - Site | Alphanumeric | FACILITY (FCY)
+- FEN - Window | Alphanumeric | AWINDOW (AWI)
+- FGP - Reminder group | Alphanumeric | FUPGRP (FGP)
+- FIC - File | Alphanumeric | -
+- FNA - First name | Alphanumeric | -
+- FOR - Formula | Alphanumeric | TABFOR (TFO)
+- FRT - Freight class | Alphanumeric | FRTCLS (FRT)
+- FUP - Reminder campaigns | Alphanumeric | TMPFUP0 (FUP)
+- GAC - General accounts | Alphanumeric | GACCOUNT (GAC)
+- GAF - Recurring entry | Alphanumeric | GACCFIX (GAF)
+- GAU - Automatic journals | Alphanumeric | GAUTACE (GAU)
+- GCM - Account core model | Alphanumeric | GACM (GCM)
+- GCO - Accounting code transaction | Alphanumeric | GCACCOA (GCO)
+- GCU - Currency group | Alphanumeric | GRPCUR (GCU)
+- GDA - Account structure | Alphanumeric | GDIAACC (GDA)
+- GDE - Journal structure | Alphanumeric | GDIAENTRY (GDE)
+- GDS - Open item screens | Alphanumeric | GDUDSCR (GDS)
+- GEO - Geographic code | Alphanumeric | -
+- GFP - Reminders screen | Alphanumeric | GFUPSCR (GFP)
+- GRA - Automatic journal groups | Alphanumeric | GRPAUTACE (GRA)
+- GRT - Reference | Alphanumeric | -
+- GRY - Account groups | Alphanumeric | GACCGRUPYM (GRY)
+- GSC - Control groups | Alphanumeric | GRPSAC (GSC)
+- GSTGRP - GST group | Alphanumeric | GSTGRP (GSTGRP)
+- GTC - Inquiries | Alphanumeric | GTABACC (GTC)
+- GTE - Document types | Alphanumeric | GTYPACCENT (GTE)
+- GYM - Account pyramids | Alphanumeric | GACCPYM (GYM)
+- HD1 - Service request text file | Text file | -
+- HD2 - Action text file | Text file | -
+- HD3 - Solution text file | Text file | -
+- HD4 - Commerl report text file | Text file | -
+- HD5 - Marketing text file | Text file | -
+- HD6 - CRM mini text files | Text file | -
+- HD8 - Clob lead | Text file | -
+- HDC - CRM text file | Text file | -
+- HM - Time hh:mm | Alphanumeric | -
+- HMD - Time | Alphanumeric | -
+- HMM - Time hh:mm | Alphanumeric | -
+- HS - Time hh:mm:ss | Alphanumeric | -
+- HSH - SHI record | Alphanumeric | HANDLING (HSH)
+- ICT - Incoterms | Alphanumeric | INCOTERM (ICT)
+- ICV - Version counter | Alphanumeric | ITMCPTVER (ICV)
+- ICVVAL - Version value | Alphanumeric | -
+- ID - Identifier | Alphanumeric | -
+- ID1 - Identifier 1 | Alphanumeric | -
+- ID2 - Identifier 2 | Alphanumeric | -
+- IDB - Identifier | Alphanumeric | -
+- IND - Index | Decimal | -
+- INDREF - Indirect references | Alphanumeric | SFTINDREF (INDREF)
+- INF - Information | Alphanumeric | -
+- INO - Customs reference | Alphanumeric | ITMCUSNOM (INO)
+- INVCND - Invoicing terms | Alphanumeric | TABINVCND (INVCND)
+- ISEQ - Sequence in collections | Long integer | -
+- ISORT - Sort in collections | Long integer | -
+- ITF - Product-site | Alphanumeric | ITMFACILIT (ITF)
+- ITG - Product category | Alphanumeric | ITMCATEG (ITG)
+- ITM - Product reference | Alphanumeric | ITMMASTER (ITM)
+- ITS - Sales product | Alphanumeric | ITMSALES (ITS)
+- JOU - Journal codes | Alphanumeric | GJOURNAL (JOU)
+- L - Long integer | Long integer | -
+- LAN - Language | Alphanumeric | TABLAN (TLA)
+- LCT - Location | Alphanumeric | PHYLCT (LCT)
+- LDS - Lead | Alphanumeric | LEAD (LDS)
+- LEA - Lease contract | Alphanumeric | LEASE (LEA)
+- LED - Ledger | Alphanumeric | GLED (LED)
+- LGT - Grouping workbench criteria | Alphanumeric | FXDLOFGRP (LGT)
+- LOC - Location | Alphanumeric | STOLOC (LOC)
+- LOF - Capitalized expenses | Alphanumeric | -
+- LOT - Lot | Alphanumeric | -
+- LTI - Lead time  | Decimal | -
+- M - Local menu | Local menu | -
+- MAC - Installed base | Alphanumeric | MACHINES (MAC)
+- MAI - Email address | Alphanumeric | -
+- MAT - Tolerance | Alphanumeric | MATCHTOL (MAT)
+- MC1 - Amounts in currency | Decimal | -
+- MD0 - Amount in currency | Decimal | -
+- MD1 - Amount in currency | Decimal | -
+- MD2 - Short amount | Decimal | -
+- MD4 - Special amount in currencies | Decimal | -
+- MD5 - Price in currency | Decimal | -
+- MD6 - Unit price | Decimal | -
+- MD7 - Average price | Decimal | -
+- MD8 - Price in currency | Decimal | -
+- MDC - Amount in currency (0 visible) | Decimal | -
+- MDD - Amount in currency | Decimal | -
+- MDL - Delivery mode | Alphanumeric | TABMODELIV (TMD)
+- MDT - Mandates | Alphanumeric | MANDATE (MDT)
+- MFG - Work order  | Alphanumeric | MFGHEAD (MFG)
+- MGTW - Waste management | Alphanumeric | MGTWASTE (MGTW)
+- MM - Local menu can be modified | Local menu | -
+- MNL - Local menu number | Short integer | -
+- MOD - Weighing scale templates | Alphanumeric | MODSCALE (MOD1)
+- MS1 - Amount (site) | Decimal | -
+- MTO - MTO network | Alphanumeric | MTOHEAD (MTO)
+- MZS - Flag/entry field link | Local menu | -
+- NAF - SIC code | Alphanumeric | -
+- NAM - Name | Alphanumeric | -
+- NCSAUSAP - Approvers | Alphanumeric | AUTILIS (AUS)
+- NCSAUSPL - Planners | Alphanumeric | AUTILIS (AUS)
+- NCSAUSQA - QA manager | Alphanumeric | AUTILIS (AUS)
+- NCY - Country name | Alphanumeric | -
+- NID - Unique identification number | Alphanumeric | -
+- NTG - Note category | Alphanumeric | NOTCATEG (NTG)
+- ONA - Overhead category | Alphanumeric | OVENAT (ONA)
+- OPE - Operation number | Short integer | -
+- OPP - Project | Alphanumeric | OPPOR (OPP)
+- OVE - Overhead codes | Alphanumeric | OVERHEAD (OVE)
+- PAB - Paying bank | Alphanumeric | -
+- PAL - Stock identifier 1 management  | Alphanumeric | -
+- PAUS - User | Alphanumeric | PJMAUS (PAUS)
+- PBDBPG - Economic reason/BP groups | Alphanumeric | -
+- PBDECO - Economic reason code | Alphanumeric | PBDECOCOD (PBDECO)
+- PBL - Problem group | Alphanumeric | FAMPB (PBL)
+- PBU - Project budget | Alphanumeric | -
+- PCK - Packaging | Alphanumeric | TABPACKAGE (TPA)
+- PCN - Package no. | Alphanumeric | -
+- PFI - Invoicing elements | Short integer | PFOOTINV (PFI)
+- PHY - Physical asset | Alphanumeric | PHYELT (PHY)
+- PIH - Entry number  | Alphanumeric | PINVOICE (PIH)
+- PIM - Project allocation line | Alphanumeric | PIMPL (PIM)
+- PIT - Pivot | Alphanumeric | PIVOTS (PIT)
+- PJCC - Cost type | Alphanumeric | PJMCOSTCTR (PJCC)
+- PJT - Project | Alphanumeric | PIMPL (PIM)
+- PLI - Price list code | Alphanumeric | -
+- PLM - PLM product references | Alphanumeric | -
+- PLP - Production plan | Alphanumeric | -
+- POH - Order number | Alphanumeric | PORDER (POH)
+- POS - Postal code | Alphanumeric | -
+- PPC - Supplier price list code | Alphanumeric | PPRICCONF (PPC)
+- PPL - Production plan | Alphanumeric | PROPLNH (PLP)
+- PPR - Purchase price reasons | Short integer | PPREASON (PPR)
+- PPU - Purchase unit price criteria | Alphanumeric | -
+- PPX - Purchase price criteria | Alphanumeric | -
+- PRC - Preparation code | Alphanumeric | -
+- PRJ - Project  | Alphanumeric | PROJET (PRJ)
+- PRS - Price structure | Alphanumeric | PRICSTRUCT (PRS)
+- PRV - Service supplier | Alphanumeric | HONPRV (PRV)
+- PS1 - Statistical parameters | Alphanumeric | PARSTA1 (PS1)
+- PS2 - Statistical parameters | Alphanumeric | PARSTA2 (PS2)
+- PSE - Seasonality plan | Alphanumeric | -
+- PSH - PR number | Alphanumeric | PREQUIS (PSH)
+- PSO - Project document list | Alphanumeric | PJMSOLITMH (PSO)
+- PTC - Protocol | Alphanumeric | -
+- PTE - Payment term | Alphanumeric | TABPAYTERM (TPT)
+- PTO - Assignment rules | Alphanumeric | PARMTO (PTO)
+- QLC - Technical sheet | Alphanumeric | QLYCRD (QLC)
+- QSS - Script question | Alphanumeric | -
+- QST - Question | Alphanumeric | QLYCRDQST (QST)
+- QTY - Quantity | Decimal | -
+- QUE - Queue | Alphanumeric | QUEUE (QUE)
+- RA1 - Rate - 6 decimals | Decimal | -
+- RAT - Rate | Decimal | -
+- RCU - Currency rate | Decimal | -
+- REF - Reference | Alphanumeric | -
+- REGLIC - Registration | Alphanumeric | -
+- REP - Sales rep no. | Alphanumeric | SALESREP (REP)
+- REPLINDE - Report line type | Alphanumeric | REPLINDEF (REPLINDE)
+- ROH - Routings - header | Alphanumeric | ROUTING (ROU)
+- ROT - Standard operation | Short integer | -
+- RPO - Reorder policy | Alphanumeric | TABREOPOL (TRP)
+- RPT - Query number | Long integer | -
+- RQW - Warranty requests | Alphanumeric | WARREQUEST (RQW)
+- RRB - CODA headings | Alphanumeric | RBKRUBBEL (RRB)
+- RRS - Resource reservation | Alphanumeric | RESRES (RRS)
+- RSS - Resources | Alphanumeric | RESOURCES (RSE)
+- RSY - Safety risk sentences | Alphanumeric | SENTENCES (RSY)
+- RTZ - Withholding code | Alphanumeric | RITENZIONE (RTZ)
+- SAC - Control | Alphanumeric | -
+- SAT - Region (county, state, ..) | Alphanumeric | -
+- SCO - Subcontract order | Alphanumeric | SCOHEAD (SCO)
+- SCP - Call script | Alphanumeric | SCRIPT (SCP)
+- SE1 - Long serial number | Alphanumeric | -
+- SEA - Activity sector | Alphanumeric | -
+- SEP - Processing code | Alphanumeric | SEPRC (SER)
+- SER - Serial number | Alphanumeric | -
+- SES - Trend profile | Alphanumeric | SEASON (SES)
+- SF1 - Stock custom field 1 | Alphanumeric | -
+- SF2 - Stock custom field 2 | Alphanumeric | -
+- SFI - Invoicing elements | Short integer | SFOOTINV (SFI)
+- SHFT - Shift code | Alphanumeric | SFTSHIFT (SHFT)
+- SHO - Short description | Alphanumeric | -
+- SIH - Invoices | Alphanumeric | SINVOICEV (SIH)
+- SLO - Sublot | Alphanumeric | -
+- SOH - Orders | Alphanumeric | SORDER (SOH)
+- SOL - Solution | Alphanumeric | SOLUTION (SOL)
+- SPC - Customer price list code | Alphanumeric | SPRICCONF (SPC)
+- SPMOD - Spanish forms | Alphanumeric | SPAMODELS (SPMOD)
+- SPP - Sales price catalog | Alphanumeric | SPPRTCONF (SPP)
+- SPR - Sales price list reasons | Short integer | SPREASON (SPR)
+- SPU - Sales unit price criteria | Alphanumeric | -
+- SPX - Sales price criteria | Alphanumeric | -
+- SRE - Service request | Alphanumeric | SERREQUEST (SRE)
+- SRG - Storage list number | Alphanumeric | -
+- SRL - Serial number | Alphanumeric | -
+- STX - Weighing location | Alphanumeric | STATION (STX)
+- SYM - Configurator symbol | Alphanumeric | -
+- TAC - Project task | Alphanumeric | -
+- TAD - Daylight saving time | Alphanumeric | -
+- TAM - Payment method | Alphanumeric | TABPAM (TAM)
+- TAU - Safe X3 WAS users | Alphanumeric | TAUTILIS (TAU)
+- TBO - BOM codes | Short integer | TABBOMALT (TBO)
+- TBU - Budget transactions | Alphanumeric | TABBUDTYP (TBU)
+- TCM - Valuation method | Alphanumeric | TABCOSTMET (TCM)
+- TCO - Coef table reference | Alphanumeric | RVACOEH (COE)
+- TCT - Response table | Alphanumeric | TABCTL (TCT)
+- TCTR - Freight container | Alphanumeric | TABCONTAINER (TCTR)
+- TDA - Early discount/Late charge | Alphanumeric | TABDEPAGIO (TDA)
+- TEC - Transaction nature | Alphanumeric | TABEECNAT (TEC)
+- TED - Payment report code | Alphanumeric | TABCODEDT (TED)
+- TEL - Telephone | Alphanumeric | -
+- TEM - Location types | Alphanumeric | -
+- TES - Expense codes | Alphanumeric | TABEXPENS (TES)
+- TEX - Text | Alphanumeric | -
+- TFB - Bank file definitions | Alphanumeric | TABFILBAN (TFB)
+- TFOLEG - Formulas per legislation | Alphanumeric | TABFORLEG (TFOLEG)
+- TGL - Targets | Alphanumeric | TGRLIS (TGL)
+- TGP - Presentation support | Alphanumeric | TGRSSP (TGP)
+- TIC - Cumulated time | Decimal | -
+- TIH - Time in hours | Decimal | -
+- TIM - Time in minutes | Decimal | -
+- TLO - Location types | Alphanumeric | TABLOCTYP (TLO)
+- TLP - Product lines | Alphanumeric | TABLINCFG (TLP)
+- TMA - Employee ID | Short integer | TABMAT (TMA)
+- TPC - Location type | Alphanumeric | TABPLACE (TPC)
+- TPE - Entry type | Alphanumeric | TYPACE (TPE)
+- TPM - Print templates | Alphanumeric | TABPRTMOD (TPM)
+- TPN - Purchase return type | Alphanumeric | TABPNHTYP (TPN)
+- TPV - Purchase invoice types | Alphanumeric | TABPIVTYP (TPV)
+- TPY - Payment transactions | Alphanumeric | TABPAYTYP (TPY)
+- TRA - Log file | Alphanumeric | -
+- TRE - Sales return type | Alphanumeric | TABSRHTYP (TRE)
+- TRO - Routing codes | Short integer | TABROUALT (TRO)
+- TRS - Entry transactions | Alphanumeric | -
+- TRU - Allocation rules | Alphanumeric | TABALLRUL (TRU)
+- TSA - Service level safety stock | Short integer | TABSAFSTO (TSA)
+- TSC - Statistical rule | Alphanumeric | TABEECSCH (TSC)
+- TSD - Sales delivery type | Alphanumeric | TABSDHTYP (TSD)
+- TSG - Stock change type | Alphanumeric | TABSGHTYP (TSG)
+- TSO - Sales order type | Alphanumeric | TABSOHTYP (TSO)
+- TSQ - Quote type | Alphanumeric | TABSQHTYP (TSQ)
+- TST - Stock statuses | Alphanumeric | TABSTASTO (TST)
+- TSV - Sales invoice type | Alphanumeric | TABSIVTYP (TSV)
+- TTN - Transport note type | Alphanumeric | TABTNHTYP (TTN)
+- TTR - Change to daylight saving time | Alphanumeric | -
+- TVB - BP tax rule | Alphanumeric | TABVACBPR (TVB)
+- TVI - Tax level | Alphanumeric | TABVACITM (TVI)
+- TWD - Weekly structure | Alphanumeric | TABWEEDIA (TWD)
+- TXC - Access path to text file | Alphanumeric | -
+- TXS - Financial data extraction | Alphanumeric | TXSA (TXS)
+- TYC - Communication types | Alphanumeric | TYPCOMBEL (TYC)
+- TZI - Time zones | Alphanumeric | TIMEZONEINFO (TZI)
+- TZL - Transit fields parametn | Alphanumeric | -
+- UGD - User guides | Alphanumeric | USERGUIDES (UGD)
+- UNQ - Unique number | Long integer | -
+- UOM - Unit | Alphanumeric | TABUNIT (TUN)
+- UVY - Unavailable periods | Alphanumeric | TABUNAVAIL (TUV)
+- VAT - Tax | Alphanumeric | TABVAT (TVT)
+- VATGRP - VAT group | Alphanumeric | VATGRP (VATGRP)
+- VC9 - Reference | Alphanumeric | -
+- VCR - Entry number  | Alphanumeric | -
+- VCS - VCS number | Alphanumeric | -
+- VOL - Volume | Decimal | -
+- VPJ - Long product number | Alphanumeric | -
+- WCR - Work center group | Alphanumeric | TABWRKCTR (TWC)
+- WEI - Weight | Decimal | -
+- WRH - Warehouse | Alphanumeric | WAREHOUSE (WRH)
+- WST - Work center | Alphanumeric | -
