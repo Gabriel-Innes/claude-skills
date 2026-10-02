@@ -15,6 +15,13 @@
       "skills": ["./skills/sage300-assistant"]
     },
     {
+      "name": "sage200-assistant",
+      "description": "Sage 200 Evolution (Pastel Evolution) ERP assistant: C# development against the Pastel.Evolution .NET SDK — connecting via DatabaseContext, the record load/set/Save() pattern, posting transactions, and generating correct code from a bundled class and enum reference extracted from the shipped SDK CHM. More capabilities to follow.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/sage200-assistant"]
+    },
+    {
       "name": "sapb1-assistant",
       "description": "SAP Business One (B1) ERP assistant: object type number, table and primary key lookup from a bundled list of all B1 object types, verified SQL views/queries from bundled B1 10.0 and 9.3 data dictionaries, and C# development against the DI API from a bundled DI API 10.0 class and enum reference. More capabilities to follow.",
       "source": "./",
@@ -27,6 +34,13 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/team-comms"]
+    },
+    {
+      "name": "canny-tickets",
+      "description": "Read-only Canny assistant for developers: review bugs and RFCs across boards, filter by status/tag/date, read posts with comments, and build status roll-ups via a bundled read-only API client. Never writes to Canny.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/canny-tickets"]
     }
   ]
 }
