@@ -23,7 +23,7 @@
     },
     {
       "name": "sapb1-assistant",
-      "description": "SAP Business One (B1) ERP assistant: object type number, table and primary key lookup from a bundled list of all B1 object types, verified SQL views/queries from bundled B1 10.0 and 9.3 data dictionaries, and C# development against the DI API from a bundled DI API 10.0 class and enum reference. More capabilities to follow.",
+      "description": "SAP Business One (B1) ERP assistant: object type number, table and primary key lookup from a bundled list of all B1 object types, verified SQL views/queries from bundled B1 10.0 and 9.3 data dictionaries, C# development against the DI API from a bundled DI API 10.0 class and enum reference, and Service Layer (REST / OData v4) integration guidance including SQLQueries and FP 2602 webhooks. More capabilities to follow.",
       "source": "./",
       "strict": false,
       "skills": ["./skills/sapb1-assistant"]

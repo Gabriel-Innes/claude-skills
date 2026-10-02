@@ -4,7 +4,7 @@ description: "SAP Business One (SAP B1 / B1) ERP assistant for consultants and i
 compatibility: "Runtime needs file read + grep over the bundled references. Refreshing references needs web access to the source sites, curl, and Python 3.10+ (scripts/ for the schema and the DI API reference, a documented procedure for the object list); none of that is needed to answer questions."
 metadata:
   author: Francois Taljaard
-  version: "2026.10"
+  version: "2026.10.1"
   domain: SAP Business One ERP
 ---
 
