@@ -64,6 +64,27 @@ Replace the files in `docs/` with the newer CHM + DLLs + XML, rerun the generato
 Sandcastle format; if a future SDK ships a different help format the extraction regexes in `build_sdk_ref.py`
 (`summary`, `csharp`, `parameters`, `returns`, `remarks`, the enum member table) may need adjusting.
 
+## Maintaining the data dictionary (hand-maintained, no build step)
+
+`references/dictionary/` is the single copy of what we know about the Evolution company database and is edited
+directly - there is no generator and no raw-source folder. Its seed was an SSMS *Generate Scripts* export of one
+company database (tables only) merged with Sage's own table descriptions read from Evolution's *Database Object*
+browser; from here on, new information (screenshots or recordings of the browser, `sys.columns` output from a
+client database, Sage documentation) is folded straight into `dict/<Group>.md` by hand.
+
+Rules, also stated in `references/dictionary/INDEX.md`:
+
+- One `## TABLE` entry per table, alphabetical within its prefix group file; the entry format is fixed (heading,
+  `Alias | Freedom Name | Record Identifier`, `Notes`, `PK`, `Columns (n):`, one column per line with an optional
+  ` - description`). Keep it exactly so the grep recipes in `SKILL.md` keep working.
+- Column descriptions go after ` - ` on the column line; keep Sage's wording where it exists; put confirmed value
+  lists inline.
+- A new table goes into the file matching its prefix (see the INDEX group table) with columns taken from
+  `sys.columns` or an SSMS script; bump the table count in INDEX.md and, if the total changes, in `SKILL.md`.
+- `conventions.md` is prose: when you change a key, column or table it names, change it there too.
+- Site-specific tables (custom prefixes such as `_as_*`, dated snapshot copies) stay in
+  `dict/Site-specific-and-snapshots.md` so they are never mistaken for Evolution tables.
+
 ## Packaging and validation
 
 Keep the folder named `sage200-assistant` (the archive is named after it). Package with the skill-creator
@@ -73,11 +94,9 @@ not packaged. The reference validator `skills-ref validate ./sage200-assistant`
 
 ## Adding a capability
 
-Planned next capabilities mirror `sage300-assistant`:
+Built so far: **SDK / C#** (`references/sdk/`, generated from the CHM) and **SQL / data dictionary**
+(`references/dictionary/`, hand-maintained). Planned next, mirroring `sage300-assistant`:
 
-- **SQL / data dictionary** — the table/field layout of the Evolution company database, to turn a requirement
-  into verified read-only SQL. Add `references/dictionary/` + a `build_dict.py`, a routing row and a workflow
-  section in `SKILL.md`.
 - **Versions & upgrades** — what an Evolution release needs and what changed. Add `references/upgrades/` +
   `references/release-notes/` and the matching `SKILL.md` sections.
 
