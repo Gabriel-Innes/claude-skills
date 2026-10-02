@@ -199,7 +199,7 @@ this object library only, not the UI API, the Service Layer or DI Server. The re
 ## 7. Layout
 
 ```
-references/objects/      INDEX.md, object-types.md (the list), raw/<source>.md (verbatim extracts per source site)
+references/objects/      INDEX.md, object-types.md (the reconciled list)
 references/dictionary/   INDEX.md, 10.0/ and 9.3/ each with table-index.md + dict/<Module>.md (tables bundled by module)
 references/diapi/        INDEX.md, di-api-guide.md (how-to), common-mistakes.md, review-checklist.md, api/ (INDEX.md + members.md + classes-NN.md bundles), enums/ (INDEX.md + members.md + enums-NN.md bundles)
 scripts/                 maintenance only (compile the 10.0 schema and the DI API reference from the SDK's CHMs; fetch + compile the 9.3 schema) — never needed to answer

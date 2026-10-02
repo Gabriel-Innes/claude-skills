@@ -5,7 +5,8 @@ Sage **re-issues** each version's Compatibility Guide as platforms are retired o
 current edition. The values below are therefore *what Sage supports today* for that version, not what was supported at
 its launch (e.g. the 2023 guide no longer lists SQL Server 2016/2017 or Windows Server 2016). When a client runs an
 older platform, say so: it may have been supported at the time but is now outside Sage's support statement.
-Full text of each guide (incl. hardware sizing tables): `raw/<year>-compatibility-guide.md`.
+For the full guide text (incl. hardware sizing tables), see Sage's official Compatibility Guide PDF for that
+version (the source URL in this file's header); the verbatim PDF is not bundled.
 
 ## 1. Database, application server, workstation
 

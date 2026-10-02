@@ -42,8 +42,10 @@ and compare against `expected_output`. Eval 5 (refusing an UPDATE) must always p
   `<!-- source: <Sage document or URL> | version: <Sage 300 year / AOM version> | verified: YYYY-MM-DD -->`
 - **INDEX.md** in every `references/<domain>/` folder: one line per file — path, what it covers, version,
   verified date. The agent reads the INDEX before opening files, so keep it accurate.
-- Grep-friendly: one fact per line where possible, stable headings, no prose walls. Extract, don't paste;
-  full source pages go under that folder's `raw/` so verbatim wording is available on demand.
+- Grep-friendly: one fact per line where possible, stable headings, no prose walls. **Extract the facts; do
+  not paste verbatim vendor pages.** Don't bundle full copyrighted Sage documents in the skill — summarise the
+  facts in your own words and cite the official Sage page/URL and its date so the exact wording can be fetched
+  on demand. (Keep raw source only outside the packaged skill, e.g. under `../docs/`, never under `references/`.)
 - Version years (2023, 2024 …) and AOM codes (7.0A, 7.3A …) are both used; the map is in
   `references/dictionary/INDEX.md` and `references/upgrades/upgrade-guide.md` § 1.
 

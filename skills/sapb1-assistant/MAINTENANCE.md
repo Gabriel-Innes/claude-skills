@@ -40,8 +40,10 @@ plus an identical `.zip`. Both are git-ignored. Upload in Claude under Settings,
   `<!-- source: <URL or document> | version: <B1 version, or "not stated"> | verified: YYYY-MM-DD -->`
 - **INDEX.md** in every `references/<domain>/` folder: one line per file (path, what it covers, verified date),
   plus a sources table with URL, role, row count and the page's own date if it has one.
-- Grep-friendly: one fact per line, stable headings. Extract, don't paste; verbatim source extracts go under
-  that folder's `raw/`.
+- Grep-friendly: one fact per line, stable headings. **Extract the facts; do not paste.** Don't bundle verbatim
+  copies of third-party pages or licensed vendor help under `references/` — reconcile the facts into the curated
+  file (`object-types.md`, the dictionaries) and record each source's URL/role/date in the folder's `INDEX.md`.
+  Any raw working extract stays in your scratch workspace, uncommitted.
 
 ## Refresh the object list from a website
 
@@ -56,9 +58,10 @@ All files are under `references/objects/`.
    Record the page's own modified/published date if it exposes one (`dateModified` / `article:modified_time`).
 3. **Sanity-check the extract** before merging: row count, no duplicate object numbers within a source, every
    object number numeric, rows with blank cells listed. Report these numbers to the user.
-4. **Write the verbatim extract** to `raw/<hostname>.md` (provenance header, original column names, source row
-   order, `|` escaped as `\|`). Overwrite the previous extract for that same source, but **first diff old vs new**
-   so you can report what changed: added numbers, removed numbers, changed table / description / key.
+4. **Keep the extract in your scratch workspace only — do not commit it** (it's a verbatim copy of a third-party
+   table). Diff it against the current `object-types.md` (which records every number and the sources carrying it)
+   so you can report what changed: added numbers, removed numbers, changed table / description / key. The
+   committed artifact is the reconciled `object-types.md`, not the raw source table.
 5. **Reconcile into `object-types.md`**, keyed on object type number:
    - One source is **authoritative** for table, description and primary key: the one that uses real database
      identifiers and has the fewest corrupted values. Currently `in` (sapbusinessone.in). Other sources
@@ -89,15 +92,15 @@ so in Notes. Update the counts in `INDEX.md`.
 
 ### Adding a new source site
 
-Same steps, plus: decide its role (authoritative vs cross-check), give it a short id, and add a column mapping
-note to its `raw/` file if its layout differs. If it carries data the list has no column for (categories, module
+Same steps, plus: decide its role (authoritative vs cross-check), give it a short id, and note any column-mapping
+difference in the `INDEX.md` sources table if its layout differs. If it carries data the list has no column for (categories, module
 names, B1 version), raise it with the user before widening the table schema; a new column means updating
 `SKILL.md` § 3 and the header of `object-types.md`.
 
 ### Retiring a source
 
-Never silently drop a source. Mark it `status: superseded by X` in its `raw/` provenance header and in the
-`INDEX.md` sources table; remove its id from `Src` only when the user agrees.
+Never silently drop a source. Mark it `status: superseded by X` in the `INDEX.md` sources table; remove its id
+from `Src` only when the user agrees.
 
 ## Refresh the 10.0 schema dictionary from REFDB.chm
 

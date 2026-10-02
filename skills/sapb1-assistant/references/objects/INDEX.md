@@ -4,9 +4,11 @@ SAP Business One object types: object type number ↔ table ↔ description ↔ 
 
 | Path | Covers | Verified |
 |---|---|---|
-| `object-types.md` | **The list.** 329 object types sorted by number, one line each: table, description, primary key, the DI API `BoObjectTypes` member (134 rows), which sources carry it, and a Notes column flagging source conflicts and blanks. Read this first and grep it; don't open `raw/`. | 2026-10-01 |
-| `raw/sapbusinessone.in.md` | Verbatim extract of the sapbusinessone.in table (326 rows). Kept so the next refresh can be diffed against what was last ingested. | 2026-10-01 |
-| `raw/sap-b1-blog.com.md` | Verbatim extract of the sap-b1-blog.com table (320 rows), including its garbled translated columns. | 2026-10-01 |
+| `object-types.md` | **The list.** 329 object types sorted by number, one line each: table, description, primary key, the DI API `BoObjectTypes` member (134 rows), which sources carry it, and a Notes column flagging source conflicts and blanks. Read this first and grep it. | 2026-10-01 |
+
+This is the reconciled, factual list. Verbatim copies of the third-party source tables are **not** bundled; the
+`Sources` table below records each source's URL, role and row count so a refresh can be re-fetched and diffed
+against `object-types.md`.
 
 ## Sources
 

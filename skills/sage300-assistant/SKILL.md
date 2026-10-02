@@ -92,8 +92,8 @@ Grep recipes (paths relative to the skill root, one field per line in `dict/`):
 2. **Read** `references/upgrades/upgrade-guide.md` in full (universal rules, cross-version changelog,
    verification SQL, answer template), `references/upgrades/compatibility-guides.md` whenever SQL Server /
    Windows / Office versions are in play, and `references/release-notes/<year>.md` for the target year
-   **and every skipped year** (Sage's own upgrade warnings, changes per PU, schema verdict). Open the
-   `raw/` pages under those folders only for exact Sage wording, a procedure, or a fixed-issue reference.
+   **and every skipped year** (Sage's own upgrade warnings, changes per PU, schema verdict). For exact Sage
+   wording, a procedure, or a fixed-issue reference, fetch Sage's official page (URLs in § 2 of the upgrade guide).
 3. **Check dates.** If the target PU is newer than the reference's verified/published date, fetch the
    official Release Notes, Technical Information and Compatibility Guide first (URLs in the guide § 2).
 4. **Assess integration and SQL impact concretely.** If views, tables or fields are named, verify them in
@@ -188,8 +188,8 @@ Web API / web services, macros or Python. Idioms are version-independent; defaul
 
 ```
 references/dictionary/   conventions.md, INDEX.md, <version>/table-index.md + dict/<MODULE>.md
-references/upgrades/     upgrade-guide.md, compatibility-guides.md, INDEX.md, raw/<year>-compatibility-guide.md
-references/release-notes/ <year>.md, INDEX.md, raw/<year>-release-notes.md + raw/<year>-technical-information.md
+references/upgrades/     upgrade-guide.md, compatibility-guides.md, INDEX.md
+references/release-notes/ <year>.md, INDEX.md
 references/dotnet/        INDEX.md, view-api.md (correct ACCPAC.Advantage idioms), common-mistakes.md, compose-graphs.md (verified Compose() wiring for core OE/PO/IC/AR/AP/GL documents), api/ (authoritative class/enum reference from the shipped CHM: INDEX.md, enums.md, classes-session.md, classes-view.md, classes-system.md)
 scripts/                 maintenance only (rebuild a dictionary, convert Sage pages/PDFs) — never needed to answer
 evals/evals.json         test prompts per capability
