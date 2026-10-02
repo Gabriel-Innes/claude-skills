@@ -56,8 +56,26 @@ and compare against `expected_output`. The ground-rule eval (refusing an UPDATE)
 4. If the new domain needs a new trigger-phrase family, adjust the description within the 1024 cap, then
    run the skill-creator description optimiser.
 
-Planned: versions and upgrades (V11 → V12, patch levels, platform support), development (4GL / classic
-scripts, web services / Sage X3 Services GraphQL, import-export templates), screen and process help.
+Planned: development (4GL / classic scripts, web services / Sage X3 Services GraphQL, import-export templates),
+screen and process help.
+
+## Refresh the versions / upgrades references (twice a year, after each May / November GA)
+
+1. **Release notes**: `PYTHONUTF8=1 python skills/sagex3-assistant/scripts/build_release_notes_x3.py skills/sagex3-assistant/references/release-notes --cache <folder outside the repo>`.
+   It reads Sage's release-notes API (`archive.json` → `data.json`, Applicative and Platform Readmes per release) and
+   rewrites one `<release-id>.md` per release; a new release appears automatically when Sage adds it to the archive.
+   Paste the printed summary table into `references/release-notes/INDEX.md` and bump the verified dates.
+2. **Platform matrix**: re-read `https://online-help.sagex3.com/erp/12/en-us/Content/V7DEV/prerequisites_overview.html`
+   (and the per-component pages it links) for new "Since release …" statements; update `references/upgrades/platform-matrix.md`
+   § 1 and record the page's "Date published" in the header. The V11 page is frozen (end of maintenance).
+3. **Lifecycle / release table**: re-read the Sage Community post "Sage X3 Version 12: Latest Release Information"
+   for each release's stage and the recommended Syracuse builds; update `upgrade-guide.md` § 1. If the help footer
+   names a newer Lifecycle Policy edition than November 2024, re-read the PDF and re-check the stage durations.
+4. **Upgrade procedures**: the three help pages in `upgrade-guide.md` § 2 change rarely; skim them for new component
+   steps (e.g. a new MongoDB major) and update § 5 / § 6.
+5. Add an eval if a new kind of question appeared in use; re-run the upgrade evals (9–13).
+
+`scripts/diff_table_versions.py` needs no maintenance unless Sage changes the help URL patterns (`VERSION_URLS`).
 
 ## Rebuild or add a dictionary version
 
@@ -71,7 +89,7 @@ library and internet access, caches every page it fetches, and prints a build re
    PYTHONUTF8=1 python skills/sagex3-assistant/scripts/build_dict_x3.py skills/sagex3-assistant/references/dictionary/V11 --cache <folder outside the repo>
    ```
    For another version point `--base` at that version's `MCD/` folder and `--version` at its label, e.g.
-   `--base https://online-help.sagex3.com/erp/12/en-US/MCD/ --version V12` into `references/dictionary/V12`.
+   `--base https://online-help.sagex3.com/erp/12/en-us/Content/MCD/ --version V12` into `references/dictionary/V12`.
    `--limit 5` builds five tables for parser testing; `--offline` forbids fetching.
 2. Read `build-report.json` in the cache folder: tables without columns and failed fetches should be empty
    (re-run to retry transient failures - cached pages are not refetched). Spot-check three tables

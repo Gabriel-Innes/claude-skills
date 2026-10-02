@@ -30,7 +30,7 @@
     },
     {
       "name": "sagex3-assistant",
-      "description": "Sage X3 ERP assistant: verified SQL views/queries and table/field lookup from a bundled Sage X3 V11 table dictionary (tables, abbreviations, keys, columns, data types, local-menu enum values and foreign-key link expressions) compiled from Sage's online help. More capabilities to follow.",
+      "description": "Sage X3 ERP assistant: verified SQL views/queries and table/field lookup from a bundled Sage X3 V11 table dictionary (tables, abbreviations, keys, columns, data types, local-menu enum values and foreign-key link expressions) compiled from Sage's online help; versions and upgrades (V12 release/patch naming and lifecycle, platform prerequisites per release, upgrade paths and procedures, per-release notes 2023 R2 to 2026 R1 with tables touched). More capabilities to follow.",
       "source": "./",
       "strict": false,
       "skills": ["./skills/sagex3-assistant"]

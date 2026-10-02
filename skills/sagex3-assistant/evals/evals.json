@@ -23,7 +23,7 @@
       "id": 4,
       "capability": "dictionary (version mismatch)",
       "prompt": "The client is on Sage X3 V12. Does SORDER have a column for the delivery address code?",
-      "expected_output": "Answers from the V11 dictionary (names the BPAADD field and its link expression), states clearly that the bundled dictionary is V11, and either fetches https://online-help.sagex3.com/erp/12/en-US/MCD/SORDER.htm to confirm for V12 or tells the user to confirm there, rather than asserting V12 behaviour from memory."
+      "expected_output": "Answers from the V11 dictionary (names the BPAADD field and its link expression), states clearly that the bundled dictionary is V11, and either fetches https://online-help.sagex3.com/erp/12/en-us/Content/MCD/SORDER.htm to confirm for V12 or tells the user to confirm there, rather than asserting V12 behaviour from memory."
     },
     {
       "id": 5,
@@ -46,8 +46,38 @@
     {
       "id": 7,
       "capability": "routing (out of scope)",
-      "prompt": "What changed between Sage X3 V11 and V12 for the sales module?",
-      "expected_output": "Says this is not yet a bundled capability (versions/upgrades is planned), answers from Sage's official online help with a citation or says it cannot verify, does not invent release-note content, and notes that the skill could be extended."
+      "prompt": "How do I write a 4GL script that posts a sales order in Sage X3?",
+      "expected_output": "Says this is not yet a bundled capability (development is planned), answers from Sage's official online help with a citation or says it cannot verify, does not invent 4GL API details, and notes that the skill could be extended."
+    },
+    {
+      "id": 9,
+      "capability": "upgrades (full plan)",
+      "prompt": "A client on Sage X3 V11 (SQL Server 2016, Windows Server 2016) wants to move to the current V12 release. What does it involve and will our reporting views break?",
+      "expected_output": "Pins source/target (names 2026 R1 = 12.0.39 as current per the guide and says to confirm on Sage's release-information post). States V11 is past end of maintenance (1 April 2024). From platform-matrix.md: Windows Server 2016 and SQL Server 2016 are not supported since 2026 R1, so the move needs new OS/DB (2019/2022/2025, SQL 2019/2022), MongoDB 8, JDK 11, PowerShell 7.2+ - which points to a folder upgrade rather than in-place. Gives the procedure in order (UU* controls, extract, import, activity codes, revalidation taking hours, post-upgrade). For views: additive default, lists tables touched from the release notes, offers diff_table_versions.py, includes the verification SQL with _0 suffixes. Cites Sage pages with dates."
+    },
+    {
+      "id": 10,
+      "capability": "upgrades (lifecycle / narrow question)",
+      "prompt": "Is Sage X3 2025 R1 still supported, and when does it end?",
+      "expected_output": "Answers directly from the lifecycle section: 2025 R1 = 12.0.37, GA May 2025, 24-month maintenance (6 Current + 12 Standard + 6 Extended), in Standard stage per Sage's post read 2026-10-02, derived end of maintenance around May 2027 - and says to confirm the stage on Sage's Community release-information post. Does not give a full upgrade plan; one line on what moving to 2026 R1 would involve."
+    },
+    {
+      "id": 11,
+      "capability": "upgrades (platform blocker)",
+      "prompt": "Can we run Sage X3 2026 R1 on Windows Server 2025 with MongoDB on the same box?",
+      "expected_output": "From platform-matrix.md: Windows Server 2025 is supported since 2025 R1, but Sage's page (April 2025 note) says MongoDB 7/8 are not yet certified on Windows Server 2025 and recommends Windows Server 2022 for the MongoDB host; MongoDB 8 is mandatory from 2025 R2. Quotes the prerequisites page date (8 September 2026) and says to re-check the page because Sage re-issues it."
+    },
+    {
+      "id": 12,
+      "capability": "upgrades + SQL (will a view break)",
+      "prompt": "We have a view on SORDER and SORDERQ for a client going from 2024 R2 to 2026 R1. Will it break?",
+      "expected_output": "Reads the release notes for 2025 R1, 2025 R2 and 2026 R1 (all skipped/target releases) and checks whether SORDER/SORDERQ appear in the 'tables whose dictionary definition changed' sections; runs or offers scripts/diff_table_versions.py SORDER SORDERQ; states the additive default (named columns keep working, SELECT * consumers break) and the real risks (local-menu values behind decoded statuses, dimension growth). Provides the sys.columns verification SQL with the _0 suffix and cites the files."
+    },
+    {
+      "id": 13,
+      "capability": "upgrades (ground rules: no invented dates)",
+      "prompt": "When exactly was Sage X3 2026 R2 released and what's in it?",
+      "expected_output": "Does not invent a date or content: notes that the bundled references end at 2026 R1 (12.0.39, GA May 2026) and that a 2026 R2 would be expected around November 2026 per the bi-annual cadence; fetches Sage's release-notes archive (archive.json) or the Community release-information post to confirm, or says it cannot verify and tells the user where to check."
     }
   ]
 }

@@ -3,7 +3,7 @@ files (maintenance only - never needed at runtime).
 
 Usage:
     python scripts/build_dict_x3.py references/dictionary/V11 --cache <folder outside the repo>
-    python scripts/build_dict_x3.py references/dictionary/V11 --cache ... --base https://online-help.sagex3.com/erp/12/en-US/MCD/
+    python scripts/build_dict_x3.py references/dictionary/V11 --cache ... --base https://online-help.sagex3.com/erp/12/en-us/Content/MCD/
 
 Source: the "Table dictionary" pages of the Sage X3 online help (default: V11,
 https://online-help.sagex3.com/erp/11/en-US/MCD/ATB_0.htm). Four page families are read:

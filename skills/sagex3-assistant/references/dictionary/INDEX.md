@@ -41,7 +41,7 @@ than guessing the module.
 | Client version | Use | Notes |
 |---|---|---|
 | V11 | `V11/` | the bundled dictionary |
-| V12 and later | `V11/` as a starting point, then confirm on `https://online-help.sagex3.com/erp/12/en-US/MCD/<TABLE>.htm` | not bundled; `MAINTENANCE.md` explains how to build a `V12/` folder |
+| V12 and later | `V11/` as a starting point, then confirm on `https://online-help.sagex3.com/erp/12/en-us/Content/MCD/<TABLE>.htm` | not bundled; `MAINTENANCE.md` explains how to build a `V12/` folder |
 | V10 P1 | `V11/`; tables marked `+` do not exist there (446), tables marked `*` differ (194) | per-table diff at `ATD_<TABLE>.htm` |
 | V9.0 P12 | `V11/`; tables marked `+` do not exist there (489), tables marked `*` differ (234) | per-table diff at `AT3_<TABLE>.htm` |
 
