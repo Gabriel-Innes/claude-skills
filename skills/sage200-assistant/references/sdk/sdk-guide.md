@@ -28,9 +28,13 @@ it runs the same validation and posting logic the Evolution desktop uses.
 `DatabaseContext` is a **static** class — the entry point. Open the accounting connection and the common
 connection, then work through record objects. See `api/` → `DatabaseContext` for every overload.
 
-- `DatabaseContext.Initialise(...)` — opens the connections the SDK needs in one call; overloads let you give
-  the common DB connection string explicitly, assume it is `EvolutionCommon` on the same server, or assume
-  defaults. Prefer `Initialise` for a normal startup.
+- `DatabaseContext.Initialise(...)` — opens the connections the SDK needs in one call. **Every overload takes
+  a `serialNumber` and `authKey`** (your registered SDK credentials) as the last two parameters — the call
+  registers/licenses the SDK, so it is not optional. Overloads differ only in how you give the databases:
+  `(connectionString, commonConnectionString, serialNumber, authKey)`;
+  `(database, server, user, password, serialNumber, authKey)` (common DB assumed `EvolutionCommon` on the same
+  server, same login); or `(database, commonDatabase, server, user, password, serialNumber, authKey)`. Prefer
+  `Initialise` for a normal startup. (See `api/` → `DatabaseContext` for the exact overload list.)
 - Lower-level: `CreateConnection(connectionString)` / `CreateConnection(server, database)` /
   `CreateConnection(server, database, login, password, trustedAuth)` for the accounting DB, plus the matching
   `CreateCommonDBConnection(...)` for the common DB.
@@ -39,6 +43,25 @@ connection, then work through record objects. See `api/` → `DatabaseContext` f
   `CurrentAgent` (the logged-in agent/user), `RegisteredUsers`.
 - `DBConnection` exposes the underlying `SqlConnection` the SDK uses; `DBTransaction` the current
   `SqlTransaction`. Let the SDK own them — don't open your own parallel connection to write Evolution tables.
+
+### Branch context (multi-branch companies)
+
+For a multi-branch company, set the active branch **after** connecting, then work with records as normal:
+
+- `DatabaseContext.SetBranchContext(branchID)` — makes a branch the active context. Read-only state:
+  `CompanyBranch`, `_ContextBranch` (non-public setters — drive the context through `SetBranchContext`, not by
+  assigning these), and `IsBranchOffline`.
+- Branch-aware records derive from **`BranchedRecordBase`** (`: RecordBase, IBranched`), which adds
+  `Branch Branch { get; set; }` and `int BranchID { get; set; }` — e.g. `Customer` (via `AccountBase`),
+  `Agent`, `Bank`. Set `record.Branch` / `record.BranchID` when creating in a specific branch.
+- The `Branch` record (`new Branch(code)`, `Branch.FindByCode(code)`, `Branch.Find(criteria)`) carries `Code`,
+  `Description`, `Active`, `IsGlobal`. **Global** records (shared across branches) use `Branch.Global`,
+  `Branch.IsGlobal` and the `Branch.GLOBAL_BRANCH_ID` constant.
+- Verify the above in `api/` (`DatabaseContext`, `BranchedRecordBase`, `Branch`, `IBranched`). The CHM does
+  **not** spell out exactly what `SetBranchContext` scopes (which queries it filters, how it treats global
+  records), and `Branch._Select(...)` is tagged *Experimental* — confirm branch-filtering behaviour on the
+  install and prefer `Find`/`FindByCode`/`List`. (Note the vendor mislabels the `Branch` class summary as
+  "a bank record" — a copy-paste error in Pastel's docs; it is a branch.)
 
 ## 3. The record pattern (RecordBase)
 
