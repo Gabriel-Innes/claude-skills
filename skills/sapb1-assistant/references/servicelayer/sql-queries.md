@@ -28,8 +28,24 @@ Content-Type: application/json
 }
 ```
 
-SAP documents named parameters with a colon (`:docTotal`). Execute a stored query through `List`, supplying
-the parameter value through the documented GET or POST form.
+SAP documents named parameters with a colon (`:docTotal`). The create response echoes the normalized `SqlText`
+and a `ParamList` of the parameter names. Execute a stored query through its bound `List` operation in either
+of SAP's two documented forms:
+
+```http
+POST /b1s/v2/SQLQueries('open_orders')/List
+Content-Type: application/json
+
+{ "ParamList": "docTotal=10.1" }
+```
+
+```http
+GET /b1s/v2/SQLQueries('open_orders')/List?docTotal=10.1
+```
+
+Several parameters are separated with `&`, string values quoted: `stringParam1='val1'&integerParam2=val2`. The
+result is an OData collection (`value`) that pages with an `odata.nextLink`; follow it rather than building
+`$skip` yourself.
 
 Do not interpolate untrusted user text into SQL when a parameter can represent the value.
 
