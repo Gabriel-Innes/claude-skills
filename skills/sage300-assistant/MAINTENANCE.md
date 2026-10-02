@@ -26,7 +26,7 @@ Keep the folder named `sage300-assistant` (the archive is named after it). From 
 with `PYTHONUTF8=1` on Windows (the script prints emoji and otherwise dies with a cp1252 `UnicodeEncodeError`):
 
 ```
-PYTHONUTF8=1 python -m scripts.package_skill C:/Work/SC/Sage300-Skill/sage300-assistant C:/Work/SC/Sage300-Skill/dist
+PYTHONUTF8=1 python -m scripts.package_skill path/to/skills/sage300-assistant path/to/dist
 ```
 
 That runs the frontmatter validator first and writes `dist/sage300-assistant.skill`. The reference validator

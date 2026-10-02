@@ -1,0 +1,43 @@
+name: "Bug report"
+description: A skill misbehaves — wrong routing, bad generated code, a broken link, or a tooling/script error.
+title: "bug: <skill> — <summary>"
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - sage300-assistant
+        - sage200-assistant
+        - sapb1-assistant
+        - repo / tooling (not a specific skill)
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: What you asked
+      description: The prompt or request you gave Claude (redact anything confidential).
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Product version (if relevant)
+      placeholder: Sage 300 2026 / SAP B1 10.0 / Evolution SDK 11.0.0.10
+  - type: markdown
+    attributes:
+      value: "If this is a security issue or a correctness bug you'd rather not post publicly, use private vulnerability reporting instead — see SECURITY.md."

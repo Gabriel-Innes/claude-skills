@@ -1,0 +1,32 @@
+name: "Skill or capability request"
+description: Propose a new skill, or a new capability on an existing one.
+title: "feat: <skill or product> — <capability>"
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - New capability on an existing skill
+        - New skill
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What should it do
+      description: The questions a consultant would ask it, and what a good answer looks like.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: What reference material would back it
+      description: Which vendor documents, dictionaries or SDK help the answers would be verified against (this project cites every material claim).
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Product versions in scope

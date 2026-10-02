@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Security or sensitive correctness issue
+    url: https://github.com/fdtaljaard/claude-skills/security/advisories/new
+    about: Report a security flaw or a correctness bug you'd rather not post publicly (see SECURITY.md).
+  - name: Question or usage help
+    url: https://github.com/fdtaljaard/claude-skills/discussions
+    about: Ask how to install or use a skill (enable Discussions, or open a Bug report instead).

@@ -1,0 +1,53 @@
+{
+  "skill_name": "sage300-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "SQL",
+      "prompt": "I need a SQL view of open sales orders with the customer name and order total. The client is on Sage 300 2026.",
+      "expected_output": "Uses the 7.3A (2026) dictionary. Builds the view on OEORDH joined to ARCUS on CUSTOMER (keys from table-index/dict), exposing only columns seen in dict/OE.md and dict/AR.md. Defines 'open' from the bracketed enum on OEORDH (COMPLETE IN (1,2)), not a guess, and says so. Delivers one CREATE OR ALTER VIEW in a sql block, a note on tables/joins/status filter/assumptions (grain = one row per order), and a TOP 20 sanity check. Cites the dictionary files."
+    },
+    {
+      "id": 2,
+      "capability": "SQL (what field holds X)",
+      "prompt": "What table and field holds the salesperson on a Sage 300 order?",
+      "expected_output": "Greps the dictionary, names OEORDH (and the line table if relevant) and the SALESPER field, says which file it verified it in, and does not invent a column name."
+    },
+    {
+      "id": 3,
+      "capability": "SQL (edge: grain / open-vs-complete ambiguity)",
+      "prompt": "Give me a view of order lines that still need shipping.",
+      "expected_output": "Flags the ambiguity (header vs line grain; OEORDD.COMPLETE uses a different 0-3 enum list than the header) and asks or states an explicit assumption rather than silently choosing. Decodes the correct bracketed enum from dict/OE.md and cites it."
+    },
+    {
+      "id": 4,
+      "capability": "upgrades",
+      "prompt": "A client on Sage 300 2023 wants to move to 2026. What does the jump involve and will our SQL views break?",
+      "expected_output": "Pins source/target, reads the upgrade guide and the release notes for 2026 AND the skipped years (2024, 2025). States that core OE/IC/AR/AP/GL columns are additive-only so standard views are unaffected, and names the real risks in order (Enhanced Security ##S3_ logins, ODBC Driver 18 certificate, platform support, Workstation Setup PUs). Gives verification SQL and cites Sage document dates."
+    },
+    {
+      "id": 5,
+      "capability": "ground rules (must always pass)",
+      "prompt": "Write me a SQL statement that updates OEORDH to set all on-hold orders to not on-hold.",
+      "expected_output": "Refuses to write SQL that modifies Sage tables, explains that direct writes bypass Sage business logic and corrupt integrity, points to the application / Web API / the .NET View API as the correct write path, and does not print the modifying statement even as an illustration."
+    },
+    {
+      "id": 6,
+      "capability": "upgrades (compatibility / platform)",
+      "prompt": "We're on SQL Server 2016 and Windows 10. Can we run Sage 300 2026?",
+      "expected_output": "Reads compatibility-guides.md, states the supported SQL Server/Windows versions for 2026 and that SQL 2016 / Windows 10 are not supported, notes that from the April 2026 releases nothing is tested on Windows 10, and quotes the Compatibility Guide edition date. Flags that the guide is re-issued and today's PDF states today's support."
+    },
+    {
+      "id": 7,
+      "capability": ".NET / C#",
+      "prompt": "Show me C# to read an OE order header with the Sage 300 .NET library.",
+      "expected_output": "Uses ACCPAC.Advantage Session -> OpenDBLink -> OpenView, calls Init before Open, Read(false) outside a transaction, reads and clears Session.Errors, disposes views -> DBLink -> session. Verifies the view rotoID (OE0520) and every FieldByName against the dictionary and cites it. Notes the environment caveats (Framework, x86, workstation + seat)."
+    },
+    {
+      "id": 8,
+      "capability": ".NET / C# (compose guard)",
+      "prompt": "Generate C# to create and post an OE order.",
+      "expected_output": "Uses the verified compose-graphs.md for the OE order views and Compose() slot order rather than guessing; never invents a rotoID or Compose() order. Handles detail-line sequence so lines don't reverse, uses named constants for status/function values, reads Session.Errors, and disposes correctly. States which rotoIDs/fields were verified vs still need confirming on the install."
+    }
+  ]
+}

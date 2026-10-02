@@ -1,0 +1,45 @@
+name: "Reference data correction"
+description: A bundled reference has a wrong or missing fact (field name, enum value, key, version requirement, SDK signature).
+title: "data: <skill> — <what is wrong>"
+labels: ["data-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: "Thanks for improving the accuracy of a skill. Correct, cited data is the whole point of this project."
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - sage300-assistant
+        - sage200-assistant
+        - sapb1-assistant
+    validations:
+      required: true
+  - type: input
+    id: location
+    attributes:
+      label: File and line
+      description: The reference file (and line, if known) that is wrong.
+      placeholder: skills/sage300-assistant/references/dictionary/7.3A/dict/OE.md:1234
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What it currently says
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What it should say
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Source
+      description: The vendor document, help page or product metadata that supports the fix, with its date/version. Please don't paste large copyrighted extracts.
+    validations:
+      required: true

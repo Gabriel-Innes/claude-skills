@@ -2,7 +2,13 @@
 
 # claude-skills
 
+[![License: MIT](https://img.shields.io/github/license/fdtaljaard/claude-skills)](LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/fdtaljaard/claude-skills)](https://github.com/fdtaljaard/claude-skills/releases)
+[![Claude Code plugin marketplace](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-5A4FE5)](#installing-a-skill)
+
 A public collection of [Agent Skills](https://agentskills.io/specification) for Claude, by Francois Taljaard — reference-backed assistants for ERP consultants and integrators (Sage 300, Sage 200 Evolution, SAP Business One).
+
+> **The point of these skills: no guessing.** Every material claim — a table or field, an enum value, a version requirement, an SDK class or method — comes from a **bundled reference** (data dictionaries, release notes, SDK class/enum references extracted from the vendors' own files) or a fresh fetch of the vendor's official docs, and is **cited**. Field names, enum values and version facts are exactly what a language model otherwise guesses plausibly and wrongly, so each skill is built to look them up and show its source.
 
 ## Skills
 
@@ -11,6 +17,16 @@ A public collection of [Agent Skills](https://agentskills.io/specification) for 
 | [`sage300-assistant`](skills/sage300-assistant) | Sage 300 (Accpac) ERP assistant for consultants and integrators: verified T-SQL views/queries from bundled AOM data dictionaries, version/upgrade guidance and release notes, and C# against the `ACCPAC.Advantage` .NET library. |
 | [`sage200-assistant`](skills/sage200-assistant) | Sage 200 Evolution (Pastel Evolution) ERP assistant for consultants and integrators: C# development against the `Pastel.Evolution` .NET SDK — connecting via `DatabaseContext`, the record load/set/`Save()` pattern, posting transactions, and generating correct code from a bundled class and enum reference (152 types, 41 enums) extracted from the shipped SDK CHM. More capabilities to follow. |
 | [`sapb1-assistant`](skills/sapb1-assistant) | SAP Business One ERP assistant for consultants and integrators: object type number, table and primary key lookup from a bundled list of all B1 object types, verified SQL views/queries from bundled B1 10.0 and 9.3 data dictionaries (tables, columns, indexes, valid values, parent-table links), and C# development against the DI API (`SAPbobsCOM`) from a bundled DI API 10.0 class and enum reference. More capabilities to follow. |
+
+## Example
+
+Ask in plain language; the skill routes, looks up the reference, and shows its source:
+
+> **You:** I need a SQL view of open sales orders with the customer name and order total — client's on Sage 300 2026.
+>
+> **Claude (with `sage300-assistant`):** Uses the bundled 7.3A data dictionary — `OEORDH` joined to `ARCUS`, "open" decoded from the `COMPLETE IN (1,2)` enum on `OEORDH` (not guessed), one row per order. Returns a complete `CREATE OR ALTER VIEW` with a `TOP 20` sanity check, the joins and status filter explained in business terms, and a note on which dictionary files each field came from.
+
+Each skill refuses to guess: if a fact isn't in its references and can't be verified against the vendor's docs, it says so rather than inventing it — and it never writes SQL that modifies vendor-owned tables.
 
 ## Installing a skill
 
@@ -52,6 +68,10 @@ skills/
     references/     # bulk reference material, read on demand
     scripts/        # maintenance tooling (not needed at runtime)
 ```
+
+## Contributing
+
+Issues and pull requests are welcome — corrections to a reference, a new skill, or a new capability on an existing one. See [CONTRIBUTING.md](CONTRIBUTING.md) for how skills are structured and the bar a change should meet (every claim verifiable and cited). To report a problem with the data a skill returns, or a security concern, see [SECURITY.md](SECURITY.md).
 
 ## License
 
