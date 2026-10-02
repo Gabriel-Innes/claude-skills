@@ -64,7 +64,7 @@ raw query normalized to bracketed identifiers on Microsoft SQL Server and double
 This does **not** remove the need to verify table and column names. Use the bundled schema dictionary for the
 client's B1 version where possible, and confirm later-feature-pack/client-specific fields on the live system.
 
-Source: `guide` (`Table/Column Normalization`) in `INDEX.md`.
+Source: `guide` (`SQL Normalization`) in `INDEX.md`.
 
 ## 6. Integration pattern
 

@@ -10,7 +10,8 @@ SAP's current API reference.
 
 - Service Layer exposes HTTP/OData APIs. `/b1s/v1/$metadata` is OData v3 and `/b1s/v2/$metadata` is OData v4.
 - SAP's current API reference states that **from FP 2405, OData v3 is deprecated and OData v4 is the primary
-  protocol**. V3 remains for backward compatibility; prefer `/b1s/v2` for new work.
+  protocol**. V3 remains for backward compatibility; prefer `/b1s/v2` for new work. Most of SAP's guide samples
+  still show `/b1s/v1` paths; the behaviour they document applies to v2 unless the guide says otherwise.
 - Use `GET /b1s/v2/$metadata` to verify entity sets, entity/complex types, properties, enums, actions and
   functions for the client's installed version. Do not infer a Service Layer property name from a database column.
 
@@ -29,16 +30,16 @@ Content-Type: application/json
 }
 ```
 
-- A successful login returns a session ID and sets `B1SESSION` and `ROUTEID` cookies.
-- The **current API reference requires `B1SESSION`** on subsequent calls. It describes `ROUTEID` as optional:
-  it provides session stickiness and improves load-balancing efficiency.
-- Older Service Layer documentation used stricter wording for the cookies. For current code, follow the
-  current API reference; retaining `ROUTEID` is still sensible when the server supplies it.
-- The default idle session timeout is **30 minutes**; the API reference says it can be changed through the
-  `SessionTimeout` property in the Service Layer `b1s.conf`.
-- End an explicit session with `POST /b1s/v2/Logout`.
+- SAP's documented sample logs in at `/b1s/v1/Login`; `/b1s/v2/Login` works the same way but the response uses
+  OData v4 annotations (`@odata.context`) instead of `odata.metadata`.
+- A successful login returns `SessionId`, `Version` and `SessionTimeout` (in minutes; 30 in SAP's sample) and
+  sets two cookies: `B1SESSION` (the session, `HttpOnly`) and `ROUTEID`, which SAP says is returned by the
+  Apache server to ensure load-balancer stickiness. Send both back on every call; SAP's logout sample does.
+- `SessionTimeout` is a Service Layer configuration option (the guide's document history lists it under
+  configuration options), so the value on a client's system may differ from 30.
+- End an explicit session with `POST /b1s/v2/Logout`; SAP's sample returns `204 No Content`.
 
-Source: `api-ref` in `INDEX.md`.
+Source: `guide` (`Login and Logout`, `Document History`) in `INDEX.md`.
 
 ## 3. Read and query entities
 
@@ -57,7 +58,7 @@ GET /b1s/v2/Orders?$select=DocEntry,CardCode,DocTotal&$filter=DocStatus eq 'O'&$
 When the service paginates a result, follow the returned OData next-link rather than constructing the next
 page from assumptions.
 
-Sources: `guide` (`Query Options`, `Collection Entity`) in `INDEX.md`.
+Sources: `guide` (`Query Options`, `Query Records with Query Options`) in `INDEX.md`.
 
 ## 4. Create, update, delete and actions
 

@@ -194,6 +194,15 @@ Known limits of the extractor: only Visual Basic signatures exist in the CHM; th
 aren't read; remarks and descriptions are capped (marked `[…]`); a few SAP samples labelled C# are Visual Basic and are
 detected by their content (`VB_MARK` in the script), so check the warning count when SAP re-issues the help.
 
+## Refresh the Service Layer references
+
+`references/servicelayer/` is hand-written prose summarised from SAP Help Portal pages (URLs in its `INDEX.md`);
+there is no builder script. The pages are JavaScript-rendered, so fetch them in a browser, not with curl. To
+refresh: re-read the pages the `INDEX.md` sources table names, check the guide's *Document History* page for
+revisions since the `verified` date (it lists new chapters per revision), and read the newest sequential API
+change log for feature-pack additions. Update the facts, the `verified` dates in every provenance header and
+the `INDEX.md` rows. Keep the folder a curated summary: never copy SAP's pages or the API reference wholesale.
+
 ## Add a capability
 
 1. Add a `## N. <Capability>` section to `SKILL.md` (workflow steps, which reference files to read and when,
@@ -202,8 +211,9 @@ detected by their content (`VB_MARK` in the script), so check the warning count 
 3. Add at least two evals to `evals/evals.json` (one typical, one edge case).
 4. If the new domain needs a new trigger-phrase family, adjust the description within the 1024 cap.
 
-Planned capabilities, in no fixed order: Service Layer and UI API references (the SDK also ships `REFUI.chm` and
-`REFDB.chm`), version and upgrade guidance, how-to procedures, and schema dictionaries for releases newer than 10.0 when their SDK help is available.
+Planned capabilities, in no fixed order: a UI API reference (the SDK also ships `REFUI.chm`), a fuller Service
+Layer entity/action reference beyond the current curated guide, version and upgrade guidance, how-to procedures,
+and schema dictionaries for releases newer than 10.0 when their SDK help is available.
 
 ## Validate
 

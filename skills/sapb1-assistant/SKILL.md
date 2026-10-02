@@ -160,9 +160,10 @@ every entity/property/action in SAP's API reference.
 2. **Verify the surface, don't invent it.** For an exact entity, property, enum or action not named in the bundled
    guide, check the client's `/b1s/v2/$metadata` (or SAP's current API reference) before emitting code. UDFs,
    UDTs and UDOs are client-specific.
-3. **Authenticate and preserve the session**: `POST /b1s/v2/Login`, retain `B1SESSION`, and retain `ROUTEID` when
-   supplied for stickiness. The current API reference calls `B1SESSION` required and `ROUTEID` optional. End an
-   explicit session with `POST /b1s/v2/Logout`; see the guide for timeout details.
+3. **Authenticate and preserve the session**: `POST /b1s/v2/Login`, then send back both cookies SAP sets:
+   `B1SESSION` (the session) and `ROUTEID` (added by the Apache front end for load-balancer stickiness). The login
+   response reports `SessionTimeout` in minutes (30 in SAP's sample). End an explicit session with
+   `POST /b1s/v2/Logout`.
 4. **Reads**: use `$select` to keep payloads narrow, `$filter` for predicates and the documented query options;
    follow an OData next-link when Service Layer pages a collection. Use `$expand` only where metadata exposes the
    navigation relationship.
@@ -224,6 +225,18 @@ every entity/property/action in SAP's API reference.
   `DocObjectCode` first on drafts and the base reference before `ItemCode`; those orders do matter (guide § 11).
 - **`BaseType` is two kinds**: the object number on `Document_Lines`, `InvBaseDocTypeEnum` (InventoryTransferRequest
   = 5) on `StockTransfer_Lines` (mistakes row 23).
+
+**Service Layer (§ 6):**
+- **A valid `$batch` answers 202 on OData v3 but 200 on v4**, and a sub-request can still have failed: read every
+  sub-response. A failure inside a change set returns one response for the whole change set (guide § 6).
+- **A stale `If-Match` is HTTP 412 with SAP error -2039** ("Another user or another operation modified data"): re-read
+  and reconcile, never resend the old payload (guide § 5).
+- **`SQLQueries` rejects `select *` in the select list but accepts it inside an `EXISTS` subquery**, and rejects all
+  DML with a parse error expecting `SELECT` (sql-queries.md § 3-4). The stored `SqlText` comes back normalized with
+  bracketed (SQL Server) or double-quoted (HANA) identifiers; that is cosmetic, not a change of meaning.
+- **Webhooks need FP 2602 and the Webhook Messenger Service running**; they are off per company until
+  `CompanyService_UpdateAdminInfo` sets `EnableWebhook`. SAP's guide revision of 2026-07-27 added `BizObjProps`,
+  `FilterExpr`, `KeyData` and `DeliveryDetails`, so a later feature pack has more than fp2602.md lists.
 
 ## 8. Layout
 
