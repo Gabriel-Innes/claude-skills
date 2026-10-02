@@ -27,20 +27,6 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/sapb1-assistant"]
-    },
-    {
-      "name": "team-comms",
-      "description": "Personal writing assistant for short, clear team and work emails: drafts, polishes, and replies in a simple, warm, plain-English voice with hard length limits.",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/team-comms"]
-    },
-    {
-      "name": "canny-tickets",
-      "description": "Read-only Canny assistant for developers: review bugs and RFCs across boards, filter by status/tag/date, read posts with comments, and build status roll-ups via a bundled read-only API client. Never writes to Canny.",
-      "source": "./",
-      "strict": false,
-      "skills": ["./skills/canny-tickets"]
     }
   ]
 }

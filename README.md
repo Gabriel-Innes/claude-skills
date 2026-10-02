@@ -2,7 +2,7 @@
 
 # claude-skills
 
-A public collection of [Agent Skills](https://agentskills.io/specification) for Claude, by Francois Taljaard.
+A public collection of [Agent Skills](https://agentskills.io/specification) for Claude, by Francois Taljaard — reference-backed assistants for ERP consultants and integrators (Sage 300, Sage 200 Evolution, SAP Business One).
 
 ## Skills
 
