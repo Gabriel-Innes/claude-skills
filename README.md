@@ -76,7 +76,7 @@ skills/
 
 ## Contributing
 
-Issues and pull requests are welcome — corrections to a reference, a new skill, or a new capability on an existing one. See [CONTRIBUTING.md](CONTRIBUTING.md) for how skills are structured and the bar a change should meet (every claim verifiable and cited). To report a problem with the data a skill returns, or a security concern, see [SECURITY.md](SECURITY.md).
+Issues and pull requests are welcome — corrections to a reference, a new skill, or a new capability on an existing one. See [CONTRIBUTING.md](CONTRIBUTING.md) for how skills are structured and the bar a change should meet (every claim verifiable and cited), and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for how we work together. To report a problem with the data a skill returns, or a security concern, see [SECURITY.md](SECURITY.md).
 
 ## License
 

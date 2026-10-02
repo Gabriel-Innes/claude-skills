@@ -3,6 +3,8 @@
 Thanks for your interest in improving these skills. Contributions fall into three kinds: **correcting a
 reference**, **adding a capability** to an existing skill, or **adding a new skill**. All three are welcome.
 
+By participating, you agree to abide by our [Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## The one rule that matters
 
 Every material claim a skill makes — a table or field name, an enum value, a version requirement, an SDK
