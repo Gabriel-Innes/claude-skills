@@ -1,3 +1,5 @@
+<img src="assets/logo.svg" alt="claude-skills logo" width="88" align="right" />
+
 # claude-skills
 
 A public collection of [Agent Skills](https://agentskills.io/specification) for Claude, by Francois Taljaard.
