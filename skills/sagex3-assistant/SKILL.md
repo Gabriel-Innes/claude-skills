@@ -4,7 +4,7 @@ description: "Sage X3 (Sage Business Cloud X3 / Enterprise Management) ERP assis
 compatibility: "Runtime needs file read + grep over the bundled references and, for versions other than V11 or anything newer than a reference's verified date, web access to online-help.sagex3.com. Maintenance scripts (not needed at runtime) need Python 3.10+ and internet access."
 metadata:
   author: Francois Taljaard
-  version: "2026.10"
+  version: "2026.10.1"
   domain: Sage X3 ERP
 ---
 
@@ -73,7 +73,8 @@ worked example). `references/dictionary/INDEX.md` lists files, coverage and veri
    folder, so for a value that matters, confirm on the client's system (table `APLSTD` - local menu texts by
    chapter/number/language - or the local menu screen).
 5. **Write the SQL** after reading `references/dictionary/conventions.md` (schema = folder, type mapping,
-   empty-value semantics, dimensioned columns, dates, join map, worked example).
+   empty-value semantics, dimensioned columns, dates, join map, worked example). **Every physical column is
+   `NAME_0`** (`SOHNUM_0`, `ITMREF_0`), dimensioned ones continue `_1 …`; only `ROWID` has no suffix.
 6. **Deliver**: one ```sql block with the complete `CREATE OR ALTER VIEW` (or query), then a short note on
    tables used and why, joins (quote the link expressions), status filters in business terms, and explicit
    assumptions (grain, folder/schema, which date column, currency). Add a sanity-check `SELECT TOP 20 …` the
@@ -90,11 +91,15 @@ Grep recipes (paths relative to the skill root; one field per line in `dict/`):
 
 - **Tables are in the folder's schema** (`SEED.SORDER`, not `dbo.SORDER`); the same tables exist once per
   folder. Always qualify, and ask which folder.
+- **Every column has a `_0` suffix in SQL** - dictionary `ITMREF` is column `ITMREF_0`, dimensioned or not;
+  `ROWID` is the only exception. Without it every reference fails with `Msg 207 Invalid column name`.
 - **Dimensioned columns**: `BPCADDLIG A*30(3)` is three SQL columns `BPCADDLIG_0..2`, not one. When the
   dimension comes from an activity code, the real column count on the client's folder is the activity code's
   value, not the dictionary maximum.
 - **No SQL NULLs.** X3 writes every column: empty strings are `''`, numbers `0`, and the empty date is
-  `1599-12-31`. `IS NULL` never matches; filter on `<> ''`, `<> 0` and `> '1599-12-31'`.
+  **`1753-01-01` on SQL Server** (`1599-12-31` only on Oracle - comparing a SQL Server `DATETIME` to it raises
+  `Msg 242 out-of-range`). `IS NULL` never matches; filter on `<> ''`, `<> 0` and `> '1753-01-01'`; confirm a
+  folder's sentinel with `SELECT MIN(<DATE>_0) FROM <FOLDER>.<TABLE>`.
 - **Booleans are 1/2** (local menu 1: 1=No, 2=Yes). `WHERE FLAG = 1` means *No*.
 - **Local menus are numbers** in the database; the text differs by language and can be customized per
   folder. Decode with CASE from `local-menus.md`, and confirm customized menus on site.

@@ -35,7 +35,13 @@
       "id": 6,
       "capability": "dictionary (empty-value semantics)",
       "prompt": "My X3 query 'WHERE SHIDAT IS NULL' returns no rows but I know many orders have no shipment date. Why?",
-      "expected_output": "Explains from conventions.md that X3 does not store SQL NULLs - the empty date is 1599-12-31 (and empty strings '' / numbers 0) - and gives the corrected predicate. Verifies the column exists in dict/ before using it."
+      "expected_output": "Explains from conventions.md that X3 does not store SQL NULLs - on SQL Server the empty date is 1753-01-01 (1599-12-31 only on Oracle; and empty strings '' / numbers 0) - and gives the corrected predicate SHIDAT_0 > '1753-01-01' with the _0 suffix. Verifies the column exists in dict/ before using it."
+    },
+    {
+      "id": 8,
+      "capability": "dictionary / SQL (physical column names and date sentinel, must always pass)",
+      "prompt": "On SQL Server, give me a query of stock lines (STOCK) with item, site, quantity and the last count date, excluding lines never counted. Folder PROD.",
+      "expected_output": "Every referenced column carries the _0 suffix (ITMREF_0, STOFCY_0, QTYSTU_0, and the date column _0) - no bare dictionary names, except ROWID if used. The 'never counted' filter uses the SQL Server sentinel (> '1753-01-01' or a CASE that nulls it); the literal 1599-12-31 does not appear anywhere in the SQL. Columns are verified in dict/Stock.md and cited; schema is PROD."
     },
     {
       "id": 7,
