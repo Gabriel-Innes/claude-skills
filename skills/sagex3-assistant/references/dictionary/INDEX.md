@@ -2,7 +2,7 @@
 
 | Path | Covers | Sage X3 version | Verified |
 |---|---|---|---|
-| `conventions.md` | How X3 stores data in SQL (folder = schema, dimensioned columns, no NULLs, 1599-12-31 empty date, booleans 1/2), type mapping, starter join map, view rules, worked example | V11 (behaviour is version-independent) | 2026-10-02 |
+| `conventions.md` | How X3 stores data in SQL (folder = schema, every column `NAME_0`, dimensioned columns, no NULLs, empty date `1753-01-01` on SQL Server / `1599-12-31` on Oracle, booleans 1/2), type mapping, starter join map, view rules, worked example | V11 (behaviour is version-independent) | 2026-10-02 |
 | `V11/table-index.md` | **1,899 tables**, one line each (`TABLE` (ABBR) - description), grouped by the 14 modules below, with Sage's V9.0 P12 / V10 P1 marks (`+` new table, `*` differs) | **V11** | 2026-10-02 |
 | `V11/dict/<Module>.md` | Per table: keys/indexes with column expressions, every column (type, length, dimension, title, local menu values inline, link expression = FK join, cancellation rule, activity code). 1,551 tables carry columns (**45,708 fields, 2,835 keys**); 348 tables are header-only because Sage publishes no column detail for them (mostly HR/payroll localisation) - their entries say so | V11 | 2026-10-02 |
 | `V11/local-menus.md` | **1,048 local menus** (enum values) referenced by type-M columns, one line each (`menu N - title: 1=…, 2=…`) | V11 | 2026-10-02 |
