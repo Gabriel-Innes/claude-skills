@@ -18,46 +18,51 @@ A public collection of [Agent Skills](https://agentskills.io/specification) for 
 | [`sage200-assistant`](skills/sage200-assistant) | Sage 200 Evolution (Pastel Evolution) ERP assistant for consultants and integrators: C# development against the `Pastel.Evolution` .NET SDK — connecting via `DatabaseContext`, the record load/set/`Save()` pattern, posting transactions, and generating correct code from a bundled class and enum reference (152 types, 41 enums) extracted from the shipped SDK CHM. More capabilities to follow. |
 | [`sapb1-assistant`](skills/sapb1-assistant) | SAP Business One ERP assistant for consultants and integrators: object type number, table and primary key lookup from a bundled list of all B1 object types, verified SQL views/queries from bundled B1 10.0 and 9.3 data dictionaries (tables, columns, indexes, valid values, parent-table links), and C# development against the DI API (`SAPbobsCOM`) from a bundled DI API 10.0 class and enum reference. More capabilities to follow. |
 
-## Example
-
-Ask in plain language; the skill routes, looks up the reference, and shows its source:
-
-> **You:** I need a SQL view of open sales orders with the customer name and order total — client's on Sage 300 2026.
->
-> **Claude (with `sage300-assistant`):** Uses the bundled 7.3A data dictionary — `OEORDH` joined to `ARCUS`, "open" decoded from the `COMPLETE IN (1,2)` enum on `OEORDH` (not guessed), one row per order. Returns a complete `CREATE OR ALTER VIEW` with a `TOP 20` sanity check, the joins and status filter explained in business terms, and a note on which dictionary files each field came from.
-
-Each skill refuses to guess: if a fact isn't in its references and can't be verified against the vendor's docs, it says so rather than inventing it — and it never writes SQL that modifies vendor-owned tables.
-
 ## Installing a skill
 
-### With the skills CLI
+These skills run inside **[Claude Code](https://www.claude.com/product/claude-code)** — Anthropic's assistant that you use through the Claude desktop app or the `claude` command. You don't need to write any code to install or use them. You add this collection once, then install whichever skill you need.
+
+**Step 1 — Add this collection (do this once).** In Claude Code, type:
+
+```
+/plugin marketplace add fdtaljaard/claude-skills
+```
+
+This just tells Claude where to find the skills. You only ever do it once.
+
+**Step 2 — Install the skill you want.** Type one of:
+
+```
+/plugin install sage300-assistant@fdtaljaard-skills
+/plugin install sage200-assistant@fdtaljaard-skills
+/plugin install sapb1-assistant@fdtaljaard-skills
+```
+
+(Pick the one for the system you work with — Sage 300, Sage 200 Evolution, or SAP Business One.)
+
+**Step 3 — Just ask your question in plain English.** There's no special command to "turn it on" — the skill switches itself on whenever your question is about that product. For example: *"I need a Sage 300 view of open sales orders with the customer name and total."* Claude looks the answer up in the bundled reference and shows its working.
+
+**Keeping it current.** To get the latest version later, type `/plugin marketplace update fdtaljaard-skills`. To remove a skill, type `/plugin uninstall <skill-name>@fdtaljaard-skills`.
+
+<details>
+<summary><b>Other ways to install (for developers)</b></summary>
+
+**With the [skills CLI](https://agentskills.io):**
 
 ```bash
 npx -y skills add fdtaljaard/claude-skills --skill sage300-assistant --agent claude-code
 ```
 
-### As a Claude Code plugin
-
-```
-/plugin marketplace add fdtaljaard/claude-skills
-/plugin install sage300-assistant@fdtaljaard-skills
-```
-
-### Manually
-
-Copy the skill folder into your Claude skills directory:
-
-- **Claude Code (all projects):** `~/.claude/skills/<skill-name>/`
-- **Claude Code (one project):** `<project>/.claude/skills/<skill-name>/`
-
-For example:
+**Manually** — copy the skill folder into your Claude skills directory (`~/.claude/skills/` for all projects, or `<project>/.claude/skills/` for one):
 
 ```bash
 git clone https://github.com/fdtaljaard/claude-skills.git
 cp -r claude-skills/skills/sage300-assistant ~/.claude/skills/
 ```
 
-Each skill's `SKILL.md` describes when it triggers and how it works; `MAINTENANCE.md` (where present) covers how it is built and kept up to date.
+Each skill's `SKILL.md` describes when it triggers and how it works; `MAINTENANCE.md` covers how it is built and kept up to date.
+
+</details>
 
 ## Layout
 
