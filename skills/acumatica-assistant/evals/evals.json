@@ -1,0 +1,89 @@
+{
+  "skill_name": "acumatica-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "REST (create + action)",
+      "prompt": "Write a request that creates a sales order with two lines for customer ABAKERY on Acumatica 2026 R2, then releases it from hold.",
+      "expected_output": "Uses PUT /entity/Default/26.200.001/SalesOrder?$expand=Details with {\"value\": ...} wrappers, CustomerID, OrderType, Details array with InventoryID/OrderQty (names marked as from the guide's examples, to confirm on the instance's swagger.json), Hold set false or the documented action; states Contract Version 5 was assumed; cites rest-api-guide.md and the SalesOrder rows of examples-catalogue.md; notes that nested entities must be in $expand and that a 200 should be verified by re-reading."
+    },
+    {
+      "id": 2,
+      "capability": "REST (query, contract version 4)",
+      "prompt": "Our Acumatica instance is 2024 R2. Give me the $filter and $expand to list stock items changed since yesterday with their warehouse quantities.",
+      "expected_output": "Picks Default/24.200.001 (Contract Version 4, from endpoint-versions.md) and uses OData 3.0 syntax: $filter=ItemStatus eq 'Active' and LastModifiedDateTime gt datetimeoffset'<encoded value>' with $expand=WarehouseDetails and a $select; mentions URL-encoding the date; cites query-parameters.md; recommends GET /entity to confirm the endpoint exists; does not use the CV5 bare-literal or parenthesised syntax."
+    },
+    {
+      "id": 3,
+      "capability": "REST (OAuth)",
+      "prompt": "Set up OAuth for a background service that syncs invoices nightly. Which flow and scopes, and how do we refresh?",
+      "expected_output": "Recommends registering a connected application on SM303010 and, for a non-interactive service, explains the trade-off: Authorization Code (user consent once, then refresh tokens with offline_access and sliding expiration) versus Resource Owner Password Credentials, which Acumatica discourages; scopes api and offline_access, not api:concurrent_access; token endpoint /identity/connect/token via discovery; grant_type=refresh_token and always keep the newest refresh token; client_id is <GUID>@<Tenant>; HTTPS required; one session per grant so no sign-out needed. Cites authentication.md."
+    },
+    {
+      "id": 4,
+      "capability": "REST (long-running operation)",
+      "prompt": "I POST to /entity/Default/26.200.001/Shipment/ConfirmShipment and get a 202. Is that an error?",
+      "expected_output": "No: 202 means the operation is in progress; read the Location header (.../Shipment/ConfirmShipment/status/<GUID>), GET it with a delay between polls while it returns 202, 204 means complete; then GET the shipment to confirm its status; notes that other requests on that form in the same session fail until completion. Cites rest-api-guide.md § 6."
+    },
+    {
+      "id": 5,
+      "capability": "REST (silent non-save)",
+      "prompt": "My PUT to /entity/Default/26.200.001/Customer returns 200 but the field I changed is unchanged. Why?",
+      "expected_output": "Explains from rest-api-guide.md § 5 that 200 does not guarantee a save: PUT writes only fields that differ and graph logic can override; a view-only user or a field not settable through the endpoint also yields 200 without saving; suggests PATCH for fields PUT skips, checking the user's edit rights on the form, and re-reading the record to verify; mentions 422 error fields as the place validation errors would appear."
+    },
+    {
+      "id": 6,
+      "capability": "REST (custom fields)",
+      "prompt": "How do I read and write a user-defined field called REGION on the Sales Orders screen through the REST API?",
+      "expected_output": "Field name is AttributeREGION in the Document view (user-defined fields are Attribute<AttributeID>); read on CV5 with $select=*,Document.AttributeREGION (CV4: $custom=Document.AttributeREGION); write inside \"custom\": {\"Document\": {\"AttributeREGION\": {\"type\": \"CustomStringField\", \"value\": ...}}} with type required on CV5; confirm the view and type with GET .../SalesOrder/$adHocSchema; user-defined fields cannot be added to custom endpoints. Cites rest-api-guide.md § 7 and query-parameters.md."
+    },
+    {
+      "id": 7,
+      "capability": "REST (push notifications)",
+      "prompt": "We poll the Acumatica API every minute for new shipments. Is there a push option?",
+      "expected_output": "Describes push notifications (SM302000): a generic inquiry over shipments as the data query with tracked fields, a Webhook (HTTP) or MSMQ destination, JSON with Inserted/Deleted/Query/CompanyId/Id/TimeStamp; warns to reply success to avoid up to five resends and to dedupe on Id; notes SignalR is unreliable; recommends fetching the full shipment through REST after the notification. Distinguishes from Acumatica webhooks (inbound). Cites push-and-webhooks.md."
+    },
+    {
+      "id": 8,
+      "capability": "REST (code review)",
+      "prompt": "Review this Acumatica client: it logs in with /entity/auth/login on every call and never logs out, filters with $filter=Details/InventoryID eq 'X', and treats any 200 from PUT as saved.",
+      "expected_output": "Reports, with the common-mistakes.md row numbers or topic names: missing sign-out exhausts the license's API session limit (sessions linger 10 minutes), login per call is wasteful and username/password sign-in is to be discontinued (recommend OAuth); filtering on detail entities is unsupported; 200 on PUT does not prove a save. Orders data-affecting defects first, then session hygiene."
+    },
+    {
+      "id": 9,
+      "capability": "ground rules (no direct SQL writes)",
+      "prompt": "Quickest way to bulk-insert 5,000 customers into Acumatica: can you give me the SQL INSERT into the BAccount table?",
+      "expected_output": "Declines to write SQL against the Acumatica database and explains the supported paths; proposes PUT /entity/Default/<version>/Customer requests, batched and throttled with the license limits in mind (queue, 50% per-minute slowdown, decline beyond 20 queued), with sign-out or OAuth session handling. Cites rest-api-guide.md and authentication.md § 5."
+    },
+    {
+      "id": 10,
+      "capability": "REST (endpoint versions)",
+      "prompt": "Which Default endpoint version should I use for a client on Acumatica 2025 R2, and will it break when they upgrade?",
+      "expected_output": "Default/25.200.001 (Contract Version 4) per endpoint-versions.md; a system endpoint keeps working on later releases, so the upgrade will not break it; later releases add Default/26.200.001 with Contract Version 5 (different drop-down and query syntax) if they want new fields; recommends GET /entity to list the instance's endpoints and warns custom endpoints must be maintained by the client."
+    },
+    {
+      "id": 11,
+      "capability": "REST (example lookup)",
+      "prompt": "Does Acumatica document how to attach a file to a stock item through the REST API?",
+      "expected_output": "Yes: finds the StockItem rows 'Obtain the URL for Attaching a File' and 'Attach a File to a Stock Item' in examples-catalogue.md, explains the _links.files:put template (PUT .../files/PX.Objects.IN.InventoryItemMaint/Item/<GUID>/<filename> with Content-Type application/octet-stream and optional PX-CbFileComment, 204 with Location), and links to the Beacon page."
+    },
+    {
+      "id": 12,
+      "capability": "out of scope (SOAP)",
+      "prompt": "How do I call the screen-based SOAP API Export method to pull customers?",
+      "expected_output": "Says the screen-based SOAP API is not yet a reference-backed capability of this skill (planned, see MAINTENANCE.md), answers briefly with that caveat, and points to the contract-based REST equivalent (GET .../Customer with $select/$expand) which is reference-backed."
+    },
+    {
+      "id": 13,
+      "capability": "REST (code review, action completion)",
+      "prompt": "Review this: after POST .../Shipment/ConfirmShipment our client reads response.Headers[\"Location\"] and polls it every second until it returns 204, then reports success.",
+      "expected_output": "Flags three things from common-mistakes.md rows 34, 35 and 14: a 204 from the action itself means already completed and has no Location header, so the indexer throws and a released shipment is reported as failed; the poll loop needs a ceiling and should tolerate a transient error; success should be confirmed by reading the shipment's Status afterwards. Cites rest-api-guide.md § 6 and § 10."
+    },
+    {
+      "id": 14,
+      "capability": "REST (idempotent creates)",
+      "prompt": "A PUT that creates a sales order sometimes times out on our side, and the retry creates a second order. We put the current date and time in ExternalRef. How do we stop duplicates?",
+      "expected_output": "Explains from common-mistakes.md row 36 and rest-api-guide.md § 5/§ 10 that a PUT without keys always creates and a timed-out request may have been saved; recommends a deterministic reference (the caller's own document or transaction id) in ExternalRef instead of a timestamp, a GET with $filter on that value before creating, chunking large detail sets, and re-reading after the PUT; notes If-None-Match: * does not solve this because the retry has no key."
+    }
+  ]
+}

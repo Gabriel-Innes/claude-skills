@@ -34,6 +34,13 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/sagex3-assistant"]
+    },
+    {
+      "name": "acumatica-assistant",
+      "description": "Acumatica ERP assistant: REST integration development against the contract-based REST API from a bundled extraction of Acumatica's Integration Development Guide (2026 R2) — sign-in and OAuth 2.0/OIDC, endpoint and contract versions, JSON record shape, query parameters per contract version, CRUD, actions and long-running operations, custom fields, files, license limits, push notifications and webhooks, with a catalogue of 187 documented example requests. More capabilities to follow.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/acumatica-assistant"]
     }
   ]
 }
