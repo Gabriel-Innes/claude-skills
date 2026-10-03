@@ -4,7 +4,7 @@ description: "Sage 200 Evolution / Pastel Evolution ERP assistant for consultant
 compatibility: "Runtime needs file read + grep over the bundled references under references/. Generating runnable SDK code also needs a licensed Evolution install of a matching version (the SDK binds to it). Maintenance scripts (not needed at runtime) need Python 3.10+ and Windows hh.exe to rebuild the SDK reference from the CHM; the dictionary is hand-maintained."
 metadata:
   author: Francois Taljaard
-  version: "2026.10"
+  version: "2026.10.1"
   domain: Sage 200 Evolution / Pastel Evolution ERP
 ---
 
