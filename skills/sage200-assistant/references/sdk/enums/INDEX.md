@@ -2,7 +2,9 @@
 
 # Pastel Evolution SDK enumerations
 
-41 enumerations from the `Pastel.Evolution` namespace. Each is in `enums/<File>` from line `Line` for `Lines` lines (read exactly that range, or grep `^# <Enum> (`). Grep a member name across `enums/` to find its enumeration.
+41 enumerations from the `Pastel.Evolution` namespace. **35 have no member rows** (`Members` = 0): the shipped
+CHM documents the type but not its members, so their constants must be read from the installed
+`Pastel.Evolution.dll` (see `MAINTENANCE.md`). The 6 with members are complete as the CHM gives them. Each is in `enums/<File>` from line `Line` for `Lines` lines (read exactly that range, or grep `^# <Enum> (`). Grep a member name across `enums/` to find its enumeration.
 
 | Enumeration | Members | File | Line | Lines | Description |
 |---|---|---|---|---|---|

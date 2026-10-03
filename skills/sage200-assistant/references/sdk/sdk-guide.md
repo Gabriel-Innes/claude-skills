@@ -102,7 +102,7 @@ Wrap any multi-record operation in an explicit transaction so a mid-way failure 
 
 - `DatabaseContext.BeginTran()` — starts a global transaction (returns false if one was already pending).
 - `DatabaseContext.CommitTran()` — commits (quietly no-ops if none pending).
-- `DatabaseContext.RollBackTran()` — roll back on failure.
+- `DatabaseContext.RollbackTran()` — roll back on failure.
 - `DatabaseContext.IsTransactionPending` — check before begin/commit.
 
 Put the work in `try`/`catch`: commit at the end of the `try`, roll back in the `catch`. Some SDK operations
@@ -117,7 +117,7 @@ is open other readers may block (isolation is read-committed by default), so kee
   listed, pass the constant in code.
 - Open both connections (accounting + common) via `DatabaseContext` before touching any record.
 - Use the record pattern: construct → set typed properties → `Save()`; wrap multi-record writes in
-  `BeginTran`/`CommitTran`/`RollBackTran` with rollback on exception.
+  `BeginTran`/`CommitTran`/`RollbackTran` with rollback on exception.
 - Never bypass the SDK with raw `INSERT`/`UPDATE` to Evolution tables — it skips all posting/validation logic
   and corrupts integrity. The SDK is the write path.
 - Dispose/close: let `DatabaseContext` own connections; close them on shutdown. Don't leak a connection or

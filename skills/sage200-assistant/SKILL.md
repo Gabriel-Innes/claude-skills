@@ -22,7 +22,7 @@ and SDK member names are exactly the things a model guesses plausibly and wrongl
 |---|---|
 | a view, query, report extract, "what table/field holds X", how two tables join, what a column means | § 3 SQL |
 | generate or fix **C# against the Pastel Evolution .NET SDK** (`Pastel.Evolution`) — connect via `DatabaseContext`, load/create a record and `Save()`, post a transaction (inventory, GL, cashbook, order/invoice), run inside a transaction, "what class/property/enum holds X in the SDK" | § 4 SDK |
-| both — "which table does this SDK object write to?" | § 4 then § 3 (the dictionary's Freedom Name is the SDK type name) |
+| both — "which table does this SDK object write to?" | § 4 then § 3 (the dictionary's Freedom Name is a cross-reference hint; confirm the public SDK type in `api/`) |
 
 If the request is about something not yet built — **versions and upgrades** (what a release needs, what changed,
 upgrade paths) — say so plainly: it is a planned capability (see `MAINTENANCE.md`), answer only what you can
@@ -98,14 +98,16 @@ Evolution ODBC/SQL layer or the Connector/API web service.
    correct pattern rather than the common wrong one.
 3. **Verify every member and enum** in `references/sdk/api/` and `references/sdk/enums/`:
    `api/INDEX.md` lists all 152 types with the **bundle file + line range** for each (read exactly that range,
-   or grep `^# <Type> (`); `enums/INDEX.md` lists all 41 enumerations (Member | Value | Description). Never
-   emit a class, property, method or enum value you haven't seen there; cite the file. Use the **named enum
-   constant** in code, never a magic int.
+   or grep `^# <Type> (`); `enums/INDEX.md` lists all 41 enumerations (Member | Value | Description), but **35 of them have no member
+   rows** (the shipped help omits them; the `Members` column shows 0). Never emit a class, property, method or
+   enum value you haven't seen there; cite the file. Use the **named enum constant** in code, never a magic
+   int; when the reference has no members, write the constant as `EnumName.<Member> // TODO(verify)` and tell
+   the user to read it from the installed `Pastel.Evolution.dll`.
 4. **Generate correct C#**: connect with `DatabaseContext` opening **both** the accounting and `EvolutionCommon`
    connections; use the record pattern (`new Customer(code)` to load / `new Customer()` to create → set typed
    properties → `Save()`; `Delete()` to remove; static `Find`/`FindByCode`/`List(criteria)` to look up); build
    posting documents with their own line/collection objects then post; wrap any multi-record write in
-   `DatabaseContext.BeginTran()` / `CommitTran()` with `RollBackTran()` in the `catch`; surface the real
+   `DatabaseContext.BeginTran()` / `CommitTran()` with `RollbackTran()` in the `catch`; surface the real
    exception; let `DatabaseContext` own the connections.
 5. **Deliver**: one ```csharp block, a short note on which types/members/enums were verified vs. still need
    confirming on the install, and the **environment caveats** (§ 5). Offer, as follow-ups, how it maps onto
@@ -137,11 +139,17 @@ SDK:
   let it own `DBConnection`/`DBTransaction`. Don't open a parallel `SqlConnection` to write Evolution tables.
 - **`ID == 0` means new/unsaved.** Branch on it for create-vs-update; read it back after `Save()`.
 - **Property name ≠ column name.** The SDK's property is the contract; verify it in `api/`, don't infer it
-  from the database field. The dictionary's **Freedom Name** is the SDK type a table backs (`InvNum` →
-  `DocumentHeader`, `_btblInvoiceLines` → `DocumentLines`) — use it to cross from one reference to the other.
+  from the database field. The dictionary's **Freedom Name** is a hint for crossing from a table to the SDK,
+  not always a public type: `InvNum` is `DocumentHeader` there, but the public classes are the abstract
+  `OrderBase` and its subclasses (`SalesOrder`, `CreditNote`, `PurchaseOrder`, …); `_btblInvoiceLines`
+  (`DocumentLines`) is `OrderDetail` / `OrderDetailCollection`. Confirm the type in `api/INDEX.md`.
+- **Most enums have no members in the reference.** 35 of 41 (`DocumentType`, `DocumentState`,
+  `InventoryOperation`, `Module`, `AgingModule` among them) list no Member | Value rows because the shipped
+  help omits them. Name the enum, mark the member `// TODO(verify)`, and point at the installed DLL; never
+  guess a member name or integer.
 - **Enum values are specific** — the integer is in `enums/` (Member | Value | Description), but pass the
   **named constant** in C#.
-- **Transactions**: wrap multi-record writes in `BeginTran`/`CommitTran`/`RollBackTran`; check
+- **Transactions**: wrap multi-record writes in `BeginTran`/`CommitTran`/`RollbackTran`; check
   `IsTransactionPending`; some operations begin/commit implicitly when none is pending — don't double-manage;
   roll back on exception and keep transactions short (read-committed isolation blocks other readers).
 - **Posting documents aren't uniform.** Each order/invoice/batch/transaction type has its own line object,

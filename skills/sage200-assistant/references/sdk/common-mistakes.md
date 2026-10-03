@@ -24,7 +24,7 @@ and `enums/` and cite the file.** Use the named enum constant in code, never the
 
 ### Not wrapping multi-record writes in a transaction
 A header that saves and a line that then throws leaves a half-written document. Wrap the unit of work in
-`DatabaseContext.BeginTran()` / `CommitTran()` with `RollBackTran()` in the `catch`. Check
+`DatabaseContext.BeginTran()` / `CommitTran()` with `RollbackTran()` in the `catch`. Check
 `IsTransactionPending` and don't double-manage operations that begin their own transaction implicitly.
 
 ### Managing your own SqlConnection to Evolution
