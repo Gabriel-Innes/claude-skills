@@ -9,7 +9,7 @@ what it could not verify. It never guesses a table, column, SDK class, method or
 | Ask about | What you get |
 |---|---|
 | **SQL and the data dictionary** | Verified read-only T-SQL views and queries against an Evolution company database, and "what table / field holds X". Backed by a bundled dictionary of 689 tables with every column, keys and Sage's own table descriptions, plus the conventions that make Evolution joins work (name prefixes, identity keys, posting tables, NULL and default behaviour). Read-only: it will not write SQL that modifies Evolution tables. |
-| **SDK development (C#)** | Correct C# against the `Pastel.Evolution` .NET SDK: connecting through `DatabaseContext`, the record load, set and `Save()` pattern, posting documents and transactions. Backed by a class and enum reference extracted from the shipped SDK help (152 types, 41 enumerations), a how-to guide and a common-mistakes list. |
+| **SDK development (C#)** | Correct C# against the `Pastel.Evolution` .NET SDK: connecting through `DatabaseContext`, the record load, set and `Save()` pattern, posting documents and transactions. Backed by a class and enum reference extracted from the shipped SDK help (152 types, 94 enumerations, with enum members read from the SDK assembly where the help omits them), a how-to guide and a common-mistakes list. |
 
 The skill switches itself on whenever your question is about Sage 200 Evolution or Pastel Evolution, even if you
 only say "Evolution", a table name like `Client`, `StkItem` or `_btblInvoiceLines`, or an SDK type like

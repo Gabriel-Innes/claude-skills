@@ -43,9 +43,17 @@ ap.add_argument("--namespace", default="Pastel.Evolution Namespace")
 ap.add_argument("--hhc", default="EvolutionSdk.hhc")
 ap.add_argument("--max-bytes", type=int, default=150_000, help="class bundle size")
 ap.add_argument("--max-bytes-enums", type=int, default=90_000, help="enumeration bundle size")
+ap.add_argument("--enum-json", help="JSON from scripts/dump_enums.ps1: public enums reflected from Pastel.Evolution.dll; "
+                                    "fills member tables the CHM leaves empty and adds enums the CHM does not document")
 A = ap.parse_args()
 EX, OUT = A.extract, A.out
 HEAD = f"<!-- source: Pastel.Evolution.chm, {A.label} | verified: {A.verified} -->"
+DLL = {}
+if A.enum_json:
+    with open(A.enum_json, encoding="utf-8-sig") as f:
+        DLL = {e["name"]: e for e in json.load(f)}
+ENUM_HEAD = (f"<!-- source: Pastel.Evolution.chm + Pastel.Evolution.dll (members by reflection), {A.label} | verified: {A.verified} -->"
+             if DLL else HEAD)
 
 CAP_SUMMARY, CAP_REMARK = 1200, 2000
 
@@ -366,7 +374,17 @@ def render_type(base, kind, node):
     return "\n".join(L).rstrip(), len(props), len(methods), first
 
 
+def _dll_facts(d):
+    out = []
+    if d.get("underlying") and d["underlying"] != "Int32":
+        out.append(f"Underlying type: `{d['underlying']}`.")
+    if d.get("flags"):
+        out.append("`[Flags]` enumeration (members combine bitwise).")
+    return out
+
+
 def render_enum(base, node):
+    """CHM entry; with --enum-json, a member table the CHM leaves empty is filled from the DLL."""
     h = page(node.local)
     L = [f"# {base} (Enumeration)", ""]
     s = type_summary(base, h)
@@ -380,11 +398,52 @@ def render_enum(base, node):
             nm, val, ds = clean(tds[0]), clean(tds[1]), clean(tds[2])
             if nm and not nm.lower().startswith(("public ", "protected ")):
                 rows.append((nm, val, ds))
+    source = "chm"
+    d = DLL.get(base)
+    if d:
+        dll_rows = [(m["name"], str(m["value"]), "") for m in d["members"]]
+        if not rows:
+            rows, source = dll_rows, "chm+dll"
+            L += ["Members from `Pastel.Evolution.dll` by reflection: the CHM documents the type but lists no "
+                  "members, so descriptions are blank.", ""]
+        else:
+            chm = {nm: val for nm, val, _ in rows}
+            changed = [f"{nm}: chm={chm[nm]} dll={v}" for nm, v, _ in dll_rows if nm in chm and chm[nm] and chm[nm] != v]
+            extra = [(nm, v, "") for nm, v, _ in dll_rows if nm not in chm]
+            missing = [nm for nm in chm if nm not in {m[0] for m in dll_rows}]
+            if changed or missing:
+                print(f"warning: {base}: CHM and DLL disagree; value changes={changed} chm-only members={missing}")
+            if extra:
+                # The CHM table is partial: append the members only the DLL knows, without descriptions.
+                rows, source = rows + extra, "chm+dll"
+                L += [f"The CHM table lists {len(chm)} of {len(dll_rows)} members; the remaining "
+                      f"{len(extra)} (blank description) come from `Pastel.Evolution.dll` by reflection.", ""]
+        facts = _dll_facts(d)
+        if facts:
+            L += facts + [""]
+    elif DLL:
+        L += ["Not found under this name in `Pastel.Evolution.dll` (public enums of the `Pastel.Evolution` "
+              "namespace); the CHM may use an older or different name. Confirm on the installed DLL.", ""]
+        source = "chm-only"
     L.append("| Member | Value | Description |\n|---|---|---|")
     for nm, val, ds in rows:
         L.append(f"| `{nm}` | {val or '—'} | {ds.replace('|', '/') or '—'} |")
     first = re.split(r"(?<=[.!?])\s", s, maxsplit=1)[0][:200] if s else ""
-    return "\n".join(L).rstrip(), len(rows), first
+    return "\n".join(L).rstrip(), len(rows), first, source
+
+
+def render_dll_enum(d):
+    """An enum the CHM does not document at all: type and members from the DLL only."""
+    L = [f"# {d['name']} (Enumeration)", "",
+         "Not documented in the CHM; the type and its members come from `Pastel.Evolution.dll` by reflection, "
+         "so there are no descriptions. It is public in the `Pastel.Evolution` namespace.", ""]
+    facts = _dll_facts(d)
+    if facts:
+        L += facts + [""]
+    L.append("| Member | Value | Description |\n|---|---|---|")
+    for m in d["members"]:
+        L.append(f"| `{m['name']}` | {m['value']} | — |")
+    return "\n".join(L).rstrip(), len(d["members"]), "Not documented in the CHM; members from the DLL.", "dll"
 
 
 # --------------------------------------------------------------------- main -----
@@ -423,11 +482,19 @@ os.makedirs(os.path.join(OUT, "enums"), exist_ok=True)
 # enums first
 enum_entries, enum_meta = [], []
 for base, node in enums:
-    body, nmem, first = render_enum(base, node)
+    body, nmem, first, source = render_enum(base, node)
     enum_entries.append((base, body))
-    enum_meta.append((base, nmem, first))
+    enum_meta.append((base, nmem, first, source))
+chm_names = {b for b, _ in enums}
+for name in sorted(DLL, key=str.lower):
+    if name not in chm_names:
+        body, nmem, first, source = render_dll_enum(DLL[name])
+        enum_entries.append((name, body))
+        enum_meta.append((name, nmem, first, source))
+enum_entries.sort(key=lambda x: x[0].lower())
+enum_meta.sort(key=lambda x: x[0].lower())
 enum_where = bundle_util.write_bundles([("enums", enum_entries)], os.path.join(OUT, "enums"),
-                                       HEAD, A.max_bytes_enums, numbered_prefix="enums")
+                                       ENUM_HEAD, A.max_bytes_enums, numbered_prefix="enums")
 
 # classes
 class_entries, class_meta = [], []
@@ -440,14 +507,21 @@ class_where = bundle_util.write_bundles([("classes", class_entries)], os.path.jo
 
 # indexes
 with open(os.path.join(OUT, "enums", "INDEX.md"), "w", encoding="utf-8", newline="\n") as f:
-    f.write(HEAD + "\n\n# Pastel Evolution SDK enumerations\n\n")
-    f.write(f"{len(enums)} enumerations from the `Pastel.Evolution` namespace. Each is in "
+    f.write(ENUM_HEAD + "\n\n# Pastel Evolution SDK enumerations\n\n")
+    f.write(f"{len(enum_meta)} enumerations from the `Pastel.Evolution` namespace. Each is in "
             "`enums/<File>` from line `Line` for `Lines` lines (read exactly that range, or grep "
             "`^# <Enum> (`). Grep a member name across `enums/` to find its enumeration.\n\n")
-    f.write("| Enumeration | Members | File | Line | Lines | Description |\n|---|---|---|---|---|---|\n")
-    for base, nmem, first in enum_meta:
+    if DLL:
+        n = {s: sum(1 for m in enum_meta if m[3] == s) for s in ("chm", "chm+dll", "dll", "chm-only")}
+        f.write(f"`Source` says where the member table comes from: `chm` = the CHM documents every member ({n['chm']}); "
+                f"`chm+dll` = the CHM documents the type but not all (or none) of its members, so the rest were read from "
+                f"`Pastel.Evolution.dll` by reflection and have no descriptions ({n['chm+dll']}); `dll` = not in the CHM at all, members from "
+                f"the DLL ({n['dll']}); `chm-only` = in the CHM but not found in the DLL under that name "
+                f"({n['chm-only']}). Values are the enum integers; pass the named constant in code.\n\n")
+    f.write("| Enumeration | Members | Source | File | Line | Lines | Description |\n|---|---|---|---|---|---|---|\n")
+    for base, nmem, first, source in enum_meta:
         fn, ln, nl = enum_where[base]
-        f.write(f"| {base} | {nmem} | {fn} | {ln} | {nl} | {first.replace('|', '/')} |\n")
+        f.write(f"| {base} | {nmem} | {source} | {fn} | {ln} | {nl} | {first.replace('|', '/')} |\n")
 
 with open(os.path.join(OUT, "api", "INDEX.md"), "w", encoding="utf-8", newline="\n") as f:
     f.write(HEAD + "\n\n# Pastel Evolution SDK types\n\n")
@@ -461,5 +535,5 @@ with open(os.path.join(OUT, "api", "INDEX.md"), "w", encoding="utf-8", newline="
         f.write(f"| {base} | {kind} | {npr} | {nme} | {fn} | {ln} | {nl} | {first.replace('|', '/')} |\n")
 
 print(f"{len(classes)} types in {len(set(v[0] for v in class_where.values()))} files, "
-      f"{len(enums)} enums in {len(set(v[0] for v in enum_where.values()))} files -> {OUT}")
+      f"{len(enum_meta)} enums in {len(set(v[0] for v in enum_where.values()))} files -> {OUT}")
 print(f"xml summaries loaded: {len(XML)}")

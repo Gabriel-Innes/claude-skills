@@ -98,11 +98,10 @@ Evolution ODBC/SQL layer or the Connector/API web service.
    correct pattern rather than the common wrong one.
 3. **Verify every member and enum** in `references/sdk/api/` and `references/sdk/enums/`:
    `api/INDEX.md` lists all 152 types with the **bundle file + line range** for each (read exactly that range,
-   or grep `^# <Type> (`); `enums/INDEX.md` lists all 41 enumerations (Member | Value | Description), but **35 of them have no member
-   rows** (the shipped help omits them; the `Members` column shows 0). Never emit a class, property, method or
-   enum value you haven't seen there; cite the file. Use the **named enum constant** in code, never a magic
-   int; when the reference has no members, write the constant as `EnumName.<Member> // TODO(verify)` and tell
-   the user to read it from the installed `Pastel.Evolution.dll`.
+   or grep `^# <Type> (`); `enums/INDEX.md` lists all 94 public enumerations (Member | Value | Description) with a `Source` column: the
+   CHM documents members for only 6, so the rest were read from `Pastel.Evolution.dll` by reflection and have
+   values but no descriptions. Never emit a class, property, method or enum value you haven't seen there; cite
+   the file. Use the **named enum constant** in code, never a magic int.
 4. **Generate correct C#**: connect with `DatabaseContext` opening **both** the accounting and `EvolutionCommon`
    connections; use the record pattern (`new Customer(code)` to load / `new Customer()` to create → set typed
    properties → `Save()`; `Delete()` to remove; static `Find`/`FindByCode`/`List(criteria)` to look up); build
@@ -143,10 +142,12 @@ SDK:
   not always a public type: `InvNum` is `DocumentHeader` there, but the public classes are the abstract
   `OrderBase` and its subclasses (`SalesOrder`, `CreditNote`, `PurchaseOrder`, …); `_btblInvoiceLines`
   (`DocumentLines`) is `OrderDetail` / `OrderDetailCollection`. Confirm the type in `api/INDEX.md`.
-- **Most enums have no members in the reference.** 35 of 41 (`DocumentType`, `DocumentState`,
-  `InventoryOperation`, `Module`, `AgingModule` among them) list no Member | Value rows because the shipped
-  help omits them. Name the enum, mark the member `// TODO(verify)`, and point at the installed DLL; never
-  guess a member name or integer.
+- **Most enum members come from the DLL, not the help.** The CHM documents members for only 6 of the 94
+  enumerations; the rest (`DocumentType`, `DocumentState`, `InventoryOperation`, `Module`, `AgingModule`
+  among them) were read from `Pastel.Evolution.dll` 11.0.0.10 by reflection, so they have names and values
+  but no descriptions, and 53 are not in the CHM at all. Say which when a member's *meaning* matters, and
+  never guess one that isn't listed (two CHM names, `JobStatus` and
+  `SplitAllocationCollection.OrderDetailChangeAction`, have no DLL counterpart).
 - **Enum values are specific** — the integer is in `enums/` (Member | Value | Description), but pass the
   **named constant** in C#.
 - **Transactions**: wrap multi-record writes in `BeginTran`/`CommitTran`/`RollbackTran`; check
@@ -171,7 +172,8 @@ references/dictionary/  INDEX.md (read first: group → file map, entry format, 
 references/sdk/         INDEX.md (read first), sdk-guide.md (correct Pastel.Evolution idioms: connect, record
                         pattern, posting, transactions), common-mistakes.md, api/ (authoritative type reference
                         from the shipped CHM: INDEX.md + classes-01..03.md — 152 types), enums/ (INDEX.md +
-                        enums-01.md — 41 enumerations with Member|Value|Description)
+                        enums-01.md — 94 enumerations with Member|Value|Description; members from the
+                        CHM where it has them, otherwise from the DLL by reflection)
 scripts/                maintenance only (rebuild the SDK reference from the CHM, package the skill) — never needed to answer
 evals/evals.json        test prompts per capability
 docs/                   source material (the shipped CHM, DLLs and XML doc; the SSMS script the dictionary was

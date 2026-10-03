@@ -23,7 +23,9 @@ the skill inside that spec and its best-practices guide. Modelled on the `sage30
 
 The SDK reference under `references/sdk/api/` and `references/sdk/enums/` is generated from the shipped
 `docs/Pastel.Evolution.chm` (primary) with summaries backfilled from
-`docs/Pastel.Evolution.11.0.0.10/Pastel.Evolution.xml`. Source material in `docs/` is **never packaged** and
+`docs/Pastel.Evolution.11.0.0.10/Pastel.Evolution.xml`, and enum members filled from
+`docs/Pastel.Evolution.11.0.0.10/Pastel.Evolution.dll` by reflection (the CHM lists members for only 6 of its
+41 enumerations and omits 53 public enums entirely). Source material in `docs/` is **never packaged** and
 **never read at runtime** — only the generated markdown is.
 
 To regenerate (Windows), with `PYTHONUTF8=1` so the emoji/Unicode in output doesn't die on cp1252:
@@ -37,23 +39,33 @@ To regenerate (Windows), with `PYTHONUTF8=1` so the emoji/Unicode in output does
 
    This yields ~4,000 `.htm` pages plus `EvolutionSdk.hhc` (the table of contents). 7-Zip also extracts CHMs.
 
-2. Run the generator:
+2. Dump the enumerations from the assembly (Windows PowerShell 5.1, since the SDK is .NET Framework; the
+   script loads the DLLs from bytes so a "downloaded from the internet" block does not stop it):
+
+   ```
+   powershell -File scripts/dump_enums.ps1 -SdkDir docs/Pastel.Evolution.11.0.0.10 -Out /c/temp/evo/enums.json
+   ```
+
+3. Run the generator:
 
    ```
    PYTHONUTF8=1 python scripts/build_sdk_ref.py \
      /c/temp/evo/chm \
      docs/Pastel.Evolution.11.0.0.10/Pastel.Evolution.xml \
      references/sdk \
-     --verified YYYY-MM-DD
+     --verified YYYY-MM-DD \
+     --enum-json /c/temp/evo/enums.json
    ```
 
    It parses `EvolutionSdk.hhc` (nested Sandcastle sitemap), emits only the main `Pastel.Evolution` namespace
    (skips `Pastel.Evolution.Internal`), and writes size-bounded bundles (`classes-NN.md` ~150 KB,
    `enums-NN.md` ~90 KB) plus `api/INDEX.md` and `enums/INDEX.md` with a **file + line range** per entry.
    `scripts/bundle_util.py` does the bundling. It prints the type/enum/file counts — sanity-check them
-   (currently 152 types in 3 files, 41 enums in 1 file).
+   (currently 152 types in 3 files, 94 enums in 1 file). With `--enum-json` each enum gets a `Source` in
+   `enums/INDEX.md` (`chm`, `chm+dll`, `dll`, `chm-only`) and the build warns when the CHM and the DLL
+   disagree on a member's value; `enums/` carries a provenance header naming both sources.
 
-3. After a rebuild, update the counts cited in `SKILL.md` (§ 3, § 5), `references/sdk/INDEX.md` and the SDK
+4. After a rebuild, update the counts cited in `SKILL.md` (§ 3, § 5), `references/sdk/INDEX.md` and the SDK
    version wherever it appears, and re-read one or two entries to confirm headings and line ranges align
    (the `INDEX.md` line range must land on the entry's `# <Type> (` heading).
 
