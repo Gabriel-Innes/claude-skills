@@ -12,12 +12,16 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import bundle_util  # noqa: E402  (shared with the other builders: bundles + File/Line/Lines ranges)
+
 EDM = "http://docs.oasis-open.org/odata/ns/edm"
 EDMX = "http://docs.oasis-open.org/odata/ns/edmx"
-TARGET_BYTES = 150_000
+MAX_BYTES = 1_000_000  # bundle size, the repo standard (the skill must stay under 200 files)
 
 
 def q(ns: str, name: str) -> str:
@@ -39,46 +43,35 @@ def facets(el: ET.Element) -> str:
     return " ".join(bits)
 
 
-def annotations(el: ET.Element) -> list[str]:
-    out: list[str] = []
-    scalar = ("String", "Bool", "Int", "Decimal", "Path", "PropertyPath", "NavigationPropertyPath", "EnumMember")
-    for ann in el.findall(q(EDM, "Annotation")):
-        term = ann.attrib.get("Term")
-        if not term:
-            continue
-        value = next((ann.attrib[a] for a in scalar if a in ann.attrib), "")
-        out.append(f"{term}={value}" if value else term)
+SCALAR_ATTRS = ("String", "Bool", "Int", "Decimal", "Path", "PropertyPath", "NavigationPropertyPath", "EnumMember")
+
+
+def _scalar(ann: ET.Element) -> str | None:
+    term = ann.attrib.get("Term")
+    if not term:
+        return None
+    value = next((ann.attrib[a] for a in SCALAR_ATTRS if a in ann.attrib), "")
+    return f"{term}={value}" if value else term
+
+
+# CSDL allows annotations in two places: inline as <Annotation> children of the annotated element, or
+# out-of-line in <Annotations Target="Namespace.Type/Property"> blocks anywhere in the schema. Which form
+# SAP's FP 2608+ metadata uses has not been seen yet, so both are read; `out_of_line` is keyed by Target.
+def annotations(el: ET.Element, target: str = "", out_of_line: dict[str, list[str]] | None = None) -> list[str]:
+    out = [s for s in (_scalar(a) for a in el.findall(q(EDM, "Annotation"))) if s]
+    if out_of_line and target:
+        out += out_of_line.get(target, [])
     return out
 
 
-def split_bundles(entries: list[tuple[str, str]], prefix: str) -> list[tuple[str, list[tuple[str, str]]]]:
-    bundles, cur, size, idx = [], [], 0, 1
-    for name, body in entries:
-        n = len(body.encode("utf-8"))
-        if cur and size + n > TARGET_BYTES:
-            bundles.append((f"{prefix}-{idx:02d}.md", cur))
-            idx += 1
-            cur, size = [], 0
-        cur.append((name, body))
-        size += n
-    if cur:
-        bundles.append((f"{prefix}-{idx:02d}.md", cur))
-    return bundles
-
-
-def write_bundles(out: Path, bundles, provenance: str) -> dict[str, tuple[str, int, int]]:
-    out.mkdir(parents=True, exist_ok=True)
-    locations = {}
-    for filename, entries in bundles:
-        lines = [provenance, ""]
-        for name, body in entries:
-            start = len(lines) + 1
-            body_lines = body.rstrip().splitlines()
-            lines.extend(body_lines)
-            locations[name] = (filename, start, len(body_lines))
-            lines.append("")
-        (out / filename).write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
-    return locations
+def collect_out_of_line(schemas) -> dict[str, list[str]]:
+    found: dict[str, list[str]] = {}
+    for schema in schemas:
+        for block in schema.findall(q(EDM, "Annotations")):
+            target = block.attrib.get("Target", "")
+            if target:
+                found.setdefault(target, []).extend(s for s in (_scalar(a) for a in block.findall(q(EDM, "Annotation"))) if s)
+    return found
 
 
 def parse(path: Path):
@@ -93,11 +86,13 @@ def parse(path: Path):
     return schemas
 
 
-def build(metadata: Path, out: Path, verified: str, label: str, source: str, excludes: list[re.Pattern[str]]):
+def build(metadata: Path, out: Path, verified: str, label: str, source: str, excludes: list[re.Pattern[str]],
+          max_bytes: int = MAX_BYTES):
     schemas = parse(metadata)
     if out.exists() and any(out.iterdir()):
         raise SystemExit(f"Output directory is not empty: {out}. Build into an empty scratch directory.")
     excluded: set[str] = set()
+    ool = collect_out_of_line(schemas)
 
     def blocked(name: str) -> bool:
         if any(rx.search(name) for rx in excludes):
@@ -132,7 +127,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
                     lines += ["## Properties", ""]
                     for p in props:
                         f = facets(p)
-                        anns = annotations(p)
+                        anns = annotations(p, f"{full}/{p.attrib['Name']}", ool)
                         suffix = (f" [{f}]" if f else "") + (" {" + "; ".join(anns) + "}" if anns else "")
                         line = f"- {p.attrib['Name']} : {p.attrib.get('Type','')}" + suffix
                         lines.append(line)
@@ -144,7 +139,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
                         opts = [f"{a}={n.attrib[a]}" for a in ("Partner", "ContainsTarget", "Nullable") if a in n.attrib]
                         lines.append(f"- {n.attrib['Name']} : {n.attrib.get('Type','')}" + (" [" + " ".join(opts) + "]" if opts else ""))
                     lines.append("")
-                anns = annotations(el)
+                anns = annotations(el, full, ool)
                 if anns:
                     lines += ["## Scalar annotations", ""] + [f"- {a}" for a in anns] + [""]
                 type_entries.append((full, "\n".join(lines).rstrip() + "\n"))
@@ -164,7 +159,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
             lines += ["| Member | Value | Scalar annotations |", "|---|---:|---|"]
             for m in members:
                 value = m.attrib.get("Value", "")
-                anns = annotations(m)
+                anns = annotations(m, f"{full}/{m.attrib['Name']}", ool)
                 ann_text = "; ".join(anns)
                 lines.append(f"| {m.attrib['Name']} | {value} | {ann_text} |")
                 enum_member_lines.append(f"{full}.{m.attrib['Name']} = {value}" + (" {" + ann_text + "}" if ann_text else ""))
@@ -201,7 +196,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
                 if ret is not None:
                     f = facets(ret)
                     lines += ["## Return", "", ret_type + (f" [{f}]" if f else ""), ""]
-                anns = annotations(el)
+                anns = annotations(el, full, ool)
                 if anns:
                     lines += ["## Scalar annotations", ""] + [f"- {a}" for a in anns] + [""]
                 sig = ", ".join(f"{p.attrib.get('Name','')}:{p.attrib.get('Type','')}" for p in params)
@@ -219,7 +214,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
                 entity_sets.append(dict(name=es.attrib["Name"], type=es.attrib.get("EntityType", ""),
                                         container=f"{ns}.{cname}" if ns else cname,
                                         include=es.attrib.get("IncludeInServiceDocument", ""),
-                                        bindings=bindings, anns=annotations(es)))
+                                        bindings=bindings, anns=annotations(es, full, ool)))
             for import_kind, target_attr in (("ActionImport", "Action"), ("FunctionImport", "Function")):
                 for imp in container.findall(q(EDM, import_kind)):
                     full = f"{ns}.{cname}/{imp.attrib['Name']}" if ns else f"{cname}/{imp.attrib['Name']}"
@@ -229,7 +224,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
                                                   target=imp.attrib.get(target_attr, ""),
                                                   entity_set=imp.attrib.get("EntitySet", ""),
                                                   include=imp.attrib.get("IncludeInServiceDocument", ""),
-                                                  anns=annotations(imp)))
+                                                  anns=annotations(imp, full, ool)))
 
     for seq in (type_entries, enum_entries, op_entries):
         seq.sort(key=lambda x: x[0].lower())
@@ -240,9 +235,9 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
 
     out.mkdir(parents=True, exist_ok=True)
     provenance = f"<!-- source: {source} | version: {label} | verified: {verified} -->"
-    type_locs = write_bundles(out / "api", split_bundles(type_entries, "types"), provenance)
-    enum_locs = write_bundles(out / "enums", split_bundles(enum_entries, "enums"), provenance)
-    op_locs = write_bundles(out / "operations", split_bundles(op_entries, "operations"), provenance)
+    type_locs = bundle_util.write_bundles([("types", type_entries)], str(out / "api"), provenance, max_bytes, numbered_prefix="types")
+    enum_locs = bundle_util.write_bundles([("enums", enum_entries)], str(out / "enums"), provenance, max_bytes, numbered_prefix="enums")
+    op_locs = bundle_util.write_bundles([("operations", op_entries)], str(out / "operations"), provenance, max_bytes, numbered_prefix="operations")
 
     sets_by_type: dict[str, list[str]] = {}
     for es in entity_sets:
@@ -314,7 +309,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
               "- This is a snapshot of one Service Layer OData v4 metadata document; another feature pack can expose a different surface.",
               "- `OpenType=true` permits dynamic properties such as UDFs; those dynamic properties are not enumerated here.",
               "- A company can expose client-specific UDO/entity sets. Prefer a clean demo company or review/exclude custom names before committing a shared reference.",
-              "- Core CSDL and compact scalar annotations are extracted; complex annotation expression trees remain in the source metadata."]
+              "- Core CSDL and compact scalar annotations (inline and out-of-line `Annotations Target=`) are extracted; complex annotation expression trees remain in the source metadata."]
     if excludes:
         lines += ["", "## Exclusion filters", ""] + [f"- `{rx.pattern}`" for rx in excludes]
     (out / "INDEX.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
@@ -329,11 +324,12 @@ def main() -> None:
     ap.add_argument("--label", required=True, help='e.g. "SAP Business One 10.0 FP 2602"')
     ap.add_argument("--source", default="local /b1s/v2/$metadata snapshot", help="provenance text; never include credentials")
     ap.add_argument("--exclude-regex", action="append", default=[], help="repeatable regex matched against fully-qualified generated names")
+    ap.add_argument("--max-bytes", type=int, default=MAX_BYTES, help="bundle size before a bundle file is split")
     args = ap.parse_args()
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", args.verified):
         raise SystemExit("--verified must be YYYY-MM-DD")
     counts = build(args.metadata, args.out, args.verified, args.label, args.source,
-                   [re.compile(x) for x in args.exclude_regex])
+                   [re.compile(x) for x in args.exclude_regex], args.max_bytes)
     print("Built Service Layer metadata reference:")
     for k, v in counts.items():
         print(f"  {k}: {v}")

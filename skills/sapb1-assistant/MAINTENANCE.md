@@ -221,8 +221,10 @@ contains them). The raw metadata is maintenance input only and must not be commi
    `--exclude-regex` filters for known custom entities; record the filters in the generated `INDEX.md`.
 3. **Build** into a scratch output first:
    `python scripts/build_servicelayer_ref.py <metadata.edmx> <out> --verified YYYY-MM-DD --label "SAP Business One 10.0 FP 2602" --source "Service Layer /b1s/v2/$metadata"`.
-   The builder rejects non-v4 metadata, bundles entries at about 150 KB, and writes indexes with exact
-   File/Line/Lines ranges so runtime lookup does not load whole bundles.
+   The builder rejects non-v4 metadata, bundles entries through the shared `bundle_util.py` (about 1 MB per
+   bundle, `--max-bytes` to change) and writes indexes with exact File/Line/Lines ranges so runtime lookup
+   does not load whole bundles. It reads scalar annotations both inline and from out-of-line
+   `<Annotations Target=...>` blocks; check the first real FP 2608+ snapshot to see which form SAP emits.
 4. **Run the builder tests**:
    `python scripts/test_build_servicelayer_ref.py`.
    They cover EntityType/ComplexType, entity sets, bound/global operations, enums, scalar annotations,

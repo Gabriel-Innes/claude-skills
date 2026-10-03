@@ -23,6 +23,8 @@ V4 = '''<?xml version="1.0" encoding="utf-8"?>
    <Property Name="DocEntry" Type="Edm.Int32" Nullable="false"/>
    <Property Name="DocumentLines" Type="Collection(SAPB1.DocumentLine)"/>
   </EntityType>
+  <Annotations Target="SAPB1.Document/DocEntry"><Annotation Term="Common.Label" String="Document Entry"/></Annotations>
+  <Annotations Target="SAPB1.Document"><Annotation Term="SAPB1.TableName" String="ORDR"/></Annotations>
   <Action Name="Close" IsBound="true"><Parameter Name="Document" Type="SAPB1.Document"/></Action>
   <Function Name="Ping"><ReturnType Type="Edm.String"/></Function>
   <EntityContainer Name="ServiceLayer">
@@ -64,6 +66,8 @@ class BuildServiceLayerRefTests(unittest.TestCase):
         self.assertIn("SAPB1.Document | EntityType | DocEntry", (out / "api" / "INDEX.md").read_text())
         self.assertIn("OpenType: true", (out / "api" / "types-01.md").read_text())
         self.assertIn("SAPB1.ColumnName=ItemCode", (out / "api" / "members.md").read_text())
+        self.assertIn("SAPB1.Document.DocEntry : Edm.Int32 [required] {Common.Label=Document Entry}", (out / "api" / "members.md").read_text())
+        self.assertIn("- SAPB1.TableName=ORDR", (out / "api" / "types-01.md").read_text())
         self.assertIn("SAPB1.ValidValue=C", (out / "enums" / "members.md").read_text())
         self.assertIn("Action SAPB1.Close", (out / "operations" / "members.md").read_text())
         self.assertIn("Common.Label=Sales Order", (out / "entity-sets.md").read_text())
@@ -74,6 +78,18 @@ class BuildServiceLayerRefTests(unittest.TestCase):
         self.assertEqual(counts["excluded"], 1)
         self.assertNotIn("@CLIENT_UDO", (out / "entity-sets.md").read_text())
         self.assertIn("@CLIENT_UDO", (out / "INDEX.md").read_text())
+
+    def test_index_ranges_point_at_entries(self):
+        out, _ = self.build()
+        for idx in ("api", "enums", "operations"):
+            for row in (out / idx / "INDEX.md").read_text().splitlines():
+                cells = [c.strip() for c in row.strip("|").split("|")]
+                if len(cells) < 3 or not cells[-2].isdigit():
+                    continue
+                name, fname, line, n = cells[0], cells[-3], int(cells[-2]), int(cells[-1])
+                seg = (out / idx / fname).read_text().splitlines()[line - 1:line - 1 + n]
+                self.assertTrue(seg and seg[0].startswith("# " + name.split("(")[0].strip()), (idx, name, seg[:1]))
+                self.assertFalse(any(s.startswith("# ") for s in seg[1:]), (idx, name))
 
     def test_rejects_non_v4_metadata(self):
         src = self.root / "v3.xml"

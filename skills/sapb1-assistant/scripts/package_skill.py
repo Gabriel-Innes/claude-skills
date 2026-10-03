@@ -7,7 +7,7 @@ Checks before writing anything, because an upload fails on any of them:
   * SKILL.md has YAML frontmatter with `name` equal to the folder name, `description` <= 1024 characters and
     `compatibility` <= 500 characters;
   * the archive has at most 200 files (Claude's upload limit; the skill's large references are bundled to stay under it);
-  * no file is a Python cache or an OS artefact.
+  * no file is a Python cache, a script unit test (`scripts/test_*.py`) or an OS artefact.
 Writes <output>/<name>.skill and a byte-identical <name>.zip, with every file under a single top-level <name>/ folder.
 """
 import os
@@ -42,7 +42,7 @@ def main():
     for root, dirs, names in os.walk(src):
         dirs[:] = [d for d in dirs if d != "__pycache__"]
         for n in sorted(names):
-            if n.endswith((".pyc", ".DS_Store")) or n == "Thumbs.db":
+            if n.endswith((".pyc", ".DS_Store")) or n == "Thumbs.db" or (n.startswith("test_") and n.endswith(".py")):
                 continue
             files.append(os.path.join(root, n))
     if len(files) > MAX_FILES:
