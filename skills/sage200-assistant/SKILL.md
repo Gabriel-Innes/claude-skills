@@ -164,7 +164,8 @@ references/sdk/         INDEX.md (read first), sdk-guide.md (correct Pastel.Evol
                         pattern, posting, transactions), common-mistakes.md, api/ (authoritative type reference
                         from the shipped CHM: INDEX.md + classes-01..03.md — 152 types), enums/ (INDEX.md +
                         enums-01.md — 41 enumerations with Member|Value|Description)
-scripts/                maintenance only (rebuild the SDK reference from the CHM) — never needed to answer
+scripts/                maintenance only (rebuild the SDK reference from the CHM, package the skill) — never needed to answer
+evals/evals.json        test prompts per capability
 docs/                   source material (the shipped CHM, DLLs and XML doc; the SSMS script the dictionary was
                         seeded from) — never packaged, never read at runtime
 MAINTENANCE.md          how to rebuild each reference and add a capability

@@ -21,7 +21,7 @@ only say "Evolution", a table name like `Client`, `StkItem` or `_btblInvoiceLine
 - "What table and field holds the warehouse on an Evolution inventory transaction?"
 - "Show me C# that connects to an Evolution company and creates a customer."
 - "Post an inventory adjustment through the SDK and roll back if any line fails."
-- "Why does my join from `InvNum` to `Client` return duplicate rows?"
+- "Why does my join from `InvNum` to `Client` return the wrong names on some rows?"
 
 ## Install
 
@@ -92,6 +92,7 @@ confirm anything that matters on the client's own database or installed SDK.
 - [`SKILL.md`](SKILL.md) is what Claude loads; it describes routing, ground rules and each workflow.
 - [`MAINTENANCE.md`](MAINTENANCE.md) explains how the dictionary is maintained, how to rebuild the SDK reference
   from the shipped help, and how to add a capability.
+- [`evals/evals.json`](evals/evals.json) holds test prompts per capability.
 - Corrections and additions are welcome. See the repository's [CONTRIBUTING.md](../../CONTRIBUTING.md).
 
 ## Disclaimer

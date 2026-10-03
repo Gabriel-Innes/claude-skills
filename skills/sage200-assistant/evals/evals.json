@@ -1,0 +1,65 @@
+{
+  "skill_name": "sage200-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "SQL / data dictionary (view)",
+      "prompt": "I need a view of open customer invoices with the customer name, invoice total and outstanding amount.",
+      "expected_output": "Reads references/dictionary/INDEX.md and conventions.md, finds InvNum and Client in dict/Core.md and cites the files. Delivers one CREATE OR ALTER VIEW joining InvNum.AccountID to Client.DCLink, says the join rests on naming because Evolution declares no foreign keys, filters DocType and any open/state flag with values marked as to be confirmed on the client's data (the dictionary has no row values), uses ISNULL and ROUND for NULL-able float money columns, states the grain (one row per document) and adds a SELECT TOP 20 sanity query. Does not invent a DocType value."
+    },
+    {
+      "id": 2,
+      "capability": "SQL / data dictionary (what field holds X)",
+      "prompt": "What table and field holds the warehouse on an Evolution inventory transaction?",
+      "expected_output": "Greps the dictionary rather than answering from memory, names the stock-movement table PostST (and WhseStk / WhseMst for per-warehouse stock) with the warehouse column as it appears in the dict file, cites the file, and notes the join to the warehouse master follows naming, not a declared key."
+    },
+    {
+      "id": 3,
+      "capability": "ground rules (must always pass)",
+      "prompt": "Write me a SQL UPDATE that sets every customer in Client to a 30-day payment term.",
+      "expected_output": "Refuses to write SQL that modifies Evolution tables, explains that raw writes bypass posting, validation and GL logic and corrupt the books, points to the SDK (DatabaseContext plus the Customer record pattern with Save()) as the write path, offers to generate that C# instead, and does not print the UPDATE statement even as an illustration."
+    },
+    {
+      "id": 4,
+      "capability": "SQL / data dictionary (gotcha: Client vs Vendor on InvNum)",
+      "prompt": "Why does my join from InvNum to Client return the wrong names on some rows?",
+      "expected_output": "Explains from the gotchas and conventions.md that InvNum holds every document type in one table and InvNum.AccountID points at Client for sales documents but at Vendor for purchase documents, that Client and Vendor both use identity DCLink numbering and must not be joined or unioned without a discriminator, and that the fix is to filter or branch on DocType with values confirmed on the client's data. Cites the dictionary files."
+    },
+    {
+      "id": 5,
+      "capability": "SQL / data dictionary (gotcha: PostGL multi-row)",
+      "prompt": "Give me the GL total per invoice from PostGL.",
+      "expected_output": "Warns that PostGL writes several rows per transaction (one per account in the transaction code) so summing per document without an account filter double-counts, asks or states which side (debit account, control account) the total should reflect, verifies the columns in dict/Core.md, and delivers a query with that filter and a sanity check rather than a naive SUM."
+    },
+    {
+      "id": 6,
+      "capability": "SDK / C# (connect and create a record)",
+      "prompt": "Show me C# that connects to an Evolution company and creates a customer.",
+      "expected_output": "Reads references/sdk/INDEX.md, sdk-guide.md and common-mistakes.md. Delivers one C# block that opens both the accounting and EvolutionCommon connections through the static DatabaseContext (Initialise, or CreateConnection paired with CreateCommonDBConnection) and checks IsConnectionOpen and IsCommonConnectionOpen, then uses the record pattern: new Customer(), set typed properties, Save(), and reads ID back (ID == 0 means unsaved). Every class, property and method is verified in references/sdk/api/ and cited; anything not found is marked // TODO(verify). Notes the SDK reference is 11.0.0.10 and the DLL must match the installed runtime."
+    },
+    {
+      "id": 7,
+      "capability": "SDK / C# (posting inside a transaction)",
+      "prompt": "Post an inventory adjustment through the SDK and roll back if any line fails.",
+      "expected_output": "Looks up the inventory transaction type and its line/collection and post members in references/sdk/api/ (never guessed), wraps the work in DatabaseContext.BeginTran() / CommitTran() with RollBackTran() in the catch, mentions IsTransactionPending and not double-managing a transaction, surfaces the real exception, uses named enum constants from references/sdk/enums/ rather than magic ints, and cites the files. Flags any member it could not find as to be confirmed on the install."
+    },
+    {
+      "id": 8,
+      "capability": "SDK / C# (member and enum lookup)",
+      "prompt": "Which SDK class does the InvNum table map to, and what enum do I use for the document type?",
+      "expected_output": "Uses the dictionary's Freedom Name to cross from InvNum to the SDK type DocumentHeader (and _btblInvoiceLines to DocumentLines), then finds the document-type enumeration in references/sdk/enums/INDEX.md and enums-01.md, lists its members with values and descriptions as the reference shows them, cites both files, and says to pass the named constant in code."
+    },
+    {
+      "id": 9,
+      "capability": "SDK / C# (ground rule: no raw SQL from code)",
+      "prompt": "In my SDK integration I just open a SqlConnection and INSERT the invoice rows directly into InvNum and _btblInvoiceLines because it is faster. Can you tidy that code up?",
+      "expected_output": "Declines to tidy a raw-SQL write path, explains that writing Evolution tables directly bypasses the SDK's posting and validation logic and corrupts integrity, and that a parallel SqlConnection should not write Evolution tables while DatabaseContext owns the connections. Offers the correct replacement: the DocumentHeader / DocumentLines objects and their post method from references/sdk/api/, inside a DatabaseContext transaction. Does not print the INSERT statements."
+    },
+    {
+      "id": 10,
+      "capability": "routing (planned capability: versions and upgrades)",
+      "prompt": "What does Sage 200 Evolution version 11 need in terms of SQL Server and Windows, and what changed from version 10?",
+      "expected_output": "Says plainly that versions and upgrades is a planned capability not yet backed by a bundled reference (see MAINTENANCE.md), does not invent SQL Server or Windows requirements or a change list, offers only what can be verified from the bundled references or Sage's official Evolution documentation with a citation, and notes the one version fact it does hold: the bundled SDK reference is 11.0.0.10."
+    }
+  ]
+}

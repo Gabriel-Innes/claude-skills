@@ -87,10 +87,24 @@ Rules, also stated in `references/dictionary/INDEX.md`:
 
 ## Packaging and validation
 
-Keep the folder named `sage200-assistant` (the archive is named after it). Package with the skill-creator
-packager (as for the other skills in this repo), `PYTHONUTF8=1` on Windows. `docs/` is source material and is
-not packaged. The reference validator `skills-ref validate ./sage200-assistant`
-(github.com/agentskills/agentskills, `pip install skills-ref`) checks the spec rules.
+Keep the folder named `sage200-assistant` (the archive is named after it). Package with the skill's own script
+(needs PyYAML), from the repository root:
+
+```
+python skills/sage200-assistant/scripts/package_skill.py skills/sage200-assistant dist
+```
+
+It refuses to write the archive if the frontmatter is invalid or there are more than 200 files, never includes
+`docs/` (source material), and writes `dist/sage200-assistant.skill` plus an identical `.zip`. Both are
+git-ignored. Upload in Claude under Settings, Capabilities, Skills, or attach to a GitHub release. The reference
+validator `skills-ref validate ./sage200-assistant` (github.com/agentskills/agentskills, `pip install skills-ref`)
+checks the same spec rules if you want an independent pass.
+
+## Validate
+
+After any change to `SKILL.md` wording or a reference, run the prompts in `evals/evals.json` by hand or with
+skill-creator's eval loop and compare against each `expected_output`. Evals 3 and 9 (refusing a direct write to
+Evolution tables) must always pass. Add at least two evals (one typical, one edge case) with every new capability.
 
 ## Adding a capability
 
