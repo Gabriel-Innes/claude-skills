@@ -12,7 +12,8 @@ Service Layer endpoint.
 | **Object types** | The object type number for a table or document, the table and primary key behind a number, and objects by topic ("everything about bins"). From a reconciled list of all B1 object types, with SAP's own DI API enumeration marking the confirmed rows. |
 | **SQL and the schema** | Verified SQL views and queries against a B1 company database, and "what table / field holds X". Backed by data dictionaries for **B1 10.0** (from SAP's own SDK reference, the default) and **9.3**: tables, columns, indexes, valid values and parent-table links. Read-only: it will not write SQL that modifies B1 tables. |
 | **DI API development (C#)** | Generate and review C# against the DI API (`SAPbobsCOM`): connect, create and update documents and master data, services, transactions, error handling, user-defined fields, tables and objects. Backed by the DI API 10.0 class and enum reference, a how-to guide, a common-mistakes list and a review checklist. |
-| **Service Layer (REST / OData v4)** | Login and session handling, `$metadata` verification, query options and paging, writes and actions, ETag concurrency, `$batch`, `SQLQueries` and FP 2602 webhooks, from SAP's documentation. |
+| **Service Layer (REST / OData v4)** | Login and session handling, `$metadata` verification, query options and their limits, paging, writes and actions, ETag concurrency, `$batch` and transactions, UDF/UDT/UDO entities, attachments, SQL views, `SQLQueries`, configuration and troubleshooting, and FP 2602 webhooks, from SAP's *Working with SAP Business One Service Layer* guide. |
+| **DI API or Service Layer?** | Which API to build on and why: SAP's documented limitations of each (transactions, direct SQL, XML, UDO restarts), a decision table, the operations side by side, and the naming differences you hit when porting code between them. |
 
 The skill switches itself on whenever your question is about SAP Business One, even if you only say "B1", a table
 name like `OINV`, an object type number, or mention the DI API or UDOs. There is no command to run.
@@ -24,6 +25,7 @@ name like `OINV`, an object type number, or mention the DI API or UDOs. There is
 - "Write C# that connects to a SAP B1 company on SQL Server 2019 and creates an A/R invoice for customer BP234 with two item lines."
 - "Review this DI API module" (paste the code) or "Add a user-defined field to the OITM table from C#."
 - "Can we stop polling SAP B1 for newly created sales orders and get notified instead? The system is on 10.0 FP2602."
+- "New integration from Linux containers into B1: DI API or Service Layer?" or "Port this DI API routine to Service Layer."
 
 ## Install
 
@@ -84,7 +86,7 @@ Every material claim comes from a file in `references/` and is cited:
 references/objects/       the reconciled object type list, with sources and known issues
 references/dictionary/    B1 10.0 and 9.3 schema dictionaries, bundled by module with a table index
 references/diapi/         DI API how-to, common mistakes, review checklist, class and enum reference bundles
-references/servicelayer/  Service Layer guide, SQLQueries and FP 2602 webhook notes
+references/servicelayer/  Service Layer guide, DI API vs Service Layer decision guide, SQLQueries and webhook notes
 ```
 
 Each folder has an `INDEX.md` with the source and verified date of every file. The skill states which schema

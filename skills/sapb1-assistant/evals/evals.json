@@ -156,6 +156,30 @@
       "capability": "Service Layer (FP2602 webhooks)",
       "prompt": "Can we stop polling SAP B1 for newly created sales orders and get notified instead? The system is on 10.0 FP2602.",
       "expected_output": "Reads fp2602.md and states that Service Layer webhooks are available as of 10.0 FP2602, with Webhook Messenger. Describes enabling webhooks per company, creating an EventSubscriptions subscription for the relevant Orders event, and keeping version boundaries explicit. Treats the webhook as notification and recommends fetching authoritative object state through Service Layer when needed."
+    },
+    {
+      "id": 27,
+      "capability": "DI API vs Service Layer (choice)",
+      "prompt": "We're building a new integration that runs in Linux containers and posts A/R invoices into SAP B1 10.0 from an e-commerce platform. Two systems may update the same business partner. DI API or Service Layer?",
+      "expected_output": "Reads references/servicelayer/di-api-vs-service-layer.md. Recommends Service Layer: the DI API is a COM library that fits the Windows native environment and cannot be installed in a Linux container, while Service Layer is HTTP/OData from any language; ETags with If-Match (10.0 FP 2102) cover the concurrent business-partner update; both share the same DI Core so the invoice object and its rules are identical. Lists what would push the answer back to the DI API (atomic multi-object logic with branching, XML import/export, creating and using UDFs in one run) citing SAP's limitation list, asks the version/database questions, and labels licensing as not covered by the guide."
+    },
+    {
+      "id": 28,
+      "capability": "DI API vs Service Layer (edge: atomic multi-document)",
+      "prompt": "In Service Layer I need to create a sales order, then create the delivery for it, and if the delivery fails (for example no stock) the order must not exist either. Can I do that with $batch?",
+      "expected_output": "Says a $batch change set is atomic and a delivery can reference the new order with $<Content-ID>, so a two-step create-then-create can roll back together, but there is no transaction across requests, no rollback call and no conditional logic inside a change set; the batch stops at the first failure. For anything that needs a decision between the steps, points to the DI API StartTransaction/EndTransaction or a server-side JavaScript extension (slContext.startTransaction, 9.2 PL04+), citing di-api-vs-service-layer.md and service-layer-guide.md § 6. Does not claim Service Layer has StartTransaction."
+    },
+    {
+      "id": 29,
+      "capability": "DI API vs Service Layer (porting and names)",
+      "prompt": "I'm porting a DI API routine to Service Layer. It sets Document_Lines on an invoice, posts an InventoryGenEntry, and writes bp.UserFields.Fields.Item(\"U_Region\"). What do these become?",
+      "expected_output": "From di-api-vs-service-layer.md § 6: Document_Lines becomes the DocumentLines array on POST /Invoices; InventoryGenEntry becomes the InventoryGenEntries entity set; the UDF is a plain property \"U_Region\" on the BusinessPartners entity (PATCH /BusinessPartners('code')). Mentions that updates use PATCH with only changed properties and that read-only properties are silently ignored, and says the final names must be confirmed against the client's /b1s/v2/$metadata rather than transliterated from DI API names."
+    },
+    {
+      "id": 30,
+      "capability": "Service Layer (edge: HANA-only query features)",
+      "prompt": "On SAP B1 10.0 with SQL Server, give me a Service Layer URL using $apply to group open orders by CardCode with the summed DocTotal.",
+      "expected_output": "Reads service-layer-guide.md § 3 and says SAP's guide documents $apply aggregation and grouping for the HANA version, so it should not be assumed on SQL Server without confirming on the client. Offers the documented alternatives: a SQLQueries definition with GROUP BY and SUM (allowlisted ORDR, read-only, named parameters) or an exposed SQL view ending in B1SLQuery, and does not invent arithmetic or unsupported functions in $filter."
     }
   ]
 }

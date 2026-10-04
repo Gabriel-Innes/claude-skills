@@ -42,7 +42,7 @@ def main():
     for root, dirs, names in os.walk(src):
         dirs[:] = [d for d in dirs if d != "__pycache__"]
         for n in sorted(names):
-            if n.endswith((".pyc", ".DS_Store")) or n == "Thumbs.db" or (n.startswith("test_") and n.endswith(".py")):
+            if n.endswith((".pyc", ".DS_Store", ".pdf")) or n == "Thumbs.db" or (n.startswith("test_") and n.endswith(".py")):
                 continue
             files.append(os.path.join(root, n))
     if len(files) > MAX_FILES:

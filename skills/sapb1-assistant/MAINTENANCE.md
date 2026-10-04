@@ -196,10 +196,15 @@ detected by their content (`VB_MARK` in the script), so check the warning count 
 
 ## Refresh the Service Layer references
 
-The hand-written files directly under `references/servicelayer/` summarise SAP Help Portal pages (URLs in
-their `INDEX.md`). Re-read those pages in a browser, check the guide's *Document History* for revisions since
-the `verified` date and read the newest sequential API change log. Update the facts and provenance dates; keep
-the prose curated and never copy SAP's pages or API reference wholesale.
+The hand-written files directly under `references/servicelayer/` summarise SAP's guide *Working with SAP
+Business One Service Layer* (URLs in their `INDEX.md`). They cite page numbers of the **PDF export, document
+version 1.29 (2026-07-27)**. Keep that PDF outside the committed skill (it is git-ignored under
+`references/`; SAP's notice forbids reproduction) and treat it as maintenance input only. To refresh: download the
+current PDF from the Help Portal page, check its *Document History* for revisions after 1.29, re-read the chapters
+each file cites (the provenance header lists them), read the newest sequential API change log, update the facts,
+page numbers and `verified` dates, and re-run evals 23-30. Keep the prose curated and never copy SAP's pages or
+API reference wholesale. The DI API side of `di-api-vs-service-layer.md` is verified against `api/members.md`;
+re-check those members when the DI API reference is rebuilt.
 
 ### Build a fuller reference from OData v4 `$metadata`
 
