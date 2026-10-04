@@ -1,4 +1,3 @@
-<img src="assets/logo.svg" alt="claude-skills logo" width="88" align="right" />
 
 # ERP agent skills
 
