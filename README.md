@@ -1,6 +1,8 @@
 <img src="assets/logo.svg" alt="claude-skills logo" width="88" align="right" />
 
-# claude-skills for business
+# ERP agent skills
+
+`Reference-backed ERP knowledge for AI agents. No guessing.`
 
 [![License: MIT](https://img.shields.io/github/license/fdtaljaard/claude-skills)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/fdtaljaard/claude-skills)](https://github.com/fdtaljaard/claude-skills/releases)
