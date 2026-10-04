@@ -84,7 +84,7 @@ Appendix I (p. 229-244) shows every operation side by side. The mapping:
 | `Remove()` | `DELETE /Orders(2)` | Same business rule applies: a sales order cannot be deleted (error -5006, p. 28) |
 | `CompanyService.GetCompanyInfo()` / `UpdateCompanyInfo` | `POST /CompanyService_GetCompanyInfo` / `POST /CompanyService_UpdateCompanyInfo` | Services become global actions named `<Service>_<Method>` (p. 232-233) |
 | Object methods such as close or cancel | Bound actions: `POST /Orders(22)/Close`, `/Cancel` | p. 29 |
-| `StartTransaction` … `EndTransaction(wf_Commit)` | One `$batch` change set with `Content-ID` references (`PATCH /b1s/v1/$1`) | Atomic per change set only; see § 2 (p. 76, p. 233-234) |
+| `StartTransaction` … `EndTransaction(wf_Commit)` | One `$batch` change set with `Content-ID` references (`PATCH /b1s/v1/$1`) | Atomic per change set only; SAP shows `$n` in sub-request URLs, not inside JSON bodies, so a based document referencing `$1` in `BaseEntry` is untested; see § 2 (p. 76, p. 233-234) |
 | `Recordset.DoQuery("select ...")` | `GET /BusinessPartners?$select=CardCode,CardName&$filter=CardCode ge 'C001'` or a `SQLQueries` entity | p. 234-235 |
 | `bp.UserFields.Fields.Item("U_u1").Value` | Plain property `"U_u1"` on the entity; filter with `$filter=startswith(U_u1,'udf')` | p. 243-244 |
 | UDT rows through `UserTable` / `CompanyService` | Entity `U_<TABLENAME>` (UDT `MYTBL` becomes `/U_MYTBL`, key `Code`) | p. 91 |

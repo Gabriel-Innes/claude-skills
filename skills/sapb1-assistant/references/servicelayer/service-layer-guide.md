@@ -95,7 +95,9 @@ Returns, ReturnRequest, GoodsReturnRequest, Invoices, CreditNotes, DownPayments,
 PurchaseRequests, PurchaseOrders, PurchaseDeliveryNotes, PurchaseReturns, PurchaseInvoices,
 PurchaseCreditNotes, PurchaseDownPayments, the CorrectionInvoice and CorrectionPurchaseInvoice variants),
 InventoryGenEntries, InventoryGenExits, Activities, AdditionalExpenses, Items and BusinessPartners. Other
-entities may not return an ETag; check the response. In v4 metadata the entity set carries the
+entities may not return an ETag; check the response. This list is also SAP's own spelling of those entity set
+names, so `Invoices`, `PurchaseOrders` and the rest above can be cited from it; everything else still needs
+`$metadata`. In v4 metadata the entity set carries the
 `Org.OData.Core.V1.OptimisticConcurrency` annotation on `DataVersion`.
 
 ## 6. Batch and transactions (p. 74-79, p. 225, p. 233-234)
@@ -106,6 +108,9 @@ entities may not return an ETag; check the response. In v4 metadata the entity s
 - A **change set** is the atomic unit: any failure rolls back the whole change set, and only one response is
   returned for it. Change sets cannot contain `GET`s or nested change sets. `Content-ID: n` lets later
   requests reference a created entity as `$n` (`PATCH /b1s/v1/$1`, `POST $1/Cancel`); mandatory in v4.
+  **SAP shows `$n` only in a sub-request URL.** Substitution inside a JSON body (for example a delivery's
+  `BaseEntry` pointing at the order created by `$1`) is not documented; test it on the client's system before
+  designing around it, and treat order-plus-based-document as a DI API or JavaScript-extension case if it fails.
 - A valid batch answers `202` (v3) or `200` (v4) even if sub-requests failed; **the batch stops at the first
   failing sub-request**. Read every sub-response.
 - **There is no `StartTransaction`/`EndTransaction` and no batch rollback call.** A transaction never spans
