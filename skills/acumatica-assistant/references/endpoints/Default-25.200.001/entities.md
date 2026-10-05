@@ -8,8 +8,10 @@ mapped to. `Fields` counts the value fields, `Nested` the linked and detail enti
 
 Counts: 119 top-level entities, 309 nested entity schemas, 5338 fields (4938 value fields, 400 linked/detail), 575 expand paths, 163 actions on 50 entities (21 with parameters).
 
-Every entity also carries the system members `id`, `rowNumber`, `note`, `custom`, `error`, `files` and `_links`;
-they are not repeated per entity. Every top-level entity accepts the same requests (list, by keys, by ID, PUT,
+Every entity also carries the system members `id`, `rowNumber`, `note`, `custom`, `error`, `files`, `_links` and
+`_workflowActions` (the form's workflow actions outside the contract, listed by `$adHocSchema`,
+`../../rest/rest-api-guide.md` § 2); they are not repeated per entity. Every top-level entity accepts the same
+requests (list, by keys, by ID, PUT,
 PATCH, DELETE, `files`, `$adHocSchema`) and `POST <Entity>/<action name>` for workflow actions that are not in
 the contract. The swagger does not name the key fields (`ids` is one slash-delimited path value): they are the
 form's keys, in the order the form defines them (`../../rest/rest-api-guide.md` § 5).

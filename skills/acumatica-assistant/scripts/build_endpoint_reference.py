@@ -14,7 +14,8 @@ Only names and types are extracted, into four fully regenerated files under <out
   fields.md        one line per field of every entity schema: `Schema.Field : Type`
   expand-paths.md  one line per linked/detail path of every top-level entity: `Entity: Path -> Schema`
   actions.md       one line per action: `Entity.Action(Parameter: Type, ...)`
-The instance URL in `servers` is never written, and the script fails if the host name shows up in the output.
+The instance URL in `servers` is never written, and nothing is written if any part of its host name (generic words
+such as `erp` or `sandbox` excepted) shows up in the output.
 It prints the counts for references/endpoints/INDEX.md and every `Usr`-prefixed name, which a maintainer must
 confirm is Acumatica's own (the guide's Comparison of System Endpoints lists them) before committing.
 """
@@ -23,10 +24,14 @@ import json
 import os
 import re
 import sys
+from functools import lru_cache
 from urllib.parse import urlparse
 
 BASE_ENTITY = "Entity"
-SKIP_FIELDS = {"_workflowActions"}  # per-entity map of custom actions, described once in entities.md
+SKIP_FIELDS = {"_workflowActions"}  # on every entity (workflow actions outside the contract); named once in entities.md
+# Host-name labels that name a role or a vendor, not a customer, and so need not be absent from the output.
+GENERIC_LABELS = {"www", "erp", "sandbox", "demo", "test", "uat", "dev", "stage", "staging", "prod", "api", "app",
+                  "apps", "cloud", "portal", "acumatica", "com", "net", "org", "local", "localhost"}
 
 
 def ref_name(node):
@@ -54,8 +59,9 @@ def main():
 
     entities = sorted(n for n, s in schemas.items() if "allOf" in s and ref_name(s["allOf"][0]) == BASE_ENTITY)
     entity_set = set(entities)
-    odd = []
+    odd = set()
 
+    @lru_cache(maxsize=None)
     def fields(name):
         """[(field, type text, nested schema or None, is array)] sorted by field name."""
         out = []
@@ -66,10 +72,10 @@ def main():
                 is_array = node.get("type") == "array"
                 target = ref_name(node.get("items", {}) if is_array else node)
                 if target is None:
-                    odd.append(f"{name}.{fname}")
+                    odd.add(f"{name}.{fname}")
                     target = node.get("items", {}).get("type", "?") if is_array else node.get("type", "?")
                 out.append((fname, target + ("[]" if is_array else ""), target if target in entity_set else None, is_array))
-        return sorted(out)
+        return tuple(sorted(out))
 
     top = []  # (entity, form, title)
     for t in doc.get("tags", []):
@@ -138,8 +144,10 @@ def main():
         f"({n_fields - n_nested} value fields, {n_nested} linked/detail), {n_paths} expand paths, {n_actions} actions on "
         f"{len(actions)} entities ({sum(1 for v in actions.values() for x in v if x[2])} with parameters).",
         "",
-        "Every entity also carries the system members `id`, `rowNumber`, `note`, `custom`, `error`, `files` and `_links`;",
-        "they are not repeated per entity. Every top-level entity accepts the same requests (list, by keys, by ID, PUT,",
+        "Every entity also carries the system members `id`, `rowNumber`, `note`, `custom`, `error`, `files`, `_links` and",
+        "`_workflowActions` (the form's workflow actions outside the contract, listed by `$adHocSchema`,",
+        "`../../rest/rest-api-guide.md` § 2); they are not repeated per entity. Every top-level entity accepts the same",
+        "requests (list, by keys, by ID, PUT,",
         "PATCH, DELETE, `files`, `$adHocSchema`) and `POST <Entity>/<action name>` for workflow actions that are not in",
         "the contract. The swagger does not name the key fields (`ids` is one slash-delimited path value): they are the",
         "form's keys, in the order the form defines them (`../../rest/rest-api-guide.md` § 5).",
@@ -214,14 +222,23 @@ def main():
     lines.append("```")
     files["actions.md"] = lines
 
+    # The instance must stay anonymous: every label of the host name, and every hyphen-separated part of a label,
+    # must be absent from the output unless it is a generic word. A short label must be absent as a whole word
+    # (`SalesOrder` is the words `sales` and `order`); a label of six or more characters as a substring too, so a
+    # customer's name glued into an identifier (`ContosoOrder`) is caught. All files are checked before any is written.
     host = urlparse((doc.get("servers") or [{}])[0].get("url", "")).hostname or ""
-    label = host.split(".")[0]
-    banned = {s.lower() for s in (host, label, label.split("-")[0]) if s}
-    for fname, body in files.items():
-        text = "\n".join(body) + "\n"
-        hit = [b for b in banned if b in text.lower()]
+    tokens = {t.lower() for label in host.split(".") for t in (label, *label.split("-"))}
+    banned = {t for t in tokens if len(t) > 2 and t not in GENERIC_LABELS}
+    texts = {fname: "\n".join(body) + "\n" for fname, body in files.items()}
+    for fname, text in texts.items():
+        lowered = text.lower()
+        words = set(re.findall(r"[a-z0-9]+", re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", text).lower()))
+        hit = sorted(b for b in banned if b in words or (len(b) >= 6 and b in lowered))
+        if host and host.lower() in lowered:
+            hit.append(host)
         if hit:
-            sys.exit(f"{fname} would contain the instance name {hit}; nothing written for it")
+            sys.exit(f"{fname} would contain the instance name {hit}; nothing written")
+    for fname, text in texts.items():
         with open(os.path.join(folder, fname), "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
 
@@ -231,7 +248,7 @@ def main():
     usr = [f"{n}.{f[0]}" for n in entities for f in fields(n) if f[0].startswith("Usr")] + [n for n in entities if n.startswith("Usr")]
     print(f"  Usr-prefixed names to confirm as Acumatica's own: {usr or 'none'}")
     if odd:
-        print(f"  fields with an inline type (no $ref): {sorted(set(odd))}")
+        print(f"  fields with an inline type (no $ref): {sorted(odd)}")
     if orphans:
         print(f"  entity schemas not referenced by a top-level entity: {orphans}")
 
