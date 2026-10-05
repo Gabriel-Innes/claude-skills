@@ -121,7 +121,6 @@ def main():
     orphans = [n for n in entities if n not in reached and n not in top_names]
 
     folder = os.path.join(a.out, endpoint.replace("/", "-"))
-    os.makedirs(folder, exist_ok=True)
     note = f" ({a.source_note})" if a.source_note else ""
     header = (
         f"<!-- source: swagger.json (OpenAPI {doc.get('openapi', '3.0')}) of the {endpoint} system endpoint{note} | "
@@ -246,6 +245,7 @@ def main():
             hit.append(host)
         if hit:
             sys.exit(f"{fname} would contain the instance name {hit}; nothing written")
+    os.makedirs(folder, exist_ok=True)
     for fname, text in texts.items():
         with open(os.path.join(folder, fname), "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
