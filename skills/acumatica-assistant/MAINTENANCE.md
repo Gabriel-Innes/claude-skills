@@ -92,8 +92,8 @@ Fluid Topics **map id** can change with a new edition.
    (`version.acumaticaBuildVersion` from `GET /entity`).
 2. **Generate**:
    `python scripts/build_endpoint_reference.py --swagger <file> --out references/endpoints --release "2025 R2" --build <build> --verified YYYY-MM-DD --source-note "<where it came from, without naming the instance>"`.
-   The folder name comes from the swagger's `info.title`. The script never writes the `servers` URL and refuses to
-   write a file that contains the host name.
+   The folder name comes from the swagger's `info.title`. The script never writes the `servers` URL and writes
+   nothing if any part of the host name (generic words such as `erp` or `sandbox` excepted) appears in the output.
 3. **Review what it prints**: every `Usr`-prefixed name must be confirmed as Acumatica's own in the guide's
    *Comparison of System Endpoints* (for 25.200.001 the only one is `SalesOrder.UsrExternalOrderOriginal`, which
    the guide lists); an unexplained one means the source is not a plain system endpoint, so stop. Grep the output

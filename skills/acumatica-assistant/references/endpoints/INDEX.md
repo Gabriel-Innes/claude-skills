@@ -61,7 +61,8 @@ The snapshot is exact for `Default/25.200.001` only.
   not carry a site's customizations. Custom fields and user-defined fields are outside the contract and are not
   in the swagger.
 - The only site-specific value in the document is the instance URL in `servers`; the generator never writes it
-  and fails if the host name appears in its output.
+  and writes nothing if any part of the host name (generic words such as `erp` or `sandbox` excepted) appears in
+  its output.
 - One name has the `Usr` prefix customizations use: `SalesOrder.UsrExternalOrderOriginal`. It is Acumatica's own:
   the 2025 R2 guide lists it for Sales Orders, and the 2026 R2 guide records its removal in `Default/26.200.001`
   in favour of `ExternalOrderOriginal`.
