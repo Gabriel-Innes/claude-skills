@@ -5,7 +5,8 @@
 How to build and review integrations against the Acumatica ERP **contract-based REST API** without guessing
 URLs, payload shapes, headers or status codes. Every section names the guide topic it comes from. Exact entity,
 field and action names are **not** in this file: they come from the endpoint's OpenAPI document or the
-Web Service Endpoints (SM207060) form of the client's instance (§ 2).
+Web Service Endpoints (SM207060) form of the client's instance (§ 2); for `Default/25.200.001` they are bundled
+in `references/endpoints/`.
 
 ## 1. Endpoints, versions and URLs
 

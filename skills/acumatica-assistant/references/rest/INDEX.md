@@ -40,9 +40,10 @@ screen-based SOAP API) was fetched but is **not** curated here: the skill's firs
   Older instances expose older `Default` versions with Contract Version 4 syntax; `endpoint-versions.md` records
   what the guide says changed, but exact entity and field names on a client's instance must come from that
   instance's `swagger.json` or Web Service Endpoints (SM207060) form.
-- **No entity/field reference is bundled.** Acumatica publishes the contract as OpenAPI per endpoint and tenant;
-  it is not reproduced here. `examples-catalogue.md` shows which entities, actions and `$expand` names the guide
-  uses, which is evidence that they exist on `Default/26.200.001`, not a schema.
+- **No entity/field reference in this folder.** Exact names for `Default/25.200.001` (2025 R2) are in
+  `references/endpoints/`, generated from that endpoint's OpenAPI document; no other endpoint version is bundled.
+  `examples-catalogue.md` shows which entities, actions and `$expand` names the guide uses, which is evidence
+  that they exist on `Default/26.200.001`, not a schema.
 - The per-field change lists in *Comparison of System Endpoints* are summarised, not copied: when a field is
   missing on an older endpoint, open the page.
 - The guide's request bodies are not reproduced; the catalogue links to them.

@@ -10,6 +10,7 @@ a header, a status-code meaning or an OAuth scope.
 | Ask about | What you get |
 |---|---|
 | **REST integration development** | Generate and review HTTP requests and client code (any language) against the contract-based REST API: cookie sign-in and OAuth 2.0 / OIDC (all four flows, scopes, refresh, session rules), endpoint and contract versions (`Default/20.200.001` to `Default/26.200.001`, Contract Version 4 vs 5), the JSON record shape, `$filter` / `$expand` / `$select` / `$custom` / `$top` / `$skip` per contract version, create / update / PATCH / delete rules, actions and long-running operations, processing forms, generic inquiries, reports, custom and user-defined fields, attachments, license limits on sessions and requests, push notifications and webhooks. Backed by a catalogue of the 187 example requests the guide documents, with links to each page, and a 36-row common-mistakes checklist for code reviews. |
+| **Exact entity, field and action names** | Which entity a form is exposed as, the fields of an entity and of its nested detail and linked entities, what `$expand` accepts, and the actions an entity has with their parameters. Looked up in a snapshot generated from the OpenAPI document (`swagger.json`) of the `Default/25.200.001` system endpoint (2025 R2, Contract Version 4): 119 top-level entities, 5,338 fields, 575 expand paths, 163 actions. Exact for that endpoint; for other `Default` versions the skill applies the documented differences and tells you what to confirm. |
 
 The skill switches itself on whenever your question is about Acumatica, even if you only mention an endpoint
 path, an entity like `SalesOrder`, a form ID like `SO301000`, or "connected applications". There is no command
@@ -23,6 +24,7 @@ to run. More capabilities (SOAP and OData, customization development, versions a
 - "My PUT returns 200 but the field is unchanged. Why?"
 - "Review this Python Acumatica client" (paste the code).
 - "We poll the API every minute for new shipments. Is there a push option?"
+- "We're on 2025 R2. Which fields does a sales order line have, and what can I `$expand` on a shipment?"
 
 ## Install
 
@@ -83,12 +85,15 @@ Every material claim comes from a file in `references/` and is cited:
 references/rest/   the REST API guide, query parameters per contract version, authentication and license limits,
                    endpoint and contract versions, the generated examples catalogue, push notifications and
                    webhooks, and the common-mistakes checklist
+references/endpoints/  the Default/25.200.001 contract generated from its swagger.json: entities with form IDs,
+                   every field, the expand paths and the actions with their parameters
 ```
 
-The folder's `INDEX.md` lists the source pages, the guide edition and the verified date of every file. The skill
-states which endpoint and contract version it assumed, names only entities, fields and actions that the guide's
-own examples use, and asks you to confirm them on your instance's OpenAPI document (`swagger.json`) or the
-Web Service Endpoints (SM207060) form. No tenant-specific contract, customization or user-defined field is bundled.
+Each folder's `INDEX.md` lists the sources, the edition or build and the verified date of every file. The skill
+states which endpoint and contract version it assumed, names only entities, fields and actions that are in the
+`Default/25.200.001` contract snapshot or in the guide's own examples, says which, and asks you to confirm them
+on your instance's OpenAPI document (`swagger.json`) or the Web Service Endpoints (SM207060) form when your
+endpoint is a different one. No custom endpoint, customization or user-defined field is bundled.
 
 ## Keeping it current and contributing
 
@@ -103,6 +108,7 @@ Web Service Endpoints (SM207060) form. No tenant-specific contract, customizatio
 Acumatica is a trademark of Acumatica, Inc. This skill is independent and not affiliated with or endorsed by
 Acumatica. Its references are a compact extraction of facts (URL patterns, parameters, headers, status codes,
 JSON shapes, rules) from the **2026 R2** edition of Acumatica's publicly available Integration Development Guide
-on beacon.acumatica.com, not a copy of those pages, and Acumatica's own terms apply to that material. Entity,
-field and action contracts are not bundled; earlier releases differ where the references say so and may differ
+on beacon.acumatica.com, not a copy of those pages, and Acumatica's own terms apply to that material. The entity,
+field and action names of one system endpoint (`Default/25.200.001`, 2025 R2) are bundled as extracted from its
+OpenAPI document; other endpoint versions and releases differ where the references say so and may differ
 elsewhere. Confirm against Acumatica's documentation, and on the client's instance, before relying on any of it.

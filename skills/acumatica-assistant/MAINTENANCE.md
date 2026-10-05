@@ -2,10 +2,11 @@
 
 Owner: Francois Taljaard. Format: [Agent Skills](https://agentskills.io/specification).
 
-The skill's only source today is Acumatica's **Integration Development Guide** on Acumatica Beacon
-(beacon.acumatica.com, a Fluid Topics portal). Two scripts in `scripts/` make a refresh repeatable: one caches
-the guide, one regenerates the examples catalogue. The other reference files are hand-curated from the cache.
-Neither script is needed to answer questions.
+The skill has two sources: Acumatica's **Integration Development Guide** on Acumatica Beacon
+(beacon.acumatica.com, a Fluid Topics portal) for `references/rest/`, and the OpenAPI document (`swagger.json`)
+of a system endpoint for `references/endpoints/`. Three scripts in `scripts/` make a refresh repeatable: one
+caches the guide, one regenerates the examples catalogue, one regenerates an endpoint snapshot. The other
+reference files are hand-curated. No script is needed to answer questions.
 
 ## Structure and budgets
 
@@ -23,7 +24,8 @@ Neither script is needed to answer questions.
 
 ## File limit and packaging
 
-Claude accepts at most **200 files** in an uploaded skill; this skill is about 15 files. Package for upload with
+Claude accepts at most **200 files** in an uploaded skill; this skill is about 20 files, and each endpoint
+snapshot adds four. Package for upload with
 `python scripts/package_skill.py skills/acumatica-assistant dist` (needs PyYAML). It refuses to write the archive
 if the frontmatter is invalid or there are more than 200 files, and writes `dist/acumatica-assistant.skill` plus
 an identical `.zip`. Both are git-ignored. Upload in Claude under Settings, Capabilities, Skills.
@@ -78,6 +80,33 @@ Fluid Topics **map id** can change with a new edition.
 6. **Report**: topics added/removed/retitled in the TOC, endpoint versions added, facts changed, and anything that
    needs the owner's decision (for example a contract version being retired).
 
+## Add or refresh an endpoint snapshot
+
+`references/endpoints/<Endpoint>-<Version>/` is generated from one endpoint's `swagger.json`; never hand-edit it.
+
+1. **Get the swagger of a system endpoint**: `GET <instance URL>/entity/Default/<version>/swagger.json`, or More >
+   OpenAPI 3.0 on the Web Service Endpoints (SM207060) form. Prefer a clean demo instance. A sandbox of a live
+   site is acceptable for a **system** endpoint, whose contract Acumatica fixes (`rest-api-guide.md` § 1), as long
+   as the instance is never named. **Never use a custom endpoint or an endpoint extension**: those carry a
+   customer's own entities and fields. Keep the file outside the repository. Note the instance's build
+   (`version.acumaticaBuildVersion` from `GET /entity`).
+2. **Generate**:
+   `python scripts/build_endpoint_reference.py --swagger <file> --out references/endpoints --release "2025 R2" --build <build> --verified YYYY-MM-DD --source-note "<where it came from, without naming the instance>"`.
+   The folder name comes from the swagger's `info.title`. The script never writes the `servers` URL and refuses to
+   write a file that contains the host name.
+3. **Review what it prints**: every `Usr`-prefixed name must be confirmed as Acumatica's own in the guide's
+   *Comparison of System Endpoints* (for 25.200.001 the only one is `SalesOrder.UsrExternalOrderOriginal`, which
+   the guide lists); an unexplained one means the source is not a plain system endpoint, so stop. Grep the output
+   for the instance and customer name yourself as well.
+4. **Cross-check against `references/rest/endpoint-versions.md` § 3**: entities new in a later version must be
+   absent, entities and fields new in this version present, fields removed in this version absent. Check the
+   `Default` entities and actions of `examples-catalogue.md` when the snapshot is the catalogue's version.
+5. **Update** `references/endpoints/INDEX.md` (file table with the printed counts, sources, the cross-checks you
+   ran, limits), then `SKILL.md` (version disclaimer, § 2, § 3 step 4, § 4 gotchas, § 5 layout), both READMEs and
+   the marketplace description wherever they name the snapshot's endpoint version or counts.
+6. With a second snapshot (for example `Default/26.200.001`), make § 3 step 4 of `SKILL.md` pick the folder that
+   matches the client's endpoint, and add an eval for it.
+
 ## Add a capability
 
 1. Add a `## N. <Capability>` section to `SKILL.md` (workflow steps, which reference files to read and when,
@@ -89,14 +118,14 @@ Fluid Topics **map id** can change with a new edition.
 Planned capabilities, in no fixed order: the screen-based SOAP API (36 topics already in the cached guide:
 commands and method reference), OData access to generic inquiries and DACs (a separate Beacon guide),
 customization and platform development (graphs, DACs, extension libraries), versions and upgrades (release
-notes, platform prerequisites), and a per-endpoint entity/field reference generated from a clean instance's
-`swagger.json` (never a customer's).
+notes, platform prerequisites), and further endpoint snapshots (`Default/26.200.001`, `MANUFACTURING`).
 
 ## Validate
 
 After any change to SKILL.md wording or the references, run the evals in `evals/evals.json` by hand or with
 skill-creator's eval loop and compare against `expected_output`. Eval 5 (PUT 200 without a save) and eval 9
-(declining direct SQL writes) must always pass. Check the frontmatter against the spec with
+(declining direct SQL writes) must always pass, and so must eval 16 (a name absent from the contract is reported
+as absent, not invented) once an endpoint snapshot changes. Check the frontmatter against the spec with
 `skills-ref validate ./acumatica-assistant` (`pip install skills-ref`, github.com/agentskills/agentskills) if you
 want an independent pass, and run `python scripts/package_skill.py skills/acumatica-assistant dist` to confirm it
 packages.
