@@ -84,6 +84,18 @@
       "capability": "REST (idempotent creates)",
       "prompt": "A PUT that creates a sales order sometimes times out on our side, and the retry creates a second order. We put the current date and time in ExternalRef. How do we stop duplicates?",
       "expected_output": "Explains from common-mistakes.md row 36 and rest-api-guide.md § 5/§ 10 that a PUT without keys always creates and a timed-out request may have been saved; recommends a deterministic reference (the caller's own document or transaction id) in ExternalRef instead of a timestamp, a GET with $filter on that value before creating, chunking large detail sets, and re-reading after the PUT; notes If-None-Match: * does not solve this because the retry has no key."
+    },
+    {
+      "id": 15,
+      "capability": "REST (exact names, endpoint snapshot)",
+      "prompt": "We're on Acumatica 2025 R2 with the Default endpoint. Which fields can I set on a sales order line, how do I get the line allocations back in the response, and which action creates the shipment?",
+      "expected_output": "Picks Default/25.200.001 (Contract Version 4) and answers from references/endpoints/Default-25.200.001: line fields from the SalesOrderDetail schema in fields.md (for example InventoryID, OrderQty, UnitPrice, WarehouseID, each with its type), addressed through the Details field of SalesOrder rather than by the schema name; $expand=Details,Details/Allocations in Contract Version 4 slash syntax from expand-paths.md (not the CV5 parenthesised form); action SalesOrder.SalesOrderCreateShipment with parameters ShipmentDate (DateTimeValue) and WarehouseID (StringValue) from actions.md, posted to /entity/Default/25.200.001/SalesOrder/SalesOrderCreateShipment with an entity and parameters body. States the names are exact for Default/25.200.001, that the swagger gives no mandatory flags or drop-down values, and that 202 must be polled. Does not read fields.md whole."
+    },
+    {
+      "id": 16,
+      "capability": "REST (exact names, absent or version-specific name)",
+      "prompt": "On Default/25.200.001, I filter sales orders with $filter=LastModifiedDateTime gt datetimeoffset'2025-10-01T00:00:00+00:00' and release payments with POST .../Payment/Release. A colleague says both names are wrong. Who is right?",
+      "expected_output": "Checks both against the Default/25.200.001 snapshot. SalesOrder has no LastModifiedDateTime on this endpoint: the field is SalesOrder.LastModified (DateTimeValue) per fields.md, and endpoint-versions.md § 3 records that it became LastModifiedDateTime in Default/26.200.001, so the filter must use LastModified here. For the payment, the contract's action is Payment.ReleasePayment (actions.md); Payment/Release is what the guide's own example posts to but is not defined in the contract, so it goes through the workflow-action route: prefer ReleasePayment, or confirm Release with Payment/$adHocSchema. Does not invent a field, keeps the Contract Version 4 datetimeoffset literal, and says which file each name came from."
     }
   ]
 }
