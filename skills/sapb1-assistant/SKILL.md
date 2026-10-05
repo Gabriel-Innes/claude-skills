@@ -1,10 +1,10 @@
 ---
 name: sapb1-assistant
-description: "SAP Business One (SAP B1 / B1) ERP assistant for consultants and integrators. Use for anything SAP Business One, including \"B1\", \"SBO\", table names (OINV, ORDR, OCRD, OITM), object type numbers, the DI API (SAPbobsCOM), UDOs, or the Service Layer/OData. Capabilities - (1) Object types: number, table, key and topic lookup. (2) SQL/schema: verified queries against bundled B1 10.0 and 9.3 dictionaries. (3) DI API: generate and review C# for connection, business objects/services, transactions, errors and user-defined objects from the bundled DI API 10.0 reference. (4) Service Layer: OData v4 endpoints, login/session handling, CRUD/actions, query options, ETags, batch, SQLQueries and FP2602 webhook guidance from SAP documentation. (5) DI API vs Service Layer: which to choose, SAP's documented limitations of each, and porting code and names between them. Trigger on any SAP Business One question, casually phrased or not."
+description: "SAP Business One (SAP B1 / B1) ERP assistant for consultants and integrators. Use for anything SAP Business One, including \"B1\", \"SBO\", table names (OINV, ORDR, OCRD, OITM), object type numbers, the DI API (SAPbobsCOM), UDOs, or the Service Layer/OData. Capabilities - (1) Object types: number, table, key and topic lookup. (2) SQL/schema: verified queries against bundled B1 10.0 and 9.3 dictionaries. (3) DI API: generate and review C# for connection, business objects/services, transactions, errors and user-defined objects from the bundled DI API 10.0 reference. (4) Service Layer: OData v4 endpoints, login/session, CRUD/actions, query options, ETags, batch, SQLQueries, FP2602 webhooks, and exact entity set, property, enum and action lookup from a bundled FP 2602 $metadata snapshot. (5) DI API vs Service Layer: which to choose, SAP's documented limitations of each, and porting code and names between them. Trigger on any SAP Business One question, casually phrased or not."
 compatibility: "Runtime needs file read + grep over the bundled references. Refreshing references needs web access to the source sites, curl, and Python 3.10+ (scripts/ for the schema and the DI API reference, a documented procedure for the object list); none of that is needed to answer questions."
 metadata:
   author: Francois Taljaard
-  version: "2026.10.3"
+  version: "2026.10.4"
   domain: SAP Business One ERP
 ---
 
@@ -23,7 +23,7 @@ Object type numbers, table names and key columns are exactly the things a model 
 | "what's the object type for X", "what is object type N", "which table / primary key is behind N", "list the objects for sales / inventory / banking", UDO or DI API work that needs an object number | § 3 Object types |
 | a view, query, report extract, "what table/field holds X", join, valid-value / status questions against B1 data | § 4 SQL / schema |
 | generate, **review** or fix **C# against the DI API** (`SAPbobsCOM`): connect, create/update an invoice, order, business partner or item, read errors, transactions, UDFs/UDTs/UDOs, "what does this DI API property/method do", an enum value, "audit / clean up my integration" | § 5 DI API |
-| Service Layer / REST / OData: login/session cookies, `/b1s/v2`, `$metadata`, entity reads/writes, actions, query options, paging, ETags, batch, UDF/UDT/UDO entities, attachments, `SQLQueries`, SQL views, FP2602 webhooks, Service Layer configuration or troubleshooting, "review my Service Layer code" | § 6 Service Layer |
+| Service Layer / REST / OData: login/session cookies, `/b1s/v2`, `$metadata`, entity reads/writes, actions, query options, paging, ETags, batch, UDF/UDT/UDO entities, attachments, `SQLQueries`, SQL views, FP2602 webhooks, Service Layer configuration or troubleshooting, "review my Service Layer code"; an exact Service Layer name - "which entity set / property / enum value / action is X", "what type is `Document.DocType`", "which action closes an order" | § 6 Service Layer (step 3 for exact names) |
 | "DI API or Service Layer?", "can Service Layer do X like the DI API", "port this DI API code to Service Layer", "why is it `DocumentLines` here and `Document_Lines` there", architecture or platform choice for a new B1 integration | § 6 step 1 (`di-api-vs-service-layer.md`) |
 | both — "build a view over sales orders and tell me the ObjType" | § 4, using § 3 for object numbers |
 
@@ -152,8 +152,9 @@ this object library only, not the UI API, the Service Layer or DI Server. The re
 ## 6. Service Layer (REST / OData v4)
 
 Generate or review integrations against the SAP Business One **Service Layer**. The bundled references cover
-stable integration patterns for B1 10.0 plus explicit feature-pack boundaries; they are not a complete mirror of
-every entity/property/action in SAP's API reference.
+stable integration patterns for B1 10.0 plus explicit feature-pack boundaries, and a generated snapshot of one
+**FP 2602** `/b1s/v2/$metadata` (`references/servicelayer/metadata/`) for exact entity set, property, enum and
+action names.
 
 1. **Choosing or porting?** For "DI API or Service Layer", "can Service Layer do X", a platform decision for a new
    integration, or porting DI API code, read `references/servicelayer/di-api-vs-service-layer.md` first: it holds
@@ -164,10 +165,18 @@ every entity/property/action in SAP's API reference.
    at `/b1s/v2`; SAP deprecates OData v3 from FP 2405. Read `references/servicelayer/INDEX.md`, then
    `references/servicelayer/service-layer-guide.md`. Several query features (aggregation, `$crossjoin`, row-level
    filter, Semantic Layer views) are documented for HANA only, and SQL views for SQL Server only.
-3. **Verify the surface, don't invent it.** For an exact entity, property, enum or action not named in the bundled
-   guide, check the client's `/b1s/v2/$metadata` (or SAP's current API reference) before emitting code. Never
-   derive an entity or property name from a DI API class or collection name: Service Layer renames them
-   (`di-api-vs-service-layer.md` § 6). UDFs, UDTs and UDOs are client-specific.
+3. **Look up every exact name, never invent it.** Read `references/servicelayer/metadata/INDEX.md` once, then
+   grep the flat indexes, one entry per line: `metadata/api/members.md` (`Type.Property : ODataType`, e.g.
+   `^SAPB1\.BusinessPartner\.CardType `), `metadata/enums/members.md` (`Enum.Member = Value`),
+   `metadata/operations/members.md` (`Action|Function Name(params) -> return`), `metadata/entity-sets.md` (entity
+   set -> entity type and navigation bindings: `Orders`, `Invoices`, `Quotations` ... are all `SAPB1.Document`)
+   and `metadata/operation-imports.md` (global endpoints such as `Login`). For a type's full entry (key, OpenType,
+   navigation properties) take `File`/`Line`/`Lines` from `metadata/api/INDEX.md` (operations and enums likewise)
+   and read only that range - never a whole bundle. The snapshot is **one FP 2602 company**: on another feature
+   pack confirm names against the client's `/b1s/v2/$metadata` or SAP's change log for that pack and say so; a
+   type with `Filtered properties: N` had customer UDFs removed, and UDFs, UDTs and UDOs are always client-specific.
+   Never derive an entity or property name from a DI API class or collection name: Service Layer renames them
+   (`di-api-vs-service-layer.md` § 6).
 4. **Authenticate and preserve the session**: `POST /b1s/v2/Login`, then send back `B1SESSION` (mandatory) and
    `ROUTEID` (optional, keeps the load balancer sticky). The login response reports `SessionTimeout` in minutes
    (default 30). Reuse sessions: SAP calls login heavy. End an explicit session with `POST /b1s/v2/Logout`.
@@ -186,8 +195,9 @@ every entity/property/action in SAP's API reference.
 8. **FP 2602 webhooks**: read `references/servicelayer/fp2602.md`. Do not propose webhooks on an earlier B1
    version, and keep the FP 2608 additions (`BizObjProps`, `FilterExpr`, formulas) off an FP 2602 system.
 9. **Deliver**: code/request examples plus a short verification note: B1 version and database, OData version,
-   which reference backed the protocol behaviour (with the guide page when it matters), and which exact
-   entity/property names still require live `$metadata` confirmation.
+   which reference backed the protocol behaviour (with the guide page when it matters), which exact names were
+   verified in the FP 2602 metadata snapshot, and which still require live `$metadata` confirmation (another
+   feature pack, UDFs, UDOs).
 
 ## 7. Gotchas (things a careful engineer still gets wrong)
 
@@ -257,6 +267,12 @@ every entity/property/action in SAP's API reference.
   created it. A deployment that creates and then uses a UDF in one run fails on Service Layer.
 - **Service Layer names are not DI API names.** `Document_Lines` is `DocumentLines`, `InventoryGenEntry` is
   `InventoryGenEntries`, `BatchNumber.BatchNumber` is `BatchNumberProperty`. Look it up, never transliterate.
+- **One type, many entity sets.** `Orders`, `Invoices`, `DeliveryNotes`, `Quotations`, `Drafts` and 21 more are all
+  `SAPB1.Document` (`metadata/entity-sets.md`); the URL's entity set, not a property, decides the document type, and a
+  bound action such as `Close` is declared once on the type and called on the set: `POST /b1s/v2/Orders(DocEntry)/Close`.
+- **Absence from the metadata snapshot is not proof of absence.** It is one FP 2602 company; `OpenType: true` types
+  accept UDFs that are never listed, `Filtered properties: N` marks removed customer UDFs, and a later feature pack
+  can add properties (SAP's change log per pack). Say "not in the FP 2602 snapshot", not "does not exist".
 - **`$filter` knows four functions and no arithmetic.** `tolower`, `year`, `add` and the like fail. Aggregation,
   `$crossjoin` and the row-level query service are documented for HANA; on SQL Server use `SQLQueries` or an
   exposed SQL view instead.
@@ -270,7 +286,7 @@ every entity/property/action in SAP's API reference.
 references/objects/      INDEX.md, object-types.md (the reconciled list)
 references/dictionary/   INDEX.md, 10.0/ and 9.3/ each with table-index.md + dict/<Module>.md (tables bundled by module)
 references/diapi/        INDEX.md, di-api-guide.md (how-to), common-mistakes.md, review-checklist.md, api/ (INDEX.md + members.md + classes-NN.md bundles), enums/ (INDEX.md + members.md + enums-NN.md bundles)
-references/servicelayer/ INDEX.md, service-layer-guide.md, di-api-vs-service-layer.md (choose / port), sql-queries.md, fp2602.md (webhooks)
+references/servicelayer/ INDEX.md, service-layer-guide.md, di-api-vs-service-layer.md (choose / port), sql-queries.md, fp2602.md (webhooks), metadata/ (FP 2602 $metadata snapshot: INDEX.md, api/, entity-sets.md, operations/, operation-imports.md, enums/ - flat members.md indexes + bundles)
 scripts/                 maintenance only (compile the 10.0 schema and the DI API reference from the SDK's CHMs; fetch + compile the 9.3 schema) — never needed to answer
 evals/evals.json         test prompts per capability
 MAINTENANCE.md           how to refresh the object list, the schema or the DI API reference, add a source, add a capability

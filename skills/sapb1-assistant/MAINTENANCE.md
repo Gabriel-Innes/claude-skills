@@ -251,9 +251,11 @@ contains them). The raw metadata is maintenance input only and must not be commi
 6. **Diff feature packs as data, not assumptions.** When a later FP is captured, compare generated entity sets,
    properties, operation signatures and enum members against the previous snapshot. Keep older snapshots while
    clients still run them and state the exact source FP in each folder's provenance.
-7. **Only after a reviewed snapshot is committed**, add it to `references/servicelayer/INDEX.md` and route exact
-   entity/property/action questions to it from `SKILL.md`. Until then, the current curated Service Layer guide
-   remains the runtime source and exact members still require live `$metadata` confirmation.
+7. **Only after a reviewed snapshot is committed**, add it to `references/servicelayer/INDEX.md` (file row plus a
+   source row that states the company it came from), route exact entity/property/action questions to it from
+   `SKILL.md` § 6 step 3, add evals and bump the version. Done for FP 2602 on 2026-10-05 (skill 2026.10.4, evals
+   31-33). A later feature pack goes in a sibling folder (`metadata-fp<NNNN>/`) with its own provenance; keep the
+   older one while clients run it and make step 3 name both.
 
 ## Add a capability
 
@@ -263,8 +265,8 @@ contains them). The raw metadata is maintenance input only and must not be commi
 3. Add at least two evals to `evals/evals.json` (one typical, one edge case).
 4. If the new domain needs a new trigger-phrase family, adjust the description within the 1024 cap.
 
-Planned capabilities, in no fixed order: a UI API reference (the SDK also ships `REFUI.chm`), a reviewed
-Service Layer entity/action reference generated from versioned `$metadata` snapshots, version and upgrade
+Planned capabilities, in no fixed order: a UI API reference (the SDK also ships `REFUI.chm`), Service Layer
+metadata snapshots for feature packs other than FP 2602 (ideally from a clean demo company), version and upgrade
 guidance, how-to procedures, and schema dictionaries for releases newer than 10.0 when their SDK help is available.
 
 ## Validate

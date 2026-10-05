@@ -36,6 +36,13 @@ Built from an OData v4 `$metadata` snapshot. Namespaces: SAPB1.
 - excluded_properties: 475
 - kept_key_properties: 0
 
+## Provenance
+
+- Captured from a **filtered production company** on SAP Business One 10.0 FP 2602 on 2026-10-05, not from a clean
+  demo company; customer UDFs and add-on objects were removed with the filters below and the raw document is not in
+  the repository, so this snapshot cannot be rebuilt by others. Re-capture from a demo company when one is available.
+- Routed from `SKILL.md` § 6 step 3 and listed in `../INDEX.md` since skill version 2026.10.4.
+
 ## Scope
 
 - This is a snapshot of one Service Layer OData v4 metadata document; another feature pack can expose a different surface.

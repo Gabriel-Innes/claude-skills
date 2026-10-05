@@ -180,6 +180,24 @@
       "capability": "Service Layer (edge: HANA-only query features)",
       "prompt": "On SAP B1 10.0 with SQL Server, give me a Service Layer URL using $apply to group open orders by CardCode with the summed DocTotal.",
       "expected_output": "Reads service-layer-guide.md § 3 and says SAP's guide documents $apply aggregation and grouping for the HANA version, so it should not be assumed on SQL Server without confirming on the client. Offers the documented alternatives: a SQLQueries definition with GROUP BY and SUM (allowlisted ORDR, read-only, named parameters) or an exposed SQL view ending in B1SLQuery, and does not invent arithmetic or unsupported functions in $filter."
+    },
+    {
+      "id": 31,
+      "capability": "Service Layer (exact names from the metadata snapshot)",
+      "prompt": "In the SAP B1 Service Layer, what are the exact BusinessPartners properties for the card type, the credit limit and the payment terms, and what values can the card type take?",
+      "expected_output": "Greps references/servicelayer/metadata/api/members.md and cites SAPB1.BusinessPartner.CardType : SAPB1.BoCardTypes, SAPB1.BusinessPartner.CreditLimit : Edm.Double and SAPB1.BusinessPartner.PayTermsGrpCode : Edm.Int32 (not a DI API-style name such as PaymentTermsType). Looks the enum up in metadata/enums/members.md and gives cCustomer = 0, cSupplier = 1, cLid = 2, noting that the JSON value is the member name (\"cCustomer\"). States the snapshot is FP 2602 and that another feature pack or the client's own UDFs need live $metadata confirmation. Does not invent members."
+    },
+    {
+      "id": 32,
+      "capability": "Service Layer (bound action resolved through entity set and type)",
+      "prompt": "Which Service Layer action closes an open sales order in SAP B1, and what is the exact request?",
+      "expected_output": "Finds Orders -> SAPB1.Document in metadata/entity-sets.md and the bound action SAPB1.Close(SAPB1.Document) in metadata/operations/members.md or operations/INDEX.md, and answers POST /b1s/v2/Orders(<DocEntry>)/Close with an empty body and the B1SESSION cookie, explaining that Close is declared once on the Document type and called on the entity set (Orders, PurchaseOrders, Quotations ... share the type). Cites the files used; does not propose PATCH of DocumentStatus or direct SQL."
+    },
+    {
+      "id": 33,
+      "capability": "Service Layer (edge: absence from the snapshot is not proof)",
+      "prompt": "List every property of the Service Layer Document type so I can map our UDFs, and confirm whether a property called U_ProjectRef exists on Orders.",
+      "expected_output": "Reads metadata/api/INDEX.md to locate SAPB1.Document (File/Line/Lines) and reads only that range of types-01.md rather than the whole bundle; summarises or lists the standard properties from it. Explains that the snapshot is one FP 2602 company, that Document is OpenType: true and carries a 'Filtered properties: 45' line meaning customer UDFs were removed, so U_ProjectRef (a UDF by its U_ prefix) can only be confirmed on the client's own /b1s/v2/$metadata. Says 'not in the FP 2602 snapshot', not 'does not exist', and offers the $metadata check or a UserFieldsMD query."
     }
   ]
 }

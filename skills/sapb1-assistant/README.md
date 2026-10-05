@@ -12,7 +12,7 @@ Service Layer endpoint.
 | **Object types** | The object type number for a table or document, the table and primary key behind a number, and objects by topic ("everything about bins"). From a reconciled list of all B1 object types, with SAP's own DI API enumeration marking the confirmed rows. |
 | **SQL and the schema** | Verified SQL views and queries against a B1 company database, and "what table / field holds X". Backed by data dictionaries for **B1 10.0** (from SAP's own SDK reference, the default) and **9.3**: tables, columns, indexes, valid values and parent-table links. Read-only: it will not write SQL that modifies B1 tables. |
 | **DI API development (C#)** | Generate and review C# against the DI API (`SAPbobsCOM`): connect, create and update documents and master data, services, transactions, error handling, user-defined fields, tables and objects. Backed by the DI API 10.0 class and enum reference, a how-to guide, a common-mistakes list and a review checklist. |
-| **Service Layer (REST / OData v4)** | Login and session handling, `$metadata` verification, query options and their limits, paging, writes and actions, ETag concurrency, `$batch` and transactions, UDF/UDT/UDO entities, attachments, SQL views, `SQLQueries`, configuration and troubleshooting, and FP 2602 webhooks, from SAP's *Working with SAP Business One Service Layer* guide. |
+| **Service Layer (REST / OData v4)** | Login and session handling, `$metadata` verification, query options and their limits, paging, writes and actions, ETag concurrency, `$batch` and transactions, UDF/UDT/UDO entities, attachments, SQL views, `SQLQueries`, configuration and troubleshooting, and FP 2602 webhooks, from SAP's *Working with SAP Business One Service Layer* guide; exact entity set, property, enum and action names from a bundled snapshot of a **FP 2602** `$metadata` document (customer objects removed). |
 | **DI API or Service Layer?** | Which API to build on and why: SAP's documented limitations of each (transactions, direct SQL, XML, UDO restarts), a decision table, the operations side by side, and the naming differences you hit when porting code between them. |
 
 The skill switches itself on whenever your question is about SAP Business One, even if you only say "B1", a table
@@ -86,7 +86,7 @@ Every material claim comes from a file in `references/` and is cited:
 references/objects/       the reconciled object type list, with sources and known issues
 references/dictionary/    B1 10.0 and 9.3 schema dictionaries, bundled by module with a table index
 references/diapi/         DI API how-to, common mistakes, review checklist, class and enum reference bundles
-references/servicelayer/  Service Layer guide, DI API vs Service Layer decision guide, SQLQueries and webhook notes
+references/servicelayer/  Service Layer guide, DI API vs Service Layer decision guide, SQLQueries and webhook notes, FP 2602 $metadata snapshot (metadata/)
 ```
 
 Each folder has an `INDEX.md` with the source and verified date of every file. The skill states which schema
