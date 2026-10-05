@@ -1,13 +1,19 @@
 
-# ERP agent skills
+# ERP Skills for Real Integrators
 
 [![License: MIT](https://img.shields.io/github/license/fdtaljaard/claude-skills)](LICENSE)
 [![Latest release](https://img.shields.io/github/v/release/fdtaljaard/claude-skills)](https://github.com/fdtaljaard/claude-skills/releases)
 [![Claude Code plugin marketplace](https://img.shields.io/badge/Claude%20Code-plugin%20marketplace-5A4FE5)](#installing-a-skill)
 
-A public collection of [Agent Skills](https://agentskills.io/specification) for Claude, by Francois Taljaard — reference-backed assistants for ERP consultants and integrators (Sage 300, Sage 200 Evolution, Sage X3, SAP Business One, Acumatica).
+Reference-backed [Agent Skills](https://agentskills.io/specification) for real ERP work — built for consultants, developers, and integrators.
 
-> **The point of these skills: no guessing.** Every material claim — a table or field, an enum value, a version requirement, an SDK class or method — comes from a **bundled reference** (data dictionaries, release notes, SDK class/enum references extracted from the vendors' own files) or a fresh fetch of the vendor's official docs, and is **cited**. Field names, enum values and version facts are exactly what a language model otherwise guesses plausibly and wrongly, so each skill is built to look them up and show its source.
+ERP systems are complicated. Their schemas, APIs, SDKs, versions, and configuration rules are even worse.
+
+These skills give Claude the references it needs to work with real ERP systems — Sage 300, Sage 200 Evolution, Sage X3, SAP Business One, Acumatica, and more. No plausible guessing. No invented fields. No hallucinated APIs.
+
+Small, composable skills built around vendor documentation, data dictionaries, release notes, SDK references, and other authoritative sources. Give your agent the knowledge. Keep control of the engineering.
+
+
 
 ## Skills
 
