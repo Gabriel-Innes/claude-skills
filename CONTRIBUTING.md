@@ -49,7 +49,11 @@ Each skill's `MAINTENANCE.md` is the authoritative guide for changing it — rea
    `README.md`, a disclaimer paragraph if it bundles vendor material, and registration in
    `.claude-plugin/marketplace.json`.
 4. **Don't commit vendor source material** (CHMs, DLLs, raw SDK help). It is kept out of git (see `.gitignore`)
-   and only the extracted, attributed references are committed. Respect the vendors' terms.
+   and only the extracted, attributed references are committed. Respect the vendors' terms. The one exception is
+   a **machine-generated contract document** that a builder needs to regenerate a reference and that carries no
+   instance or customer data once scrubbed (today: an Acumatica system endpoint's OpenAPI document with `servers`
+   removed). Those live under `sources/<skill-name>/`, outside the packaged skill, with a README saying how each
+   was scrubbed.
 5. **Check it:** `SKILL.md` frontmatter valid (`name` matches the folder, `description` ≤ 1024 chars,
    `compatibility` ≤ 500), no broken relative links, and every file the skill claims actually exists.
 

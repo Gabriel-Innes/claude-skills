@@ -50,7 +50,7 @@ The snapshot is exact for `Default/25.200.001` only.
 
 | ID | Source | Role | Verified |
 |---|---|---|---|
-| `swagger-25.200.001` | `GET <instance URL>/entity/Default/25.200.001/swagger.json` (OpenAPI 3.0.1, `info.version` 4) from an Acumatica ERP 2025 R2 instance, build 25.201.0213. The instance was a **sandbox of a live site, not a clean demo instance**; its name is withheld and the raw document is not kept in the repository, so the snapshot cannot be rebuilt by others. Re-capture from a demo instance when one is available. | Every file under `Default-25.200.001/` | 2026-10-05 |
+| `swagger-25.200.001` | `GET <instance URL>/entity/Default/25.200.001/swagger.json` (OpenAPI 3.0.1, `info.version` 4) from an Acumatica ERP 2025 R2 instance, build 25.201.0213. The instance was a **sandbox of a live site, not a clean demo instance**; its name is withheld. The raw document is not in the repository; a scrubbed copy (`servers` removed) belongs at `sources/acumatica-assistant/Default-25.200.001.swagger.json` so the snapshot can be rebuilt. **Pending:** that copy has not been added yet, so until it is the snapshot cannot be rebuilt by others (`sources/acumatica-assistant/README.md`). | Every file under `Default-25.200.001/` | 2026-10-05 |
 | `guide-2025r2` | Acumatica ERP *Integration Development* developer guide, 2025 R2 (PDF, last updated 2025-12-15), topic *Comparison of System Endpoints*. Maintenance input, not in the repository. | Cross-check of the snapshot (below) | 2026-10-05 |
 | `guide` | `references/rest/endpoint-versions.md` and `references/rest/examples-catalogue.md` (2026 R2 guide) | Cross-check of the snapshot (below) | 2026-10-05 |
 

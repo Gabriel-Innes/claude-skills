@@ -2,12 +2,15 @@
 """Build references/endpoints/<Endpoint>-<Version>/ from an endpoint's swagger.json (maintenance only).
 
     python scripts/build_endpoint_reference.py --swagger <swagger.json> --out references/endpoints \
-        --release "2025 R2" --build 25.201.0213 --verified YYYY-MM-DD [--source-note "..."]
+        --release "2025 R2" --build 25.201.0213 --verified YYYY-MM-DD [--source-note "..."] \
+        [--scrub-to ../../sources/acumatica-assistant/<Endpoint>-<Version>.swagger.json]
 
 The input is the OpenAPI 3.0 document of ONE endpoint (`GET <Base endpoint URL>/swagger.json`, or More > OpenAPI
 3.0 on the Web Service Endpoints (SM207060) form). Use a system endpoint (`Default`): its contract is fixed by
 Acumatica, so it is the same on every instance of that release. Never feed a custom endpoint or an endpoint
-extension, which carry a customer's own entities and fields. The swagger stays outside the repository.
+extension, which carry a customer's own entities and fields. The raw swagger stays outside the repository;
+`--scrub-to` writes a copy with `servers` removed (the only instance-specific member), which is committed under
+`sources/acumatica-assistant/` so the snapshot can be regenerated from it later.
 
 Only names and types are extracted, into four fully regenerated files under <out>/<Endpoint>-<Version>/:
   entities.md      top-level entities with form ID, screen title and counts
@@ -46,6 +49,7 @@ def main():
     ap.add_argument("--build", required=True, help="build of the instance, e.g. 25.201.0213")
     ap.add_argument("--verified", required=True)
     ap.add_argument("--source-note", default="", help="where the swagger came from, without naming the instance")
+    ap.add_argument("--scrub-to", default="", help="also write the swagger with `servers` removed to this path")
     a = ap.parse_args()
 
     doc = json.load(open(a.swagger, encoding="utf-8-sig"))
@@ -230,7 +234,11 @@ def main():
     tokens = {t.lower() for label in host.split(".") for t in (label, *label.split("-"))}
     banned = {t for t in tokens if len(t) > 2 and t not in GENERIC_LABELS}
     texts = {fname: "\n".join(body) + "\n" for fname, body in files.items()}
-    for fname, text in texts.items():
+    checks = dict(texts)
+    if a.scrub_to:
+        scrubbed = {k: v for k, v in doc.items() if k != "servers"}
+        checks[a.scrub_to] = json.dumps(scrubbed, indent=1, ensure_ascii=False) + "\n"
+    for fname, text in checks.items():
         lowered = text.lower()
         words = set(re.findall(r"[a-z0-9]+", re.sub(r"(?<=[a-z0-9])(?=[A-Z])", " ", text).lower()))
         hit = sorted(b for b in banned if b in words or (len(b) >= 6 and b in lowered))
@@ -241,6 +249,11 @@ def main():
     for fname, text in texts.items():
         with open(os.path.join(folder, fname), "w", encoding="utf-8", newline="\n") as f:
             f.write(text)
+    if a.scrub_to:
+        os.makedirs(os.path.dirname(os.path.abspath(a.scrub_to)), exist_ok=True)
+        with open(a.scrub_to, "w", encoding="utf-8", newline="\n") as f:
+            f.write(checks[a.scrub_to])
+        print(f"scrubbed swagger (servers removed) -> {a.scrub_to}")
 
     print(f"{endpoint} (Contract Version {contract}) -> {folder}")
     print(f"  {len(top)} top-level entities, {len(entities) - len(top)} nested entity schemas, {n_fields} fields, "

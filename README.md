@@ -83,6 +83,8 @@ skills/
     SKILL.md        # entry point loaded on activation
     references/     # bulk reference material, read on demand
     scripts/        # maintenance tooling (not needed at runtime)
+sources/
+  <skill-name>/     # scrubbed machine-generated inputs a builder needs to regenerate a reference (never packaged)
 ```
 
 ## Contributing

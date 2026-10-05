@@ -88,12 +88,15 @@ Fluid Topics **map id** can change with a new edition.
    OpenAPI 3.0 on the Web Service Endpoints (SM207060) form. Prefer a clean demo instance. A sandbox of a live
    site is acceptable for a **system** endpoint, whose contract Acumatica fixes (`rest-api-guide.md` § 1), as long
    as the instance is never named. **Never use a custom endpoint or an endpoint extension**: those carry a
-   customer's own entities and fields. Keep the file outside the repository. Note the instance's build
-   (`version.acumaticaBuildVersion` from `GET /entity`).
-2. **Generate**:
-   `python scripts/build_endpoint_reference.py --swagger <file> --out references/endpoints --release "2025 R2" --build <build> --verified YYYY-MM-DD --source-note "<where it came from, without naming the instance>"`.
+   customer's own entities and fields. Keep the raw file outside the repository; the scrubbed copy that step 2
+   writes is what gets committed. Note the instance's build (`version.acumaticaBuildVersion` from `GET /entity`).
+2. **Generate** (from the skill folder):
+   `python scripts/build_endpoint_reference.py --swagger <file> --out references/endpoints --release "2025 R2" --build <build> --verified YYYY-MM-DD --source-note "<where it came from, without naming the instance>" --scrub-to ../../sources/acumatica-assistant/<Endpoint>-<Version>.swagger.json`.
    The folder name comes from the swagger's `info.title`. The script never writes the `servers` URL and writes
    nothing if any part of the host name (generic words such as `erp` or `sandbox` excepted) appears in the output.
+   `--scrub-to` writes the swagger with `servers` removed, its only instance-specific member, to
+   `sources/acumatica-assistant/` (see the README there); commit it with the snapshot so anyone can regenerate the
+   four files by running the same command with `--swagger ../../sources/acumatica-assistant/<file>`.
 3. **Review what it prints**: every `Usr`-prefixed name must be confirmed as Acumatica's own in the guide's
    *Comparison of System Endpoints* (for 25.200.001 the only one is `SalesOrder.UsrExternalOrderOriginal`, which
    the guide lists); an unexplained one means the source is not a plain system endpoint, so stop. Grep the output
