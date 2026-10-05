@@ -106,8 +106,9 @@ that matters on the client's own database. Client-specific user-defined tables a
 SAP and SAP Business One are trademarks of SAP SE. This skill is independent and not affiliated with or endorsed
 by SAP. Its object type list is compiled from community websites; its B1 10.0 schema dictionary and DI API
 reference are compiled from SAP's own SDK help (`REFDB.chm`, `REFDI.chm`) and SAP's terms apply to them; its 9.3
-schema dictionary comes from erpref.com, a third party, while the schema IP belongs to SAP; and its Service Layer
-references are prose summaries of SAP Help Portal pages. The schema dictionaries cover SAP Business One
-**10.0 and 9.3 only**. Other releases, including later feature packs, and client-specific user-defined tables and
-fields are not included. Confirm against SAP's own documentation, and on the client's database, before relying on
-any of it.
+schema dictionary comes from erpref.com, a third party, while the schema IP belongs to SAP; its hand-written
+Service Layer references are prose summaries of SAP Help Portal pages; and its generated Service Layer metadata
+reference is derived from SAP Business One Service Layer `$metadata`, to which SAP's terms also apply. The schema
+dictionaries cover SAP Business One **10.0 and 9.3 only**; the generated Service Layer metadata reference states
+the exact feature pack captured. Client-specific user-defined tables, fields and objects are excluded from bundled
+references. Confirm against SAP's own documentation, and on the client's system, before relying on any of it.
