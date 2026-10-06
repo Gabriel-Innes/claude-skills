@@ -1,0 +1,53 @@
+{
+  "skill_name": "quickbooksdesktop-assistant",
+  "evals": [
+    {
+      "id": 1,
+      "capability": "qbXML/QBFC dev",
+      "prompt": "Show me C# with QBFC to add an invoice for a customer with two line items against QuickBooks Desktop.",
+      "expected_output": "Uses QBSessionManager: OpenConnection -> BeginSession -> CreateMsgSetRequest(\"US\",16,0) -> AppendInvoiceAddRq -> DoRequests -> walks IMsgSetResponse/IResponseList, checks StatusCode, casts Detail to IInvoiceRet. Sets CustomerRef by ListID (not FullName as the key), appends ORInvoiceLineAddList and uses the InvoiceLineAdd OR member (one member only). Ends session and closes connection in finally. Notes 32-bit/STA/local-install caveat. Cites references/qbfc/csharp.md and references/qbxml/objects.md; does not invent fields."
+    },
+    {
+      "id": 2,
+      "capability": "qbXML/QBFC dev (link)",
+      "prompt": "I have a sales order TxnID and need to create an invoice that fulfils it in QuickBooks Desktop. How do I link them in QBFC?",
+      "expected_output": "Sets the invoice line's LinkToTxn with the sales-order TxnID and the SO line TxnLineID, and lets QuickBooks pull the quantity rather than re-keying a conflicting Quantity. Explains this marks the SO invoiced. Notes SalesOrder is Premier/Enterprise only. Cites the linking section of references/qbfc/csharp.md and references/qbxml/object-model.md."
+    },
+    {
+      "id": 3,
+      "capability": "object/field reference",
+      "prompt": "What's the difference between ListID, TxnID and EditSequence in the QuickBooks Desktop SDK, and when do I need EditSequence?",
+      "expected_output": "ListID = immutable key of a list entity, TxnID = immutable key of a transaction (TxnLineID for a line), EditSequence = opaque concurrency token needed for every Mod. Explains the Query -> keep EditSequence -> Mod flow and StatusCode 3200 on a stale one. Says FullName is mutable and should not be stored as a key. Cites references/qbxml/object-model.md."
+    },
+    {
+      "id": 4,
+      "capability": "object/field reference (edge: feature gating)",
+      "prompt": "How do I do a site-to-site inventory transfer in QuickBooks Desktop via the SDK?",
+      "expected_output": "Points to TransferInventoryAdd (NOT InventoryTransferAdd) with FromInventorySiteRef/ToInventorySiteRef and lines (ItemRef, QuantityToTransfer), but flags it requires QuickBooks Enterprise with Advanced Inventory enabled and InventorySite list entities, and that it is a later-version object (qbXML 12.0+). Recommends confirming the exact field names/version in the OSR and checking PreferencesQueryRq/HostQueryRq first. Does not invent member names."
+    },
+    {
+      "id": 5,
+      "capability": "setup/connectivity",
+      "prompt": "Our integration posts to QuickBooks Desktop from a Windows service with no one logged in. It keeps failing with 'could not start QuickBooks'. What's wrong?",
+      "expected_output": "Identifies unattended-access requirements: admin must authorize the app with 'allow access even when QuickBooks is not running' plus an auto-login user, pass the explicit .QBW path to BeginSession, and the host must be a 32-bit process on the machine with QuickBooks installed. Maps 0x80040408 to this cause. Mentions code-signing certificate and that authorization is per-company-file/per-machine. Cites references/setup/connectivity.md."
+    },
+    {
+      "id": 6,
+      "capability": "setup/connectivity (topology)",
+      "prompt": "We're a SaaS app and need to sync with each client's on-premise QuickBooks Desktop that we don't control. What's the right approach?",
+      "expected_output": "Recommends the Web Connector (QBWC): host a SOAP service implementing the QBWC callbacks (authenticate, sendRequestXML, receiveResponseXML, closeConnection) plus a .QWC config the client imports; the Web Connector beside QuickBooks polls and relays qbXML. Contrasts with QBFC/QBXMLRP2 which require local presence. Chooses by where the code runs. Cites references/setup/connectivity.md."
+    },
+    {
+      "id": 7,
+      "capability": "scope guard (must pass)",
+      "prompt": "How do I create an invoice in QuickBooks using the API with an OAuth access token and a POST to /v3/company?",
+      "expected_output": "Recognises this is QuickBooks Online (REST/OAuth), not QuickBooks Desktop, states the skill covers Desktop (qbXML), and does not answer the QBO question from this skill. Offers to help with the Desktop equivalent if that's what they meant."
+    },
+    {
+      "id": 8,
+      "capability": "ground rules (no direct DB)",
+      "prompt": "Can you give me the SQL to read all open invoices straight out of the QuickBooks Desktop company file?",
+      "expected_output": "Explains QuickBooks Desktop has no supported SQL schema or direct DB access; the .QBW is proprietary and reachable only through the SDK. Points to InvoiceQueryRq with the appropriate filter instead and warns direct file access would corrupt it. Does not fabricate a table/column layout."
+    }
+  ]
+}

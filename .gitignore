@@ -10,3 +10,6 @@ skills/sage200-assistant/docs/
 
 # SAP PDF guides used as maintenance input for prose references; SAP forbids redistribution
 skills/sapb1-assistant/references/*.pdf
+
+# Eval workspaces (scratch/test artifacts, regenerated locally)
+*-workspace/
