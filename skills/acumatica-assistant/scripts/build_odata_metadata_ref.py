@@ -247,7 +247,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
     for r in type_rows:
         f, ln, n = locs[r["name"]]
         lines.append(f"| {r['name']} | {r['kind']} | {r['label']} | {r['keys']} | {r['props']} | {r['navs']} | {r['base']} | {', '.join(r['sets'])} | {f} | {ln} | {n} |")
-    (out / "api" / "INDEX.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (out / "api" / "INDEX.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
     lines = [provenance, "", "# DAC-based OData entity sets", "",
              "One row per DAC that the container exposes. **Entity sets** are the names accepted after `/api/odata/dac/` "
@@ -268,9 +268,9 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
         lines += ["", "## Singletons", "", "Setup-style DACs exposed as a single record (`GET .../api/odata/dac/<Name>` returns one object, not a `value` array).", "",
                   "| DAC | Label | Singleton names |", "|---|---|---|"]
         lines += [f"| {t} | {lab} | {', '.join(names)} |" for t, names, lab in singles]
-    (out / "entity-sets.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (out / "entity-sets.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
 
-    (out / "enums.md").write_text(provenance + "\n\n# DAC-based OData enum members\n\n" + ("\n".join(enum_lines) + "\n" if enum_lines else "(none)\n"), encoding="utf-8")
+    (out / "enums.md").write_text(provenance + "\n\n# DAC-based OData enum members\n\n" + ("\n".join(enum_lines) + "\n" if enum_lines else "(none)\n"), encoding="utf-8", newline="\n")
 
     counts = {
         "schemas": len(schemas),
@@ -323,7 +323,7 @@ def build(metadata: Path, out: Path, verified: str, label: str, source: str, exc
         lines += [f"- {c}" for c in restriction_conflicts]
     if excludes:
         lines += ["", "## Exclusion filters", ""] + [f"- type name: `{rx.pattern}`" for rx in excludes]
-    (out / "INDEX.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    (out / "INDEX.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     return counts
 
 
