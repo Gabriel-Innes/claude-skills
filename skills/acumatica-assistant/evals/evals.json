@@ -96,6 +96,30 @@
       "capability": "REST (exact names, absent or version-specific name)",
       "prompt": "On Default/25.200.001, I filter sales orders with $filter=LastModifiedDateTime gt datetimeoffset'2025-10-01T00:00:00+00:00' and release payments with POST .../Payment/Release. A colleague says both names are wrong. Who is right?",
       "expected_output": "Checks both against the Default/25.200.001 snapshot. SalesOrder has no LastModifiedDateTime on this endpoint: the field is SalesOrder.LastModified (DateTimeValue) per fields.md, and endpoint-versions.md § 3 records that it became LastModifiedDateTime in Default/26.200.001, so the filter must use LastModified here. For the payment, the contract's action is Payment.ReleasePayment (actions.md); Payment/Release is what the guide's own example posts to but is not defined in the contract, so it goes through the workflow-action route: prefer ReleasePayment, or confirm Release with Payment/$adHocSchema. Does not invent a field, keeps the Contract Version 4 datetimeoffset literal, and says which file each name came from."
+    },
+    {
+      "id": 17,
+      "capability": "OData (DAC-based feed for BI)",
+      "prompt": "Power BI needs open sales orders from our Acumatica 2026 R2 tenant 'Calipso LLC' with the customer name and the order lines, read-only, refreshed hourly. Give me the OData URL and tell me what it costs in licence terms.",
+      "expected_output": "Uses the DAC-based interface: GET <instance>/t/Calipso%20LLC/api/odata/dac/SOOrder (or PX_Objects_SO_SOOrder) with $select of order fields, $expand=BAccountByCustomerID($select=AcctName),SOLineCollection($select=...) and a $filter on stored values (for example Status eq 'N' or OrderType eq 'SO', marked to confirm), $orderby with $top/$skip for paging; names marked as verified in the 2026 R2 metadata snapshot (SOOrder.BAccountByCustomerID -> PX.Objects.CR.BAccount, SOLineCollection) and checked against the non-filterable list in metadata/entity-sets.md; explains basic auth (username without tenant suffix) counts as a conventional user on SM604000, OAuth as an API user; mentions the OData4 User role and that the feed is read-only; cites odata-guide.md and the metadata files; notes the 2024 R1 /ODatav4 path only if the release is older."
+    },
+    {
+      "id": 18,
+      "capability": "OData (inquiry with parameters, silent empty result)",
+      "prompt": "Our Power Query hits https://erp.example.com/t/U100/api/odata/gi/Item%20Availability%20Data?$filter=InventoryID eq 'AALEGO500' and always gets an empty value array, although the inquiry shows rows in Acumatica. Why?",
+      "expected_output": "Identifies from odata-guide.md § 6 and common-mistakes.md row 4 that the inquiry has a parameter and the plain entity set does not bind parameters, returning an empty result without an error; the request must call the FunctionImport ItemAvailabilityData_WithParameters(InventoryID='AALEGO500') (or the parameter-alias form), found in the gi $metadata; also notes that the inquiry interface filters by displayed values, that a 200 with no body would mean an unsupported query (formula column), and that View Only rights on the inquiry are needed. Does not propose $expand on an inquiry."
+    },
+    {
+      "id": 19,
+      "capability": "OData (exact DAC and field names, join)",
+      "prompt": "Which DAC and fields hold the quantity on hand per warehouse, and how do I get the stock item code and warehouse ID next to it in one OData request?",
+      "expected_output": "Looks the names up in references/odata/metadata: PX.Objects.IN.INSiteStatus (entity sets PX_Objects_IN_INSiteStatus, INSiteStatus; key InventoryID, SiteID, SubItemID) with QtyOnHand and QtyAvail (Edm.Decimal), navigation InventoryItemByInventoryID -> PX.Objects.IN.InventoryItem (InventoryID=InventoryID) and INSiteBySiteID -> PX.Objects.IN.INSite (SiteID=SiteID); builds GET .../api/odata/dac/PX_Objects_IN_INSiteStatus?$select=QtyOnHand,QtyAvail&$expand=InventoryItemByInventoryID($select=InventoryCD,Descr),INSiteBySiteID($select=SiteCD); explains that InventoryID is an integer key so a filter by code goes through the navigation path or the item's own entity set; says the names are verified in the 2026 R2 snapshot and must be confirmed on the client's $metadata; cites metadata/api members entry and odata-guide.md § 4."
+    },
+    {
+      "id": 20,
+      "capability": "OData (delta sync misses deletions; write refused)",
+      "prompt": "Our nightly job pulls customers through /api/odata/dac/Customer with $filter=LastModifiedDateTime gt <last run>, then PATCHes a flag back through the same OData URL. Deleted customers never disappear downstream and the PATCH returns an error. Fix both.",
+      "expected_output": "Explains that OData is read-only (the PATCH must go to the REST API, PUT/PATCH on /entity/Default/<version>/Customer per references/rest) and that a LastModifiedDateTime delta cannot see deletions: add the DAC on Tables to Track Deleted Records (SM207010) and read GET .../api/odata/dac/Customer/px.GetDeletedRecords()?$filter=DeleteDate ge <last run> (RefNoteID, DeleteDate), or send PX-ApiDeleted: SHOW and select DeletedDatabaseRecord for tables that keep soft-deleted rows; notes Customer inherits from BAccount in the snapshot, the %2b encoding for a positive offset, $orderby with $top/$skip for paging; cites odata-guide.md § 5 and common-mistakes.md rows 1 and 14."
     }
   ]
 }
