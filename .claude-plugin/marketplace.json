@@ -41,6 +41,13 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/acumatica-assistant"]
+    },
+    {
+      "name": "quickbooksdesktop-assistant",
+      "description": "QuickBooks Desktop SDK assistant for developers and integrators: qbXML / QBFC C# development (QBSessionManager session lifecycle, message sets, Add/Mod/Query requests, OR aggregates, LinkToTxn, response and StatusCode handling), object and field reference (the ListID / TxnID / EditSequence model, request verbs, OR choice fields, spec versions, and a catalogue of the common lists and transactions), and setup and connectivity (QBFC vs QBXMLRP2 vs the Web Connector, open modes, app authorization, the 32-bit / STA constraints and common connection errors). Targets QuickBooks Desktop (qbXML), not QuickBooks Online. More capabilities to follow.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/quickbooksdesktop-assistant"]
     }
   ]
 }
