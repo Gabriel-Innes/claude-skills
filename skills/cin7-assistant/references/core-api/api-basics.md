@@ -132,8 +132,10 @@ Patterns that repeat across the groups (each is restated in the group file where
   Purchases. New work goes to `/advanced-purchase/...`.
 - `POST` or `PUT` on `/advanced-purchase/stock` converts a Simple Purchase into an Advanced Purchase; `DELETE`
   there is not available for Simple Purchases.
-- `/advanced-purchase/put-away` applies only to Advanced Purchases and only when "Use Put Away" is on in General
-  Settings.
+- `/advanced-purchase/put-away` is the put-away stage. The portal's notes on `/advanced-purchase/stock` say, in
+  consecutive bullets, that a Simple Purchase is converted to Advanced on POST/PUT **and** that the endpoint is
+  "applicable only for Advanced Purchases and if `Use Put Away` option set to true in General Settings"; the two
+  cannot both hold, so confirm on the account which setting gates stock receiving (`INDEX.md`, known limits).
 - **Service purchases** contain additional charges only: GET returns empty `Lines` and filled additional lines;
   stock receiving is not available for them.
 - **Approach**: with `Approach = INVOICE`, stock cannot be received until the invoice is `AUTHORISED`; with

@@ -89,8 +89,9 @@ Grep; never read `groups/production.md`, `groups/purchase.md` or `groups/sale.md
   seven paginated endpoints while 47 GET actions document `Page`/`Limit`; the CRM group's GET headings for *Task
   Category* and *Workflow* show the path `/crm/task` while their POST/PUT use `/crm/taskcategory` and
   `/crm/workflow`; the `Purchase List` field table swaps the descriptions of `UnstockStatus` and
-  `InvoiceStatus`; `Customer` on the `Sale List` table is typed `Date`. Flag such rows as "to confirm on the
-  account".
+  `InvoiceStatus`; `Customer` on the `Sale List` table is typed `Date`; the notes on `/advanced-purchase/stock`
+  say both that a Simple Purchase is converted to Advanced on POST/PUT and that the endpoint applies only to
+  Advanced Purchases with "Use Put Away" enabled. Flag such rows as "to confirm on the account".
 - **38 example bodies are not valid JSON as written** (hand-typed in the portal: unquoted keys, trailing
   commas); they are kept verbatim. Field tables, not examples, are the authority on names.
 - **Sample identifiers in examples** (GUIDs, order numbers, names, e-mail addresses) are the portal's own sample
