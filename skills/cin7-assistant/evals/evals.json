@@ -1,4 +1,65 @@
 {
   "skill_name": "cin7-assistant",
-  "evals": []
+  "evals": [
+    {
+      "id": 1,
+      "capability": "Core API (connect + delta list)",
+      "prompt": "We use Cin7 Core. Show me how to authenticate and fetch every sale that changed since yesterday, in C# or curl.",
+      "expected_output": "Uses base URL https://inventory.dearsystems.com/ExternalApi/v2/ with the api-auth-accountid and api-auth-applicationkey headers (placeholders, no real values) and no token or sign-in step; calls GET /saleList with UpdatedSince as an ISO 8601 UTC date-time and loops page/limit (default 100, max 1000) until page*limit >= Total or a short page; throttles below 60 calls per minute and backs off on 429; cites api-basics.md § 2-5 and the Sale List action in groups/sale.md / endpoints.md; notes that deprecated-record and module behaviour must be confirmed on the account."
+    },
+    {
+      "id": 2,
+      "capability": "Core API (create + authorise a sale)",
+      "prompt": "Create a sale for customer ACME with two product lines and get it to an authorised order. Which calls do I make, in which order?",
+      "expected_output": "Sequence from groups/sale.md: POST /sale (Customer or CustomerID, no ID, no totals), then POST /sale/quote only if SkipQuote is false (or SkipQuote=true to skip), then POST /sale/order with SaleID, Status AUTHORISED, the full set of Lines (POST overwrites) and optionally AutoPickPackShipMode; field names taken from the Sale POST/PUT Attributes and Sale Order field tables and named as such; states that each stage fails outside the documented statuses, that backorders are created silently (check Status = BACKORDERED), and that Simple vs Advanced vs Service sale was assumed; cites api-basics.md § 6-7."
+    },
+    {
+      "id": 3,
+      "capability": "Core API (purchase, advanced endpoints)",
+      "prompt": "How do I receive stock against an existing purchase order in Cin7 Core via the API?",
+      "expected_output": "Points to POST /advanced-purchase/stock (not the deprecated /purchase/stock), with TaskID of the purchase, Status DRAFT or AUTHORISED and Lines; explains the preconditions from the group notes (order must be AUTHORISED; with Approach = INVOICE the invoice must be AUTHORISED first; stock received status DRAFT, NOT AVAILABLE or PARTIALLY RECEIVED), that duplicate lines are merged and an existing product/location/batch/expiry line errors, that an empty-lines request authorises, and that a Simple Purchase is converted to Advanced; cites groups/purchase.md and api-basics.md § 8; mentions Use Put Away as an account setting to confirm."
+    },
+    {
+      "id": 4,
+      "capability": "Core API (void vs undo)",
+      "prompt": "What is the API call to void a stock transfer in Cin7 Core?",
+      "expected_output": "DELETE /stockTransfer?ID=<id>&Void=true, pointing out that without Void=true the call undoes rather than voids (Void defaults to false); cites the Stock Transfer DELETE action in groups/stock.md and api-basics.md § 6; uses a placeholder ID."
+    },
+    {
+      "id": 5,
+      "capability": "Core API (field lookup)",
+      "prompt": "Which fields can I send when creating a customer in Cin7 Core, and which are required?",
+      "expected_output": "Lists the fields from the Available Fields for Customer table in groups/customer.md with their required flags and notes (Name unique and required, Status Active/Deprecated required for POST, ID ignored for POST, LastModifiedOn read-only, Discount 0-100), does not invent fields, and says the table is from the portal export verified 2026-10-07 and should be confirmed on the account for custom attributes."
+    },
+    {
+      "id": 6,
+      "capability": "Core API (enum lookup)",
+      "prompt": "A sale shows status BACKORDERED. What does that mean and what are the other possible sale statuses?",
+      "expected_output": "Explains from enums.md (Available Sale Statuses) that BACKORDERED = OrderStatus AUTHORISED with at least one backordered product and PickStatus NOT AVAILABLE, lists the other statuses (DRAFT, VOIDED, ESTIMATING, ESTIMATED, ORDERING, ORDERED, PICKING, PICKED, PACKING, PACKED, SHIPPING, INVOICING, INVOICED, CREDITED, COMPLETED) with the note that several apply only to simple sales, and mentions that backorders are created silently on authorisation (api-basics.md § 7)."
+    },
+    {
+      "id": 7,
+      "capability": "Core API (webhooks)",
+      "prompt": "I want to be notified when an invoice is authorised in Cin7 Core instead of polling. How?",
+      "expected_output": "Describes POST /webhooks with Type Sale/InvoiceAuthorised (from the webhook type table), ExternalURL, IsActive and ExternalAuthorizationType noauth/basicauth/bearerauth with the matching fields; states the rules from groups/webhooks.md and api-basics.md § 9: automation module required, at most 5 webhooks of one type, 6 delivery attempts (1, then 5, 10, 15, 20, 25 minutes) then deactivation, and shows the sample payload fields; recommends fast 2xx acknowledgement and idempotent handling."
+    },
+    {
+      "id": 8,
+      "capability": "Core API (review)",
+      "prompt": "Review this: our sync does POST /sale/order every time a line is added in our system, and calls DELETE /sale?ID=x to void cancelled sales. It also sends ModifiedSince=2025-01-01 in local time.",
+      "expected_output": "Reports from common-mistakes.md: POST on a sub-document overwrites lines (send the full set), DELETE without Void=true is an undo not a void, dates must be ISO 8601 UTC; orders the findings data-affecting first; cites the rule numbers and the backing sections; asks whether void or undo is intended rather than assuming."
+    },
+    {
+      "id": 9,
+      "capability": "Scope (product pinning)",
+      "prompt": "How do I create a product in Cin7?",
+      "expected_output": "Asks or states which product: Cin7 Core (answered from groups/product.md: POST /product with SKU and Name required, Type Stock or Service, no ID, account codes only for Stock products) or Cin7 Omni (not reference-backed, flagged as such); does not present an Omni answer as verified."
+    },
+    {
+      "id": 10,
+      "capability": "Scope (not covered)",
+      "prompt": "What are the exact daily API call limits per Cin7 Core plan?",
+      "expected_output": "States that the bundled portal only documents a 60-calls-per-minute limit per API Application (429) and nothing about daily or per-plan limits, so any further figure would not be reference-backed; recommends Cin7 support and offers to extend the reference (MAINTENANCE.md)."
+    }
+  ]
 }
