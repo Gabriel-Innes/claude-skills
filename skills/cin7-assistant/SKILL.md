@@ -4,7 +4,7 @@ description: "Cin7 inventory and order management assistant for consultants and 
 compatibility: "Runtime needs file read + grep over the bundled references. Refreshing references needs the API Blueprint export of the Cin7 Core developer portal (dearinventory.docs.apiary.io) and Python 3.10+ (scripts/); none of that is needed to answer questions."
 metadata:
   author: Francois Taljaard
-  version: "2026.10.1"
+  version: "2026.10.2"
   domain: Cin7
 ---
 
@@ -79,7 +79,9 @@ Generate or review HTTP requests and client code (any language) against the **Ci
 4. **Build the request from the rules**: base URL `https://inventory.dearsystems.com/ExternalApi/v2/<path>`;
    headers `api-auth-accountid`, `api-auth-applicationkey`, `Content-Type: application/json`; GET filters on
    the query string with `page` / `limit` where documented and ISO 8601 UTC dates; POST to create (no `ID`),
-   PUT to update (`ID` / `TaskID` required), `DELETE ?ID=<id>&Void=<true|false>` for void versus undo; sub-document
+   PUT to update (`ID` / `TaskID` required), `DELETE ?ID=<id>&Void=<true|false>` for void versus undo (`ID` on
+   the parent document, `TaskID` on `/sale/invoice`, `/sale/fulfilment`, `/sale/creditnote` and the other
+   sub-documents: use whichever the action's Parameters list says); sub-document
    POSTs carry the full intended set of lines (a POST overwrites, an empty collection deletes); totals omitted
    on create; only `DRAFT` or `AUTHORISED` as a posted status; the `/advanced-purchase/...` family for
    purchases.
@@ -108,7 +110,7 @@ Backed by `references/core-api/api-basics.md` unless another file is named.
 - **Two headers, no sign-in.** `api-auth-accountid` and `api-auth-applicationkey` on every call; there is no
   token, session or OAuth in the portal. `GET /me` is the connectivity test. (§ 2)
 - **Limits are per Application Key**, 60 calls per minute, 429 when exceeded. One key per integration. (§ 2, § 4)
-- **Paths are exact and mostly singular**: `/Product` not `/Products`, `/sale` not `/sales`; a wrong name is a
+- **Paths are exact and mostly singular**: `/product` not `/products`, `/sale` not `/sales`; a wrong name is a
   404. (`endpoints.md`)
 - **Paging is `page` / `limit` (max 1000) plus `Total`**, and more endpoints page than the intro lists. (§ 3)
 - **Dates are UTC ISO 8601** everywhere, filters included. (§ 5)

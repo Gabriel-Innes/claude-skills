@@ -53,7 +53,7 @@ page until a short page or until `Page * Limit >= Total`.
 | `204 No Content` | successful, nothing to return |
 | `400 Bad Request` | malformed request or posted data failed validation; read the error message in the body |
 | `403 Forbidden` | method authentication failed (wrong or missing headers) |
-| `404 Not found` | endpoint does not exist, e.g. `/Products` instead of `/Product` |
+| `404 Not found` | endpoint does not exist, e.g. `/products` instead of `/product` |
 | `405 Not allowed` | method not allowed on that endpoint (e.g. PUT or DELETE where only GET/POST exist) |
 | `429 Too Many Requests` | "You reached **60 calls per minute** API limit" |
 | `500 Internal Server Error` | the object could not be parsed, or an unexpected server error |
@@ -78,7 +78,8 @@ Patterns that repeat across the groups (each is restated in the group file where
 - **Tasks** (sale, purchase, stock adjustment, stock take, stock transfer, journal, money task, finished goods,
   disassembly, inventory write-off): a list endpoint (`/saleList`, `/purchaseList`, `/stockTakeList`, ...), a
   detail endpoint (`GET ?ID=` or `?TaskID=`), `POST` to create, `PUT` to update (`TaskID`/`ID` "Required for
-  PUT") and `DELETE ?ID=<id>&Void=<bool>`.
+  PUT") and `DELETE ?ID=<id>&Void=<bool>` (`TaskID` instead of `ID` on the sub-document deletes such as
+  `/sale/invoice`, `/sale/fulfilment`, `/sale/creditnote`, `/advanced-purchase/stock`: follow the action's Parameters).
 - **Void versus undo**: the `DELETE` of a task takes `Void` (optional, boolean, default `false`). `Void=true`
   voids the task; without it the call *undoes* it (the portal's wording is "Void or Undo"). Say which one the user
   wants before writing the call.

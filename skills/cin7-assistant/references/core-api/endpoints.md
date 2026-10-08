@@ -106,14 +106,14 @@ One row per documented action (295 actions, 102 resources, 33 groups). Grep by p
 | GET | `/production/factoryCalendar` | Production | Factory Calendar |  | Year* | [production.md](groups/production.md#get-production-factorycalendar) |
 | POST | `/production/factoryCalendar` | Production | Factory Calendar |  |  | [production.md](groups/production.md#post-production-factorycalendar) |
 | PUT | `/production/factoryCalendar` | Production | Factory Calendar |  |  | [production.md](groups/production.md#put-production-factorycalendar) |
-| GET | `/production/productionBOM` | Production | Product Production BOM |  | ProductID*, ReturnAttachmentsContent | [production.md](groups/production.md#get-production-productionbom) |
-| POST | `/production/productionBOM` | Production | Product Production BOM |  |  | [production.md](groups/production.md#post-production-productionbom) |
-| PUT | `/production/productionBOM` | Production | Product Production BOM |  |  | [production.md](groups/production.md#put-production-productionbom) |
-| DELETE | `/production/productionBOM` | Production | Product Production BOM |  | ProductID*, BOMID* | [production.md](groups/production.md#delete-production-productionbom) |
-| GET | `/production/productionBOM` | Production | Product Family Production BOM |  | ProductFamilyID*, ReturnAttachmentsContent | [production.md](groups/production.md#get-production-productionbom) |
-| POST | `/production/productionBOM` | Production | Product Family Production BOM |  |  | [production.md](groups/production.md#post-production-productionbom) |
-| PUT | `/production/productionBOM` | Production | Product Family Production BOM |  |  | [production.md](groups/production.md#put-production-productionbom) |
-| DELETE | `/production/productionBOM` | Production | Product Family Production BOM |  | ProductFamilyID*, BOMID* | [production.md](groups/production.md#delete-production-productionbom) |
+| GET | `/production/productionBOM` | Production | Product Production BOM |  | ProductID*, ReturnAttachmentsContent | [production.md](groups/production.md#get-production-productionbom-product-production-bom) |
+| POST | `/production/productionBOM` | Production | Product Production BOM |  |  | [production.md](groups/production.md#post-production-productionbom-product-production-bom) |
+| PUT | `/production/productionBOM` | Production | Product Production BOM |  |  | [production.md](groups/production.md#put-production-productionbom-product-production-bom) |
+| DELETE | `/production/productionBOM` | Production | Product Production BOM |  | ProductID*, BOMID* | [production.md](groups/production.md#delete-production-productionbom-product-production-bom) |
+| GET | `/production/productionBOM` | Production | Product Family Production BOM |  | ProductFamilyID*, ReturnAttachmentsContent | [production.md](groups/production.md#get-production-productionbom-product-family-production-bom) |
+| POST | `/production/productionBOM` | Production | Product Family Production BOM |  |  | [production.md](groups/production.md#post-production-productionbom-product-family-production-bom) |
+| PUT | `/production/productionBOM` | Production | Product Family Production BOM |  |  | [production.md](groups/production.md#put-production-productionbom-product-family-production-bom) |
+| DELETE | `/production/productionBOM` | Production | Product Family Production BOM |  | ProductFamilyID*, BOMID* | [production.md](groups/production.md#delete-production-productionbom-product-family-production-bom) |
 | GET | `/production/order` | Production | Production Order |  | ProductionOrderID*, ReturnAttachmentsContent | [production.md](groups/production.md#get-production-order) |
 | POST | `/production/order` | Production | Production Order |  | RecalculateDates | [production.md](groups/production.md#post-production-order) |
 | PUT | `/production/order` | Production | Production Order |  | AllowRecalculateDates, AllowRecalculateCyclesAndQuantities | [production.md](groups/production.md#put-production-order) |
@@ -166,7 +166,7 @@ One row per documented action (295 actions, 102 resources, 33 groups). Grep by p
 | GET | `/purchase/payment` | Purchase | Purchase Payments |  | TaskID* | [purchase.md](groups/purchase.md#get-purchase-payment) |
 | POST | `/purchase/payment` | Purchase | Purchase Payments |  |  | [purchase.md](groups/purchase.md#post-purchase-payment) |
 | PUT | `/purchase/payment` | Purchase | Purchase Payments |  |  | [purchase.md](groups/purchase.md#put-purchase-payment) |
-| DELETE | `/purchase/payment` | Purchase | Purchase Payments |  | ID*, DeleteAllocation | [purchase.md](groups/purchase.md#delete-purchase-payment) |
+| DELETE | `/purchase/payment` | Purchase | Purchase Payments |  | ID*, DeleteAllocation | [purchase.md](groups/purchase.md#delete-purchase-payment-purchase-payments) |
 | GET | `/purchase/manualJournal` | Purchase | Purchase Manual Journals |  | TaskID* | [purchase.md](groups/purchase.md#get-purchase-manualjournal) |
 | POST | `/purchase/manualJournal` | Purchase | Purchase Manual Journals |  |  | [purchase.md](groups/purchase.md#post-purchase-manualjournal) |
 | GET | `/purchase/attachment` | Purchase | Purchase Attachments |  | TaskID* | [purchase.md](groups/purchase.md#get-purchase-attachment) |
@@ -191,7 +191,7 @@ One row per documented action (295 actions, 102 resources, 33 groups). Grep by p
 | GET | `/advanced-purchase/payment` | Purchase | Advanced Purchase Payments |  | PurchaseID, OrderNumber, InvoiceNumber, CreditNoteNumber | [purchase.md](groups/purchase.md#get-advanced-purchase-payment) |
 | POST | `/advanced-purchase/payment` | Purchase | Advanced Purchase Payments |  |  | [purchase.md](groups/purchase.md#post-advanced-purchase-payment) |
 | PUT | `/advanced-purchase/payment` | Purchase | Advanced Purchase Payments |  |  | [purchase.md](groups/purchase.md#put-advanced-purchase-payment) |
-| DELETE | `/purchase/payment` | Purchase | Advanced Purchase Payments |  | ID*, DeleteAllocation | [purchase.md](groups/purchase.md#delete-purchase-payment) |
+| DELETE | `/purchase/payment` | Purchase | Advanced Purchase Payments |  | ID*, DeleteAllocation | [purchase.md](groups/purchase.md#delete-purchase-payment-advanced-purchase-payments) |
 | GET | `/advanced-purchase/manualJournal` | Purchase | Advanced Purchase Manual Journals |  | PurchaseID* | [purchase.md](groups/purchase.md#get-advanced-purchase-manualjournal) |
 | POST | `/advanced-purchase/manualJournal` | Purchase | Advanced Purchase Manual Journals |  |  | [purchase.md](groups/purchase.md#post-advanced-purchase-manualjournal) |
 | POST | `/custom-prices` | Reference Books | Custom Prices |  |  | [reference-books.md](groups/reference-books.md#post-custom-prices) |
@@ -291,13 +291,13 @@ One row per documented action (295 actions, 102 resources, 33 groups). Grep by p
 | GET | `/crm/opportunity` | CRM | Opportunity |  | Page, Limit, ID, ModifiedSince | [crm.md](groups/crm.md#get-crm-opportunity) |
 | POST | `/crm/opportunity` | CRM | Opportunity |  |  | [crm.md](groups/crm.md#post-crm-opportunity) |
 | PUT | `/crm/opportunity` | CRM | Opportunity |  |  | [crm.md](groups/crm.md#put-crm-opportunity) |
-| GET | `/crm/task` | CRM | Task |  | Page, Limit, ID, Name, StartDateFrom, StartDateTo, EndDateFrom, EndDateTo, CompleteDateFrom, CompleteDateTo, AssignedTo, Category | [crm.md](groups/crm.md#get-crm-task) |
+| GET | `/crm/task` | CRM | Task |  | Page, Limit, ID, Name, StartDateFrom, StartDateTo, EndDateFrom, EndDateTo, CompleteDateFrom, CompleteDateTo, AssignedTo, Category | [crm.md](groups/crm.md#get-crm-task-task) |
 | POST | `/crm/task` | CRM | Task |  |  | [crm.md](groups/crm.md#post-crm-task) |
 | PUT | `/crm/task` | CRM | Task |  |  | [crm.md](groups/crm.md#put-crm-task) |
-| GET | `/crm/task` | CRM | Task Category |  | Page, Limit, ID, Name | [crm.md](groups/crm.md#get-crm-task) |
+| GET | `/crm/task` | CRM | Task Category |  | Page, Limit, ID, Name | [crm.md](groups/crm.md#get-crm-task-task-category) |
 | POST | `/crm/taskcategory` | CRM | Task Category |  |  | [crm.md](groups/crm.md#post-crm-taskcategory) |
 | PUT | `/crm/taskcategory` | CRM | Task Category |  |  | [crm.md](groups/crm.md#put-crm-taskcategory) |
-| GET | `/crm/task` | CRM | Workflow |  | Page, Limit, ID, Name | [crm.md](groups/crm.md#get-crm-task) |
+| GET | `/crm/task` | CRM | Workflow |  | Page, Limit, ID, Name | [crm.md](groups/crm.md#get-crm-task-workflow) |
 | POST | `/crm/workflow` | CRM | Workflow |  |  | [crm.md](groups/crm.md#post-crm-workflow) |
 | PUT | `/crm/workflow` | CRM | Workflow |  |  | [crm.md](groups/crm.md#put-crm-workflow) |
 | POST | `/crm/workflowstart` | CRM | Start a Workflow |  | ID, Name, StartDate*, EnityType*, EntityID* | [crm.md](groups/crm.md#post-crm-workflowstart) |

@@ -43,8 +43,30 @@ def slugify(title):
     return s or "group"
 
 
-def anchor_id(method, path):
-    return slugify(method + " " + re.sub(r"\?.*$", "", path))
+def anchor_id(method, path, resource=None):
+    """`get-sale` normally; `get-crm-task-task-category` when another action in the same group shares method + path
+    (the caller passes the resource only then), so every anchor in a group file is unique."""
+    aid = slugify(method + " " + re.sub(r"\?.*$", "", path))
+    if resource is not None:
+        aid += "-" + slugify(resource.title)
+    return aid
+
+
+def shared_method_paths(lines):
+    """(method, bare path) pairs that more than one action of a group uses, e.g. Product BOM and Product Family BOM
+    both documenting `GET /production/productionBOM`."""
+    seen, shared = set(), set()
+    resource_path = None
+    for line in lines:
+        rm = RESOURCE_RE.match(line)
+        if rm:
+            resource_path = rm.group(2).strip()
+            continue
+        am = ACTION_RE.match(line)
+        if am:
+            key = (am.group(2), re.sub(r"\?.*$", "", (am.group(3) or "").strip() or resource_path or ""))
+            (shared if key in seen else seen).add(key)
+    return shared
 
 
 def dedent_block(lines):
@@ -73,8 +95,8 @@ def render_body(lines):
 
 
 class Action:
-    def __init__(self, title, method, path, resource):
-        self.title, self.method, self.path, self.resource = title, method, path, resource
+    def __init__(self, title, method, path, resource, anchor):
+        self.title, self.method, self.path, self.resource, self.anchor = title, method, path, resource, anchor
         self.params = []     # (name, spec, description)
         self.request = []    # raw body lines
         self.response = []   # raw body lines
@@ -117,6 +139,7 @@ def convert_group(title, lines, slug):
     enums = []
     resource = None
     action = None
+    shared = shared_method_paths(lines)
     i, n = 0, len(lines)
     last_heading = title
     last_anchor = None
@@ -138,9 +161,10 @@ def convert_group(title, lines, slug):
             atitle, method, apath = am.group(1).strip(), am.group(2), (am.group(3) or "").strip()
             if not apath:
                 apath = resource.path if resource else "(path not stated)"
-            action = Action(atitle, method, apath, resource)
+            key = (method, re.sub(r"\?.*$", "", apath))
+            aid = anchor_id(method, apath, resource if key in shared and resource else None)
+            action = Action(atitle, method, apath, resource, aid)
             actions.append(action)
-            aid = anchor_id(method, apath)
             shown = f"### {method} {apath}"
             if atitle and atitle.upper() not in (method, "GET", "POST", "PUT", "DELETE"):
                 shown = f"### {atitle}: {method} {apath}"
@@ -206,7 +230,7 @@ def convert_group(title, lines, slug):
                 s = lines[i].strip()
                 if s.startswith("+ Body"):
                     i += 1
-                    while i < n and not NEXT_TOP_RE.match(lines[i]):
+                    while i < n and not NEXT_TOP_RE.match(lines[i]) and not lines[i].strip().startswith("+ "):
                         body.append(lines[i])
                         i += 1
                     continue
@@ -279,9 +303,6 @@ def main():
     groups = parse_groups(text)
     groups_dir = os.path.join(args.out, "groups")
     os.makedirs(groups_dir, exist_ok=True)
-    for old in os.listdir(groups_dir):
-        if old.endswith(".md"):
-            os.remove(os.path.join(groups_dir, old))
 
     catalogue = []
     all_enums = []
@@ -304,7 +325,7 @@ def main():
             header.append("|---|---|")
             for a in actions:
                 shown = a.title if a.title and a.title.upper() not in ("GET", "POST", "PUT", "DELETE") else a.method
-                header.append(f"| [{shown}](#{anchor_id(a.method, a.path)}) | `{a.method} {a.path}` |")
+                header.append(f"| [{shown}](#{a.anchor}) | `{a.method} {a.path}` |")
             header.append("")
         content = "\n".join(header + md).rstrip() + "\n"
         path = os.path.join(groups_dir, slug + ".md")
@@ -332,7 +353,7 @@ def main():
         bare = re.sub(r"\?.*$", "", a.path)
         res = a.resource.title if a.resource else ""
         ep.append(f"| {a.method} | `{bare}` | {title} | {res} | {shown} | {params} | "
-                  f"[{slug}.md](groups/{slug}.md#{anchor_id(a.method, a.path)}) |")
+                  f"[{slug}.md](groups/{slug}.md#{a.anchor}) |")
     written[os.path.join(args.out, "endpoints.md")] = "\n".join(ep) + "\n"
 
     # enums.md
@@ -357,6 +378,9 @@ def main():
                 leaked.append((os.path.basename(path), v))
     if leaked:
         sys.exit("not written: sample header values survive in " + ", ".join(f"{p} ({v[:8]}...)" for p, v in leaked))
+    for old in os.listdir(groups_dir):  # only now: a refused build leaves the previous files in place
+        if old.endswith(".md"):
+            os.remove(os.path.join(groups_dir, old))
     for path, content in written.items():
         with open(path, "w", encoding="utf-8", newline="\n") as f:
             f.write(content)
