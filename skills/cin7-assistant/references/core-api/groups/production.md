@@ -9,14 +9,14 @@ Group `Production` of the Cin7 Core API reference. Base URL `https://inventory.d
 | [GET](#get-production-factorycalendar) | `GET /production/factoryCalendar?Year={Year}` |
 | [POST](#post-production-factorycalendar) | `POST /production/factoryCalendar` |
 | [PUT](#put-production-factorycalendar) | `PUT /production/factoryCalendar` |
-| [GET](#get-production-productionbom) | `GET /production/productionBOM?ProductID={ProductID}&ReturnAttachmentsContent={ReturnAttachmentsContent}` |
-| [POST](#post-production-productionbom) | `POST /production/productionBOM` |
-| [PUT](#put-production-productionbom) | `PUT /production/productionBOM` |
-| [DELETE](#delete-production-productionbom) | `DELETE /production/productionBOM?ProductID={ProductID}&BOMID={BOMID}` |
-| [GET](#get-production-productionbom) | `GET /production/productionBOM?ProductFamilyID={ProductFamilyID}&ReturnAttachmentsContent={ReturnAttachmentsContent}` |
-| [POST](#post-production-productionbom) | `POST /production/productionBOM` |
-| [PUT](#put-production-productionbom) | `PUT /production/productionBOM` |
-| [DELETE](#delete-production-productionbom) | `DELETE /production/productionBOM?ProductFamilyID={ProductFamilyID}&BOMID={BOMID}` |
+| [GET](#get-production-productionbom-product-production-bom) | `GET /production/productionBOM?ProductID={ProductID}&ReturnAttachmentsContent={ReturnAttachmentsContent}` |
+| [POST](#post-production-productionbom-product-production-bom) | `POST /production/productionBOM` |
+| [PUT](#put-production-productionbom-product-production-bom) | `PUT /production/productionBOM` |
+| [DELETE](#delete-production-productionbom-product-production-bom) | `DELETE /production/productionBOM?ProductID={ProductID}&BOMID={BOMID}` |
+| [GET](#get-production-productionbom-product-family-production-bom) | `GET /production/productionBOM?ProductFamilyID={ProductFamilyID}&ReturnAttachmentsContent={ReturnAttachmentsContent}` |
+| [POST](#post-production-productionbom-product-family-production-bom) | `POST /production/productionBOM` |
+| [PUT](#put-production-productionbom-product-family-production-bom) | `PUT /production/productionBOM` |
+| [DELETE](#delete-production-productionbom-product-family-production-bom) | `DELETE /production/productionBOM?ProductFamilyID={ProductFamilyID}&BOMID={BOMID}` |
 | [GET](#get-production-order) | `GET /production/order?ProductionOrderID={ProductionOrderID}&returnAttachmentsContent={ReturnAttachmentsContent}` |
 | [POST](#post-production-order) | `POST /production/order?RecalculateDates={RecalculateDates}` |
 | [PUT](#put-production-order) | `PUT /production/order?AllowRecalculateDates={AllowRecalculateDates}&AllowRecalculateCyclesAndQuantities={AllowRecalculateCyclesAndQuantities}` |
@@ -685,7 +685,7 @@ The Production BOM resource allows Production BOMs to be listed, viewed, created
 |`DeliveryTo`|Guid|||DeliveryTo location identifier. |
 |`DeliveryToName`|String|256||DeliveryTo location name.|
 
-<a id="get-production-productionbom"></a>
+<a id="get-production-productionbom-product-production-bom"></a>
 ### GET /production/productionBOM?ProductID={ProductID}&ReturnAttachmentsContent={ReturnAttachmentsContent}
 + Method will return all Production BOMs of specified product.
 
@@ -844,7 +844,7 @@ Response 200:
 }
 ```
 
-<a id="post-production-productionbom"></a>
+<a id="post-production-productionbom-product-production-bom"></a>
 ### POST /production/productionBOM
 + Method will create new Production BOM(s) for specified product.
 
@@ -1126,7 +1126,7 @@ Response 200:
 }
 ```
 
-<a id="put-production-productionbom"></a>
+<a id="put-production-productionbom-product-production-bom"></a>
 ### PUT /production/productionBOM
 + Method will update Production BOM for specified product.
 
@@ -1273,7 +1273,7 @@ Response 200:
 }
 ```
 
-<a id="delete-production-productionbom"></a>
+<a id="delete-production-productionbom-product-production-bom"></a>
 ### DELETE /production/productionBOM?ProductID={ProductID}&BOMID={BOMID}
 + Method will delete specified Production BOM of specified product.
 
@@ -1336,7 +1336,7 @@ See <a href="#ProductionBOMOperationLink"><b>Production BOM Operation Link Model
 ### Available Fields for Production BOM InputProducts, OutputProducts, FinishedProducts
 See <a href="#ProductionBOMOperationProduct"><b>Production BOM Operation Product Model</b></a>
 
-<a id="get-production-productionbom"></a>
+<a id="get-production-productionbom-product-family-production-bom"></a>
 ### GET /production/productionBOM?ProductFamilyID={ProductFamilyID}&ReturnAttachmentsContent={ReturnAttachmentsContent}
 + Method will return all Production BOMs of specified product family.
 
@@ -1445,7 +1445,7 @@ Response 200:
 }
 ```
 
-<a id="post-production-productionbom"></a>
+<a id="post-production-productionbom-product-family-production-bom"></a>
 ### POST /production/productionBOM
 + Method will create new Production BOM(s) for specified product family. Please set the 'OverwriteExistingProductionBOM' flag to true if the existing Production BOM needs to be replaced.
 
@@ -1663,7 +1663,7 @@ Response 200:
 }
 ```
 
-<a id="put-production-productionbom"></a>
+<a id="put-production-productionbom-product-family-production-bom"></a>
 ### PUT /production/productionBOM
 + Method will update Production BOM for specified product family.
 
@@ -1785,7 +1785,7 @@ Response 200:
 }
 ```
 
-<a id="delete-production-productionbom"></a>
+<a id="delete-production-productionbom-product-family-production-bom"></a>
 ### DELETE /production/productionBOM?ProductFamilyID={ProductFamilyID}&BOMID={BOMID}
 + Method will delete specified Production BOM of specified product family.
 

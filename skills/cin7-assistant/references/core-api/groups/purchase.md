@@ -23,7 +23,7 @@ Group `Purchase` of the Cin7 Core API reference. Base URL `https://inventory.dea
 | [GET](#get-purchase-payment) | `GET /purchase/payment?TaskID={TaskID}` |
 | [POST](#post-purchase-payment) | `POST /purchase/payment` |
 | [PUT](#put-purchase-payment) | `PUT /purchase/payment` |
-| [DELETE](#delete-purchase-payment) | `DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}` |
+| [DELETE](#delete-purchase-payment-purchase-payments) | `DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}` |
 | [GET](#get-purchase-manualjournal) | `GET /purchase/manualJournal?TaskID={TaskID}` |
 | [POST](#post-purchase-manualjournal) | `POST /purchase/manualJournal` |
 | [GET](#get-purchase-attachment) | `GET /purchase/attachment?TaskID={TaskID}` |
@@ -48,7 +48,7 @@ Group `Purchase` of the Cin7 Core API reference. Base URL `https://inventory.dea
 | [GET](#get-advanced-purchase-payment) | `GET /advanced-purchase/payment?PurchaseID={PurchaseID}&OrderNumber={OrderNumber}&InvoiceNumber={InvoiceNumber}&CreditNoteNumber={CreditNoteNumber}` |
 | [POST](#post-advanced-purchase-payment) | `POST /advanced-purchase/payment` |
 | [PUT](#put-advanced-purchase-payment) | `PUT /advanced-purchase/payment` |
-| [DELETE](#delete-purchase-payment) | `DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}` |
+| [DELETE](#delete-purchase-payment-advanced-purchase-payments) | `DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}` |
 | [GET](#get-advanced-purchase-manualjournal) | `GET /advanced-purchase/manualJournal?PurchaseID={PurchaseID}` |
 | [POST](#post-advanced-purchase-manualjournal) | `POST /advanced-purchase/manualJournal` |
 
@@ -2270,7 +2270,7 @@ Response 200:
 }
 ```
 
-<a id="delete-purchase-payment"></a>
+<a id="delete-purchase-payment-purchase-payments"></a>
 ### DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}
 
 Parameters:
@@ -5320,7 +5320,7 @@ Response 200:
 }
 ```
 
-<a id="delete-purchase-payment"></a>
+<a id="delete-purchase-payment-advanced-purchase-payments"></a>
 ### DELETE /purchase/payment?ID={ID}&DeleteAllocation={DeleteAllocation}
 
 Parameters:

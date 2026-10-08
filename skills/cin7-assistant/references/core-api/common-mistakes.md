@@ -10,7 +10,7 @@ last column names the file and section that backs the rule.
 | 1 | `Authorization: Bearer ...`, `?apikey=`, basic auth, or a sign-in call | The API has no token or session flow; every request carries two headers: `api-auth-accountid` and `api-auth-applicationkey`. | `api-basics.md` § 2 (Connecting to the API) |
 | 2 | One Application Key shared by several integrations | API limits are applied per API Application; sharing a key makes one integration's traffic throttle the others. | `api-basics.md` § 2 |
 | 3 | Account ID or Application Key in source, logs or examples | The pair is equivalent to a login and password. Use placeholders and secrets storage. | `api-basics.md` § 2 |
-| 4 | `GET /ExternalApi/v2/Products`, `/Sales`, `/Customers` | Endpoint names are singular or exact (`/Product`, `/sale`, `/customer`); a wrong name is a 404. Copy the path from `endpoints.md`. | `api-basics.md` § 4; `endpoints.md` |
+| 4 | `GET /ExternalApi/v2/Products`, `/Sales`, `/Customers` | Endpoint names are singular or exact (`/product`, `/sale`, `/customer`); a wrong name is a 404. Copy the path from `endpoints.md`. | `api-basics.md` § 4; `endpoints.md` |
 | 5 | `GET /ExternalApi/v2/saleList` with no paging, expecting everything | Paginated endpoints return one page (`limit` default 100, max 1000) plus `Total`; loop on `page` until a short page or `page * limit >= Total`. | `api-basics.md` § 3 |
 | 6 | `?limit=5000` | The maximum page size is 1000; the minimum is 1. | `api-basics.md` § 3 |
 | 7 | Firing requests in parallel or retrying a 429 immediately | 429 means the 60-calls-per-minute limit of the application; throttle client-side and back off. | `api-basics.md` § 4 |

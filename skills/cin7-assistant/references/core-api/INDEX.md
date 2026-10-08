@@ -91,7 +91,8 @@ Grep; never read `groups/production.md`, `groups/purchase.md` or `groups/sale.md
   `/crm/workflow`; the `Purchase List` field table swaps the descriptions of `UnstockStatus` and
   `InvoiceStatus`; `Customer` on the `Sale List` table is typed `Date`; the notes on `/advanced-purchase/stock`
   say both that a Simple Purchase is converted to Advanced on POST/PUT and that the endpoint applies only to
-  Advanced Purchases with "Use Put Away" enabled. Flag such rows as "to confirm on the account".
+  Advanced Purchases with "Use Put Away" enabled; the Product group's notes write `/Product` while the resource
+  path (and `endpoints.md`) is `/product`. Flag such rows as "to confirm on the account".
 - **38 example bodies are not valid JSON as written** (hand-typed in the portal: unquoted keys, trailing
   commas); they are kept verbatim. Field tables, not examples, are the authority on names.
 - **Sample identifiers in examples** (GUIDs, order numbers, names, e-mail addresses) are the portal's own sample

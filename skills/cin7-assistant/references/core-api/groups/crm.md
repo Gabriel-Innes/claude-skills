@@ -12,13 +12,13 @@ Group `CRM` of the Cin7 Core API reference. Base URL `https://inventory.dearsyst
 | [GET](#get-crm-opportunity) | `GET /crm/opportunity?Page={Page}&Limit={Limit}&ID={ID}&ModifiedSince={ModifiedSince}` |
 | [POST](#post-crm-opportunity) | `POST /crm/opportunity` |
 | [PUT](#put-crm-opportunity) | `PUT /crm/opportunity` |
-| [GET](#get-crm-task) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}&StartDateFrom={StartDateFrom}&StartDateTo={StartDateTo}&EndDateFrom={EndDateFrom}&EndDateTo={EndDateTo}&CompleteDateFrom={CompleteDateFrom}&CompleteDateTo={CompleteDateTo}&AssignedTo={AssignedTo}&Category={Category}` |
+| [GET](#get-crm-task-task) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}&StartDateFrom={StartDateFrom}&StartDateTo={StartDateTo}&EndDateFrom={EndDateFrom}&EndDateTo={EndDateTo}&CompleteDateFrom={CompleteDateFrom}&CompleteDateTo={CompleteDateTo}&AssignedTo={AssignedTo}&Category={Category}` |
 | [POST](#post-crm-task) | `POST /crm/task` |
 | [PUT](#put-crm-task) | `PUT /crm/task` |
-| [GET](#get-crm-task) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}` |
+| [GET](#get-crm-task-task-category) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}` |
 | [POST](#post-crm-taskcategory) | `POST /crm/taskcategory` |
 | [PUT](#put-crm-taskcategory) | `PUT /crm/taskcategory` |
-| [GET](#get-crm-task) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}` |
+| [GET](#get-crm-task-workflow) | `GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}` |
 | [POST](#post-crm-workflow) | `POST /crm/workflow` |
 | [PUT](#put-crm-workflow) | `PUT /crm/workflow` |
 | [POST](#post-crm-workflowstart) | `POST /crm/workflowstart?ID={ID}&Name={Name}&StartDate={StartDate}&EnityType={EnityType}&EntityID={EntityID}` |
@@ -1021,7 +1021,7 @@ Task CRUD operations
 "Journal",
 "Production"
 
-<a id="get-crm-task"></a>
+<a id="get-crm-task-task"></a>
 ### GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}&StartDateFrom={StartDateFrom}&StartDateTo={StartDateTo}&EndDateFrom={EndDateFrom}&EndDateTo={EndDateTo}&CompleteDateFrom={CompleteDateFrom}&CompleteDateTo={CompleteDateTo}&AssignedTo={AssignedTo}&Category={Category}
 
 Parameters:
@@ -1221,7 +1221,7 @@ Task Category CRUD operations
 `Color`|string|6||RGB HEX color string, e.g. F7CAFE
 `BackgroundColor`|string|6||RGB HEX color string, e.g. F7CAFE
 
-<a id="get-crm-task"></a>
+<a id="get-crm-task-task-category"></a>
 ### GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}
 
 Parameters:
@@ -1362,7 +1362,7 @@ SkipHoliday values mean:
 + ”ph_move_next” - For PH day only move to the next working day,
 + ”ph_move_previous” - For PH day only move to the previous working day
 
-<a id="get-crm-task"></a>
+<a id="get-crm-task-workflow"></a>
 ### GET /crm/task?Page={Page}&Limit={Limit}&ID={ID}&Name={Name}
 
 Parameters:
